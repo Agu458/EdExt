@@ -29,6 +29,8 @@ public class Curso implements Serializable {
     private List<Edicion> ediciones;
     @OneToOne
     private Edicion edicionActual;
+    @OneToMany
+    private List<Curso> previas;
 
     public Curso() {
     }
@@ -117,12 +119,24 @@ public class Curso implements Serializable {
         this.edicionActual = edicionActual;
     }
 
+    public List<Curso> getPrevias() {
+        return previas;
+    }
+
+    public void setPrevias(List<Curso> previas) {
+        this.previas = previas;
+    }
+    
     private DataCurso darDatos(){
         List<DataEdicion> e = new ArrayList();
+        List<String> p = new ArrayList();
         for(Edicion ed : ediciones){
             DataEdicion de = ed.darDatos();
             e.add(de);
         }
-        return new DataCurso(nombre, descripcion, duracion, horas, creditos, fechaRegistro, URL, e, edicionActual.darDatos());
+        for(Curso c : previas){
+            p.add(c.getNombre());
+        }
+        return new DataCurso(nombre, descripcion, duracion, horas, creditos, fechaRegistro, URL, e, edicionActual.darDatos(),p);
     }
 }

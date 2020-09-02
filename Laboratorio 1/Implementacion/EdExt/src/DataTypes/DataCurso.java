@@ -14,8 +14,9 @@ public class DataCurso {
     private String URL;
     private List<DataEdicion> ediciones;
     private DataEdicion edicionAgtual;
+    private List<String> previas;
 
-    public DataCurso(String nombre, String descripcion, int duracion, int horas, int creditos, Date fechaRegistro, String URL, List<DataEdicion> ediciones, DataEdicion edicionAgtual) {
+    public DataCurso(String nombre, String descripcion, int duracion, int horas, int creditos, Date fechaRegistro, String URL, List<DataEdicion> ediciones, DataEdicion edicionAgtual, List<String> previas) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.duracion = duracion;
@@ -25,6 +26,7 @@ public class DataCurso {
         this.URL = URL;
         this.ediciones = ediciones;
         this.edicionAgtual = edicionAgtual;
+        this.previas = previas;
     }
 
     public String getNombre() {
@@ -61,5 +63,9 @@ public class DataCurso {
 
     public DataEdicion getEdicionAgtual() {
         return edicionAgtual;
+    }
+
+    public List<String> getPrevias() {
+        return previas;
     }
 }
