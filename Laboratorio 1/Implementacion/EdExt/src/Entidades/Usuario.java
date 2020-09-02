@@ -1,7 +1,9 @@
 package Entidades;
 
+import DataTypes.DataUsuario;
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,8 +20,11 @@ public class Usuario implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Column(unique = true)
+    private String nick;
     private String nombre;
     private String apellido;
+    @Column(unique = true)
     private String email;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date fechaNacimiento;
@@ -27,7 +32,8 @@ public class Usuario implements Serializable {
     public Usuario() {
     }
 
-    public Usuario(String nombre, String apellido, String email, Date fechaNacimiento) {
+    public Usuario(String nick, String nombre, String apellido, String email, Date fechaNacimiento) {
+        this.nick = nick;
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
@@ -38,6 +44,14 @@ public class Usuario implements Serializable {
         return id;
     }
 
+    public String getNick() {
+        return nick;
+    }
+
+    public void setNick(String nick) {
+        this.nick = nick;
+    }
+    
     public String getNombre() {
         return nombre;
     }
@@ -68,5 +82,9 @@ public class Usuario implements Serializable {
 
     public void setFechaNacimiento(Date fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
+    }
+    
+    public DataUsuario darDatos(){
+        return new DataUsuario(id, nick, nombre, apellido, email, fechaNacimiento);
     }
 }

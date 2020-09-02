@@ -1,8 +1,10 @@
 package Logica;
 
+import DataTypes.DataUsuario;
 import Entidades.Estudiante;
 import Entidades.Instituto;
 import Entidades.Profesor;
+import Entidades.Usuario;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -58,11 +60,11 @@ public class Sistema extends ISistema {
     }
     
     // Ususario
-    public void alataEstudiante(String nombre, String apellido, String email, Date fechaNacimiento){
+    public void alataEstudiante(String nick, String nombre, String apellido, String email, Date fechaNacimiento){
         EntityManager em = emf.createEntityManager();
         try{
             em.getTransaction().begin();
-            Estudiante es = new Estudiante(nombre,apellido,email,fechaNacimiento);
+            Estudiante es = new Estudiante(nick, nombre,apellido,email,fechaNacimiento);
             em.persist(es);
             em.getTransaction().commit();
         }
@@ -73,7 +75,7 @@ public class Sistema extends ISistema {
         em.close();
     }
     
-    public void altaProfesor(List<String> inst, String nombre, String apellido, String email, Date fechaNacimiento){
+    public void altaProfesor(List<String> inst, String nick, String nombre, String apellido, String email, Date fechaNacimiento){
         EntityManager em = emf.createEntityManager();
         try{
             em.getTransaction().begin();
@@ -89,8 +91,60 @@ public class Sistema extends ISistema {
                     institutos.add(insti);
                 }
             }
-            Profesor p = new Profesor(institutos, nombre, apellido, email, fechaNacimiento);
+            Profesor p = new Profesor(institutos, nick, nombre, apellido, email, fechaNacimiento);
             em.persist(p);
+            em.getTransaction().commit();
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null, e.getMessage());
+            em.getTransaction().rollback();
+        }
+        em.close();
+    }
+    
+    public List<DataUsuario> listarUsuarios(){
+        EntityManager em = emf.createEntityManager();
+        List<DataUsuario> u = new ArrayList();
+        try{
+            em.getTransaction().begin();
+            List usuarios = em.createQuery("SELECT u FROM Usuarios u").getResultList();
+            for(Object o : usuarios){
+                if(o instanceof Estudiante){
+                    Estudiante e = (Estudiante) o;
+                    u.add(e.darDatos());
+                }
+                else{
+                    if(o instanceof Profesor){
+                        Profesor p = (Profesor) o;
+                        u.add(p.darDatos());
+                    }
+                    else{
+                        Usuario usu = (Usuario) o;
+                        u.add(usu.darDatos());
+                    }
+                }
+            }
+            em.getTransaction().commit();
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null, e.getMessage());
+            em.getTransaction().rollback();
+        }
+        em.close();
+        return u;
+    }
+    
+    public void modificarUsuario(DataUsuario du){
+        EntityManager em = emf.createEntityManager();
+        try{
+            em.getTransaction().begin();
+            Usuario u = em.find(Usuario.class, du.getId());
+            u.setNick(du.getNick());
+            u.setNombre(du.getNombre());
+            u.setApellido(du.getApellido());
+            u.setEmail(du.getEmail());
+            u.setFechaNacimiento(du.getFechaNacimiento());
+            em.persist(u);
             em.getTransaction().commit();
         }
         catch(Exception e){

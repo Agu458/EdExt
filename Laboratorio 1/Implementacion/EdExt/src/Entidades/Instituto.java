@@ -1,5 +1,6 @@
 package Entidades;
 
+import DataTypes.DataInstituto;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -25,5 +26,8 @@ public class Instituto implements Serializable {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
+    
+    public DataInstituto darDatos(){
+        return new DataInstituto(nombre);
+    }
 }
