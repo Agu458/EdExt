@@ -12,4 +12,8 @@ public class DataProfesor extends DataUsuario{
         this.institutos = institutos;
     }
 
+    public List<DataInstituto> getInstitutos() {
+        return institutos;
+    }
+
 }

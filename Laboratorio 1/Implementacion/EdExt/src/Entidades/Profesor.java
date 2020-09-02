@@ -24,14 +24,21 @@ public class Profesor extends Usuario {
         super(nick, nombre, apellido, email, fechaNacimiento);
         this.institutos = institutos;
     }
-    
+
     @Override
-    public DataUsuario darDatos(){
+    public DataUsuario darDatos() {
         List<DataInstituto> i = new ArrayList();
-        for(Instituto inst : institutos){
+        for (Instituto inst : institutos) {
             i.add(inst.darDatos());
         }
         return new DataProfesor(i, super.getId(), super.getNick(), super.getNombre(), super.getApellido(), super.getEmail(), super.getFechaNacimiento());
     }
 
+    public void agregarInstituto(Instituto i) {
+        institutos.add(i);
+    }
+
+    public boolean tieneInstituto(Instituto i) {
+        return institutos.contains(i);
+    }
 }

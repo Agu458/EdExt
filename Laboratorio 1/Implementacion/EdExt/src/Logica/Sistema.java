@@ -1,5 +1,8 @@
 package Logica;
 
+import DataTypes.DataEstudiante;
+import DataTypes.DataInstituto;
+import DataTypes.DataProfesor;
 import DataTypes.DataUsuario;
 import Entidades.Estudiante;
 import Entidades.Instituto;
@@ -27,130 +30,148 @@ public class Sistema extends ISistema {
         }
         return instance;
     }
-    
+
     // Instituto
-    public void altaInstituto(String nombre){
+    public void altaInstituto(String nombre) {
         EntityManager em = emf.createEntityManager();
-        try{
+        try {
             em.getTransaction().begin();
             Instituto i = new Instituto(nombre);
             em.persist(i);
             em.getTransaction().commit();
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
             em.getTransaction().rollback();
         }
         em.close();
     }
-    
-    public void bajaInstituto(String nombre){
+
+    public void bajaInstituto(String nombre) {
         EntityManager em = emf.createEntityManager();
-        try{
+        try {
             em.getTransaction().begin();
             Instituto i = em.find(Instituto.class, nombre);
             em.remove(i);
             em.getTransaction().commit();
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
             em.getTransaction().rollback();
         }
         em.close();
     }
-    
+
     // Ususario
-    public void alataEstudiante(String nick, String nombre, String apellido, String email, Date fechaNacimiento){
+    public void altaUsuario(DataUsuario du, int tipo) {
         EntityManager em = emf.createEntityManager();
-        try{
-            em.getTransaction().begin();
-            Estudiante es = new Estudiante(nick, nombre,apellido,email,fechaNacimiento);
-            em.persist(es);
-            em.getTransaction().commit();
-        }
-        catch(Exception e){
-            JOptionPane.showMessageDialog(null, e.getMessage());
-            em.getTransaction().rollback();
-        }
-        em.close();
-    }
-    
-    public void altaProfesor(List<String> inst, String nick, String nombre, String apellido, String email, Date fechaNacimiento){
-        EntityManager em = emf.createEntityManager();
-        try{
-            em.getTransaction().begin();
-            List<Instituto> institutos = new ArrayList();
-            for(String i : inst){
-                Instituto insti = em.find(Instituto.class, i);
-                if(insti != null){
-                    institutos.add(insti);
-                }
-                else{
-                    insti = new Instituto(i);
-                    em.persist(insti);
-                    institutos.add(insti);
-                }
+        if (tipo == 1) {
+            DataEstudiante de = (DataEstudiante) du;
+            try {
+                em.getTransaction().begin();
+                Estudiante es = new Estudiante(de.getNick(), de.getNombre(), de.getApellido(), de.getEmail(), de.getFechaNacimiento());
+                em.persist(es);
+                em.getTransaction().commit();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e.getMessage());
+                em.getTransaction().rollback();
             }
-            Profesor p = new Profesor(institutos, nick, nombre, apellido, email, fechaNacimiento);
-            em.persist(p);
-            em.getTransaction().commit();
+            em.close();
+        } else {
+            DataProfesor dp = (DataProfesor) du;
+            try {
+                em.getTransaction().begin();
+                List<Instituto> institutos = new ArrayList();
+                for (DataInstituto i : dp.getInstitutos()) {
+                    Instituto insti = em.find(Instituto.class, i.getNombre());
+                    if (insti != null) {
+                        institutos.add(insti);
+                    } else {
+                        insti = new Instituto(i.getNombre());
+                        em.persist(insti);
+                        institutos.add(insti);
+                    }
+                }
+                Profesor p = new Profesor(institutos, dp.getNick(), dp.getNombre(), dp.getApellido(), dp.getEmail(), dp.getFechaNacimiento());
+                em.persist(p);
+                em.getTransaction().commit();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e.getMessage());
+                em.getTransaction().rollback();
+            }
+            em.close();
         }
-        catch(Exception e){
-            JOptionPane.showMessageDialog(null, e.getMessage());
-            em.getTransaction().rollback();
-        }
-        em.close();
     }
-    
-    public List<DataUsuario> listarUsuarios(){
+
+    public List<DataUsuario> listarUsuarios() {
         EntityManager em = emf.createEntityManager();
         List<DataUsuario> u = new ArrayList();
-        try{
+        try {
             em.getTransaction().begin();
             List usuarios = em.createQuery("SELECT u FROM Usuarios u").getResultList();
-            for(Object o : usuarios){
-                if(o instanceof Estudiante){
+            for (Object o : usuarios) {
+                if (o instanceof Estudiante) {
                     Estudiante e = (Estudiante) o;
                     u.add(e.darDatos());
-                }
-                else{
-                    if(o instanceof Profesor){
+                } else {
+                    if (o instanceof Profesor) {
                         Profesor p = (Profesor) o;
                         u.add(p.darDatos());
-                    }
-                    else{
+                    } else {
                         Usuario usu = (Usuario) o;
                         u.add(usu.darDatos());
                     }
                 }
             }
             em.getTransaction().commit();
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
             em.getTransaction().rollback();
         }
         em.close();
         return u;
     }
-    
-    public void modificarUsuario(DataUsuario du){
+
+    public void modificarUsuario(DataUsuario du, int tipo) {
         EntityManager em = emf.createEntityManager();
-        try{
-            em.getTransaction().begin();
-            Usuario u = em.find(Usuario.class, du.getId());
-            u.setNick(du.getNick());
-            u.setNombre(du.getNombre());
-            u.setApellido(du.getApellido());
-            u.setEmail(du.getEmail());
-            u.setFechaNacimiento(du.getFechaNacimiento());
-            em.persist(u);
-            em.getTransaction().commit();
+        if (tipo == 1) {
+            DataEstudiante de = (DataEstudiante) du;
+            try {
+                em.getTransaction().begin();
+                Estudiante e = (Estudiante) em.find(Usuario.class, de.getId());
+                e.setNick(de.getNick());
+                e.setNombre(de.getNombre());
+                e.setApellido(de.getApellido());
+                e.setEmail(de.getEmail());
+                e.setFechaNacimiento(de.getFechaNacimiento());
+                em.persist(e);
+                em.getTransaction().commit();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e.getMessage());
+                em.getTransaction().rollback();
+            }
+            em.close();
+        } else {
+            DataProfesor dp = (DataProfesor) du;
+            try {
+                em.getTransaction().begin();
+                Profesor p = (Profesor) em.find(Usuario.class, dp.getId());
+                p.setNick(dp.getNick());
+                p.setNombre(dp.getNombre());
+                p.setApellido(dp.getApellido());
+                p.setEmail(dp.getEmail());
+                p.setFechaNacimiento(dp.getFechaNacimiento());
+                for(DataInstituto di : dp.getInstitutos()){
+                    Instituto i = em.find(Instituto.class, di.getNombre());
+                    if(!p.tieneInstituto(i)){
+                        p.agregarInstituto(i);
+                    }
+                }
+                em.persist(p);
+                em.getTransaction().commit();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e.getMessage());
+                em.getTransaction().rollback();
+            }
+            em.close();
         }
-        catch(Exception e){
-            JOptionPane.showMessageDialog(null, e.getMessage());
-            em.getTransaction().rollback();
-        }
-        em.close();
     }
 }

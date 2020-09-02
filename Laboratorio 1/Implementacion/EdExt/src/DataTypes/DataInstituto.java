@@ -7,4 +7,9 @@ public class DataInstituto {
     public DataInstituto(String nombre) {
         this.nombre = nombre;
     }
+
+    public String getNombre() {
+        return nombre;
+    }
+    
 }
