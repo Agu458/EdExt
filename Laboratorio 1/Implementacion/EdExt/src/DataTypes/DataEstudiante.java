@@ -1,11 +1,25 @@
 package DataTypes;
 
 import java.util.Date;
+import java.util.List;
 
 public class DataEstudiante extends DataUsuario{
+    
+    List<DataInscripcionEdicion> inscripcionEdiciones;
+    List<DataInscripcionPrograma> inscripcionProgramas;
 
-    public DataEstudiante(Long id, String nick, String nombre, String apellido, String email, Date fechaNacimiento) {
+    public DataEstudiante(List<DataInscripcionEdicion> inscripcionEdiciones, List<DataInscripcionPrograma> inscripcionProgramas, Long id, String nick, String nombre, String apellido, String email, Date fechaNacimiento) {
         super(id, nick, nombre, apellido, email, fechaNacimiento);
+        this.inscripcionEdiciones = inscripcionEdiciones;
+        this.inscripcionProgramas = inscripcionProgramas;
+    }
+
+    public List<DataInscripcionEdicion> getInscripcionEdiciones() {
+        return inscripcionEdiciones;
+    }
+
+    public List<DataInscripcionPrograma> getInscripcionProgramas() {
+        return inscripcionProgramas;
     }
     
 }
