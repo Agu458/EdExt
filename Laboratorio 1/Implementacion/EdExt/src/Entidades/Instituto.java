@@ -2,6 +2,8 @@ package Entidades;
 
 import DataTypes.DataInstituto;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -11,6 +13,7 @@ public class Instituto implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     private String nombre;
+    private List<Curso> cursos;
 
     public Instituto() {
     }
@@ -28,6 +31,10 @@ public class Instituto implements Serializable {
     }
     
     public DataInstituto darDatos(){
-        return new DataInstituto(nombre);
+        List<String> c = new ArrayList();
+        for(Curso curso : cursos){
+            c.add(curso.getNombre());
+        }
+        return new DataInstituto(nombre,c);
     }
 }

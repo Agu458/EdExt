@@ -4,6 +4,7 @@ import DataTypes.DataEstudiante;
 import DataTypes.DataInstituto;
 import DataTypes.DataProfesor;
 import DataTypes.DataUsuario;
+import Entidades.Curso;
 import Entidades.Estudiante;
 import Entidades.Instituto;
 import Entidades.Profesor;
@@ -16,7 +17,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.swing.JOptionPane;
 
-public class Sistema extends ISistema {
+public class Sistema implements ISistema {
 
     private static Sistema instance = null;
     private EntityManagerFactory emf = Persistence.createEntityManagerFactory("EdExtPU");
@@ -173,5 +174,24 @@ public class Sistema extends ISistema {
             }
             em.close();
         }
+    }
+    
+    // Curso
+    public void altaCurso(String nombre, String descripcion, int duracion, int horas, int creditos, Date fechaRegistro, String URL, List<String> previas){
+        EntityManager em = emf.createEntityManager();
+        try {
+            em.getTransaction().begin();
+            List<Curso> p = new ArrayList();
+            for(String s : previas){
+                p.add(em.find(Curso.class, s));
+            }
+            Curso c = new Curso(nombre, descripcion, duracion, horas, creditos, fechaRegistro, URL, p);
+            em.persist(c);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+            em.getTransaction().rollback();
+        }
+        em.close();
     }
 }

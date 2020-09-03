@@ -21,10 +21,8 @@ public class Estudiante extends Usuario {
     public Estudiante() {
     }
 
-    public Estudiante(List<InscripcionEdicion> inscripcionEdiciones, List<InscripcionPrograma> inscripcionProgramas, String nick, String nombre, String apellido, String email, Date fechaNacimiento) {
+    public Estudiante(String nick, String nombre, String apellido, String email, Date fechaNacimiento) {
         super(nick, nombre, apellido, email, fechaNacimiento);
-        this.inscripcionEdiciones = inscripcionEdiciones;
-        this.inscripcionProgramas = inscripcionProgramas;
     }
 
     public List<InscripcionEdicion> getInscripcionEdiciones() {
@@ -41,6 +39,14 @@ public class Estudiante extends Usuario {
 
     public void setInscripcionProgramas(List<InscripcionPrograma> inscripcionProgramas) {
         this.inscripcionProgramas = inscripcionProgramas;
+    }
+    
+    public void agregarInscripcionEdicion(InscripcionEdicion ie){
+        inscripcionEdiciones.add(ie);
+    }
+    
+    public void agregarInscripcionPrograma(InscripcionPrograma ip){
+        inscripcionProgramas.add(ip);
     }
 
     @Override

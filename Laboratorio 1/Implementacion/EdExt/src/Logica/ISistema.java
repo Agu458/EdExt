@@ -1,5 +1,5 @@
 package Logica;
 
-public class ISistema {
+public interface ISistema {
 
 }

@@ -7,10 +7,12 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.EntityManager;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
+import javax.swing.JOptionPane;
 
 @Entity
 public class Curso implements Serializable {
@@ -35,7 +37,7 @@ public class Curso implements Serializable {
     public Curso() {
     }
 
-    public Curso(String nombre, String descripcion, int duracion, int horas, int creditos, Date fechaRegistro, String URL, List<Edicion> ediciones, Edicion edicionAgtual) {
+    public Curso(String nombre, String descripcion, int duracion, int horas, int creditos, Date fechaRegistro, String URL, List<Curso> previas) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.duracion = duracion;
@@ -43,8 +45,7 @@ public class Curso implements Serializable {
         this.creditos = creditos;
         this.fechaRegistro = fechaRegistro;
         this.URL = URL;
-        this.ediciones = ediciones;
-        this.edicionActual = edicionActual;
+        this.previas = previas;
     }
 
     public String getNombre() {
@@ -109,6 +110,18 @@ public class Curso implements Serializable {
 
     public void setEdiciones(List<Edicion> ediciones) {
         this.ediciones = ediciones;
+    }
+    
+    public void altaEdicion(String nombre, Date fechaIni, Date fechaFin, int cupos, Date fechaPublicacion, List<Integer> p, EntityManager em){
+        List<Profesor> profesores = new ArrayList();
+        for(Integer i : p){
+            Profesor pro = (Profesor) em.find(Usuario.class, i);
+            profesores.add(pro);
+        }
+        Edicion e = new Edicion(nombre, fechaIni, fechaFin, cupos, fechaPublicacion, profesores);
+        em.persist(e);
+        ediciones.add(e);
+        em.persist(this);
     }
 
     public Edicion getEdicionAgtual() {
