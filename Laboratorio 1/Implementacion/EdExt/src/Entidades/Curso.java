@@ -12,7 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
-import javax.swing.JOptionPane;
 
 @Entity
 public class Curso implements Serializable {

@@ -20,7 +20,7 @@ import javax.swing.JOptionPane;
 public class Sistema implements ISistema {
 
     private static Sistema instance = null;
-    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("EdExtPU");
+    private final EntityManagerFactory emf = Persistence.createEntityManagerFactory("EdExtPU");
 
     private Sistema() {
     }
@@ -33,6 +33,7 @@ public class Sistema implements ISistema {
     }
 
     // Instituto
+    @Override
     public void altaInstituto(String nombre) {
         EntityManager em = emf.createEntityManager();
         try {
@@ -160,9 +161,9 @@ public class Sistema implements ISistema {
                 p.setApellido(dp.getApellido());
                 p.setEmail(dp.getEmail());
                 p.setFechaNacimiento(dp.getFechaNacimiento());
-                for(DataInstituto di : dp.getInstitutos()){
+                for (DataInstituto di : dp.getInstitutos()) {
                     Instituto i = em.find(Instituto.class, di.getNombre());
-                    if(!p.tieneInstituto(i)){
+                    if (!p.tieneInstituto(i)) {
                         p.agregarInstituto(i);
                     }
                 }
@@ -175,14 +176,14 @@ public class Sistema implements ISistema {
             em.close();
         }
     }
-    
+
     // Curso
-    public void altaCurso(String nombre, String descripcion, int duracion, int horas, int creditos, Date fechaRegistro, String URL, List<String> previas){
+    public void altaCurso(String nombre, String descripcion, int duracion, int horas, int creditos, Date fechaRegistro, String URL, List<String> previas) {
         EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
             List<Curso> p = new ArrayList();
-            for(String s : previas){
+            for (String s : previas) {
                 p.add(em.find(Curso.class, s));
             }
             Curso c = new Curso(nombre, descripcion, duracion, horas, creditos, fechaRegistro, URL, p);
