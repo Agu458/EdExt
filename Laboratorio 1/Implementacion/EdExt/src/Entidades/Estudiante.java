@@ -6,7 +6,9 @@ import DataTypes.DataInscripcionPrograma;
 import DataTypes.DataUsuario;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
@@ -14,50 +16,46 @@ import javax.persistence.OneToMany;
 public class Estudiante extends Usuario {
 
     @OneToMany
-    List<InscripcionEdicion> inscripcionEdiciones;
+    Map<String, InscripcionEdicion> inscripcionEdiciones;
     @OneToMany
-    List<InscripcionPrograma> inscripcionProgramas;
+    Map<String, InscripcionPrograma> inscripcionProgramas;
 
     public Estudiante() {
     }
 
     public Estudiante(String nick, String nombre, String apellido, String email, Date fechaNacimiento) {
         super(nick, nombre, apellido, email, fechaNacimiento);
+        inscripcionEdiciones = new HashMap();
+        inscripcionProgramas = new HashMap();
     }
 
-    public List<InscripcionEdicion> getInscripcionEdiciones() {
+    public Map getInscripcionEdiciones() {
         return inscripcionEdiciones;
     }
 
-    public void setInscripcionEdiciones(List<InscripcionEdicion> inscripcionEdiciones) {
+    public void setInscripcionEdiciones(Map inscripcionEdiciones) {
         this.inscripcionEdiciones = inscripcionEdiciones;
     }
 
-    public List<InscripcionPrograma> getInscripcionProgramas() {
+    public Map getInscripcionProgramas() {
         return inscripcionProgramas;
     }
 
-    public void setInscripcionProgramas(List<InscripcionPrograma> inscripcionProgramas) {
+    public void setInscripcionProgramas(Map inscripcionProgramas) {
         this.inscripcionProgramas = inscripcionProgramas;
-    }
-    
-    public void agregarInscripcionEdicion(InscripcionEdicion ie){
-        inscripcionEdiciones.add(ie);
-    }
-    
-    public void agregarInscripcionPrograma(InscripcionPrograma ip){
-        inscripcionProgramas.add(ip);
     }
 
     @Override
     public DataUsuario darDatos() {
         List<DataInscripcionEdicion> die = new ArrayList();
-        for (InscripcionEdicion ie : inscripcionEdiciones) {
+        for (Object o : inscripcionEdiciones.values()) {
+            InscripcionEdicion ie = (InscripcionEdicion) o;
             DataInscripcionEdicion de = ie.darDatos();
             die.add(de);
         }
         List<DataInscripcionPrograma> dip = new ArrayList();
-        for (InscripcionPrograma ip : inscripcionProgramas) {
+        for (Object o : inscripcionProgramas.values()) {
+            InscripcionPrograma ip = (InscripcionPrograma) o;
             DataInscripcionPrograma dp = ip.darDatos();
             dip.add(dp);
         }
