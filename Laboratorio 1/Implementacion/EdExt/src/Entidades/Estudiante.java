@@ -44,7 +44,12 @@ public class Estudiante extends Usuario {
     public void setInscripcionProgramas(Map inscripcionProgramas) {
         this.inscripcionProgramas = inscripcionProgramas;
     }
-
+    
+    public void inscribirEdicion(Edicion e, Date fecha){
+        InscripcionEdicion ie = new InscripcionEdicion(fecha, e);
+        inscripcionEdiciones.put(e.getNombre(), ie);
+    }
+    
     @Override
     public DataUsuario darDatos() {
         List<DataInscripcionEdicion> die = new ArrayList();

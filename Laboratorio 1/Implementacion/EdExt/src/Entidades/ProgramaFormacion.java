@@ -27,9 +27,8 @@ public class ProgramaFormacion implements Serializable {
     public ProgramaFormacion() {
     }
 
-    public ProgramaFormacion(String nombre, List<Curso> cursos, String descripcion, Date fechaIni, Date fechaFin) {
+    public ProgramaFormacion(String nombre, String descripcion, Date fechaIni, Date fechaFin) {
         this.nombre = nombre;
-        this.cursos = cursos;
         this.descripcion = descripcion;
         this.fechaIni = fechaIni;
         this.fechaFin = fechaFin;
@@ -49,6 +48,10 @@ public class ProgramaFormacion implements Serializable {
 
     public void setCursos(List<Curso> cursos) {
         this.cursos = cursos;
+    }
+    
+    public void agregarCurso(Curso c){
+        cursos.add(c);
     }
 
     public String getDescripcion() {

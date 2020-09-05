@@ -1,13 +1,17 @@
 package Logica;
 
+import DataTypes.DataCurso;
+import DataTypes.DataEdicion;
 import DataTypes.DataEstudiante;
 import DataTypes.DataInstituto;
 import DataTypes.DataProfesor;
+import DataTypes.DataProgramaFormacion;
 import DataTypes.DataUsuario;
 import Entidades.Curso;
 import Entidades.Estudiante;
 import Entidades.Instituto;
 import Entidades.Profesor;
+import Entidades.ProgramaFormacion;
 import Entidades.Usuario;
 import java.util.ArrayList;
 import java.util.Date;
@@ -15,6 +19,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 import javax.swing.JOptionPane;
 
 public class Sistema implements ISistema {
@@ -178,21 +183,210 @@ public class Sistema implements ISistema {
     }
 
     // Curso
-    public void altaCurso(String nombre, String descripcion, int duracion, int horas, int creditos, Date fechaRegistro, String URL, List<String> previas) {
+    public void altaCurso(String nombre, String descripcion, int duracion, int horas, int creditos, Date fechaRegistro, String URL, List<String> previas, String instituto) {
         EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
-            List<Curso> p = new ArrayList();
-            for (String s : previas) {
-                p.add(em.find(Curso.class, s));
+            Instituto i = em.find(Instituto.class, instituto);
+            if (i != null) {
+                List<Curso> prevs = new ArrayList();
+                for (String p : previas) {
+                    Curso c = em.find(Curso.class, p);
+                    if (c != null) {
+                        prevs.add(c);
+                    }
+                }
+                Curso curso = new Curso(nombre, descripcion, duracion, horas, creditos, fechaRegistro, URL, prevs);
+                em.persist(curso);
+                i.agregarCurso(curso);
             }
-            Curso c = new Curso(nombre, descripcion, duracion, horas, creditos, fechaRegistro, URL, p);
-            em.persist(c);
             em.getTransaction().commit();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
             em.getTransaction().rollback();
         }
         em.close();
+    }
+
+    public List<String> listarCursosInstituto(String instituto) {
+        EntityManager em = emf.createEntityManager();
+        List<String> cursos = new ArrayList();
+        try {
+            em.getTransaction().begin();
+            Instituto i = em.find(Instituto.class, instituto);
+            for (Curso c : i.getCursos().values()) {
+                cursos.add(c.getNombre());
+            }
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+            em.getTransaction().rollback();
+        }
+        em.close();
+        return cursos;
+    }
+
+    public List<String> listarCursos() {
+        EntityManager em = emf.createEntityManager();
+        List<String> cursos = new ArrayList();
+        try {
+            em.getTransaction().begin();
+            String q = "SELECT c FROM Curso c";
+            List cur = em.createQuery(q).getResultList();
+            for (Object o : cur) {
+                Curso c = (Curso) o;
+                cursos.add(c.getNombre());
+            }
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+            em.getTransaction().rollback();
+        }
+        em.close();
+        return cursos;
+    }
+
+    public DataCurso darDatosCurso(String nombre) {
+        EntityManager em = emf.createEntityManager();
+        DataCurso dc = null;
+        try {
+            em.getTransaction().begin();
+            Curso c = em.find(Curso.class, nombre);
+            if (c != null) {
+                dc = c.darDatos();
+            }
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+            em.getTransaction().rollback();
+        }
+        em.close();
+        return dc;
+    }
+
+    public void altaEdicionCurso(String nombre, Date fechaIni, Date fechaFin, int cupos, Date fechaPublicacion, List<String> profesores, String curso) {
+        EntityManager em = emf.createEntityManager();
+        try {
+            em.getTransaction().begin();
+            Curso c = em.find(Curso.class, curso);
+            if (c != null) {
+                List<Profesor> p = new ArrayList();
+                for (String s : profesores) {
+                    Profesor pro = em.find(Profesor.class, s);
+                    p.add(pro);
+                }
+                c.altaEdicion(nombre, fechaIni, fechaFin, cupos, fechaPublicacion, p, em);
+            }
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+            em.getTransaction().rollback();
+        }
+        em.close();
+    }
+
+    public DataEdicion darEdicionActual(String curso) {
+        EntityManager em = emf.createEntityManager();
+        DataEdicion de = null;
+        try {
+            em.getTransaction().begin();
+            Curso c = em.find(Curso.class, curso);
+            if (c != null) {
+                de = c.darActual();
+            }
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+            em.getTransaction().rollback();
+        }
+        em.close();
+        return de;
+    }
+
+    public void inscripcionEdicion(String curso, String estudiante, Date fecha) {
+        EntityManager em = emf.createEntityManager();
+        try {
+            em.getTransaction().begin();
+            Estudiante e = em.find(Estudiante.class, estudiante);
+            if (e != null) {
+                Curso c = em.find(Curso.class, curso);
+                if (c != null) {
+                    e.inscribirEdicion(c.getEdicionActual(), fecha);
+                }
+            }
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+            em.getTransaction().rollback();
+        }
+        em.close();
+    }
+
+    public void altaProgramaFormacion(String nombre, String descripcion, Date fechaIni, Date fechaFin) {
+        EntityManager em = emf.createEntityManager();
+        try {
+            em.getTransaction().begin();
+            ProgramaFormacion pf = new ProgramaFormacion(nombre, descripcion, fechaIni, fechaFin);
+            em.persist(pf);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+            em.getTransaction().rollback();
+        }
+        em.close();
+    }
+
+    public List<String> listarProgramas() {
+        EntityManager em = emf.createEntityManager();
+        List<String> dpf = new ArrayList();
+        try {
+            em.getTransaction().begin();
+            List programas = em.createQuery("SELECT p FROM ProgramaFormacion p").getResultList();
+            for (Object o : programas) {
+                ProgramaFormacion pf = (ProgramaFormacion) o;
+                dpf.add(pf.getNombre());
+            }
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+            em.getTransaction().rollback();
+        }
+        em.close();
+        return dpf;
+    }
+
+    public void agregarCursoAPrograma(String nombre, String nombreCurso) {
+        EntityManager em = emf.createEntityManager();
+        try {
+            em.getTransaction().begin();
+            ProgramaFormacion pf = em.find(ProgramaFormacion.class, nombre);
+            Curso c = em.find(Curso.class, nombreCurso);
+            if (pf != null && c != null) {
+                pf.agregarCurso(c);
+            }
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+            em.getTransaction().rollback();
+        }
+        em.close();
+    }
+    
+    public DataProgramaFormacion darProgramaFormacion(String nombre){
+        EntityManager em = emf.createEntityManager();
+        DataProgramaFormacion dpf = null;
+        try {
+            em.getTransaction().begin();
+            ProgramaFormacion pf = em.find(ProgramaFormacion.class, nombre);
+            if(pf != null){
+                dpf = pf.darDatos();
+            }
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+            em.getTransaction().rollback();
+        }
+        em.close();
+        return dpf;
     }
 }

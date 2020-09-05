@@ -111,19 +111,13 @@ public class Curso implements Serializable {
         this.ediciones = ediciones;
     }
     
-    public void altaEdicion(String nombre, Date fechaIni, Date fechaFin, int cupos, Date fechaPublicacion, List<Integer> p, EntityManager em){
-        List<Profesor> profesores = new ArrayList();
-        for(Integer i : p){
-            Profesor pro = (Profesor) em.find(Usuario.class, i);
-            profesores.add(pro);
-        }
-        Edicion e = new Edicion(nombre, fechaIni, fechaFin, cupos, fechaPublicacion, profesores);
+    public void altaEdicion(String nombre, Date fechaIni, Date fechaFin, int cupos, Date fechaPublicacion, List<Profesor> p, EntityManager em){
+        Edicion e = new Edicion(nombre, fechaIni, fechaFin, cupos, fechaPublicacion, p);
         em.persist(e);
         ediciones.add(e);
-        em.persist(this);
     }
 
-    public Edicion getEdicionAgtual() {
+    public Edicion getEdicionActual() {
         return edicionActual;
     }
 
@@ -139,7 +133,11 @@ public class Curso implements Serializable {
         this.previas = previas;
     }
     
-    private DataCurso darDatos(){
+    public DataEdicion darActual(){
+        return edicionActual.darDatos();
+    }
+    
+    public DataCurso darDatos(){
         List<DataEdicion> e = new ArrayList();
         List<String> p = new ArrayList();
         for(Edicion ed : ediciones){
