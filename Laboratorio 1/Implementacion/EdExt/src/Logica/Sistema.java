@@ -17,9 +17,7 @@ import Entidades.Usuario;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import javax.persistence.*;
 import javax.swing.JOptionPane;
 
 public class Sistema implements ISistema {
@@ -43,6 +41,7 @@ public class Sistema implements ISistema {
         EntityManager em = emf.createEntityManager();
         Instituto i = em.find(Instituto.class, nombre);
         if (i != null) {
+            em.close();
             return RET.NOMBRE_INVALIDO;
         } else {
             try {
@@ -75,44 +74,70 @@ public class Sistema implements ISistema {
     }
 
     // Ususario
-    public void altaUsuario(DataUsuario du, int tipo) {
+    public RET validarUsuario(String email, String nick) {
         EntityManager em = emf.createEntityManager();
-        if (tipo == 1) {
-            DataEstudiante de = (DataEstudiante) du;
+        Usuario u = em.find(Usuario.class, email);
+        if (u != null) {
+            return RET.EMAIL_INVALIDO;
+        } else {
+            Query query = em.createQuery("SELECT u FROM Usuario u WHERE u.nick = :nick");
+            query.setParameter("nick", nick);
+            List l = query.getResultList();
+            if (l.isEmpty()) {
+                return RET.OK;
+
+            }
+            return RET.NICK_INVALIDO;
+        }
+    }
+
+    @Override
+    public RET altaEstudiante(String nick, String nombre, String apellido, String email, Date fechaNacimiento) {
+        EntityManager em = emf.createEntityManager();
+        RET r = validarUsuario(email, nick);
+        if (r == RET.OK) {
             try {
                 em.getTransaction().begin();
-                Estudiante es = new Estudiante(de.getNick(), de.getNombre(), de.getApellido(), de.getEmail(), de.getFechaNacimiento());
+                Estudiante es = new Estudiante(nick, nombre, apellido, email, fechaNacimiento);
                 em.persist(es);
                 em.getTransaction().commit();
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, e.getMessage());
                 em.getTransaction().rollback();
             }
-            em.close();
-        } else {
-            DataProfesor dp = (DataProfesor) du;
+        }
+        em.close();
+        return r;
+    }
+
+    @Override
+    public RET altaProfesor(List<String> institutos, String nick, String nombre, String apellido, String email, Date fechaNacimiento) {
+        EntityManager em = emf.createEntityManager();
+        RET r = validarUsuario(email, nick);
+        if (r == RET.OK) {
             try {
                 em.getTransaction().begin();
-                List<Instituto> institutos = new ArrayList();
-                for (DataInstituto i : dp.getInstitutos()) {
-                    Instituto insti = em.find(Instituto.class, i.getNombre());
+                List<Instituto> instis = new ArrayList();
+                for (String s : institutos) {
+                    Instituto insti = em.find(Instituto.class, s);
                     if (insti != null) {
-                        institutos.add(insti);
+                        instis.add(insti);
                     } else {
-                        insti = new Instituto(i.getNombre());
+                        insti = new Instituto(s);
                         em.persist(insti);
-                        institutos.add(insti);
+                        instis.add(insti);
                     }
                 }
-                Profesor p = new Profesor(institutos, dp.getNick(), dp.getNombre(), dp.getApellido(), dp.getEmail(), dp.getFechaNacimiento());
+                Profesor p = new Profesor(instis, nick, nombre, apellido, email, fechaNacimiento);
                 em.persist(p);
                 em.getTransaction().commit();
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, e.getMessage());
                 em.getTransaction().rollback();
             }
-            em.close();
         }
+        em.close();
+        return r;
     }
 
     public List<DataUsuario> listarUsuarios() {
