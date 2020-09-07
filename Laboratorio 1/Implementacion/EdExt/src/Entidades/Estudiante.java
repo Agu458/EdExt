@@ -64,6 +64,6 @@ public class Estudiante extends Usuario {
             DataInscripcionPrograma dp = ip.darDatos();
             dip.add(dp);
         }
-        return new DataEstudiante(die, dip, super.getId(), super.getNick(), super.getNombre(), super.getApellido(), super.getEmail(), super.getFechaNacimiento());
+        return new DataEstudiante(die, dip, super.getNick(), super.getNombre(), super.getApellido(), super.getEmail(), super.getFechaNacimiento());
     }
 }

@@ -1,5 +1,9 @@
 package Logica;
 
+import DataTypes.RET;
+
 public interface ISistema {
-    public void altaInstituto(String nombre);
+
+    public RET altaInstituto(String nombre);
+    public void bajaInstituto(String nombre);
 }

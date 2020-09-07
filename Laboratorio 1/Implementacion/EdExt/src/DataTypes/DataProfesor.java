@@ -7,8 +7,8 @@ public class DataProfesor extends DataUsuario{
     
     private List<DataInstituto> institutos;
 
-    public DataProfesor(List<DataInstituto> institutos, Long id, String nick, String nombre, String apellido, String email, Date fechaNacimiento) {
-        super(id, nick, nombre, apellido, email, fechaNacimiento);
+    public DataProfesor(List<DataInstituto> institutos, String nick, String nombre, String apellido, String email, Date fechaNacimiento) {
+        super( nick, nombre, apellido, email, fechaNacimiento);
         this.institutos = institutos;
     }
 

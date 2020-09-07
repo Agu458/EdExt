@@ -18,14 +18,11 @@ public class Usuario implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private String email;
     @Column(unique = true)
     private String nick;
     private String nombre;
     private String apellido;
-    @Column(unique = true)
-    private String email;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date fechaNacimiento;
 
@@ -38,10 +35,6 @@ public class Usuario implements Serializable {
         this.apellido = apellido;
         this.email = email;
         this.fechaNacimiento = fechaNacimiento;
-    }
-
-    public Long getId() {
-        return id;
     }
 
     public String getNick() {
@@ -85,6 +78,6 @@ public class Usuario implements Serializable {
     }
     
     public DataUsuario darDatos(){
-        return new DataUsuario(id, nick, nombre, apellido, email, fechaNacimiento);
+        return new DataUsuario(nick, nombre, apellido, email, fechaNacimiento);
     }
 }

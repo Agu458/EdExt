@@ -31,7 +31,7 @@ public class Profesor extends Usuario {
         for (Instituto inst : institutos) {
             i.add(inst.darDatos());
         }
-        return new DataProfesor(i, super.getId(), super.getNick(), super.getNombre(), super.getApellido(), super.getEmail(), super.getFechaNacimiento());
+        return new DataProfesor(i, super.getNick(), super.getNombre(), super.getApellido(), super.getEmail(), super.getFechaNacimiento());
     }
 
     public void agregarInstituto(Instituto i) {

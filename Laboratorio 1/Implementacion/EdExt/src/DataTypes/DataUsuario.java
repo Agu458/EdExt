@@ -4,24 +4,18 @@ import java.util.Date;
 
 public class DataUsuario {
 
-    private Long id;
     private String nick;
     private String nombre;
     private String apellido;
     private String email;
     private Date fechaNacimiento;
 
-    public DataUsuario(Long id, String nick, String nombre, String apellido, String email, Date fechaNacimiento) {
-        this.id = id;
+    public DataUsuario(String nick, String nombre, String apellido, String email, Date fechaNacimiento) {
         this.nick = nick;
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
         this.fechaNacimiento = fechaNacimiento;
-    }
-
-    public Long getId() {
-        return id;
     }
 
     public String getNick() {
@@ -46,7 +40,7 @@ public class DataUsuario {
 
     @Override
     public String toString() {
-        return "DataUsuario{" + "id=" + id + ", nick=" + nick + ", nombre=" + nombre + ", apellido=" + apellido + ", email=" + email + ", fechaNacimiento=" + fechaNacimiento + '}';
+        return "DataUsuario{" + ", nick=" + nick + ", nombre=" + nombre + ", apellido=" + apellido + ", email=" + email + ", fechaNacimiento=" + fechaNacimiento + '}';
     }
 
 }

@@ -7,6 +7,7 @@ import DataTypes.DataInstituto;
 import DataTypes.DataProfesor;
 import DataTypes.DataProgramaFormacion;
 import DataTypes.DataUsuario;
+import DataTypes.RET;
 import Entidades.Curso;
 import Entidades.Estudiante;
 import Entidades.Instituto;
@@ -19,7 +20,6 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.persistence.Query;
 import javax.swing.JOptionPane;
 
 public class Sistema implements ISistema {
@@ -39,20 +39,27 @@ public class Sistema implements ISistema {
 
     // Instituto
     @Override
-    public void altaInstituto(String nombre) {
+    public RET altaInstituto(String nombre) {
         EntityManager em = emf.createEntityManager();
-        try {
-            em.getTransaction().begin();
-            Instituto i = new Instituto(nombre);
-            em.persist(i);
-            em.getTransaction().commit();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
-            em.getTransaction().rollback();
+        Instituto i = em.find(Instituto.class, nombre);
+        if (i != null) {
+            return RET.NOMBRE_INVALIDO;
+        } else {
+            try {
+                em.getTransaction().begin();
+                i = new Instituto(nombre);
+                em.persist(i);
+                em.getTransaction().commit();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e.getMessage());
+                em.getTransaction().rollback();
+            }
+            em.close();
+            return RET.OK;
         }
-        em.close();
     }
 
+    @Override
     public void bajaInstituto(String nombre) {
         EntityManager em = emf.createEntityManager();
         try {
@@ -143,7 +150,7 @@ public class Sistema implements ISistema {
             DataEstudiante de = (DataEstudiante) du;
             try {
                 em.getTransaction().begin();
-                Estudiante e = (Estudiante) em.find(Usuario.class, de.getId());
+                Estudiante e = (Estudiante) em.find(Usuario.class, de.getEmail());
                 e.setNick(de.getNick());
                 e.setNombre(de.getNombre());
                 e.setApellido(de.getApellido());
@@ -160,7 +167,7 @@ public class Sistema implements ISistema {
             DataProfesor dp = (DataProfesor) du;
             try {
                 em.getTransaction().begin();
-                Profesor p = (Profesor) em.find(Usuario.class, dp.getId());
+                Profesor p = (Profesor) em.find(Usuario.class, dp.getEmail());
                 p.setNick(dp.getNick());
                 p.setNombre(dp.getNombre());
                 p.setApellido(dp.getApellido());
@@ -371,14 +378,14 @@ public class Sistema implements ISistema {
         }
         em.close();
     }
-    
-    public DataProgramaFormacion darProgramaFormacion(String nombre){
+
+    public DataProgramaFormacion darProgramaFormacion(String nombre) {
         EntityManager em = emf.createEntityManager();
         DataProgramaFormacion dpf = null;
         try {
             em.getTransaction().begin();
             ProgramaFormacion pf = em.find(ProgramaFormacion.class, nombre);
-            if(pf != null){
+            if (pf != null) {
                 dpf = pf.darDatos();
             }
             em.getTransaction().commit();
