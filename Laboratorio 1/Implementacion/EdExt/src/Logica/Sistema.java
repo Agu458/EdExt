@@ -152,26 +152,32 @@ public class Sistema implements ISistema {
         return r;
     }
 
-    public List<DataUsuario> listarUsuarios() {
+    public List<String> listarUsuarios() {
         EntityManager em = emf.createEntityManager();
-        List<DataUsuario> u = new ArrayList();
+        List<String> u = new ArrayList();
         try {
             em.getTransaction().begin();
-            List usuarios = em.createQuery("SELECT u FROM Usuarios u").getResultList();
+            List usuarios = em.createQuery("SELECT u FROM Usuario u").getResultList();
             for (Object o : usuarios) {
-                if (o instanceof Estudiante) {
-                    Estudiante e = (Estudiante) o;
-                    u.add(e.darDatos());
-                } else {
-                    if (o instanceof Profesor) {
-                        Profesor p = (Profesor) o;
-                        u.add(p.darDatos());
-                    } else {
-                        Usuario usu = (Usuario) o;
-                        u.add(usu.darDatos());
-                    }
-                }
+                Usuario usu = (Usuario) o;
+                u.add(usu.getEmail());
             }
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+            em.getTransaction().rollback();
+        }
+        em.close();
+        return u;
+    }
+
+    public DataUsuario darDatosUsuario(String email) {
+        EntityManager em = emf.createEntityManager();
+        DataUsuario u = null;
+        try {
+            em.getTransaction().begin();
+            Usuario usu = em.find(Usuario.class, email);
+            u = usu.darDatos();
             em.getTransaction().commit();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());

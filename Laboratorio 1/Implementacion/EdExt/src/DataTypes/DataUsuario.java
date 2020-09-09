@@ -4,11 +4,11 @@ import java.util.Date;
 
 public class DataUsuario {
 
-    private String nick;
-    private String nombre;
-    private String apellido;
-    private String email;
-    private Date fechaNacimiento;
+    private final String nick;
+    private final String nombre;
+    private final String apellido;
+    private final String email;
+    private final Date fechaNacimiento;
 
     public DataUsuario(String nick, String nombre, String apellido, String email, Date fechaNacimiento) {
         this.nick = nick;
