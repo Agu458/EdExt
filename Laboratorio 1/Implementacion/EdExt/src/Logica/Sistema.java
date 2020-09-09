@@ -65,6 +65,7 @@ public class Sistema implements ISistema {
         em.close();
     }
 
+    @Override
     public List<String> listarInstitutos() {
         EntityManager em = emf.createEntityManager();
         List<String> instis = new ArrayList();
@@ -190,9 +191,9 @@ public class Sistema implements ISistema {
         return ests;
     }
 
-    public void modificarUsuario(DataUsuario du, int tipo) {
+    public void modificarUsuario(DataUsuario du) {
         EntityManager em = emf.createEntityManager();
-        if (tipo == 1) {
+        if (du instanceof DataEstudiante) {
             DataEstudiante de = (DataEstudiante) du;
             try {
                 em.getTransaction().begin();
