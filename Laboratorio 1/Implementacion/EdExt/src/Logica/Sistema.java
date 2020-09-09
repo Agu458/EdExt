@@ -176,6 +176,25 @@ public class Sistema implements ISistema {
         em.close();
         return u;
     }
+    
+    public List<String> listarEstudiantes(){
+        EntityManager em = emf.createEntityManager();
+        List<String> ests = new ArrayList();
+        try {
+            em.getTransaction().begin();
+            List aux = em.createQuery("SELECT e FROM Estudiante e").getResultList();
+            for(Object o : aux){
+                Usuario u = (Usuario) o;
+                ests.add(u.getEmail());
+            }
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+            em.getTransaction().rollback();
+        }
+        em.close();
+        return ests;
+    }
 
     public void modificarUsuario(DataUsuario du, int tipo) {
         EntityManager em = emf.createEntityManager();
