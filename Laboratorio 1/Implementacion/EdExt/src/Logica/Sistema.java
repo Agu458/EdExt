@@ -6,7 +6,6 @@ import DataTypes.DataEstudiante;
 import DataTypes.DataProfesor;
 import DataTypes.DataProgramaFormacion;
 import DataTypes.DataUsuario;
-import DataTypes.RET;
 import Entidades.Curso;
 import Entidades.Estudiante;
 import Entidades.Instituto;
@@ -36,25 +35,19 @@ public class Sistema implements ISistema {
 
     // Instituto
     @Override
-    public RET altaInstituto(String nombre) {
+    public void altaInstituto(String nombre) {
         EntityManager em = emf.createEntityManager();
-        Instituto i = em.find(Instituto.class, nombre);
-        if (i != null) {
-            em.close();
-            return RET.NOMBRE_INVALIDO;
-        } else {
-            try {
-                em.getTransaction().begin();
-                i = new Instituto(nombre);
-                em.persist(i);
-                em.getTransaction().commit();
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, e.getMessage());
-                em.getTransaction().rollback();
-            }
-            em.close();
-            return RET.OK;
+        try {
+            em.getTransaction().begin();
+            Instituto i = new Instituto(nombre);
+            em.persist(i);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+            em.getTransaction().rollback();
         }
+        em.close();
+
     }
 
     @Override
@@ -108,31 +101,31 @@ public class Sistema implements ISistema {
     }
 
     @Override
-    public void altaEstudiante(String nick, String nombre, String apellido, String email, Date fechaNacimiento) {
+    public void altaUsuario(DataUsuario du) {
         EntityManager em = emf.createEntityManager();
-        try {
-            em.getTransaction().begin();
-            Estudiante es = new Estudiante(nick, nombre, apellido, email, fechaNacimiento);
-            em.persist(es);
-            em.getTransaction().commit();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
-            em.getTransaction().rollback();
+        if (du instanceof DataEstudiante) {
+            DataEstudiante de = (DataEstudiante) du;
+            try {
+                em.getTransaction().begin();
+                Estudiante es = new Estudiante(de.getNick(), de.getNombre(), de.getApellido(), de.getEmail(), de.getFechaNacimiento());
+                em.persist(es);
+                em.getTransaction().commit();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e.getMessage());
+                em.getTransaction().rollback();
+            }
+            em.close();
         }
-        em.close();
-    }
-
-    @Override
-    public void altaProfesor(String instituto, String nick, String nombre, String apellido, String email, Date fechaNacimiento) {
-        EntityManager em = emf.createEntityManager();
-        try {
+        else{
+            DataProfesor dp = (DataProfesor) du;
+            try {
             em.getTransaction().begin();
-            Instituto insti = em.find(Instituto.class, instituto);
+            Instituto insti = em.find(Instituto.class, dp.getInstituto());
             if (insti == null) {
-                insti = new Instituto(instituto);
+                insti = new Instituto(dp.getInstituto());
                 em.persist(insti);
             }
-            Profesor p = new Profesor(insti, nick, nombre, apellido, email, fechaNacimiento);
+            Profesor p = new Profesor(insti, dp.getNick(), dp.getNombre(), dp.getApellido(), dp.getEmail(), dp.getFechaNacimiento());
             em.persist(p);
             em.getTransaction().commit();
         } catch (Exception e) {
@@ -140,6 +133,7 @@ public class Sistema implements ISistema {
             em.getTransaction().rollback();
         }
         em.close();
+        }
     }
 
     public List<String> listarUsuarios() {
@@ -176,14 +170,14 @@ public class Sistema implements ISistema {
         em.close();
         return u;
     }
-    
-    public List<String> listarEstudiantes(){
+
+    public List<String> listarEstudiantes() {
         EntityManager em = emf.createEntityManager();
         List<String> ests = new ArrayList();
         try {
             em.getTransaction().begin();
             List aux = em.createQuery("SELECT e FROM Estudiante e").getResultList();
-            for(Object o : aux){
+            for (Object o : aux) {
                 Usuario u = (Usuario) o;
                 ests.add(u.getEmail());
             }
@@ -225,7 +219,7 @@ public class Sistema implements ISistema {
                 p.setApellido(dp.getApellido());
                 p.setEmail(dp.getEmail());
                 p.setFechaNacimiento(dp.getFechaNacimiento());
-                p.setInstituto(em.find(Instituto.class, dp.getInstituto().getNombre()));
+                p.setInstituto(em.find(Instituto.class, dp.getInstituto()));
                 em.persist(p);
                 em.getTransaction().commit();
             } catch (Exception e) {

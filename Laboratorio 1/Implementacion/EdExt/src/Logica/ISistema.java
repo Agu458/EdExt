@@ -1,13 +1,11 @@
 package Logica;
 
 import DataTypes.DataUsuario;
-import DataTypes.RET;
-import java.util.Date;
 import java.util.List;
 
 public interface ISistema {
 
-    public RET altaInstituto(String nombre);
+    public void altaInstituto(String nombre);
 
     public void bajaInstituto(String nombre);
     
@@ -17,9 +15,7 @@ public interface ISistema {
     
     public boolean validarNick(String nick);
 
-    public void altaEstudiante(String nick, String nombre, String apellido, String email, Date fechaNacimiento);
-    
-    public void altaProfesor(String instituto, String nick, String nombre, String apellido, String email, Date fechaNacimiento);
+    public void altaUsuario(DataUsuario du);
     
     public List<String> listarUsuarios();
     

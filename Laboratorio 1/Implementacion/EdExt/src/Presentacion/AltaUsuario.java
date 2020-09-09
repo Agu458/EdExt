@@ -5,6 +5,8 @@
  */
 package Presentacion;
 
+import DataTypes.DataEstudiante;
+import DataTypes.DataProfesor;
 import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -181,10 +183,12 @@ public class AltaUsuario extends javax.swing.JInternalFrame {
                         Date fecha = jDateChooser1.getDate();
 
                         if (!this.jRadioButton1.isSelected()) {
-                            Principal.is.altaEstudiante(nick, nombre, apellido, email, fecha);
+                            DataEstudiante de = new DataEstudiante(nick, nombre, apellido, email, fecha);
+                            Principal.is.altaUsuario(de);
                         } else {
                             String instituto = (String) jComboBox1.getSelectedItem();
-                            Principal.is.altaProfesor(instituto, nick, nombre, apellido, email, fecha);
+                            DataProfesor dp = new DataProfesor(instituto, nick, nombre, apellido, email, fecha);
+                            Principal.is.altaUsuario(dp);
                         }
 
                         JOptionPane.showMessageDialog(this, "Usuario Creado.", "Exito", JOptionPane.INFORMATION_MESSAGE);

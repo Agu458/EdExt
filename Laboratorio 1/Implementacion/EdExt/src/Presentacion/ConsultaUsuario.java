@@ -205,12 +205,22 @@ public class ConsultaUsuario extends javax.swing.JInternalFrame {
         
         if (du != null) {
             if (du instanceof DataEstudiante) {
-                this.jTextField3.setText(du.getNick());
-                this.jTextField4.setText(du.getNombre());
-                this.jTextField5.setText(du.getApellido());
-                this.jTextField6.setText(du.getEmail());
-                this.jDateChooser1.setDate(du.getFechaNacimiento());
+                DataEstudiante de = (DataEstudiante) du;
+                this.jTextField3.setText(de.getNick());
+                this.jTextField4.setText(de.getNombre());
+                this.jTextField5.setText(de.getApellido());
+                this.jTextField6.setText(de.getEmail());
+                this.jDateChooser1.setDate(de.getFechaNacimiento());
                 this.jTextField7.setText("-");
+            }
+            else{
+                DataProfesor dp = (DataProfesor) du;
+                this.jTextField3.setText(dp.getNick());
+                this.jTextField4.setText(dp.getNombre());
+                this.jTextField5.setText(dp.getApellido());
+                this.jTextField6.setText(dp.getEmail());
+                this.jDateChooser1.setDate(dp.getFechaNacimiento());
+                this.jTextField7.setText(dp.getInstituto());
             }
         }
     }//GEN-LAST:event_jComboBox1ActionPerformed

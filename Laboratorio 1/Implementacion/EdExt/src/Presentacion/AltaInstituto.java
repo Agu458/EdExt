@@ -77,7 +77,7 @@ public class AltaInstituto extends javax.swing.JInternalFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         String nombre = this.jTextField5.getText();
 
-        Principal.mostrarRET(Principal.is.altaInstituto(nombre));
+        Principal.is.altaInstituto(nombre);
 
         this.jTextField5.setText("");
     }//GEN-LAST:event_jButton2ActionPerformed

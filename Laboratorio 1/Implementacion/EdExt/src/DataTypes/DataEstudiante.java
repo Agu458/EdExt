@@ -8,6 +8,10 @@ public class DataEstudiante extends DataUsuario{
     List<DataInscripcionEdicion> inscripcionEdiciones;
     List<DataInscripcionPrograma> inscripcionProgramas;
 
+    public DataEstudiante(String nick, String nombre, String apellido, String email, Date fechaNacimiento) {
+        super(nick, nombre, apellido, email, fechaNacimiento);
+    }
+
     public DataEstudiante(List<DataInscripcionEdicion> inscripcionEdiciones, List<DataInscripcionPrograma> inscripcionProgramas, String nick, String nombre, String apellido, String email, Date fechaNacimiento) {
         super(nick, nombre, apellido, email, fechaNacimiento);
         this.inscripcionEdiciones = inscripcionEdiciones;

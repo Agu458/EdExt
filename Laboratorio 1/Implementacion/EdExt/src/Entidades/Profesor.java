@@ -24,7 +24,7 @@ public class Profesor extends Usuario {
 
     @Override
     public DataUsuario darDatos() {
-        return new DataProfesor(instituto.darDatos(), super.getNick(), super.getNombre(), super.getApellido(), super.getEmail(), super.getFechaNacimiento());
+        return new DataProfesor(instituto.darDatos().getNombre(), super.getNick(), super.getNombre(), super.getApellido(), super.getEmail(), super.getFechaNacimiento());
     }
 
     public Instituto getInstituto() {

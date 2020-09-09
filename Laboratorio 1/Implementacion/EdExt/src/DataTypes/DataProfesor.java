@@ -5,14 +5,14 @@ import java.util.List;
 
 public class DataProfesor extends DataUsuario {
 
-    private DataInstituto instituto;
+    private String instituto;
 
-    public DataProfesor(DataInstituto instituto, String nick, String nombre, String apellido, String email, Date fechaNacimiento) {
+    public DataProfesor(String instituto, String nick, String nombre, String apellido, String email, Date fechaNacimiento) {
         super(nick, nombre, apellido, email, fechaNacimiento);
         this.instituto = instituto;
     }
 
-    public DataInstituto getInstituto() {
+    public String getInstituto() {
         return instituto;
     }
 
