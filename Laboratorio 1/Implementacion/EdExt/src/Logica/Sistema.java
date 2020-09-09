@@ -73,6 +73,24 @@ public class Sistema implements ISistema {
         em.close();
     }
 
+    public List<String> listarInstitutos() {
+        EntityManager em = emf.createEntityManager();
+        List<String> instis = new ArrayList();
+        try {
+            em.getTransaction().begin();
+            List institutos = em.createQuery("SELECT i FROM Instituto i").getResultList();
+            for (Object o : institutos) {
+                Instituto i = (Instituto) o;
+                instis.add(i.getNombre());
+            }
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+            em.getTransaction().rollback();
+        }
+        return instis;
+    }
+
     // Ususario
     public RET validarUsuario(String email, String nick) {
         EntityManager em = emf.createEntityManager();
@@ -111,24 +129,18 @@ public class Sistema implements ISistema {
     }
 
     @Override
-    public RET altaProfesor(List<String> institutos, String nick, String nombre, String apellido, String email, Date fechaNacimiento) {
+    public RET altaProfesor(String instituto, String nick, String nombre, String apellido, String email, Date fechaNacimiento) {
         EntityManager em = emf.createEntityManager();
         RET r = validarUsuario(email, nick);
         if (r == RET.OK) {
             try {
                 em.getTransaction().begin();
-                List<Instituto> instis = new ArrayList();
-                for (String s : institutos) {
-                    Instituto insti = em.find(Instituto.class, s);
-                    if (insti != null) {
-                        instis.add(insti);
-                    } else {
-                        insti = new Instituto(s);
-                        em.persist(insti);
-                        instis.add(insti);
-                    }
+                Instituto insti = em.find(Instituto.class, instituto);
+                if (insti == null) {
+                    insti = new Instituto(instituto);
+                    em.persist(insti);
                 }
-                Profesor p = new Profesor(instis, nick, nombre, apellido, email, fechaNacimiento);
+                Profesor p = new Profesor(insti, nick, nombre, apellido, email, fechaNacimiento);
                 em.persist(p);
                 em.getTransaction().commit();
             } catch (Exception e) {
@@ -198,12 +210,7 @@ public class Sistema implements ISistema {
                 p.setApellido(dp.getApellido());
                 p.setEmail(dp.getEmail());
                 p.setFechaNacimiento(dp.getFechaNacimiento());
-                for (DataInstituto di : dp.getInstitutos()) {
-                    Instituto i = em.find(Instituto.class, di.getNombre());
-                    if (!p.tieneInstituto(i)) {
-                        p.agregarInstituto(i);
-                    }
-                }
+                p.setInstituto(em.find(Instituto.class, dp.getInstituto().getNombre()));
                 em.persist(p);
                 em.getTransaction().commit();
             } catch (Exception e) {

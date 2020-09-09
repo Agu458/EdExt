@@ -6,39 +6,32 @@ import DataTypes.DataUsuario;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 
 @Entity
 public class Profesor extends Usuario {
 
-    @OneToMany(cascade = {CascadeType.PERSIST}, fetch = FetchType.LAZY)
-    private List<Instituto> institutos;
+    @OneToOne
+    private Instituto instituto;
 
     public Profesor() {
     }
 
-    public Profesor(List<Instituto> institutos, String nick, String nombre, String apellido, String email, Date fechaNacimiento) {
+    public Profesor(Instituto instituto, String nick, String nombre, String apellido, String email, Date fechaNacimiento) {
         super(nick, nombre, apellido, email, fechaNacimiento);
-        this.institutos = institutos;
+        this.instituto = instituto;
     }
 
     @Override
     public DataUsuario darDatos() {
-        List<DataInstituto> i = new ArrayList();
-        for (Instituto inst : institutos) {
-            i.add(inst.darDatos());
-        }
-        return new DataProfesor(i, super.getNick(), super.getNombre(), super.getApellido(), super.getEmail(), super.getFechaNacimiento());
+        return new DataProfesor(instituto.darDatos(), super.getNick(), super.getNombre(), super.getApellido(), super.getEmail(), super.getFechaNacimiento());
     }
 
-    public void agregarInstituto(Instituto i) {
-        institutos.add(i);
+    public Instituto getInstituto() {
+        return instituto;
     }
 
-    public boolean tieneInstituto(Instituto i) {
-        return institutos.contains(i);
+    public void setInstituto(Instituto instituto) {
+        this.instituto = instituto;
     }
 }

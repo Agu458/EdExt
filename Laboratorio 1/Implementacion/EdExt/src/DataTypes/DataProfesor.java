@@ -3,17 +3,17 @@ package DataTypes;
 import java.util.Date;
 import java.util.List;
 
-public class DataProfesor extends DataUsuario{
-    
-    private List<DataInstituto> institutos;
+public class DataProfesor extends DataUsuario {
 
-    public DataProfesor(List<DataInstituto> institutos, String nick, String nombre, String apellido, String email, Date fechaNacimiento) {
-        super( nick, nombre, apellido, email, fechaNacimiento);
-        this.institutos = institutos;
+    private DataInstituto instituto;
+
+    public DataProfesor(DataInstituto instituto, String nick, String nombre, String apellido, String email, Date fechaNacimiento) {
+        super(nick, nombre, apellido, email, fechaNacimiento);
+        this.instituto = instituto;
     }
 
-    public List<DataInstituto> getInstitutos() {
-        return institutos;
+    public DataInstituto getInstituto() {
+        return instituto;
     }
 
 }
