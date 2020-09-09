@@ -7,6 +7,7 @@ package Presentacion;
 
 import java.util.Date;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -151,7 +152,7 @@ public class AltaUsuario extends javax.swing.JInternalFrame {
             this.jComboBox1.setEnabled(true);
             this.jComboBox1.removeAllItems();
             List<String> institutos = Principal.is.listarInstitutos();
-            for(String s : institutos){
+            for (String s : institutos) {
                 this.jComboBox1.addItem(s);
             }
         } else {
@@ -162,19 +163,46 @@ public class AltaUsuario extends javax.swing.JInternalFrame {
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
         // TODO add your handling code here:
-        String nick, nombre, apellido, email;
-        nick = jTextField1.getText();
-        nombre = jTextField2.getText();
-        apellido = jTextField3.getText();
-        email = jTextField4.getText();
-        Date fecha = jDateChooser1.getDate();
 
-        if (!this.jRadioButton1.isSelected()) {
-            Principal.mostrarRET(Principal.is.altaEstudiante(nick, nombre, apellido, email, fecha));
-        }
-        else{
-            String instituto = (String) jComboBox1.getSelectedItem();
-            Principal.mostrarRET(Principal.is.altaProfesor(instituto, nick, nombre, apellido, email, fecha));
+        if (!jTextField1.getText().equals("") && !jTextField4.getText().equals("")) {
+            if (Principal.is.validarNick(jTextField1.getText())) {
+                if (Principal.is.validarEmail(jTextField4.getText())) {
+                    if (jTextField1.getText().isEmpty() || jTextField2.getText() == null
+                            || jTextField3.getText().isEmpty() || jTextField4.getText() == null
+                            || jDateChooser1.getDate() == null) {
+                        JOptionPane.showMessageDialog(this, "Campos vacios", "Error", JOptionPane.ERROR_MESSAGE);
+                    } else {
+
+                        String nick, nombre, apellido, email;
+                        nick = jTextField1.getText();
+                        nombre = jTextField2.getText();
+                        apellido = jTextField3.getText();
+                        email = jTextField4.getText();
+                        Date fecha = jDateChooser1.getDate();
+
+                        if (!this.jRadioButton1.isSelected()) {
+                            Principal.is.altaEstudiante(nick, nombre, apellido, email, fecha);
+                        } else {
+                            String instituto = (String) jComboBox1.getSelectedItem();
+                            Principal.is.altaProfesor(instituto, nick, nombre, apellido, email, fecha);
+                        }
+
+                        JOptionPane.showMessageDialog(this, "Usuario Creado.", "Exito", JOptionPane.INFORMATION_MESSAGE);
+                        jTextField1.setText("");//Nick
+                        jTextField2.setText("");//Nombre
+                        jTextField3.setText("");//Apellido
+                        jTextField3.setText("");//Email
+                        jDateChooser1.setDate(new Date());
+                        this.dispose();
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(this, "Email en uso", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Nickname en uso", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Campos vacios", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jToggleButton1ActionPerformed
 

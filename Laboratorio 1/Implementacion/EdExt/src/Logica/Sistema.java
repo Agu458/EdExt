@@ -3,7 +3,6 @@ package Logica;
 import DataTypes.DataCurso;
 import DataTypes.DataEdicion;
 import DataTypes.DataEstudiante;
-import DataTypes.DataInstituto;
 import DataTypes.DataProfesor;
 import DataTypes.DataProgramaFormacion;
 import DataTypes.DataUsuario;
@@ -92,64 +91,55 @@ public class Sistema implements ISistema {
     }
 
     // Ususario
-    public RET validarUsuario(String email, String nick) {
+    @Override
+    public boolean validarEmail(String email) {
         EntityManager em = emf.createEntityManager();
         Usuario u = em.find(Usuario.class, email);
-        if (u != null) {
-            return RET.EMAIL_INVALIDO;
-        } else {
-            Query query = em.createQuery("SELECT u FROM Usuario u WHERE u.nick = :nick");
-            query.setParameter("nick", nick);
-            List l = query.getResultList();
-            if (l.isEmpty()) {
-                return RET.OK;
-
-            }
-            return RET.NICK_INVALIDO;
-        }
+        return (u == null);
     }
 
     @Override
-    public RET altaEstudiante(String nick, String nombre, String apellido, String email, Date fechaNacimiento) {
+    public boolean validarNick(String nick) {
         EntityManager em = emf.createEntityManager();
-        RET r = validarUsuario(email, nick);
-        if (r == RET.OK) {
-            try {
-                em.getTransaction().begin();
-                Estudiante es = new Estudiante(nick, nombre, apellido, email, fechaNacimiento);
-                em.persist(es);
-                em.getTransaction().commit();
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, e.getMessage());
-                em.getTransaction().rollback();
-            }
-        }
-        em.close();
-        return r;
+        Query query = em.createQuery("SELECT u FROM Usuario u WHERE u.nick = :nick");
+        query.setParameter("nick", nick);
+        List l = query.getResultList();
+        return (l.isEmpty());
     }
 
     @Override
-    public RET altaProfesor(String instituto, String nick, String nombre, String apellido, String email, Date fechaNacimiento) {
+    public void altaEstudiante(String nick, String nombre, String apellido, String email, Date fechaNacimiento) {
         EntityManager em = emf.createEntityManager();
-        RET r = validarUsuario(email, nick);
-        if (r == RET.OK) {
-            try {
-                em.getTransaction().begin();
-                Instituto insti = em.find(Instituto.class, instituto);
-                if (insti == null) {
-                    insti = new Instituto(instituto);
-                    em.persist(insti);
-                }
-                Profesor p = new Profesor(insti, nick, nombre, apellido, email, fechaNacimiento);
-                em.persist(p);
-                em.getTransaction().commit();
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, e.getMessage());
-                em.getTransaction().rollback();
-            }
+        try {
+            em.getTransaction().begin();
+            Estudiante es = new Estudiante(nick, nombre, apellido, email, fechaNacimiento);
+            em.persist(es);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+            em.getTransaction().rollback();
         }
         em.close();
-        return r;
+    }
+
+    @Override
+    public void altaProfesor(String instituto, String nick, String nombre, String apellido, String email, Date fechaNacimiento) {
+        EntityManager em = emf.createEntityManager();
+        try {
+            em.getTransaction().begin();
+            Instituto insti = em.find(Instituto.class, instituto);
+            if (insti == null) {
+                insti = new Instituto(instituto);
+                em.persist(insti);
+            }
+            Profesor p = new Profesor(insti, nick, nombre, apellido, email, fechaNacimiento);
+            em.persist(p);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+            em.getTransaction().rollback();
+        }
+        em.close();
     }
 
     public List<String> listarUsuarios() {

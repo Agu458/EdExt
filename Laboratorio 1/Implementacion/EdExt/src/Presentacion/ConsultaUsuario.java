@@ -142,7 +142,6 @@ public class ConsultaUsuario extends javax.swing.JInternalFrame {
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         String email = (String) this.jComboBox1.getSelectedItem();
         
-        System.out.println(email);
         DataUsuario du = Principal.is.darDatosUsuario(email);
         if (du != null) {
             this.jTextField1.setText(du.getNick());
