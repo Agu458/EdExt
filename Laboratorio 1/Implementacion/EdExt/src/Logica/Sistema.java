@@ -232,20 +232,20 @@ public class Sistema implements ISistema {
     }
 
     // Curso
-    public void altaCurso(String nombre, String descripcion, int duracion, int horas, int creditos, Date fechaRegistro, String URL, List<String> previas, String instituto) {
+    public void altaCurso(DataCurso dc, String instituto) {
         EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
             Instituto i = em.find(Instituto.class, instituto);
             if (i != null) {
                 List<Curso> prevs = new ArrayList();
-                for (String p : previas) {
+                for (String p : dc.getPrevias()) {
                     Curso c = em.find(Curso.class, p);
                     if (c != null) {
                         prevs.add(c);
                     }
                 }
-                Curso curso = new Curso(nombre, descripcion, duracion, horas, creditos, fechaRegistro, URL, prevs);
+                Curso curso = new Curso(dc.getNombre(), dc.getDescripcion(), dc.getDuracion(), dc.getHoras(), dc.getCreditos(), dc.getFechaRegistro(), dc.getURL(), prevs);
                 em.persist(curso);
                 i.agregarCurso(curso);
             }
@@ -313,18 +313,18 @@ public class Sistema implements ISistema {
         return dc;
     }
 
-    public void altaEdicionCurso(String nombre, Date fechaIni, Date fechaFin, int cupos, Date fechaPublicacion, List<String> profesores, String curso) {
+    public void altaEdicionCurso(DataEdicion de, String curso) {
         EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
             Curso c = em.find(Curso.class, curso);
             if (c != null) {
                 List<Profesor> p = new ArrayList();
-                for (String s : profesores) {
-                    Profesor pro = em.find(Profesor.class, s);
+                for (DataProfesor dp : de.getProfesores()) {
+                    Profesor pro = em.find(Profesor.class, dp.getNombre());
                     p.add(pro);
                 }
-                c.altaEdicion(nombre, fechaIni, fechaFin, cupos, fechaPublicacion, p, em);
+                c.altaEdicion(de.getNombre(), de.getFechaIni(), de.getFechaFin(), de.getCupos(), de.getFechaPublicacion(), p, em);
             }
             em.getTransaction().commit();
         } catch (Exception e) {
@@ -371,11 +371,11 @@ public class Sistema implements ISistema {
         em.close();
     }
 
-    public void altaProgramaFormacion(String nombre, String descripcion, Date fechaIni, Date fechaFin) {
+    public void altaProgramaFormacion(DataProgramaFormacion dpf) {
         EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
-            ProgramaFormacion pf = new ProgramaFormacion(nombre, descripcion, fechaIni, fechaFin);
+            ProgramaFormacion pf = new ProgramaFormacion(dpf.getNombre(), dpf.getDescripcion(), dpf.getFechaIni(), dpf.getFechaFin());
             em.persist(pf);
             em.getTransaction().commit();
         } catch (Exception e) {
