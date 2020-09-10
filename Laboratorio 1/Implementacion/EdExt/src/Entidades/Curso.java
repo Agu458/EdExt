@@ -114,8 +114,8 @@ public class Curso implements Serializable {
     public void setEdiciones(List<Edicion> ediciones) {
         this.ediciones = ediciones;
     }
-    
-    public void altaEdicion(String nombre, Date fechaIni, Date fechaFin, int cupos, Date fechaPublicacion, List<Profesor> p, EntityManager em){
+
+    public void altaEdicion(String nombre, Date fechaIni, Date fechaFin, int cupos, Date fechaPublicacion, List<Profesor> p, EntityManager em) {
         Edicion e = new Edicion(nombre, fechaIni, fechaFin, cupos, fechaPublicacion, p);
         em.persist(e);
         ediciones.add(e);
@@ -136,25 +136,37 @@ public class Curso implements Serializable {
     public void setPrevias(List<Curso> previas) {
         this.previas = previas;
     }
-    
-    public DataEdicion darActual(){
+
+    public DataEdicion darActual() {
         return edicionActual.darDatos();
     }
-    
-    public DataCurso darDatos(){
-        List<DataEdicion> e = new ArrayList();
-        List<String> p = new ArrayList();
-        List<String> progs = new ArrayList();
-        for(Edicion ed : ediciones){
-            DataEdicion de = ed.darDatos();
-            e.add(de);
+
+    public DataCurso darDatos() {
+        List<DataEdicion> e = null;
+        List<String> p = null;
+        List<String> progs = null;
+        if (!ediciones.isEmpty()) {
+            e = new ArrayList();
+            for (Edicion ed : ediciones) {
+                DataEdicion de = ed.darDatos();
+                e.add(de);
+            }
         }
-        for(Curso c : previas){
-            p.add(c.getNombre());
+
+        if (!previas.isEmpty()) {
+            p = new ArrayList();
+            for (Curso c : previas) {
+                p.add(c.getNombre());
+            }
         }
-        for(ProgramaFormacion pf : programas){
-            progs.add(pf.getNombre());
+
+        if (!programas.isEmpty()) {
+            progs = new ArrayList();
+            for (ProgramaFormacion pf : programas) {
+                progs.add(pf.getNombre());
+            }
         }
-        return new DataCurso(nombre, descripcion, duracion, horas, creditos, fechaRegistro, URL, e, edicionActual.darDatos(),p, progs);
+
+        return new DataCurso(nombre, descripcion, duracion, horas, creditos, fechaRegistro, URL, e, edicionActual.darDatos(), p, progs);
     }
 }

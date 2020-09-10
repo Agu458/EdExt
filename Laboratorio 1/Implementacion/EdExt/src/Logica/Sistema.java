@@ -116,24 +116,23 @@ public class Sistema implements ISistema {
                 em.getTransaction().rollback();
             }
             em.close();
-        }
-        else{
+        } else {
             DataProfesor dp = (DataProfesor) du;
             try {
-            em.getTransaction().begin();
-            Instituto insti = em.find(Instituto.class, dp.getInstituto());
-            if (insti == null) {
-                insti = new Instituto(dp.getInstituto());
-                em.persist(insti);
+                em.getTransaction().begin();
+                Instituto insti = em.find(Instituto.class, dp.getInstituto());
+                if (insti == null) {
+                    insti = new Instituto(dp.getInstituto());
+                    em.persist(insti);
+                }
+                Profesor p = new Profesor(insti, dp.getNick(), dp.getNombre(), dp.getApellido(), dp.getEmail(), dp.getFechaNacimiento());
+                em.persist(p);
+                em.getTransaction().commit();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e.getMessage());
+                em.getTransaction().rollback();
             }
-            Profesor p = new Profesor(insti, dp.getNick(), dp.getNombre(), dp.getApellido(), dp.getEmail(), dp.getFechaNacimiento());
-            em.persist(p);
-            em.getTransaction().commit();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
-            em.getTransaction().rollback();
-        }
-        em.close();
+            em.close();
         }
     }
 
@@ -306,16 +305,18 @@ public class Sistema implements ISistema {
     public DataCurso darDatosCurso(String nombre) {
         EntityManager em = emf.createEntityManager();
         DataCurso dc = null;
-        try {
-            em.getTransaction().begin();
-            Curso c = em.find(Curso.class, nombre);
-            if (c != null) {
-                dc = c.darDatos();
+        if (nombre != null) {
+            try {
+                em.getTransaction().begin();
+                Curso c = em.find(Curso.class, nombre);
+                if (c != null) {
+                    dc = c.darDatos();
+                }
+                em.getTransaction().commit();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e.getMessage());
+                em.getTransaction().rollback();
             }
-            em.getTransaction().commit();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
-            em.getTransaction().rollback();
         }
         em.close();
         return dc;
