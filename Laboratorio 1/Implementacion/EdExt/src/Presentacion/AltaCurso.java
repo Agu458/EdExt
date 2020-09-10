@@ -5,6 +5,14 @@
  */
 package Presentacion;
 
+import DataTypes.DataCurso;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.List;
+import java.util.Vector;
+import javax.swing.DefaultListModel;
+
 /**
  *
  * @author Agustin
@@ -16,6 +24,18 @@ public class AltaCurso extends javax.swing.JInternalFrame {
      */
     public AltaCurso() {
         initComponents();
+        this.jComboBox1.removeAllItems();
+        List<String> institutos = Principal.is.listarInstitutos();
+        for (String s : institutos) {
+            this.jComboBox1.addItem(s);
+        }
+        this.jTextField1.setEnabled(false);
+        this.jTextField2.setEnabled(false);
+        this.jTextField3.setEnabled(false);
+        this.jTextField4.setEnabled(false);
+        this.jTextField5.setEnabled(false);
+        this.jTextArea1.setEnabled(false);
+        this.jList1.setEnabled(false);
     }
 
     /**
@@ -52,7 +72,19 @@ public class AltaCurso extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Instituto");
 
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+
         jLabel2.setText("Nombre");
+
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Descripcion");
 
@@ -73,6 +105,12 @@ public class AltaCurso extends javax.swing.JInternalFrame {
         jLabel6.setText("Creditos");
 
         jLabel7.setText("URL");
+
+        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField5ActionPerformed(evt);
+            }
+        });
 
         jButton1.setText("Confirmar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -167,7 +205,50 @@ public class AltaCurso extends javax.swing.JInternalFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        String nombre, descripcion, URL;
+        Integer duracion, horas, creditos;
+        Date fechaRegistro;
+        List<String> previas;
+        nombre = this.jTextField1.getText();
+        descripcion = this.jTextArea1.getText();
+        duracion = Integer.parseInt(this.jTextField2.getText());
+        horas = Integer.parseInt(this.jTextField3.getText());
+        creditos = Integer.parseInt(this.jTextField4.getText());
+        URL = this.jTextField5.getText();
+        previas = this.jList1.getSelectedValuesList();
+        Calendar c = Calendar.getInstance();
+        Date fecha = new Date(c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DATE));
+        DataCurso dc = new DataCurso(nombre, descripcion, duracion, horas, creditos,  fecha, URL, previas);
+        
+        Principal.is.altaCurso(dc, (String) this.jComboBox1.getSelectedItem());
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+        this.jTextField1.setEnabled(true);
+        this.jTextField2.setEnabled(true);
+        this.jTextField3.setEnabled(true);
+        this.jTextField4.setEnabled(true);
+        this.jTextField5.setEnabled(true);
+        this.jTextArea1.setEnabled(true);
+        this.jList1.setEnabled(true);
+        
+        String instituto = (String) this.jComboBox1.getSelectedItem();
+        List cursos = Principal.is.listarCursosInstituto(instituto);
+        DefaultListModel dlm = new DefaultListModel();
+        for(Object o : cursos){
+            dlm.addElement(o);
+        }
+        this.jList1.setModel(dlm);
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField5ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

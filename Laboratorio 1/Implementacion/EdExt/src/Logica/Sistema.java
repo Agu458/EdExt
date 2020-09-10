@@ -137,6 +137,7 @@ public class Sistema implements ISistema {
         }
     }
 
+    @Override
     public List<String> listarUsuarios() {
         EntityManager em = emf.createEntityManager();
         List<String> u = new ArrayList();
@@ -156,6 +157,7 @@ public class Sistema implements ISistema {
         return u;
     }
 
+    @Override
     public DataUsuario darDatosUsuario(String email) {
         EntityManager em = emf.createEntityManager();
         DataUsuario u = null;
@@ -172,6 +174,7 @@ public class Sistema implements ISistema {
         return u;
     }
 
+    @Override
     public List<String> listarEstudiantes() {
         EntityManager em = emf.createEntityManager();
         List<String> ests = new ArrayList();
@@ -191,6 +194,7 @@ public class Sistema implements ISistema {
         return ests;
     }
 
+    @Override
     public void modificarUsuario(DataUsuario du) {
         EntityManager em = emf.createEntityManager();
         if (du instanceof DataEstudiante) {
@@ -232,6 +236,7 @@ public class Sistema implements ISistema {
     }
 
     // Curso
+    @Override
     public void altaCurso(DataCurso dc, String instituto) {
         EntityManager em = emf.createEntityManager();
         try {
@@ -257,6 +262,7 @@ public class Sistema implements ISistema {
         em.close();
     }
 
+    @Override
     public List<String> listarCursosInstituto(String instituto) {
         EntityManager em = emf.createEntityManager();
         List<String> cursos = new ArrayList();
@@ -275,6 +281,7 @@ public class Sistema implements ISistema {
         return cursos;
     }
 
+    @Override
     public List<String> listarCursos() {
         EntityManager em = emf.createEntityManager();
         List<String> cursos = new ArrayList();
@@ -295,6 +302,7 @@ public class Sistema implements ISistema {
         return cursos;
     }
 
+    @Override
     public DataCurso darDatosCurso(String nombre) {
         EntityManager em = emf.createEntityManager();
         DataCurso dc = null;

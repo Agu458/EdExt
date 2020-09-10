@@ -1,5 +1,6 @@
 package Logica;
 
+import DataTypes.DataCurso;
 import DataTypes.DataUsuario;
 import java.util.List;
 
@@ -20,4 +21,18 @@ public interface ISistema {
     public List<String> listarUsuarios();
     
     public DataUsuario darDatosUsuario(String email);
+    
+    public List<String> listarEstudiantes();
+    
+    public void modificarUsuario(DataUsuario du);
+    
+    public void altaCurso(DataCurso dc, String instituto);
+    
+    public List<String> listarCursosInstituto(String instituto);
+    
+    public List<String> listarCursos();
+    
+    public DataCurso darDatosCurso(String nombre);
+    
+    
 }
