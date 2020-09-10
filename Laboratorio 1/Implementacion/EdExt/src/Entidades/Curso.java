@@ -2,6 +2,7 @@ package Entidades;
 
 import DataTypes.DataCurso;
 import DataTypes.DataEdicion;
+import DataTypes.DataProgramaFormacion;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -9,6 +10,7 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
@@ -32,6 +34,8 @@ public class Curso implements Serializable {
     private Edicion edicionActual;
     @OneToMany
     private List<Curso> previas;
+    @ManyToMany(mappedBy = "cursos")
+    private List<ProgramaFormacion> programas;
 
     public Curso() {
     }
@@ -140,6 +144,7 @@ public class Curso implements Serializable {
     public DataCurso darDatos(){
         List<DataEdicion> e = new ArrayList();
         List<String> p = new ArrayList();
+        List<String> progs = new ArrayList();
         for(Edicion ed : ediciones){
             DataEdicion de = ed.darDatos();
             e.add(de);
@@ -147,6 +152,9 @@ public class Curso implements Serializable {
         for(Curso c : previas){
             p.add(c.getNombre());
         }
-        return new DataCurso(nombre, descripcion, duracion, horas, creditos, fechaRegistro, URL, e, edicionActual.darDatos(),p);
+        for(ProgramaFormacion pf : programas){
+            progs.add(pf.getNombre());
+        }
+        return new DataCurso(nombre, descripcion, duracion, horas, creditos, fechaRegistro, URL, e, edicionActual.darDatos(),p, progs);
     }
 }
