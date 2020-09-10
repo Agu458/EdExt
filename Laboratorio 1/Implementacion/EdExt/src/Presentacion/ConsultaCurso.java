@@ -266,7 +266,9 @@ public class ConsultaCurso extends javax.swing.JInternalFrame {
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
         // TODO add your handling code here:
         String nombre = (String) this.jComboBox2.getSelectedItem();
+        
         DataCurso dc = Principal.is.darDatosCurso(nombre);
+        
         if (dc != null) {
             this.jTextField1.setText(dc.getNombre());
             this.jTextField2.setText(String.valueOf(dc.getDuracion()));

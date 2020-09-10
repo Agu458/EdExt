@@ -142,6 +142,7 @@ public class Curso implements Serializable {
     }
 
     public DataCurso darDatos() {
+        /*
         List<DataEdicion> e = null;
         List<String> p = null;
         List<String> progs = null;
@@ -152,21 +153,18 @@ public class Curso implements Serializable {
                 e.add(de);
             }
         }
-
-        if (!previas.isEmpty()) {
-            p = new ArrayList();
-            for (Curso c : previas) {
-                p.add(c.getNombre());
-            }
-        }
-
         if (!programas.isEmpty()) {
             progs = new ArrayList();
             for (ProgramaFormacion pf : programas) {
                 progs.add(pf.getNombre());
             }
         }
+         */
+        List<String> prevs = new ArrayList();
+        for (Curso c : previas) {
+            prevs.add(c.getNombre());
+        }
 
-        return new DataCurso(nombre, descripcion, duracion, horas, creditos, fechaRegistro, URL, e, edicionActual.darDatos(), p, progs);
+        return new DataCurso(nombre, descripcion, duracion, horas, creditos, fechaRegistro, URL, prevs);
     }
 }
