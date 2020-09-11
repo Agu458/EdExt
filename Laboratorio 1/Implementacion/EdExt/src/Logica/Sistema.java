@@ -192,6 +192,26 @@ public class Sistema implements ISistema {
         em.close();
         return ests;
     }
+    
+    @Override
+    public List<String> listarProfesores() {
+        EntityManager em = emf.createEntityManager();
+        List<String> ests = new ArrayList();
+        try {
+            em.getTransaction().begin();
+            List aux = em.createQuery("SELECT p FROM Profesor p").getResultList();
+            for (Object o : aux) {
+                Usuario u = (Usuario) o;
+                ests.add(u.getEmail());
+            }
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+            em.getTransaction().rollback();
+        }
+        em.close();
+        return ests;
+    }
 
     @Override
     public void modificarUsuario(DataUsuario du) {
@@ -330,8 +350,8 @@ public class Sistema implements ISistema {
             Curso c = em.find(Curso.class, curso);
             if (c != null) {
                 List<Profesor> p = new ArrayList();
-                for (DataProfesor dp : de.getProfesores()) {
-                    Profesor pro = em.find(Profesor.class, dp.getNombre());
+                for (String s : de.getProfesores()) {
+                    Profesor pro = em.find(Profesor.class, s);
                     p.add(pro);
                 }
                 c.altaEdicion(de.getNombre(), de.getFechaIni(), de.getFechaFin(), de.getCupos(), de.getFechaPublicacion(), p, em);

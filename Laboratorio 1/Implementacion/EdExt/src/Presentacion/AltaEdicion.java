@@ -5,7 +5,11 @@
  */
 package Presentacion;
 
+import DataTypes.DataEdicion;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import javax.swing.DefaultListModel;
 
 /**
  *
@@ -169,8 +173,17 @@ public class AltaEdicion extends javax.swing.JInternalFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        String nombreCurso = (String) this.jComboBox2.getSelectedItem();
+        String nombre = this.jTextField1.getText();
+        Date fechaIni = this.jDateChooser1.getDate();
+        Calendar c = Calendar.getInstance();
+        Date fechaPublicacion = new Date(c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DATE));
+        Date fechaFin = this.jDateChooser2.getDate();
+        int cupos = Integer.parseInt(this.jTextField2.getText());
+        List<String> profesores = this.jList1.getSelectedValuesList();
         
-        //Principal.is.altaEdicionCurso(de, title);
+        DataEdicion de = new DataEdicion(nombre, fechaIni, fechaFin, cupos, fechaPublicacion, profesores);
+        Principal.is.altaEdicionCurso(de, nombreCurso);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
@@ -191,6 +204,13 @@ public class AltaEdicion extends javax.swing.JInternalFrame {
         this.jDateChooser1.setEnabled(true);
         this.jDateChooser2.setEnabled(true);
         this.jList1.setEnabled(true);
+        
+        List profesores = Principal.is.listarProfesores();
+        DefaultListModel dlm = new DefaultListModel();
+        for(Object o : profesores){
+            dlm.addElement(o);
+        }
+        this.jList1.setModel(dlm);
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
 

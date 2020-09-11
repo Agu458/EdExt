@@ -90,10 +90,9 @@ public class Edicion implements Serializable {
     }
     
     public DataEdicion darDatos(){
-        List<DataProfesor> dps = new ArrayList();
+        List<String> dps = new ArrayList();
         for(Profesor p : profesores){
-            DataProfesor dp = (DataProfesor) p.darDatos();
-            dps.add(dp);
+            dps.add(p.getEmail());
         }
         return new DataEdicion(nombre, fechaIni, fechaFin, cupos, fechaPublicacion, dps);
     }

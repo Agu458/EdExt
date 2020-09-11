@@ -27,6 +27,8 @@ public interface ISistema {
     
     public List<String> listarEstudiantes();
     
+    public List<String> listarProfesores();
+    
     public void modificarUsuario(DataUsuario du);
     
     public void altaCurso(DataCurso dc, String instituto);

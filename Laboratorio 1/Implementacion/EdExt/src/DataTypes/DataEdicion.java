@@ -10,9 +10,9 @@ public class DataEdicion {
     private Date fechaFin;
     private int cupos;
     private Date fechaPublicacion;
-    private List<DataProfesor> profesores;
+    private List<String> profesores;
 
-    public DataEdicion(String nombre, Date fechaIni, Date fechaFin, int cupos, Date fechaPublicacion, List<DataProfesor> profesores) {
+    public DataEdicion(String nombre, Date fechaIni, Date fechaFin, int cupos, Date fechaPublicacion, List<String> profesores) {
         this.nombre = nombre;
         this.fechaIni = fechaIni;
         this.fechaFin = fechaFin;
@@ -41,7 +41,7 @@ public class DataEdicion {
         return fechaPublicacion;
     }
 
-    public List<DataProfesor> getProfesores() {
+    public List<String> getProfesores() {
         return profesores;
     }
 }
