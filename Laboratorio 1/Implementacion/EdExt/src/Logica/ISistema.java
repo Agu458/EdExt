@@ -45,6 +45,10 @@ public interface ISistema {
     
     public void inscripcionEdicion(String curso, String estudiante, Date fecha);
     
+    public List<String> listarEdiciones(String curso);
+    
+    public DataEdicion darDatosEdicion(String curso, String nombreEdicion);
+    
     public void altaProgramaFormacion(DataProgramaFormacion dpf);
     
     public List<String> listarProgramas();

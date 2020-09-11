@@ -2,15 +2,16 @@
 package Entidades;
 
 import DataTypes.DataEdicion;
-import DataTypes.DataProfesor;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 import javax.persistence.Temporal;
 
 @Entity
@@ -26,8 +27,8 @@ public class Edicion implements Serializable {
     private int cupos;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date fechaPublicacion;
-    @OneToMany(fetch = FetchType.LAZY)
-    private List<Profesor> profesores;
+    @ManyToMany
+    private Map<String, Profesor> profesores;
 
     public Edicion() {
     }
@@ -38,7 +39,7 @@ public class Edicion implements Serializable {
         this.fechaFin = fechaFin;
         this.cupos = cupos;
         this.fechaPublicacion = fechaPublicacion;
-        this.profesores = profesores;
+        this.profesores = new HashMap();
     }
 
     public String getNombre() {
@@ -81,17 +82,17 @@ public class Edicion implements Serializable {
         this.fechaPublicacion = fechaPublicacion;
     }
 
-    public List<Profesor> getProfesores() {
+    public Map<String, Profesor> getProfesores() {
         return profesores;
     }
 
-    public void setProfesores(List<Profesor> profesores) {
+    public void setProfesores(Map<String, Profesor> profesores) {
         this.profesores = profesores;
     }
-    
+
     public DataEdicion darDatos(){
         List<String> dps = new ArrayList();
-        for(Profesor p : profesores){
+        for(Profesor p : profesores.values()){
             dps.add(p.getEmail());
         }
         return new DataEdicion(nombre, fechaIni, fechaFin, cupos, fechaPublicacion, dps);

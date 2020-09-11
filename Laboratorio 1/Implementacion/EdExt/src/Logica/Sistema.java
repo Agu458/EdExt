@@ -402,6 +402,38 @@ public class Sistema implements ISistema {
         }
         em.close();
     }
+    
+    public List<String> listarEdiciones(String curso){
+        EntityManager em = emf.createEntityManager();
+        List<String> ediciones = new ArrayList();
+        try {
+            em.getTransaction().begin();
+            Curso c = em.find(Curso.class, curso);
+            ediciones = c.darEdiciones();
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+            em.getTransaction().rollback();
+        }
+        em.close();
+        return ediciones;
+    }
+    
+    public DataEdicion darDatosEdicion(String curso, String nombreEdicion){
+        EntityManager em = emf.createEntityManager();
+        DataEdicion edicion = null;
+        try {
+            em.getTransaction().begin();
+            Curso c = em.find(Curso.class, curso);
+            edicion = c.darDatosEdicion(nombreEdicion);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+            em.getTransaction().rollback();
+        }
+        em.close();
+        return edicion;
+    }
 
     @Override
     public void altaProgramaFormacion(DataProgramaFormacion dpf) {

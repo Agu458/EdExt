@@ -6,7 +6,9 @@ import DataTypes.DataProgramaFormacion;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.Id;
@@ -29,7 +31,7 @@ public class Curso implements Serializable {
     private Date fechaRegistro;
     private String URL;
     @OneToMany
-    private List<Edicion> ediciones;
+    private Map<String, Edicion> ediciones;
     @OneToOne
     private Edicion edicionActual;
     @OneToMany
@@ -49,6 +51,7 @@ public class Curso implements Serializable {
         this.fechaRegistro = fechaRegistro;
         this.URL = URL;
         this.previas = previas;
+        this.ediciones = new HashMap();
     }
 
     public String getNombre() {
@@ -107,18 +110,18 @@ public class Curso implements Serializable {
         this.URL = URL;
     }
 
-    public List<Edicion> getEdiciones() {
+    public Map<String, Edicion> getEdiciones() {
         return ediciones;
     }
 
-    public void setEdiciones(List<Edicion> ediciones) {
+    public void setEdiciones(Map<String, Edicion> ediciones) {
         this.ediciones = ediciones;
     }
 
     public void altaEdicion(String nombre, Date fechaIni, Date fechaFin, int cupos, Date fechaPublicacion, List<Profesor> p, EntityManager em) {
         Edicion e = new Edicion(nombre, fechaIni, fechaFin, cupos, fechaPublicacion, p);
         em.persist(e);
-        ediciones.add(e);
+        ediciones.put(e.getNombre(), e);
     }
 
     public Edicion getEdicionActual() {
@@ -148,11 +151,24 @@ public class Curso implements Serializable {
     public void setProgramas(List<ProgramaFormacion> programas) {
         this.programas = programas;
     }
+    
+    public List<String> darEdiciones(){
+        List<String> eds = new ArrayList();
+        for(Edicion e : ediciones.values()){
+            eds.add(e.getNombre());
+        }
+        return eds;
+    }
+    
+    public DataEdicion darDatosEdicion(String nombreEdicion){
+        Edicion e = ediciones.get(nombreEdicion);
+        return e.darDatos();
+    }
 
     public DataCurso darDatos() {
 
         List<DataEdicion> edis = new ArrayList();
-        for (Edicion ed : ediciones) {
+        for (Edicion ed : ediciones.values()) {
             DataEdicion de = ed.darDatos();
             edis.add(de);
         }
