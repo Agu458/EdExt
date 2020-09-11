@@ -7,6 +7,7 @@ import DataTypes.DataProfesor;
 import DataTypes.DataProgramaFormacion;
 import DataTypes.DataUsuario;
 import Entidades.Curso;
+import Entidades.Edicion;
 import Entidades.Estudiante;
 import Entidades.Instituto;
 import Entidades.Profesor;
@@ -354,7 +355,7 @@ public class Sistema implements ISistema {
                     Profesor pro = em.find(Profesor.class, s);
                     p.add(pro);
                 }
-                c.altaEdicion(de.getNombre(), de.getFechaIni(), de.getFechaFin(), de.getCupos(), de.getFechaPublicacion(), p, em);
+                Edicion e = c.altaEdicion(de.getNombre(), de.getFechaIni(), de.getFechaFin(), de.getCupos(), de.getFechaPublicacion(), p, em);
             }
             em.getTransaction().commit();
         } catch (Exception e) {
@@ -419,6 +420,7 @@ public class Sistema implements ISistema {
         return ediciones;
     }
     
+    @Override
     public DataEdicion darDatosEdicion(String curso, String nombreEdicion){
         EntityManager em = emf.createEntityManager();
         DataEdicion edicion = null;

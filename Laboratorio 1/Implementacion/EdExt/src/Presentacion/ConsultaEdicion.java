@@ -193,7 +193,7 @@ public class ConsultaEdicion extends javax.swing.JInternalFrame {
 
     private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
         // TODO add your handling code here:
-        DataEdicion de = Principal.is.darDatosEdicion((String) this.jComboBox3.getSelectedItem(),(String) this.jComboBox2.getSelectedItem());
+        DataEdicion de = Principal.is.darDatosEdicion((String) this.jComboBox2.getSelectedItem(), (String) this.jComboBox3.getSelectedItem());
         if (de != null) {
             this.jTextField1.setText(de.getNombre());
             this.jTextField2.setText(String.valueOf(de.getCupos()));

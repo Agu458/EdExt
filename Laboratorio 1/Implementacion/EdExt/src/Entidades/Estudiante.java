@@ -52,18 +52,14 @@ public class Estudiante extends Usuario {
     
     @Override
     public DataUsuario darDatos() {
-        List<DataInscripcionEdicion> die = new ArrayList();
-        for (Object o : inscripcionEdiciones.values()) {
-            InscripcionEdicion ie = (InscripcionEdicion) o;
-            DataInscripcionEdicion de = ie.darDatos();
-            die.add(de);
+        List<String> eds = new ArrayList();
+        for (String s : inscripcionEdiciones.keySet()) {
+            eds.add(s);
         }
-        List<DataInscripcionPrograma> dip = new ArrayList();
-        for (Object o : inscripcionProgramas.values()) {
-            InscripcionPrograma ip = (InscripcionPrograma) o;
-            DataInscripcionPrograma dp = ip.darDatos();
-            dip.add(dp);
+        List<String> progs = new ArrayList();
+        for (String s : inscripcionProgramas.keySet()) {
+            progs.add(s);
         }
-        return new DataEstudiante(die, dip, super.getNick(), super.getNombre(), super.getApellido(), super.getEmail(), super.getFechaNacimiento());
+        return new DataEstudiante(eds, progs, super.getNick(), super.getNombre(), super.getApellido(), super.getEmail(), super.getFechaNacimiento());
     }
 }

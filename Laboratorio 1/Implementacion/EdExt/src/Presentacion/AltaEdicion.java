@@ -180,7 +180,8 @@ public class AltaEdicion extends javax.swing.JInternalFrame {
         Date fechaPublicacion = new Date(c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DATE));
         Date fechaFin = this.jDateChooser2.getDate();
         int cupos = Integer.parseInt(this.jTextField2.getText());
-        List<String> profesores = this.jList1.getSelectedValuesList();
+        List<String> profesores;
+        profesores = this.jList1.getSelectedValuesList();
         
         DataEdicion de = new DataEdicion(nombre, fechaIni, fechaFin, cupos, fechaPublicacion, profesores);
         Principal.is.altaEdicionCurso(de, nombreCurso);

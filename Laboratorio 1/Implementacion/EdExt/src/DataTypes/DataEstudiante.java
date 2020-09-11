@@ -5,24 +5,24 @@ import java.util.List;
 
 public class DataEstudiante extends DataUsuario{
     
-    List<DataInscripcionEdicion> inscripcionEdiciones;
-    List<DataInscripcionPrograma> inscripcionProgramas;
+    List<String> inscripcionEdiciones;
+    List<String> inscripcionProgramas;
 
     public DataEstudiante(String nick, String nombre, String apellido, String email, Date fechaNacimiento) {
         super(nick, nombre, apellido, email, fechaNacimiento);
     }
 
-    public DataEstudiante(List<DataInscripcionEdicion> inscripcionEdiciones, List<DataInscripcionPrograma> inscripcionProgramas, String nick, String nombre, String apellido, String email, Date fechaNacimiento) {
+    public DataEstudiante(List<String> inscripcionEdiciones, List<String> inscripcionProgramas, String nick, String nombre, String apellido, String email, Date fechaNacimiento) {
         super(nick, nombre, apellido, email, fechaNacimiento);
         this.inscripcionEdiciones = inscripcionEdiciones;
         this.inscripcionProgramas = inscripcionProgramas;
     }
 
-    public List<DataInscripcionEdicion> getInscripcionEdiciones() {
+    public List<String> getInscripcionEdiciones() {
         return inscripcionEdiciones;
     }
 
-    public List<DataInscripcionPrograma> getInscripcionProgramas() {
+    public List<String> getInscripcionProgramas() {
         return inscripcionProgramas;
     }
     

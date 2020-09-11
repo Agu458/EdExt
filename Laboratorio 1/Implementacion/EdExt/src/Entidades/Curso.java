@@ -2,7 +2,6 @@ package Entidades;
 
 import DataTypes.DataCurso;
 import DataTypes.DataEdicion;
-import DataTypes.DataProgramaFormacion;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -118,10 +117,11 @@ public class Curso implements Serializable {
         this.ediciones = ediciones;
     }
 
-    public void altaEdicion(String nombre, Date fechaIni, Date fechaFin, int cupos, Date fechaPublicacion, List<Profesor> p, EntityManager em) {
+    public Edicion altaEdicion(String nombre, Date fechaIni, Date fechaFin, int cupos, Date fechaPublicacion, List<Profesor> p, EntityManager em) {
         Edicion e = new Edicion(nombre, fechaIni, fechaFin, cupos, fechaPublicacion, p);
         em.persist(e);
         ediciones.put(e.getNombre(), e);
+        return e;
     }
 
     public Edicion getEdicionActual() {
