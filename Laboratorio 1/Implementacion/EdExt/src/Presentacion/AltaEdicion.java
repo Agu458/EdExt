@@ -5,6 +5,8 @@
  */
 package Presentacion;
 
+import java.util.List;
+
 /**
  *
  * @author Agustin
@@ -16,6 +18,19 @@ public class AltaEdicion extends javax.swing.JInternalFrame {
      */
     public AltaEdicion() {
         initComponents();
+        
+        this.jComboBox2.setEnabled(false);
+        this.jTextField1.setEnabled(false);
+        this.jTextField2.setEnabled(false);
+        this.jDateChooser1.setEnabled(false);
+        this.jDateChooser2.setEnabled(false);
+        this.jList1.setEnabled(false);
+        
+        this.jComboBox1.removeAllItems();
+        List<String> institutos = Principal.is.listarInstitutos();
+        for (String s : institutos) {
+            this.jComboBox1.addItem(s);
+        }
     }
 
     /**
@@ -47,9 +62,21 @@ public class AltaEdicion extends javax.swing.JInternalFrame {
         setClosable(true);
         setTitle("Alta Edicion");
 
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+
         jLabel1.setText("Instituto");
 
         jLabel2.setText("Curso");
+
+        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox2ActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Nombre");
 
@@ -142,7 +169,29 @@ public class AltaEdicion extends javax.swing.JInternalFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        
+        //Principal.is.altaEdicionCurso(de, title);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+        this.jComboBox2.removeAllItems();
+        this.jComboBox2.setEnabled(true);
+        this.jComboBox2.removeAllItems();
+        List<String> cursos = Principal.is.listarCursosInstituto((String) this.jComboBox1.getSelectedItem());
+        for (String s : cursos) {
+            this.jComboBox2.addItem(s);
+        }
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+        // TODO add your handling code here:
+        this.jTextField1.setEnabled(true);
+        this.jTextField2.setEnabled(true);
+        this.jDateChooser1.setEnabled(true);
+        this.jDateChooser2.setEnabled(true);
+        this.jList1.setEnabled(true);
+    }//GEN-LAST:event_jComboBox2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

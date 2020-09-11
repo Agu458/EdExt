@@ -12,10 +12,10 @@ public class DataCurso {
     private int creditos;
     private Date fechaRegistro;
     private String URL;
+    private List<String> previas;
     private List<DataEdicion> ediciones;
     private DataEdicion edicionAgtual;
-    private List<String> previas;
-    private List<String> progs;
+    private List<String> programas;
 
     public DataCurso(String nombre, String descripcion, int duracion, int horas, int creditos, Date fechaRegistro, String URL, List<String> previas) {
         this.nombre = nombre;
@@ -27,8 +27,8 @@ public class DataCurso {
         this.URL = URL;
         this.previas = previas;
     }
-    
-    public DataCurso(String nombre, String descripcion, int duracion, int horas, int creditos, Date fechaRegistro, String URL, List<DataEdicion> ediciones, DataEdicion edicionAgtual, List<String> previas, List<String> progs) {
+
+    public DataCurso(String nombre, String descripcion, int duracion, int horas, int creditos, Date fechaRegistro, String URL, List<String> previas, List<DataEdicion> ediciones, DataEdicion edicionAgtual, List<String> programas) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.duracion = duracion;
@@ -36,10 +36,10 @@ public class DataCurso {
         this.creditos = creditos;
         this.fechaRegistro = fechaRegistro;
         this.URL = URL;
+        this.previas = previas;
         this.ediciones = ediciones;
         this.edicionAgtual = edicionAgtual;
-        this.previas = previas;
-        this.progs = progs;
+        this.programas = programas;
     }
 
     public String getNombre() {
@@ -82,7 +82,7 @@ public class DataCurso {
         return previas;
     }
 
-    public List<String> getProgs() {
-        return progs;
+    public List<String> getProgramas() {
+        return programas;
     }
 }

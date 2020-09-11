@@ -1,11 +1,8 @@
 package Entidades;
 
-import DataTypes.DataInstituto;
 import DataTypes.DataProfesor;
 import DataTypes.DataUsuario;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.*;
 
 @Entity

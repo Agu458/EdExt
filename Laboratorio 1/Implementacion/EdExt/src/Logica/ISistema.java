@@ -1,7 +1,10 @@
 package Logica;
 
 import DataTypes.DataCurso;
+import DataTypes.DataEdicion;
+import DataTypes.DataProgramaFormacion;
 import DataTypes.DataUsuario;
+import java.util.Date;
 import java.util.List;
 
 public interface ISistema {
@@ -34,5 +37,17 @@ public interface ISistema {
     
     public DataCurso darDatosCurso(String nombre);
     
+    public void altaEdicionCurso(DataEdicion de, String curso);
     
+    public DataEdicion darEdicionActual(String curso);
+    
+    public void inscripcionEdicion(String curso, String estudiante, Date fecha);
+    
+    public void altaProgramaFormacion(DataProgramaFormacion dpf);
+    
+    public List<String> listarProgramas();
+    
+    public void agregarCursoAPrograma(String nombre, String nombreCurso);
+    
+    public DataProgramaFormacion darProgramaFormacion(String nombre);
 }

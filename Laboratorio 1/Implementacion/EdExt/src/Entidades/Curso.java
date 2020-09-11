@@ -141,30 +141,37 @@ public class Curso implements Serializable {
         return edicionActual.darDatos();
     }
 
+    public List<ProgramaFormacion> getProgramas() {
+        return programas;
+    }
+
+    public void setProgramas(List<ProgramaFormacion> programas) {
+        this.programas = programas;
+    }
+
     public DataCurso darDatos() {
-        /*
-        List<DataEdicion> e = null;
-        List<String> p = null;
-        List<String> progs = null;
-        if (!ediciones.isEmpty()) {
-            e = new ArrayList();
-            for (Edicion ed : ediciones) {
-                DataEdicion de = ed.darDatos();
-                e.add(de);
-            }
+
+        List<DataEdicion> edis = new ArrayList();
+        for (Edicion ed : ediciones) {
+            DataEdicion de = ed.darDatos();
+            edis.add(de);
         }
-        if (!programas.isEmpty()) {
-            progs = new ArrayList();
-            for (ProgramaFormacion pf : programas) {
-                progs.add(pf.getNombre());
-            }
+
+        List<String> progs = new ArrayList();
+        for (ProgramaFormacion pf : programas) {
+            progs.add(pf.getNombre());
         }
-         */
+
         List<String> prevs = new ArrayList();
         for (Curso c : previas) {
             prevs.add(c.getNombre());
         }
+        
+        DataEdicion actual = null;
+        if(edicionActual != null){
+            actual = edicionActual.darDatos();
+        }
 
-        return new DataCurso(nombre, descripcion, duracion, horas, creditos, fechaRegistro, URL, prevs);
+        return new DataCurso(nombre, descripcion, duracion, horas, creditos, fechaRegistro, URL, prevs, edis, actual, progs);
     }
 }

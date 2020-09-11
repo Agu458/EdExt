@@ -322,6 +322,7 @@ public class Sistema implements ISistema {
         return dc;
     }
 
+    @Override
     public void altaEdicionCurso(DataEdicion de, String curso) {
         EntityManager em = emf.createEntityManager();
         try {
@@ -343,6 +344,7 @@ public class Sistema implements ISistema {
         em.close();
     }
 
+    @Override
     public DataEdicion darEdicionActual(String curso) {
         EntityManager em = emf.createEntityManager();
         DataEdicion de = null;
@@ -361,6 +363,7 @@ public class Sistema implements ISistema {
         return de;
     }
 
+    @Override
     public void inscripcionEdicion(String curso, String estudiante, Date fecha) {
         EntityManager em = emf.createEntityManager();
         try {
@@ -380,6 +383,7 @@ public class Sistema implements ISistema {
         em.close();
     }
 
+    @Override
     public void altaProgramaFormacion(DataProgramaFormacion dpf) {
         EntityManager em = emf.createEntityManager();
         try {
@@ -394,6 +398,7 @@ public class Sistema implements ISistema {
         em.close();
     }
 
+    @Override
     public List<String> listarProgramas() {
         EntityManager em = emf.createEntityManager();
         List<String> dpf = new ArrayList();
@@ -413,6 +418,7 @@ public class Sistema implements ISistema {
         return dpf;
     }
 
+    @Override
     public void agregarCursoAPrograma(String nombre, String nombreCurso) {
         EntityManager em = emf.createEntityManager();
         try {
@@ -430,6 +436,7 @@ public class Sistema implements ISistema {
         em.close();
     }
 
+    @Override
     public DataProgramaFormacion darProgramaFormacion(String nombre) {
         EntityManager em = emf.createEntityManager();
         DataProgramaFormacion dpf = null;

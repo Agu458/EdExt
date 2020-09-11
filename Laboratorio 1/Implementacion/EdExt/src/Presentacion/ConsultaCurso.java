@@ -6,7 +6,9 @@
 package Presentacion;
 
 import DataTypes.DataCurso;
+import DataTypes.DataEdicion;
 import java.util.List;
+import javax.swing.DefaultListModel;
 
 /**
  *
@@ -276,6 +278,24 @@ public class ConsultaCurso extends javax.swing.JInternalFrame {
             this.jTextField4.setText(String.valueOf(dc.getCreditos()));
             this.jTextField5.setText(dc.getURL());
             this.jTextArea1.setText(dc.getDescripcion());
+            
+            DefaultListModel dlm1 = new DefaultListModel();
+            for(Object o : dc.getPrevias()){
+                dlm1.addElement(o);
+            }
+            this.jList1.setModel(dlm1);
+            
+            DefaultListModel dlm2 = new DefaultListModel();
+            for(DataEdicion de : dc.getEdiciones()){
+                dlm2.addElement(de.getNombre());
+            }
+            this.jList2.setModel(dlm2);
+            
+            DefaultListModel dlm3 = new DefaultListModel();
+            for(Object o : dc.getProgramas()){
+                dlm3.addElement(o);
+            }
+            this.jList3.setModel(dlm3);
         }
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
