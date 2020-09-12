@@ -65,6 +65,7 @@ public class AltaCurso extends javax.swing.JInternalFrame {
         jLabel8 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
+        jButton2 = new javax.swing.JButton();
 
         setClosable(true);
         setTitle("Alta Curso");
@@ -122,6 +123,13 @@ public class AltaCurso extends javax.swing.JInternalFrame {
 
         jScrollPane2.setViewportView(jList1);
 
+        jButton2.setText("Actualizar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -147,7 +155,10 @@ public class AltaCurso extends javax.swing.JInternalFrame {
                             .addComponent(jLabel4)
                             .addComponent(jTextField3)
                             .addComponent(jLabel5)
-                            .addComponent(jLabel8)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton2))
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 296, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(317, 317, 317)
@@ -176,7 +187,8 @@ public class AltaCurso extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jLabel8))
+                    .addComponent(jLabel8)
+                    .addComponent(jButton2))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
@@ -192,7 +204,7 @@ public class AltaCurso extends javax.swing.JInternalFrame {
                     .addComponent(jScrollPane2))
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(11, Short.MAX_VALUE))
         );
 
         pack();
@@ -265,9 +277,22 @@ public class AltaCurso extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField5ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        this.jList1.clearSelection();
+        String instituto = (String) this.jComboBox1.getSelectedItem();
+        List cursos = Principal.is.listarCursosInstituto(instituto);
+        DefaultListModel dlm = new DefaultListModel();
+        for(Object o : cursos){
+            dlm.addElement(o);
+        }
+        this.jList1.setModel(dlm);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
