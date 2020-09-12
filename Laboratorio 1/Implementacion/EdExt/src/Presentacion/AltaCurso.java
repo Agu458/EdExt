@@ -91,7 +91,7 @@ public class AltaCurso extends javax.swing.JInternalFrame {
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
-        jLabel4.setText("Duracion");
+        jLabel4.setText("Duracion (Meses)");
 
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -99,7 +99,7 @@ public class AltaCurso extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel5.setText("Cantidad de Horas");
+        jLabel5.setText("Cantidad de Horas (Semana)");
 
         jLabel6.setText("Creditos");
 

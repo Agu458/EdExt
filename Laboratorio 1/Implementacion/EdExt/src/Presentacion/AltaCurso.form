@@ -159,7 +159,7 @@
     </Container>
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Duracion"/>
+        <Property name="text" type="java.lang.String" value="Duracion (Meses)"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextField2">
@@ -169,7 +169,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Cantidad de Horas"/>
+        <Property name="text" type="java.lang.String" value="Cantidad de Horas (Semana)"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextField3">

@@ -185,9 +185,12 @@ public class ConsultaEdicion extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         this.jComboBox3.removeAllItems();
         this.jComboBox3.setEnabled(true);
-        List<String> ediciones = Principal.is.listarEdiciones((String) this.jComboBox2.getSelectedItem());
-        for (String s : ediciones) {
-            this.jComboBox3.addItem(s);
+        String instituto = (String) this.jComboBox2.getSelectedItem();
+        if (instituto != null) {
+            List<String> ediciones = Principal.is.listarEdiciones(instituto);
+            for (String s : ediciones) {
+                this.jComboBox3.addItem(s);
+            }
         }
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
@@ -195,7 +198,7 @@ public class ConsultaEdicion extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         String curso = (String) this.jComboBox2.getSelectedItem();
         String edicion = (String) this.jComboBox3.getSelectedItem();
-        if (curso != "" && edicion != "") {
+        if (curso != null && edicion != null) {
             DataEdicion de = Principal.is.darDatosEdicion(curso, edicion);
             if (de != null) {
                 this.jTextField1.setText(de.getNombre());
