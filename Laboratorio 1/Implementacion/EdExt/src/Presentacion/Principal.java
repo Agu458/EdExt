@@ -159,6 +159,11 @@ public class Principal extends javax.swing.JFrame {
         jMenu4.add(jMenuItem9);
 
         jMenuItem10.setText("Consulta Programa");
+        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem10ActionPerformed(evt);
+            }
+        });
         jMenu4.add(jMenuItem10);
 
         jMenuItem12.setText("Agregar Curso a Programa");
@@ -240,6 +245,13 @@ public class Principal extends javax.swing.JFrame {
         this.Desktop.add(ap);
         ap.show();
     }//GEN-LAST:event_jMenuItem9ActionPerformed
+
+    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
+        // TODO add your handling code here:
+        ConsultaPrograma cp = new ConsultaPrograma();
+        this.Desktop.add(cp);
+        cp.show();
+    }//GEN-LAST:event_jMenuItem10ActionPerformed
 
     /**
      * @param args the command line arguments
