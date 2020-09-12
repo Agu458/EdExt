@@ -8,6 +8,8 @@ import java.util.Date;
 import java.util.List;
 
 public interface ISistema {
+    
+    public boolean validarNombreInstituto(String nombre);
 
     public void altaInstituto(String nombre);
 

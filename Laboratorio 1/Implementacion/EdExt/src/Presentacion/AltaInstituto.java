@@ -5,6 +5,8 @@
  */
 package Presentacion;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Agustin
@@ -75,11 +77,18 @@ public class AltaInstituto extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        String nombre = this.jTextField5.getText();
-
-        Principal.is.altaInstituto(nombre);
-
-        this.jTextField5.setText("");
+        if (!jTextField5.getText().equals("")) {
+            if (Principal.is.validarNombreInstituto(jTextField5.getText())) {
+                String nombre = this.jTextField5.getText();
+                Principal.is.altaInstituto(nombre);
+                JOptionPane.showMessageDialog(this, "Instituto Creado.", "Exito", JOptionPane.INFORMATION_MESSAGE);
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(this, "Nombre en uso", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Campos vacios", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
 

@@ -36,6 +36,13 @@ public class Sistema implements ISistema {
 
     // Instituto
     @Override
+    public boolean validarNombreInstituto(String nombre){
+        EntityManager em = emf.createEntityManager();
+        Instituto i = em.find(Instituto.class, nombre);
+        return (i == null);
+    }
+    
+    @Override
     public void altaInstituto(String nombre) {
         EntityManager em = emf.createEntityManager();
         try {
