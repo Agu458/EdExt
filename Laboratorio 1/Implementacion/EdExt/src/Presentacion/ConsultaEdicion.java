@@ -193,17 +193,21 @@ public class ConsultaEdicion extends javax.swing.JInternalFrame {
 
     private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
         // TODO add your handling code here:
-        DataEdicion de = Principal.is.darDatosEdicion((String) this.jComboBox2.getSelectedItem(), (String) this.jComboBox3.getSelectedItem());
-        if (de != null) {
-            this.jTextField1.setText(de.getNombre());
-            this.jTextField2.setText(String.valueOf(de.getCupos()));
-            this.jDateChooser1.setDate(de.getFechaIni());
-            this.jDateChooser2.setDate(de.getFechaFin());
-            DefaultListModel dlm = new DefaultListModel();
-            for(Object o : de.getProfesores()){
-                dlm.addElement(o);
+        String curso = (String) this.jComboBox2.getSelectedItem();
+        String edicion = (String) this.jComboBox3.getSelectedItem();
+        if (curso != "" && edicion != "") {
+            DataEdicion de = Principal.is.darDatosEdicion(curso, edicion);
+            if (de != null) {
+                this.jTextField1.setText(de.getNombre());
+                this.jTextField2.setText(String.valueOf(de.getCupos()));
+                this.jDateChooser1.setDate(de.getFechaIni());
+                this.jDateChooser2.setDate(de.getFechaFin());
+                DefaultListModel dlm = new DefaultListModel();
+                for (Object o : de.getProfesores()) {
+                    dlm.addElement(o);
+                }
+                this.jList1.setModel(dlm);
             }
-            this.jList1.setModel(dlm);
         }
     }//GEN-LAST:event_jComboBox3ActionPerformed
 

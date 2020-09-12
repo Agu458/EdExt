@@ -356,6 +356,11 @@ public class Sistema implements ISistema {
                     p.add(pro);
                 }
                 Edicion e = c.altaEdicion(de.getNombre(), de.getFechaIni(), de.getFechaFin(), de.getCupos(), de.getFechaPublicacion(), p, em);
+                if(e != null){
+                    for(Profesor pro : p){
+                        pro.agregarEdicion(e);
+                    }
+                }
             }
             em.getTransaction().commit();
         } catch (Exception e) {

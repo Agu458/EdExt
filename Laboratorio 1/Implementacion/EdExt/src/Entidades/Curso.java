@@ -120,7 +120,8 @@ public class Curso implements Serializable {
     public Edicion altaEdicion(String nombre, Date fechaIni, Date fechaFin, int cupos, Date fechaPublicacion, List<Profesor> p, EntityManager em) {
         Edicion e = new Edicion(nombre, fechaIni, fechaFin, cupos, fechaPublicacion, p);
         em.persist(e);
-        ediciones.put(e.getNombre(), e);
+        this.ediciones.put(e.getNombre(), e);
+        this.edicionActual = e;
         return e;
     }
 
@@ -141,7 +142,10 @@ public class Curso implements Serializable {
     }
 
     public DataEdicion darActual() {
-        return edicionActual.darDatos();
+        if(edicionActual != null){
+            return edicionActual.darDatos();
+        }
+        return null;
     }
 
     public List<ProgramaFormacion> getProgramas() {

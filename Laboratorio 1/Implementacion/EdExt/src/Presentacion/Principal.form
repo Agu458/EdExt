@@ -153,12 +153,12 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="907" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="2312" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="566" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="1437" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
