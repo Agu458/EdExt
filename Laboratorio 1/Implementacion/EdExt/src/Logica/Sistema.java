@@ -257,6 +257,13 @@ public class Sistema implements ISistema {
 
     // Curso
     @Override
+    public boolean validarNombreCurso(String nombre){
+        EntityManager em = emf.createEntityManager();
+        Curso c = em.find(Curso.class, nombre);
+        return (c == null);
+    }
+    
+    @Override
     public void altaCurso(DataCurso dc, String instituto) {
         EntityManager em = emf.createEntityManager();
         try {

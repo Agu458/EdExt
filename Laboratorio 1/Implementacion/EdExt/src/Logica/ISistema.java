@@ -31,6 +31,8 @@ public interface ISistema {
     
     public void modificarUsuario(DataUsuario du);
     
+    public boolean validarNombreCurso(String nombre);
+    
     public void altaCurso(DataCurso dc, String instituto);
     
     public List<String> listarCursosInstituto(String instituto);
