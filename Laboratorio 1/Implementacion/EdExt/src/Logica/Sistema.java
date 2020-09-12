@@ -36,12 +36,12 @@ public class Sistema implements ISistema {
 
     // Instituto
     @Override
-    public boolean validarNombreInstituto(String nombre){
+    public boolean validarNombreInstituto(String nombre) {
         EntityManager em = emf.createEntityManager();
         Instituto i = em.find(Instituto.class, nombre);
         return (i == null);
     }
-    
+
     @Override
     public void altaInstituto(String nombre) {
         EntityManager em = emf.createEntityManager();
@@ -200,7 +200,7 @@ public class Sistema implements ISistema {
         em.close();
         return ests;
     }
-    
+
     @Override
     public List<String> listarProfesores() {
         EntityManager em = emf.createEntityManager();
@@ -264,12 +264,12 @@ public class Sistema implements ISistema {
 
     // Curso
     @Override
-    public boolean validarNombreCurso(String nombre){
+    public boolean validarNombreCurso(String nombre) {
         EntityManager em = emf.createEntityManager();
         Curso c = em.find(Curso.class, nombre);
         return (c == null);
     }
-    
+
     @Override
     public void altaCurso(DataCurso dc, String instituto) {
         EntityManager em = emf.createEntityManager();
@@ -370,8 +370,8 @@ public class Sistema implements ISistema {
                     p.add(pro);
                 }
                 Edicion e = c.altaEdicion(de.getNombre(), de.getFechaIni(), de.getFechaFin(), de.getCupos(), de.getFechaPublicacion(), p, em);
-                if(e != null){
-                    for(Profesor pro : p){
+                if (e != null) {
+                    for (Profesor pro : p) {
                         pro.agregarEdicion(e);
                     }
                 }
@@ -422,8 +422,8 @@ public class Sistema implements ISistema {
         }
         em.close();
     }
-    
-    public List<String> listarEdiciones(String curso){
+
+    public List<String> listarEdiciones(String curso) {
         EntityManager em = emf.createEntityManager();
         List<String> ediciones = new ArrayList();
         try {
@@ -438,9 +438,9 @@ public class Sistema implements ISistema {
         em.close();
         return ediciones;
     }
-    
+
     @Override
-    public DataEdicion darDatosEdicion(String curso, String nombreEdicion){
+    public DataEdicion darDatosEdicion(String curso, String nombreEdicion) {
         EntityManager em = emf.createEntityManager();
         DataEdicion edicion = null;
         try {
@@ -454,6 +454,13 @@ public class Sistema implements ISistema {
         }
         em.close();
         return edicion;
+    }
+
+    @Override
+    public boolean validarNombrePrograma(String nombre) {
+        EntityManager em = emf.createEntityManager();
+        ProgramaFormacion pf = em.find(ProgramaFormacion.class, nombre);
+        return (pf == null);
     }
 
     @Override

@@ -5,6 +5,10 @@
  */
 package Presentacion;
 
+import DataTypes.DataProgramaFormacion;
+import java.util.Date;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Agustin
@@ -28,14 +32,15 @@ public class AltaPrograma extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jLabel55 = new javax.swing.JLabel();
-        jTextField25 = new javax.swing.JTextField();
+        jTextField1 = new javax.swing.JTextField();
         jLabel56 = new javax.swing.JLabel();
-        jTextField26 = new javax.swing.JTextField();
         jLabel57 = new javax.swing.JLabel();
         jLabel58 = new javax.swing.JLabel();
         jButton9 = new javax.swing.JButton();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jDateChooser2 = new com.toedter.calendar.JDateChooser();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
 
         setClosable(true);
         setTitle("Alta Programa Formacion");
@@ -55,6 +60,10 @@ public class AltaPrograma extends javax.swing.JInternalFrame {
             }
         });
 
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane1.setViewportView(jTextArea1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -63,18 +72,17 @@ public class AltaPrograma extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(31, 31, 31)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jTextField26)
-                                .addComponent(jLabel55)
-                                .addComponent(jLabel56)
-                                .addComponent(jTextField25)
-                                .addComponent(jLabel57)
-                                .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE)
-                                .addComponent(jLabel58))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jDateChooser2, javax.swing.GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE)
+                            .addComponent(jLabel55)
+                            .addComponent(jLabel56)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE)
+                            .addComponent(jLabel57)
+                            .addComponent(jLabel58)
+                            .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(100, 100, 100)
+                        .addGap(96, 96, 96)
                         .addComponent(jButton9)))
                 .addContainerGap(36, Short.MAX_VALUE))
         );
@@ -84,14 +92,14 @@ public class AltaPrograma extends javax.swing.JInternalFrame {
                 .addGap(30, 30, 30)
                 .addComponent(jLabel55)
                 .addGap(18, 18, 18)
-                .addComponent(jTextField25, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel56)
                 .addGap(18, 18, 18)
-                .addComponent(jTextField26, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel57)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel58)
@@ -99,7 +107,7 @@ public class AltaPrograma extends javax.swing.JInternalFrame {
                 .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton9)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         pack();
@@ -107,7 +115,27 @@ public class AltaPrograma extends javax.swing.JInternalFrame {
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
-        
+        if (!jTextField1.getText().equals("")) {
+            if (Principal.is.validarNombrePrograma(jTextField1.getText())) {
+                if (this.jTextArea1.getText().equals("") || this.jDateChooser1.getDate() == null || this.jDateChooser2.getDate() == null) {
+                    JOptionPane.showMessageDialog(this, "Campos vacios", "Error", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    String nombre = this.jTextField1.getText();
+                    String descripcion = this.jTextArea1.getText();
+                    Date fechaIni = this.jDateChooser1.getDate();
+                    Date fechaFin = this.jDateChooser2.getDate();
+                    DataProgramaFormacion dpf = new DataProgramaFormacion(nombre, descripcion, fechaIni, fechaFin);
+                    Principal.is.altaProgramaFormacion(dpf);
+                    JOptionPane.showMessageDialog(this, "Programa de Formacion Creado.", "Exito", JOptionPane.INFORMATION_MESSAGE);
+                    this.dispose();
+                }
+
+            } else {
+                JOptionPane.showMessageDialog(this, "Nombre en uso", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Campos vacios", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jButton9ActionPerformed
 
 
@@ -119,7 +147,8 @@ public class AltaPrograma extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel56;
     private javax.swing.JLabel jLabel57;
     private javax.swing.JLabel jLabel58;
-    private javax.swing.JTextField jTextField25;
-    private javax.swing.JTextField jTextField26;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

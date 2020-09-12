@@ -53,6 +53,8 @@ public interface ISistema {
     
     public DataEdicion darDatosEdicion(String curso, String nombreEdicion);
     
+    public boolean validarNombrePrograma(String nombre);
+    
     public void altaProgramaFormacion(DataProgramaFormacion dpf);
     
     public List<String> listarProgramas();

@@ -11,6 +11,13 @@ public class DataProgramaFormacion {
     private Date fechaIni;
     private Date fechaFin;
 
+    public DataProgramaFormacion(String nombre, String descripcion, Date fechaIni, Date fechaFin) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.fechaIni = fechaIni;
+        this.fechaFin = fechaFin;
+    }
+    
     public DataProgramaFormacion(String nombre, List<String> cursos, String descripcion, Date fechaIni, Date fechaFin) {
         this.nombre = nombre;
         this.cursos = cursos;
