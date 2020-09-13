@@ -5,6 +5,9 @@
  */
 package Presentacion;
 
+import java.util.List;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Agustin
@@ -16,6 +19,14 @@ public class AgregarCursoPrograma extends javax.swing.JInternalFrame {
      */
     public AgregarCursoPrograma() {
         initComponents();
+        
+        this.jButton11.setEnabled(false);
+        this.jComboBox2.setEnabled(false);
+        this.jComboBox1.removeAllItems();
+        List programas = Principal.is.listarProgramas();
+        for(Object o : programas){
+            this.jComboBox1.addItem((String) o);
+        }
     }
 
     /**
@@ -27,21 +38,111 @@ public class AgregarCursoPrograma extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jComboBox2 = new javax.swing.JComboBox<>();
+        jLabel60 = new javax.swing.JLabel();
+        jLabel61 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jButton11 = new javax.swing.JButton();
+
+        setClosable(true);
+        setTitle("Agregar curso a Programa de Formacion");
+
+        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox2ActionPerformed(evt);
+            }
+        });
+
+        jLabel60.setText("Programas");
+
+        jLabel61.setText("Curso para Agregar");
+
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+
+        jButton11.setText("Agregar");
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 394, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel61)
+                            .addComponent(jLabel60)
+                            .addComponent(jComboBox1, 0, 224, Short.MAX_VALUE)
+                            .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(102, 102, 102)
+                        .addComponent(jButton11)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 274, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addComponent(jLabel60)
+                .addGap(18, 18, 18)
+                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel61)
+                .addGap(18, 18, 18)
+                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton11)
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+        if(this.jComboBox1.getSelectedItem() != null){
+            this.jComboBox2.setEnabled(true);
+            this.jButton11.setEnabled(false);
+            this.jComboBox2.removeAllItems();
+            List cursos = Principal.is.listarCursos();
+            for(Object o : cursos){
+                this.jComboBox2.addItem((String) o);
+            }
+        }
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        // TODO add your handling code here:
+        if(this.jComboBox1.getSelectedItem() != null && this.jComboBox2.getSelectedItem() != null){
+            String programa = (String) this.jComboBox1.getSelectedItem();
+            String curso = (String) this.jComboBox2.getSelectedItem();
+            
+            Principal.is.agregarCursoAPrograma(programa, curso);
+            JOptionPane.showMessageDialog(this, "Curso agregado al Programa.", "Exito", JOptionPane.INFORMATION_MESSAGE);
+            this.dispose();
+        }
+    }//GEN-LAST:event_jButton11ActionPerformed
+
+    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+        // TODO add your handling code here:
+        this.jButton11.setEnabled(true);
+    }//GEN-LAST:event_jComboBox2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton11;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JLabel jLabel60;
+    private javax.swing.JLabel jLabel61;
     // End of variables declaration//GEN-END:variables
 }

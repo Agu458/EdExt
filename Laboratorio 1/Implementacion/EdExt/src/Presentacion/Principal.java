@@ -3,6 +3,9 @@ package Presentacion;
 import Logica.Fabrica;
 import Logica.ISistema;
 import com.formdev.flatlaf.*;
+import java.awt.image.BufferedImage;
+import java.net.URL;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 public class Principal extends javax.swing.JFrame {
@@ -149,6 +152,11 @@ public class Principal extends javax.swing.JFrame {
         jMenuBar1.add(jMenu3);
 
         jMenu4.setText("Programa Formacion");
+        jMenu4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu4ActionPerformed(evt);
+            }
+        });
 
         jMenuItem9.setText("Alta Programa");
         jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
@@ -167,6 +175,11 @@ public class Principal extends javax.swing.JFrame {
         jMenu4.add(jMenuItem10);
 
         jMenuItem12.setText("Agregar Curso a Programa");
+        jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem12ActionPerformed(evt);
+            }
+        });
         jMenu4.add(jMenuItem12);
 
         jMenuBar1.add(jMenu4);
@@ -253,6 +266,17 @@ public class Principal extends javax.swing.JFrame {
         cp.show();
     }//GEN-LAST:event_jMenuItem10ActionPerformed
 
+    private void jMenu4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenu4ActionPerformed
+
+    private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
+        // TODO add your handling code here:
+        AgregarCursoPrograma acp = new AgregarCursoPrograma();
+        this.Desktop.add(acp);
+        acp.show();
+    }//GEN-LAST:event_jMenuItem12ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -287,6 +311,7 @@ public class Principal extends javax.swing.JFrame {
                     UIManager.setLookAndFeel(new FlatLightLaf());
                 } catch (Exception e) {
                 }
+
                 new Principal().setVisible(true);
             }
         });

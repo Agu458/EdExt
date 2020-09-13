@@ -5,6 +5,10 @@
  */
 package Presentacion;
 
+import DataTypes.DataProgramaFormacion;
+import java.util.List;
+import javax.swing.DefaultListModel;
+
 /**
  *
  * @author Agustin
@@ -16,6 +20,19 @@ public class ConsultaPrograma extends javax.swing.JInternalFrame {
      */
     public ConsultaPrograma() {
         initComponents();
+        
+        this.jTextField1.setEnabled(false);
+        this.jTextArea1.setEnabled(false);
+        this.jDateChooser1.setEnabled(false);
+        this.jDateChooser2.setEnabled(false);
+        this.jList1.setEnabled(false);
+        this.jButton1.setEnabled(false);
+        
+        this.jComboBox1.removeAllItems();
+        List programas = Principal.is.listarProgramas();
+        for(Object o : programas){
+            this.jComboBox1.addItem((String) o);
+        }
     }
 
     /**
@@ -28,108 +45,98 @@ public class ConsultaPrograma extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jLabel63 = new javax.swing.JLabel();
-        jComboBox18 = new javax.swing.JComboBox<>();
+        jComboBox1 = new javax.swing.JComboBox<>();
         jLabel65 = new javax.swing.JLabel();
-        jTextField28 = new javax.swing.JTextField();
+        jTextField1 = new javax.swing.JTextField();
         jLabel66 = new javax.swing.JLabel();
-        jTextField29 = new javax.swing.JTextField();
         jLabel67 = new javax.swing.JLabel();
         jLabel68 = new javax.swing.JLabel();
         jScrollPane9 = new javax.swing.JScrollPane();
-        jList9 = new javax.swing.JList<>();
+        jList1 = new javax.swing.JList<>();
         jLabel64 = new javax.swing.JLabel();
-        jButton13 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jDateChooser2 = new com.toedter.calendar.JDateChooser();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+
+        setClosable(true);
+        setTitle("Consulta Programa Formacion");
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel63.setText("Programa Formacion");
+        getContentPane().add(jLabel63, new org.netbeans.lib.awtextra.AbsoluteConstraints(19, 32, -1, -1));
+
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(19, 66, 224, -1));
 
         jLabel65.setText("Nombre");
+        getContentPane().add(jLabel65, new org.netbeans.lib.awtextra.AbsoluteConstraints(19, 106, -1, -1));
 
-        jTextField28.setEnabled(false);
+        jTextField1.setEnabled(false);
+        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(19, 140, 224, -1));
 
         jLabel66.setText("Descripción");
-
-        jTextField29.setEnabled(false);
+        getContentPane().add(jLabel66, new org.netbeans.lib.awtextra.AbsoluteConstraints(19, 180, -1, -1));
 
         jLabel67.setText("Fecha Inicio");
+        getContentPane().add(jLabel67, new org.netbeans.lib.awtextra.AbsoluteConstraints(19, 318, -1, -1));
 
         jLabel68.setText("Fecha Fin");
+        getContentPane().add(jLabel68, new org.netbeans.lib.awtextra.AbsoluteConstraints(282, 318, -1, -1));
 
-        jScrollPane9.setViewportView(jList9);
+        jScrollPane9.setViewportView(jList1);
+
+        getContentPane().add(jScrollPane9, new org.netbeans.lib.awtextra.AbsoluteConstraints(282, 66, 220, 190));
 
         jLabel64.setText("Cursos");
+        getContentPane().add(jLabel64, new org.netbeans.lib.awtextra.AbsoluteConstraints(282, 32, -1, -1));
 
-        jButton13.setText("Info");
+        jButton1.setText("Info");
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(351, 278, -1, -1));
+        getContentPane().add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(19, 352, 224, -1));
+        getContentPane().add(jDateChooser2, new org.netbeans.lib.awtextra.AbsoluteConstraints(282, 352, 220, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel63)
-                    .addComponent(jComboBox18, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel65)
-                    .addComponent(jTextField28)
-                    .addComponent(jLabel66)
-                    .addComponent(jTextField29)
-                    .addComponent(jLabel67)
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel64)
-                            .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addComponent(jLabel68)
-                            .addComponent(jDateChooser2, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(108, 108, 108)
-                        .addComponent(jButton13)))
-                .addContainerGap(30, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel63)
-                    .addComponent(jLabel64))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jComboBox18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel65)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTextField28, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel66))
-                    .addComponent(jScrollPane9))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField29, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton13))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel67)
-                    .addComponent(jLabel68))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(30, Short.MAX_VALUE))
-        );
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane1.setViewportView(jTextArea1);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(19, 214, 224, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+        if(this.jComboBox1.getSelectedItem() != null){
+            String nombreCurso = (String) this.jComboBox1.getSelectedItem();
+
+            DataProgramaFormacion dpf = Principal.is.darProgramaFormacion(nombreCurso);
+
+            if(dpf != null){
+                this.jTextField1.setText(dpf.getNombre());
+                this.jTextArea1.setText(dpf.getDescripcion());
+                this.jDateChooser1.setDate(dpf.getFechaIni());
+                this.jDateChooser2.setDate(dpf.getFechaFin());
+
+                DefaultListModel dlm = new DefaultListModel();
+                for(String s : dpf.getCursos()){
+                    dlm.addElement(s);
+                }
+                this.jList1.setModel(dlm);
+                this.jButton1.setEnabled(true);
+            }
+        }
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton13;
-    private javax.swing.JComboBox<String> jComboBox18;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JComboBox<String> jComboBox1;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private com.toedter.calendar.JDateChooser jDateChooser2;
     private javax.swing.JLabel jLabel63;
@@ -138,9 +145,10 @@ public class ConsultaPrograma extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel66;
     private javax.swing.JLabel jLabel67;
     private javax.swing.JLabel jLabel68;
-    private javax.swing.JList<String> jList9;
+    private javax.swing.JList<String> jList1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane9;
-    private javax.swing.JTextField jTextField28;
-    private javax.swing.JTextField jTextField29;
+    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }
