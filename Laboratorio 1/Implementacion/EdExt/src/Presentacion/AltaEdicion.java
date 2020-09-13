@@ -10,6 +10,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -185,18 +186,32 @@ public class AltaEdicion extends javax.swing.JInternalFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        String nombreCurso = (String) this.jComboBox2.getSelectedItem();
-        String nombre = this.jTextField1.getText();
-        Date fechaIni = this.jDateChooser1.getDate();
-        Calendar c = Calendar.getInstance();
-        Date fechaPublicacion = new Date(c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DATE));
-        Date fechaFin = this.jDateChooser2.getDate();
-        int cupos = Integer.parseInt(this.jTextField2.getText());
-        List<String> profesores;
-        profesores = this.jList1.getSelectedValuesList();
-        
-        DataEdicion de = new DataEdicion(nombre, fechaIni, fechaFin, cupos, fechaPublicacion, profesores);
-        Principal.is.altaEdicionCurso(de, nombreCurso);
+        if (!jTextField1.getText().equals("")) {
+            if (Principal.is.validarNombreEdicion((String) this.jComboBox2.getSelectedItem(),jTextField1.getText())) {
+                if (jTextField1.getText().isEmpty() || jTextField2.getText() == null) {
+                    JOptionPane.showMessageDialog(this, "Campos vacios", "Error", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    String nombreCurso = (String) this.jComboBox2.getSelectedItem();
+                    String nombre = this.jTextField1.getText();
+                    Date fechaIni = this.jDateChooser1.getDate();
+                    Calendar c = Calendar.getInstance();
+                    Date fechaPublicacion = new Date(c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DATE));
+                    Date fechaFin = this.jDateChooser2.getDate();
+                    int cupos = Integer.parseInt(this.jTextField2.getText());
+                    List<String> profesores;
+                    profesores = this.jList1.getSelectedValuesList();
+
+                    DataEdicion de = new DataEdicion(nombre, fechaIni, fechaFin, cupos, fechaPublicacion, profesores);
+                    Principal.is.altaEdicionCurso(de, nombreCurso);
+                    JOptionPane.showMessageDialog(this, "Edicion Creada.", "Exito", JOptionPane.INFORMATION_MESSAGE);
+                    this.dispose();
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Nombre en uso", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Campos vacios", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed

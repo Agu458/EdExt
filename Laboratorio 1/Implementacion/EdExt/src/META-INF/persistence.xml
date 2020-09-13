@@ -12,7 +12,7 @@
     <class>Entidades.Usuario</class>
     <class>Entidades.ProgramaFormacion</class>
     <properties>
-      <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/edExt"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/edext"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
       <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.ClientDriver"/>
       <property name="javax.persistence.jdbc.password" value="4920"/>
