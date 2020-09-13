@@ -38,6 +38,14 @@ public class Instituto implements Serializable {
     public Map<String, Curso> getCursos() {
         return cursos;
     }
+    
+    public List<String> darCursos(){
+        List<String> c = new ArrayList();
+        for (Curso curso : cursos.values()) {
+            c.add(curso.getNombre());
+        }
+        return c;
+    }
 
     public void setCursos(Map<String, Curso> cursos) {
         this.cursos = cursos;

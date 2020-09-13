@@ -276,13 +276,11 @@ public class Sistema implements ISistema {
     @Override
     public List<String> listarCursosInstituto(String instituto) {
         EntityManager em = emf.createEntityManager();
-        List<String> cursos = new ArrayList();
+        List<String> cursos = null;
         try {
             em.getTransaction().begin();
             Instituto i = em.find(Instituto.class, instituto);
-            for (Curso c : i.getCursos().values()) {
-                cursos.add(c.getNombre());
-            }
+            cursos = i.darCursos();
             em.getTransaction().commit();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
