@@ -310,6 +310,8 @@ public class ConsultaCurso extends javax.swing.JInternalFrame {
         for(Object o : ediciones){
             DataEdicion de = Principal.is.darDatosEdicion((String) this.jComboBox2.getSelectedItem(), (String) o);
             infoEdicion ie = new infoEdicion(de);
+            Principal.agregarAEscritorio(ie);
+            ie.show();
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

@@ -3,6 +3,7 @@ package Presentacion;
 import Logica.Fabrica;
 import Logica.ISistema;
 import com.formdev.flatlaf.*;
+import java.awt.Component;
 import java.awt.image.BufferedImage;
 import java.net.URL;
 import javax.imageio.ImageIO;
@@ -19,6 +20,10 @@ public class Principal extends javax.swing.JFrame {
     public Principal() {
         initComponents();
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+    }
+    
+    public static void agregarAEscritorio(Component comp){
+        Desktop.add(comp);
     }
     
     /**
@@ -304,7 +309,7 @@ public class Principal extends javax.swing.JFrame {
         this.Desktop.add(mdu);
         mdu.show();
     }//GEN-LAST:event_jMenuItem13ActionPerformed
-    
+
     /**
      * @param args the command line arguments
      */
@@ -346,7 +351,7 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JDesktopPane Desktop;
+    public static javax.swing.JDesktopPane Desktop;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
