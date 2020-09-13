@@ -98,6 +98,11 @@ public class Principal extends javax.swing.JFrame {
         jMenu1.add(jMenuItem8);
 
         jMenuItem11.setText("Inscripcion a Programa");
+        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem11ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem11);
 
         jMenuBar1.add(jMenu1);
@@ -276,6 +281,13 @@ public class Principal extends javax.swing.JFrame {
         this.Desktop.add(acp);
         acp.show();
     }//GEN-LAST:event_jMenuItem12ActionPerformed
+
+    private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
+        // TODO add your handling code here:
+        InscripcionPrograma ip = new InscripcionPrograma();
+        this.Desktop.add(ip);
+        ip.show();
+    }//GEN-LAST:event_jMenuItem11ActionPerformed
 
     /**
      * @param args the command line arguments
