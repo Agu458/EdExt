@@ -133,6 +133,11 @@ public class ConsultaCurso extends javax.swing.JInternalFrame {
         jScrollPane3.setViewportView(jList2);
 
         jButton1.setText("Info");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jScrollPane5.setViewportView(jList4);
 
@@ -298,6 +303,15 @@ public class ConsultaCurso extends javax.swing.JInternalFrame {
             this.jList3.setModel(dlm3);
         }
     }//GEN-LAST:event_jComboBox2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        List ediciones = this.jList2.getSelectedValuesList();
+        for(Object o : ediciones){
+            DataEdicion de = Principal.is.darDatosEdicion((String) this.jComboBox2.getSelectedItem(), (String) o);
+            infoEdicion ie = new infoEdicion(de);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

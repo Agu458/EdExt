@@ -20,7 +20,7 @@ public class Principal extends javax.swing.JFrame {
         initComponents();
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -304,7 +304,7 @@ public class Principal extends javax.swing.JFrame {
         this.Desktop.add(mdu);
         mdu.show();
     }//GEN-LAST:event_jMenuItem13ActionPerformed
-
+    
     /**
      * @param args the command line arguments
      */

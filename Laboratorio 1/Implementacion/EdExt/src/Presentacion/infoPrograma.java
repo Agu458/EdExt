@@ -18,7 +18,7 @@ public class infoPrograma extends javax.swing.JInternalFrame {
     /**
      * Creates new form ConsultaPrograma
      */
-    public infoPrograma() {
+    public infoPrograma(DataProgramaFormacion dpf) {
         initComponents();
         
         this.jTextField1.setEnabled(false);
@@ -56,7 +56,7 @@ public class infoPrograma extends javax.swing.JInternalFrame {
         jTextArea1 = new javax.swing.JTextArea();
 
         setClosable(true);
-        setTitle("Consulta Programa Formacion");
+        setTitle("Informacion de Programa de Formacion");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel63.setText("Nombre");
@@ -76,13 +76,13 @@ public class infoPrograma extends javax.swing.JInternalFrame {
 
         jScrollPane9.setViewportView(jList1);
 
-        getContentPane().add(jScrollPane9, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 50, 220, 210));
+        getContentPane().add(jScrollPane9, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 50, 220, 220));
 
         jLabel64.setText("Cursos");
         getContentPane().add(jLabel64, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 20, -1, -1));
 
         jButton1.setText("Info");
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 270, -1, -1));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 290, -1, -1));
         getContentPane().add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 230, -1));
         getContentPane().add(jDateChooser2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, 230, -1));
 
