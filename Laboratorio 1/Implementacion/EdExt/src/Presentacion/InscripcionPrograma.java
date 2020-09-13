@@ -5,6 +5,8 @@
  */
 package Presentacion;
 
+import java.util.List;
+
 /**
  *
  * @author Agustin
@@ -16,6 +18,14 @@ public class InscripcionPrograma extends javax.swing.JInternalFrame {
      */
     public InscripcionPrograma() {
         initComponents();
+        
+        this.jComboBox2.setEnabled(false);
+        this.jButton1.setEnabled(false);
+        this.jComboBox1.removeAllItems();
+        List programas = Principal.is.listarProgramas();
+        for(Object o : programas){
+            this.jComboBox1.addItem((String) o);
+        }
     }
 
     /**
@@ -38,7 +48,19 @@ public class InscripcionPrograma extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Programa");
 
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+
         jLabel2.setText("Estudiante");
+
+        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox2ActionPerformed(evt);
+            }
+        });
 
         jButton1.setText("Registrar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -86,7 +108,30 @@ public class InscripcionPrograma extends javax.swing.JInternalFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        if(this.jComboBox1.getSelectedItem() != null && this.jComboBox2.getSelectedItem() != null ){
+            String programa = (String) this.jComboBox1.getSelectedItem();
+            String estudiante = (String) this.jComboBox2.getSelectedItem();
+            
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+        this.jComboBox2.setEnabled(true);
+        this.jButton1.setEnabled(false);
+        this.jComboBox2.removeAllItems();
+        List estudiantes = Principal.is.listarEstudiantes();
+        for(Object o : estudiantes){
+            this.jComboBox2.addItem((String) o);
+        }
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+        // TODO add your handling code here:
+        if(this.jComboBox1.getSelectedItem() != null){
+            this.jButton1.setEnabled(true);
+        }
+    }//GEN-LAST:event_jComboBox2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

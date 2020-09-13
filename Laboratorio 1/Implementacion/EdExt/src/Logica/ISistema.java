@@ -43,6 +43,8 @@ public interface ISistema {
     
     public DataCurso darDatosCurso(String nombre);
     
+    public boolean validarNombreEdicion(String curso, String nombre);
+    
     public void altaEdicionCurso(DataEdicion de, String curso);
     
     public DataEdicion darEdicionActual(String curso);

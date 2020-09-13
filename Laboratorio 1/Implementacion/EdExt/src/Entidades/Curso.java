@@ -194,4 +194,9 @@ public class Curso implements Serializable {
 
         return new DataCurso(nombre, descripcion, duracion, horas, creditos, fechaRegistro, URL, prevs, edis, actual, progs);
     }
+    
+    public boolean validarNombreEdicion(String nombre){
+        Edicion e = ediciones.get(nombre);
+        return (e == null);
+    }
 }

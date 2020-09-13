@@ -5,6 +5,11 @@
  */
 package Presentacion;
 
+import DataTypes.DataEdicion;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+
 /**
  *
  * @author Agustin
@@ -16,6 +21,14 @@ public class InscripcionEdicion extends javax.swing.JInternalFrame {
      */
     public InscripcionEdicion() {
         initComponents();
+        this.jComboBox1.removeAllItems();
+        this.jComboBox2.setEnabled(false);
+        this.jComboBox3.setEnabled(false);
+        this.jTextField1.setEnabled(false);
+        List institutos = Principal.is.listarInstitutos();
+        for(Object o : institutos){
+            this.jComboBox1.addItem((String) o);
+        }
     }
 
     /**
@@ -42,7 +55,19 @@ public class InscripcionEdicion extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Instituto");
 
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+
         jLabel2.setText("Curso");
+
+        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox2ActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Edicion Actual");
 
@@ -106,7 +131,49 @@ public class InscripcionEdicion extends javax.swing.JInternalFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        if(this.jComboBox1.getSelectedItem() != null && this.jComboBox2.getSelectedItem() != null && this.jComboBox3.getSelectedItem() != null ){
+            String curso = (String) this.jComboBox2.getSelectedItem();
+            String estudiante = (String) this.jComboBox3.getSelectedItem();
+            Calendar c = Calendar.getInstance();
+            Date fecha = new Date(c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DATE));
+            Principal.is.inscripcionEdicion(curso, estudiante, fecha);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+        if(this.jComboBox1.getSelectedItem() != null){
+            this.jComboBox2.setEnabled(true);
+            this.jComboBox2.removeAllItems();
+            String instituto = (String) this.jComboBox1.getSelectedItem();
+            List cursos = Principal.is.listarCursosInstituto(instituto);
+            for(Object o : cursos){
+                this.jComboBox2.addItem((String) o);
+            }
+        }
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+        // TODO add your handling code here:
+        if(this.jComboBox1.getSelectedItem() != null && this.jComboBox2.getSelectedItem() != null){
+            this.jComboBox3.setEnabled(true);
+            this.jComboBox3.removeAllItems();
+            
+            String curso = (String) this.jComboBox2.getSelectedItem();
+            DataEdicion de = Principal.is.darEdicionActual(curso);
+            
+            if(de != null){
+                this.jTextField1.setText(de.getNombre());
+            }
+            
+            this.jComboBox3.removeAllItems();
+            List estudiantes = Principal.is.listarEstudiantes();
+            for(Object o : estudiantes){
+                this.jComboBox3.addItem((String) o);
+            }
+            this.jButton1.setEnabled(true);
+        }
+    }//GEN-LAST:event_jComboBox2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -48,7 +48,6 @@ public class ConsultaUsuario extends javax.swing.JInternalFrame {
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jLabel6 = new javax.swing.JLabel();
         jTextField7 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
         jButton2 = new javax.swing.JButton();
@@ -120,9 +119,6 @@ public class ConsultaUsuario extends javax.swing.JInternalFrame {
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(51, 450, -1, -1));
         getContentPane().add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(51, 484, 250, -1));
 
-        jButton1.setText("Modificar");
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(133, 524, -1, -1));
-
         jScrollPane1.setViewportView(jList1);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(351, 66, 260, 170));
@@ -165,11 +161,6 @@ public class ConsultaUsuario extends javax.swing.JInternalFrame {
                     dlm1.addElement(o);
                 }
                 this.jList1.setModel(dlm1);
-                DefaultListModel dlm2 = new DefaultListModel();
-                for(Object o : de.getInscripcionEdiciones()){
-                    dlm2.addElement(o);
-                }
-                this.jList2.setModel(dlm2);
             }
             else{
                 DataProfesor dp = (DataProfesor) du;
@@ -206,7 +197,6 @@ public class ConsultaUsuario extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JComboBox<String> jComboBox1;

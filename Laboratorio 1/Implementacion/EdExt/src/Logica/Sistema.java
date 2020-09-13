@@ -224,42 +224,19 @@ public class Sistema implements ISistema {
     @Override
     public void modificarUsuario(DataUsuario du) {
         EntityManager em = emf.createEntityManager();
-        if (du instanceof DataEstudiante) {
-            DataEstudiante de = (DataEstudiante) du;
-            try {
-                em.getTransaction().begin();
-                Estudiante e = (Estudiante) em.find(Usuario.class, de.getEmail());
-                e.setNick(de.getNick());
-                e.setNombre(de.getNombre());
-                e.setApellido(de.getApellido());
-                e.setEmail(de.getEmail());
-                e.setFechaNacimiento(de.getFechaNacimiento());
-                em.persist(e);
-                em.getTransaction().commit();
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, e.getMessage());
-                em.getTransaction().rollback();
-            }
-            em.close();
-        } else {
-            DataProfesor dp = (DataProfesor) du;
-            try {
-                em.getTransaction().begin();
-                Profesor p = (Profesor) em.find(Usuario.class, dp.getEmail());
-                p.setNick(dp.getNick());
-                p.setNombre(dp.getNombre());
-                p.setApellido(dp.getApellido());
-                p.setEmail(dp.getEmail());
-                p.setFechaNacimiento(dp.getFechaNacimiento());
-                p.setInstituto(em.find(Instituto.class, dp.getInstituto()));
-                em.persist(p);
-                em.getTransaction().commit();
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, e.getMessage());
-                em.getTransaction().rollback();
-            }
-            em.close();
+        try {
+            em.getTransaction().begin();
+            Usuario u = em.find(Usuario.class, du.getEmail());
+            u.setNombre(du.getNombre());
+            u.setApellido(du.getApellido());
+            u.setFechaNacimiento(du.getFechaNacimiento());
+            em.persist(u);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+            em.getTransaction().rollback();
         }
+        em.close();
     }
 
     // Curso
@@ -358,6 +335,28 @@ public class Sistema implements ISistema {
     }
 
     @Override
+    public boolean validarNombreEdicion(String curso, String nombre) {
+        EntityManager em = emf.createEntityManager();
+        try {
+            em.getTransaction().begin();
+            Curso c = em.find(Curso.class, curso);
+            if (c != null) {
+                if (c.validarNombreEdicion(nombre)) {
+                    em.getTransaction().commit();
+                    em.close();
+                    return true;
+                }
+            }
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+            em.getTransaction().rollback();
+        }
+        em.close();
+        return false;
+    }
+
+    @Override
     public void altaEdicionCurso(DataEdicion de, String curso) {
         EntityManager em = emf.createEntityManager();
         try {
@@ -412,7 +411,7 @@ public class Sistema implements ISistema {
             if (e != null) {
                 Curso c = em.find(Curso.class, curso);
                 if (c != null) {
-                    e.inscribirEdicion(c.getEdicionActual(), fecha);
+                    e.inscribirEdicion(c.getEdicionActual(), fecha, em);
                 }
             }
             em.getTransaction().commit();
