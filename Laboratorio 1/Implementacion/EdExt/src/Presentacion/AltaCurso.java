@@ -216,32 +216,32 @@ public class AltaCurso extends javax.swing.JInternalFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        
-         if (!jTextField1.getText().equals("")) {
-            if (Principal.is.validarNombreCurso(jTextField1.getText())) {
-                    if (jTextField1.getText().isEmpty() || jTextField2.getText() == null || jTextField3.getText().isEmpty() || jTextField4.getText() == null || jTextField5.getText() == null || jTextArea1.getText() == null) {
-                        JOptionPane.showMessageDialog(this, "Campos vacios", "Error", JOptionPane.ERROR_MESSAGE);
-                    } else {
-                        String nombre, descripcion, URL;
-                        Integer duracion, horas, creditos;
-                        Date fechaRegistro;
-                        List<String> previas;
-                        nombre = this.jTextField1.getText();
-                        descripcion = this.jTextArea1.getText();
-                        duracion = Integer.parseInt(this.jTextField2.getText());
-                        horas = Integer.parseInt(this.jTextField3.getText());
-                        creditos = Integer.parseInt(this.jTextField4.getText());
-                        URL = this.jTextField5.getText();
-                        previas = this.jList1.getSelectedValuesList();
-                        Calendar c = Calendar.getInstance();
-                        Date fecha = new Date(c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DATE));
-                        DataCurso dc = new DataCurso(nombre, descripcion, duracion, horas, creditos, fecha, URL, previas);
 
-                        Principal.is.altaCurso(dc, (String) this.jComboBox1.getSelectedItem());
-                        
-                        JOptionPane.showMessageDialog(this, "Curso Creado.", "Exito", JOptionPane.INFORMATION_MESSAGE);
-                        this.dispose();
-                    }
+        if (!jTextField1.getText().equals("")) {
+            if (Principal.is.validarNombreCurso(jTextField1.getText())) {
+                if (jTextField1.getText().isEmpty() || jTextField2.getText() == null || jTextField3.getText().isEmpty() || jTextField4.getText() == null || jTextField5.getText() == null || jTextArea1.getText() == null) {
+                    JOptionPane.showMessageDialog(this, "Campos vacios", "Error", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    String nombre, descripcion, URL;
+                    Integer duracion, horas, creditos;
+                    Date fechaRegistro;
+                    List<String> previas;
+                    nombre = this.jTextField1.getText();
+                    descripcion = this.jTextArea1.getText();
+                    duracion = Integer.parseInt(this.jTextField2.getText());
+                    horas = Integer.parseInt(this.jTextField3.getText());
+                    creditos = Integer.parseInt(this.jTextField4.getText());
+                    URL = this.jTextField5.getText();
+                    previas = this.jList1.getSelectedValuesList();
+                    Calendar c = Calendar.getInstance();
+                    Date fecha = new Date(c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DATE));
+                    DataCurso dc = new DataCurso(nombre, descripcion, duracion, horas, creditos, fecha, URL, previas);
+
+                    Principal.is.altaCurso(dc, (String) this.jComboBox1.getSelectedItem());
+
+                    JOptionPane.showMessageDialog(this, "Curso Creado.", "Exito", JOptionPane.INFORMATION_MESSAGE);
+                    this.dispose();
+                }
             } else {
                 JOptionPane.showMessageDialog(this, "Nombre en uso", "Error", JOptionPane.ERROR_MESSAGE);
             }
@@ -259,11 +259,11 @@ public class AltaCurso extends javax.swing.JInternalFrame {
         this.jTextField5.setEnabled(true);
         this.jTextArea1.setEnabled(true);
         this.jList1.setEnabled(true);
-        
+
         String instituto = (String) this.jComboBox1.getSelectedItem();
         List cursos = Principal.is.listarCursosInstituto(instituto);
         DefaultListModel dlm = new DefaultListModel();
-        for(Object o : cursos){
+        for (Object o : cursos) {
             dlm.addElement(o);
         }
         this.jList1.setModel(dlm);
@@ -279,14 +279,16 @@ public class AltaCurso extends javax.swing.JInternalFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        this.jList1.clearSelection();
-        String instituto = (String) this.jComboBox1.getSelectedItem();
-        List cursos = Principal.is.listarCursosInstituto(instituto);
-        DefaultListModel dlm = new DefaultListModel();
-        for(Object o : cursos){
-            dlm.addElement(o);
+        if (this.jComboBox1.getSelectedItem() != null) {
+            this.jList1.clearSelection();
+            String instituto = (String) this.jComboBox1.getSelectedItem();
+            List cursos = Principal.is.listarCursosInstituto(instituto);
+            DefaultListModel dlm = new DefaultListModel();
+            for (Object o : cursos) {
+                dlm.addElement(o);
+            }
+            this.jList1.setModel(dlm);
         }
-        this.jList1.setModel(dlm);
     }//GEN-LAST:event_jButton2ActionPerformed
 
 
