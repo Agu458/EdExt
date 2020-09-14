@@ -28,7 +28,6 @@ public class infoEdicion extends javax.swing.JInternalFrame {
         this.jDateChooser1.setEnabled(false);
         this.jDateChooser2.setEnabled(false);
         this.jList1.setEnabled(false);
-        this.jButton1.setEnabled(false);
         
         this.jTextField1.setText(de.getNombre());
         this.jTextField2.setText(Integer.toString(de.getCupos()));

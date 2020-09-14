@@ -61,6 +61,8 @@ public interface ISistema {
     
     public List<String> listarProgramas();
     
+    public boolean conteneCurso(String nombre, String curso);
+    
     public void agregarCursoAPrograma(String nombre, String nombreCurso);
     
     public DataProgramaFormacion darProgramaFormacion(String nombre);

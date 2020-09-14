@@ -494,6 +494,26 @@ public class Sistema implements ISistema {
         em.close();
         return dpf;
     }
+    
+    @Override
+    public boolean conteneCurso(String nombre, String curso){
+        EntityManager em = emf.createEntityManager();
+        try {
+            em.getTransaction().begin();
+            ProgramaFormacion pf = em.find(ProgramaFormacion.class, nombre);
+            if (pf != null && pf.conteneCurso(curso)) {
+                em.getTransaction().commit();
+                em.close();
+                return true;
+            }
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+            em.getTransaction().rollback();
+        }
+        em.close();
+        return false;
+    }
 
     @Override
     public void agregarCursoAPrograma(String nombre, String nombreCurso) {

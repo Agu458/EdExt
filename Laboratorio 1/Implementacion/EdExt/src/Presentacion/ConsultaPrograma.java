@@ -5,6 +5,7 @@
  */
 package Presentacion;
 
+import DataTypes.DataCurso;
 import DataTypes.DataProgramaFormacion;
 import java.util.List;
 import javax.swing.DefaultListModel;
@@ -97,6 +98,11 @@ public class ConsultaPrograma extends javax.swing.JInternalFrame {
         getContentPane().add(jLabel64, new org.netbeans.lib.awtextra.AbsoluteConstraints(282, 32, -1, -1));
 
         jButton1.setText("Info");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(351, 278, -1, -1));
         getContentPane().add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(19, 352, 224, -1));
         getContentPane().add(jDateChooser2, new org.netbeans.lib.awtextra.AbsoluteConstraints(282, 352, 220, -1));
@@ -128,10 +134,22 @@ public class ConsultaPrograma extends javax.swing.JInternalFrame {
                     dlm.addElement(s);
                 }
                 this.jList1.setModel(dlm);
+                this.jList1.setEnabled(true);
                 this.jButton1.setEnabled(true);
             }
         }
     }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        List cursos = this.jList1.getSelectedValuesList();
+        for(Object o : cursos){
+            DataCurso dc = Principal.is.darDatosCurso((String) o);
+            infoCurso ic = new infoCurso(dc);
+            Principal.Desktop.add(ic);
+            ic.show();
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

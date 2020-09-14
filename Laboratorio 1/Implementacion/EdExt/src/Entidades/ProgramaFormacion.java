@@ -4,6 +4,7 @@ import DataTypes.DataProgramaFormacion;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -85,5 +86,17 @@ public class ProgramaFormacion implements Serializable {
             c.add(dp);
         }
         return new DataProgramaFormacion(nombre, c, descripcion, fechaIni, fechaFin);
+    }
+    
+    public boolean conteneCurso(String curso){
+        boolean encontre = false;
+        Iterator it = cursos.iterator();
+        while(it.hasNext() && !encontre){
+            Curso c = (Curso) it.next();
+            if(c.getNombre() == curso){
+                encontre = true;
+            }
+        }
+        return encontre;
     }
 }

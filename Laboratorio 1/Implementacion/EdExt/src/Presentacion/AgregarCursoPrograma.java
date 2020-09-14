@@ -19,12 +19,12 @@ public class AgregarCursoPrograma extends javax.swing.JInternalFrame {
      */
     public AgregarCursoPrograma() {
         initComponents();
-        
+
         this.jButton11.setEnabled(false);
         this.jComboBox2.setEnabled(false);
         this.jComboBox1.removeAllItems();
         List programas = Principal.is.listarProgramas();
-        for(Object o : programas){
+        for (Object o : programas) {
             this.jComboBox1.addItem((String) o);
         }
     }
@@ -109,12 +109,12 @@ public class AgregarCursoPrograma extends javax.swing.JInternalFrame {
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
-        if(this.jComboBox1.getSelectedItem() != null){
+        if (this.jComboBox1.getSelectedItem() != null) {
             this.jComboBox2.setEnabled(true);
             this.jButton11.setEnabled(false);
             this.jComboBox2.removeAllItems();
             List cursos = Principal.is.listarCursos();
-            for(Object o : cursos){
+            for (Object o : cursos) {
                 this.jComboBox2.addItem((String) o);
             }
         }
@@ -122,13 +122,16 @@ public class AgregarCursoPrograma extends javax.swing.JInternalFrame {
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
         // TODO add your handling code here:
-        if(this.jComboBox1.getSelectedItem() != null && this.jComboBox2.getSelectedItem() != null){
+        if (this.jComboBox1.getSelectedItem() != null && this.jComboBox2.getSelectedItem() != null) {
             String programa = (String) this.jComboBox1.getSelectedItem();
             String curso = (String) this.jComboBox2.getSelectedItem();
-            
-            Principal.is.agregarCursoAPrograma(programa, curso);
-            JOptionPane.showMessageDialog(this, "Curso agregado al Programa.", "Exito", JOptionPane.INFORMATION_MESSAGE);
-            this.dispose();
+            if (!Principal.is.conteneCurso(programa, curso)) {
+                Principal.is.agregarCursoAPrograma(programa, curso);
+                JOptionPane.showMessageDialog(this, "Curso agregado al Programa.", "Exito", JOptionPane.INFORMATION_MESSAGE);
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(this, "El Curso ya se encuentra en el programa.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }//GEN-LAST:event_jButton11ActionPerformed
 
