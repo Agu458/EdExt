@@ -205,7 +205,7 @@ public class ConsultaEdicion extends javax.swing.JInternalFrame {
                 this.jTextField2.setText(String.valueOf(de.getCupos()));
                 this.jDateChooser1.setDate(de.getFechaIni());
                 this.jDateChooser2.setDate(de.getFechaFin());
-                DefaultListModel dlm = new DefaultListModel();
+                DefaultListModel dlm = new DefaultListModel();                
                 for (Object o : de.getProfesores()) {
                     dlm.addElement(o);
                 }

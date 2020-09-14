@@ -8,13 +8,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import javax.persistence.Entity;
-import javax.persistence.EntityManager;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Temporal;
+import javax.persistence.*;
 
 @Entity
 public class Curso implements Serializable {
@@ -37,11 +31,13 @@ public class Curso implements Serializable {
     private List<Curso> previas;
     @ManyToMany(mappedBy = "cursos")
     private List<ProgramaFormacion> programas;
+    @OneToOne
+    private Instituto instituto;
 
     public Curso() {
     }
 
-    public Curso(String nombre, String descripcion, int duracion, int horas, int creditos, Date fechaRegistro, String URL, List<Curso> previas) {
+    public Curso(String nombre, String descripcion, int duracion, int horas, int creditos, Date fechaRegistro, String URL, List<Curso> previas, Instituto instituto) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.duracion = duracion;
@@ -51,6 +47,7 @@ public class Curso implements Serializable {
         this.URL = URL;
         this.previas = previas;
         this.ediciones = new HashMap();
+        this.instituto = instituto;
     }
 
     public String getNombre() {
@@ -118,7 +115,7 @@ public class Curso implements Serializable {
     }
 
     public Edicion altaEdicion(String nombre, Date fechaIni, Date fechaFin, int cupos, Date fechaPublicacion, List<Profesor> p, EntityManager em) {
-        Edicion e = new Edicion(nombre, fechaIni, fechaFin, cupos, fechaPublicacion, p);
+        Edicion e = new Edicion(nombre, fechaIni, fechaFin, cupos, fechaPublicacion, p, this);
         em.persist(e);
         this.ediciones.put(e.getNombre(), e);
         this.edicionActual = e;
@@ -169,6 +166,14 @@ public class Curso implements Serializable {
         return e.darDatos();
     }
 
+    public Instituto getInstituto() {
+        return instituto;
+    }
+
+    public void setInstituto(Instituto instituto) {
+        this.instituto = instituto;
+    }
+
     public DataCurso darDatos() {
 
         List<DataEdicion> edis = new ArrayList();
@@ -191,8 +196,12 @@ public class Curso implements Serializable {
         if(edicionActual != null){
             actual = edicionActual.darDatos();
         }
-
-        return new DataCurso(nombre, descripcion, duracion, horas, creditos, fechaRegistro, URL, prevs, edis, actual, progs);
+        
+        String insti = null;
+        if(instituto != null){
+            insti = instituto.getNombre();
+        }
+        return new DataCurso(nombre, descripcion, duracion, horas, creditos, fechaRegistro, URL, prevs, edis, actual, progs, insti);
     }
     
     public boolean validarNombreEdicion(String nombre){

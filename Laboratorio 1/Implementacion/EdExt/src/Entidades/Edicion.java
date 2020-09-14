@@ -11,6 +11,7 @@ import java.util.Map;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 
 @Entity
@@ -28,11 +29,12 @@ public class Edicion implements Serializable {
     private Date fechaPublicacion;
     @ManyToMany
     private Map<String, Profesor> profesores;
+    private Curso curso;
 
     public Edicion() {
     }
 
-    public Edicion(String nombre, Date fechaIni, Date fechaFin, int cupos, Date fechaPublicacion, List<Profesor> profesores) {
+    public Edicion(String nombre, Date fechaIni, Date fechaFin, int cupos, Date fechaPublicacion, List<Profesor> profesores, Curso curso) {
         this.nombre = nombre;
         this.fechaIni = fechaIni;
         this.fechaFin = fechaFin;
@@ -42,6 +44,7 @@ public class Edicion implements Serializable {
         for(Profesor p : profesores){
             this.profesores.put(p.getEmail(), p);
         }
+        this.curso = curso;
     }
 
     public String getNombre() {
@@ -97,6 +100,21 @@ public class Edicion implements Serializable {
         for(Profesor p : profesores.values()){
             dps.add(p.getEmail());
         }
-        return new DataEdicion(nombre, fechaIni, fechaFin, cupos, fechaPublicacion, dps);
+        
+        String c = null;
+        if(this.curso != null){
+            c = this.curso.getNombre();
+        }
+        
+        return new DataEdicion(nombre, fechaIni, fechaFin, cupos, fechaPublicacion, dps, c);
     }
+
+    public Curso getCurso() {
+        return curso;
+    }
+
+    public void setCurso(Curso curso) {
+        this.curso = curso;
+    }
+
 }

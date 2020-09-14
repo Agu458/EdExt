@@ -261,7 +261,7 @@ public class Sistema implements ISistema {
                         prevs.add(c);
                     }
                 }
-                Curso curso = new Curso(dc.getNombre(), dc.getDescripcion(), dc.getDuracion(), dc.getHoras(), dc.getCreditos(), dc.getFechaRegistro(), dc.getURL(), prevs);
+                Curso curso = new Curso(dc.getNombre(), dc.getDescripcion(), dc.getDuracion(), dc.getHoras(), dc.getCreditos(), dc.getFechaRegistro(), dc.getURL(), prevs, i);
                 em.persist(curso);
                 i.agregarCurso(curso);
             }

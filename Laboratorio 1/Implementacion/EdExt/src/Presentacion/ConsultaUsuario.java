@@ -124,6 +124,11 @@ public class ConsultaUsuario extends javax.swing.JInternalFrame {
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(351, 66, 260, 170));
 
         jButton2.setText("Info");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(447, 254, -1, -1));
 
         jScrollPane2.setViewportView(jList2);
@@ -158,7 +163,10 @@ public class ConsultaUsuario extends javax.swing.JInternalFrame {
                 this.jTextField7.setText("-");
                 DefaultListModel dlm1 = new DefaultListModel();
                 for(Object o : de.getInscripcionEdiciones()){
-                    dlm1.addElement(o);
+                    DataEdicion edicion = (DataEdicion) o;
+                    if(edicion != null){
+                        dlm1.addElement(edicion.getNombre());
+                    }
                 }
                 this.jList1.setModel(dlm1);
             }
@@ -172,7 +180,10 @@ public class ConsultaUsuario extends javax.swing.JInternalFrame {
                 this.jTextField7.setText(dp.getInstituto());
                 DefaultListModel dlm1 = new DefaultListModel();
                 for(Object o : dp.getEdiciones()){
-                    dlm1.addElement(o);
+                    DataEdicion edicion = (DataEdicion) o;
+                    if(edicion != null){
+                        dlm1.addElement(edicion.getNombre());
+                    }
                 }
                 this.jList1.setModel(dlm1);
             }
@@ -195,6 +206,9 @@ public class ConsultaUsuario extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField6ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton2;

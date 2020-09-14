@@ -1,5 +1,6 @@
 package Entidades;
 
+import DataTypes.DataEdicion;
 import DataTypes.DataProfesor;
 import DataTypes.DataUsuario;
 import java.util.*;
@@ -24,9 +25,9 @@ public class Profesor extends Usuario {
 
     @Override
     public DataUsuario darDatos() {
-        List<String> eds = new ArrayList();
+        List<DataEdicion> eds = new ArrayList();
         for(Edicion e : ediciones.values()){
-            eds.add(e.getNombre());
+            eds.add(e.darDatos());
         }
         return new DataProfesor(instituto.darDatos().getNombre(), super.getNick(), super.getNombre(), super.getApellido(), super.getEmail(), super.getFechaNacimiento(), eds);
     }

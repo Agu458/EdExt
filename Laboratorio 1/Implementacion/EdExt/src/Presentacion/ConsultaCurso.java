@@ -283,7 +283,8 @@ public class ConsultaCurso extends javax.swing.JInternalFrame {
             this.jTextField4.setText(String.valueOf(dc.getCreditos()));
             this.jTextField5.setText(dc.getURL());
             this.jTextArea1.setText(dc.getDescripcion());
-            
+            this.jList1.setEnabled(true);
+            this.jList2.setEnabled(true);
             DefaultListModel dlm1 = new DefaultListModel();
             for(Object o : dc.getPrevias()){
                 dlm1.addElement(o);

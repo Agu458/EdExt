@@ -1,5 +1,6 @@
 package Entidades;
 
+import DataTypes.DataEdicion;
 import DataTypes.DataEstudiante;
 import DataTypes.DataInscripcionEdicion;
 import DataTypes.DataInscripcionPrograma;
@@ -54,9 +55,11 @@ public class Estudiante extends Usuario {
     
     @Override
     public DataUsuario darDatos() {
-        List<String> eds = new ArrayList();
-        for (String s : inscripcionEdiciones.keySet()) {
-            eds.add(s);
+        List<DataEdicion> eds = new ArrayList();
+        for (InscripcionEdicion ie : inscripcionEdiciones.values()) {
+            if(ie.getEdicion() != null){
+                eds.add(ie.getEdicion().darDatos());
+            }
         }
         List<String> progs = new ArrayList();
         for (String s : inscripcionProgramas.keySet()) {
