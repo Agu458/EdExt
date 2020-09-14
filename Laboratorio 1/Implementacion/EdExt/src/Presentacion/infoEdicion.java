@@ -5,6 +5,7 @@
  */
 package Presentacion;
 
+import DataTypes.DataCurso;
 import DataTypes.DataEdicion;
 import java.util.List;
 import javax.swing.DefaultListModel;
@@ -18,14 +19,27 @@ public class infoEdicion extends javax.swing.JInternalFrame {
     /**
      * Creates new form ConsultaEdicion
      */
-    public infoEdicion(DataEdicion de) {
+    public infoEdicion(DataEdicion de, String curso) {
         initComponents();
 
         this.jTextField1.setEnabled(false);
         this.jTextField2.setEnabled(false);
+        this.jTextField3.setEnabled(false);
         this.jDateChooser1.setEnabled(false);
         this.jDateChooser2.setEnabled(false);
         this.jList1.setEnabled(false);
+        this.jButton1.setEnabled(false);
+        
+        this.jTextField1.setText(de.getNombre());
+        this.jTextField2.setText(Integer.toString(de.getCupos()));
+        this.jTextField3.setText(curso);
+        this.jDateChooser1.setDate(de.getFechaIni());
+        this.jDateChooser2.setDate(de.getFechaFin());
+        DefaultListModel dlm = new DefaultListModel();
+        for(Object o : de.getProfesores()){
+            dlm.addElement((String) o);
+        }
+        this.jList1.setModel(dlm);
     }
 
     /**
@@ -70,6 +84,11 @@ public class infoEdicion extends javax.swing.JInternalFrame {
         jLabel8.setText("Cupos");
 
         jButton1.setText("info");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -135,6 +154,16 @@ public class infoEdicion extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        DataCurso dc = Principal.is.darDatosCurso(this.jTextField3.getText());
+        if(dc != null){
+            infoCurso ic = new infoCurso(dc);
+            Principal.Desktop.add(ic);
+            ic.show();
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

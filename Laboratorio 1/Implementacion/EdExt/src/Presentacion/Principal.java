@@ -4,9 +4,6 @@ import Logica.Fabrica;
 import Logica.ISistema;
 import com.formdev.flatlaf.*;
 import java.awt.Component;
-import java.awt.image.BufferedImage;
-import java.net.URL;
-import javax.imageio.ImageIO;
 import javax.swing.*;
 
 public class Principal extends javax.swing.JFrame {
@@ -21,11 +18,7 @@ public class Principal extends javax.swing.JFrame {
         initComponents();
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
-    
-    public static void agregarAEscritorio(Component comp){
-        Desktop.add(comp);
-    }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
