@@ -208,4 +208,8 @@ public class Curso implements Serializable {
         Edicion e = ediciones.get(nombre);
         return (e == null);
     }
+    
+    public void agregarPrograma(ProgramaFormacion pf){
+        programas.add(pf);
+    }
 }

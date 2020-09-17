@@ -285,6 +285,7 @@ public class ConsultaCurso extends javax.swing.JInternalFrame {
             this.jTextArea1.setText(dc.getDescripcion());
             this.jList1.setEnabled(true);
             this.jList2.setEnabled(true);
+            this.jList4.setEnabled(true);
             DefaultListModel dlm1 = new DefaultListModel();
             for(Object o : dc.getPrevias()){
                 dlm1.addElement(o);
@@ -301,7 +302,7 @@ public class ConsultaCurso extends javax.swing.JInternalFrame {
             for(Object o : dc.getProgramas()){
                 dlm3.addElement(o);
             }
-            this.jList3.setModel(dlm3);
+            this.jList4.setModel(dlm3);
         }
     }//GEN-LAST:event_jComboBox2ActionPerformed
 

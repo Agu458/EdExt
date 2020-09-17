@@ -524,6 +524,7 @@ public class Sistema implements ISistema {
             Curso c = em.find(Curso.class, nombreCurso);
             if (pf != null && c != null) {
                 pf.agregarCurso(c);
+                c.agregarPrograma(pf);
             }
             em.getTransaction().commit();
         } catch (Exception e) {
