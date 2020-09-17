@@ -2,8 +2,6 @@ package Entidades;
 
 import DataTypes.DataEdicion;
 import DataTypes.DataEstudiante;
-import DataTypes.DataInscripcionEdicion;
-import DataTypes.DataInscripcionPrograma;
 import DataTypes.DataUsuario;
 import java.util.ArrayList;
 import java.util.Date;
@@ -12,15 +10,18 @@ import java.util.List;
 import java.util.Map;
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
+import javax.persistence.MapKey;
 import javax.persistence.OneToMany;
 
 @Entity
 public class Estudiante extends Usuario {
 
     @OneToMany
-    Map<String, InscripcionEdicion> inscripcionEdiciones;
+    @MapKey(name = "id")
+    private Map<String, InscripcionEdicion> inscripcionEdiciones;
     @OneToMany
-    Map<String, InscripcionPrograma> inscripcionProgramas;
+    @MapKey(name = "id")
+    private Map<String, InscripcionPrograma> inscripcionProgramas;
 
     public Estudiante() {
     }
@@ -49,7 +50,7 @@ public class Estudiante extends Usuario {
     
     public void inscribirEdicion(Edicion e, Date fecha, EntityManager em){
         InscripcionEdicion ie = new InscripcionEdicion(fecha, e);
-        inscripcionEdiciones.put(e.getNombre(), ie);
+        inscripcionEdiciones.put(e.getNombreEdicion(), ie);
         em.persist(ie);
     }
     

@@ -11,6 +11,7 @@ import java.util.Map;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.MapKey;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 
@@ -19,7 +20,7 @@ public class Edicion implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    private String nombre;
+    private String nombreEdicion;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date fechaIni;
     @Temporal(javax.persistence.TemporalType.DATE)
@@ -28,14 +29,16 @@ public class Edicion implements Serializable {
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date fechaPublicacion;
     @ManyToMany
+    @MapKey(name = "email")
     private Map<String, Profesor> profesores;
+    @OneToOne
     private Curso curso;
 
     public Edicion() {
     }
 
     public Edicion(String nombre, Date fechaIni, Date fechaFin, int cupos, Date fechaPublicacion, List<Profesor> profesores, Curso curso) {
-        this.nombre = nombre;
+        this.nombreEdicion = nombre;
         this.fechaIni = fechaIni;
         this.fechaFin = fechaFin;
         this.cupos = cupos;
@@ -47,12 +50,12 @@ public class Edicion implements Serializable {
         this.curso = curso;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getNombreEdicion() {
+        return nombreEdicion;
     }
 
     public void setNombre(String nombre) {
-        this.nombre = nombre;
+        this.nombreEdicion = nombre;
     }
 
     public Date getFechaIni() {
@@ -106,7 +109,7 @@ public class Edicion implements Serializable {
             c = this.curso.getNombre();
         }
         
-        return new DataEdicion(nombre, fechaIni, fechaFin, cupos, fechaPublicacion, dps, c);
+        return new DataEdicion(nombreEdicion, fechaIni, fechaFin, cupos, fechaPublicacion, dps, c);
     }
 
     public Curso getCurso() {

@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.MapKey;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -17,6 +18,7 @@ public class Instituto implements Serializable {
     @Id
     private String nombre;
     @OneToMany
+    @MapKey(name = "nombre")
     private Map<String,Curso> cursos;
 
     public Instituto() {

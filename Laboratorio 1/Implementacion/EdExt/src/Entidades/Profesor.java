@@ -12,6 +12,7 @@ public class Profesor extends Usuario {
     @OneToOne
     private Instituto instituto;
     @ManyToMany(mappedBy = "profesores")
+    @MapKey(name = "nombreEdicion")
     private Map<String, Edicion> ediciones;
 
     public Profesor() {
@@ -49,6 +50,6 @@ public class Profesor extends Usuario {
     }
     
     public void agregarEdicion(Edicion e){
-        this.ediciones.put(e.getNombre(), e);
+        this.ediciones.put(e.getNombreEdicion(), e);
     }
 }

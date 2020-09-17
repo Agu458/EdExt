@@ -24,6 +24,7 @@ public class Curso implements Serializable {
     private Date fechaRegistro;
     private String URL;
     @OneToMany
+    @MapKey(name = "nombreEdicion")
     private Map<String, Edicion> ediciones;
     @OneToOne
     private Edicion edicionActual;
@@ -117,7 +118,7 @@ public class Curso implements Serializable {
     public Edicion altaEdicion(String nombre, Date fechaIni, Date fechaFin, int cupos, Date fechaPublicacion, List<Profesor> p, EntityManager em) {
         Edicion e = new Edicion(nombre, fechaIni, fechaFin, cupos, fechaPublicacion, p, this);
         em.persist(e);
-        this.ediciones.put(e.getNombre(), e);
+        this.ediciones.put(e.getNombreEdicion(), e);
         this.edicionActual = e;
         return e;
     }
@@ -156,7 +157,7 @@ public class Curso implements Serializable {
     public List<String> darEdiciones(){
         List<String> eds = new ArrayList();
         for(Edicion e : ediciones.values()){
-            eds.add(e.getNombre());
+            eds.add(e.getNombreEdicion());
         }
         return eds;
     }

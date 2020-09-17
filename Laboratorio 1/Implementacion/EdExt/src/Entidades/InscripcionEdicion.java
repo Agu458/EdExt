@@ -56,6 +56,6 @@ public class InscripcionEdicion implements Serializable{
     }
     
     public DataInscripcionEdicion darDatos(){
-        return new DataInscripcionEdicion(id, fecha, edicion.getNombre());
+        return new DataInscripcionEdicion(id, fecha, edicion.getNombreEdicion());
     }
 }
