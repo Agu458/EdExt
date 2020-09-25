@@ -6,6 +6,7 @@ import DataTypes.DataEstudiante;
 import DataTypes.DataProfesor;
 import DataTypes.DataProgramaFormacion;
 import DataTypes.DataUsuario;
+import Entidades.Categoria;
 import Entidades.Curso;
 import Entidades.Edicion;
 import Entidades.Estudiante;
@@ -116,7 +117,7 @@ public class Sistema implements ISistema {
             DataEstudiante de = (DataEstudiante) du;
             try {
                 em.getTransaction().begin();
-                Estudiante es = new Estudiante(de.getNick(), de.getNombre(), de.getApellido(), de.getEmail(), de.getFechaNacimiento());
+                Estudiante es = new Estudiante(de.getNick(), de.getNombre(), de.getApellido(), de.getEmail(), de.getFechaNacimiento(), de.getContrasenia());
                 em.persist(es);
                 em.getTransaction().commit();
             } catch (Exception e) {
@@ -133,7 +134,7 @@ public class Sistema implements ISistema {
                     insti = new Instituto(dp.getInstituto());
                     em.persist(insti);
                 }
-                Profesor p = new Profesor(insti, dp.getNick(), dp.getNombre(), dp.getApellido(), dp.getEmail(), dp.getFechaNacimiento());
+                Profesor p = new Profesor(insti, dp.getNick(), dp.getNombre(), dp.getApellido(), dp.getEmail(), dp.getFechaNacimiento(), dp.getContrasenia());
                 em.persist(p);
                 em.getTransaction().commit();
             } catch (Exception e) {
@@ -220,6 +221,24 @@ public class Sistema implements ISistema {
         em.close();
         return ests;
     }
+    
+    public List<String> listarProfesoresInstituto(String instituto){
+        EntityManager em = emf.createEntityManager();
+        List<String> p = new ArrayList();
+        try {
+            em.getTransaction().begin();
+            Instituto i = em.find(Instituto.class, instituto);
+            if(i != null){
+                p = i.darProfesores();
+            }
+            em.getTransaction().rollback();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+            em.getTransaction().rollback();
+        }
+        em.close();
+        return p;
+    }
 
     @Override
     public void modificarUsuario(DataUsuario du) {
@@ -230,6 +249,7 @@ public class Sistema implements ISistema {
             u.setNombre(du.getNombre());
             u.setApellido(du.getApellido());
             u.setFechaNacimiento(du.getFechaNacimiento());
+            u.setContrasenia(du.getContrasenia());
             em.persist(u);
             em.getTransaction().commit();
         } catch (Exception e) {
@@ -261,7 +281,14 @@ public class Sistema implements ISistema {
                         prevs.add(c);
                     }
                 }
-                Curso curso = new Curso(dc.getNombre(), dc.getDescripcion(), dc.getDuracion(), dc.getHoras(), dc.getCreditos(), dc.getFechaRegistro(), dc.getURL(), prevs, i);
+                List<Categoria> categorias = new ArrayList();
+                for(String c : dc.getCategorias()){
+                    Categoria categoria = em.find(Categoria.class, c);
+                    if(categoria != null){
+                        categorias.add(categoria);
+                    }
+                }
+                Curso curso = new Curso(dc.getNombre(), dc.getDescripcion(), dc.getDuracion(), dc.getHoras(), dc.getCreditos(), dc.getFechaRegistro(), dc.getURL(), prevs, i, categorias);
                 em.persist(curso);
                 i.agregarCurso(curso);
             }
@@ -420,6 +447,7 @@ public class Sistema implements ISistema {
         em.close();
     }
 
+    @Override
     public List<String> listarEdiciones(String curso) {
         EntityManager em = emf.createEntityManager();
         List<String> ediciones = new ArrayList();

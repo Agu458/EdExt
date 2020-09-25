@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.MapKey;
 import javax.persistence.OneToMany;
 
@@ -20,6 +21,8 @@ public class Instituto implements Serializable {
     @OneToMany
     @MapKey(name = "nombre")
     private Map<String,Curso> cursos;
+    @ManyToMany(mappedBy = "institutos")
+    private List<Profesor> profesores;
 
     public Instituto() {
     }
@@ -57,6 +60,20 @@ public class Instituto implements Serializable {
         if(!cursos.containsKey(c.getNombre())){
             cursos.put(c.getNombre(), c);
         }
+    }
+    
+    public void agregarProfesor(Profesor p){
+        if(p != null){
+            this.profesores.add(p);
+        }
+    }
+    
+    public List<String> darProfesores(){
+        List<String> p = new ArrayList();
+        for (Profesor profesor : profesores) {
+            p.add(profesor.getEmail());
+        }
+        return p;
     }
     
     public DataInstituto darDatos(){

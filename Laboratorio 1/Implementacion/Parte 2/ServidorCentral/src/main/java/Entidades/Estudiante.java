@@ -26,8 +26,8 @@ public class Estudiante extends Usuario {
     public Estudiante() {
     }
 
-    public Estudiante(String nick, String nombre, String apellido, String email, Date fechaNacimiento) {
-        super(nick, nombre, apellido, email, fechaNacimiento);
+    public Estudiante(String nick, String nombre, String apellido, String email, Date fechaNacimiento, String contrasenia) {
+        super(nick, nombre, apellido, email, fechaNacimiento,contrasenia);
         inscripcionEdiciones = new HashMap();
         inscripcionProgramas = new HashMap();
     }
@@ -66,6 +66,6 @@ public class Estudiante extends Usuario {
         for (String s : inscripcionProgramas.keySet()) {
             progs.add(s);
         }
-        return new DataEstudiante(eds, progs, super.getNick(), super.getNombre(), super.getApellido(), super.getEmail(), super.getFechaNacimiento());
+        return new DataEstudiante(eds, progs, super.getNick(), super.getNombre(), super.getApellido(), super.getEmail(), super.getFechaNacimiento(), super.getContrasenia());
     }
 }

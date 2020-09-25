@@ -8,12 +8,12 @@ public class DataEstudiante extends DataUsuario{
     List<DataEdicion> inscripcionEdiciones;
     List<String> inscripcionProgramas;
 
-    public DataEstudiante(String nick, String nombre, String apellido, String email, Date fechaNacimiento) {
-        super(nick, nombre, apellido, email, fechaNacimiento);
+    public DataEstudiante(String nick, String nombre, String apellido, String email, Date fechaNacimiento, String contrasenia) {
+        super(nick, nombre, apellido, email, fechaNacimiento, contrasenia);
     }
 
-    public DataEstudiante(List<DataEdicion> inscripcionEdiciones, List<String> inscripcionProgramas, String nick, String nombre, String apellido, String email, Date fechaNacimiento) {
-        super(nick, nombre, apellido, email, fechaNacimiento);
+    public DataEstudiante(List<DataEdicion> inscripcionEdiciones, List<String> inscripcionProgramas, String nick, String nombre, String apellido, String email, Date fechaNacimiento, String contrasenia) {
+        super(nick, nombre, apellido, email, fechaNacimiento, contrasenia);
         this.inscripcionEdiciones = inscripcionEdiciones;
         this.inscripcionProgramas = inscripcionProgramas;
     }

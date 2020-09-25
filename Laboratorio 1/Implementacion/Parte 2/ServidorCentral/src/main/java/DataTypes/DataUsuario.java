@@ -9,13 +9,15 @@ public class DataUsuario {
     private final String apellido;
     private final String email;
     private final Date fechaNacimiento;
+    private final String contrasenia;
 
-    public DataUsuario(String nick, String nombre, String apellido, String email, Date fechaNacimiento) {
+    public DataUsuario(String nick, String nombre, String apellido, String email, Date fechaNacimiento, String contrasenia) {
         this.nick = nick;
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
         this.fechaNacimiento = fechaNacimiento;
+        this.contrasenia = contrasenia;
     }
 
     public String getNick() {
@@ -36,6 +38,10 @@ public class DataUsuario {
 
     public Date getFechaNacimiento() {
         return fechaNacimiento;
+    }
+
+    public String getContrasenia() {
+        return contrasenia;
     }
 
     @Override

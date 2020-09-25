@@ -23,16 +23,18 @@ public class Usuario implements Serializable {
     private String apellido;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date fechaNacimiento;
+    private String contrasenia;
 
     public Usuario() {
     }
 
-    public Usuario(String nick, String nombre, String apellido, String email, Date fechaNacimiento) {
+    public Usuario(String nick, String nombre, String apellido, String email, Date fechaNacimiento, String contrasenia) {
         this.nick = nick;
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
         this.fechaNacimiento = fechaNacimiento;
+        this.contrasenia = contrasenia;
     }
 
     public String getNick() {
@@ -74,8 +76,16 @@ public class Usuario implements Serializable {
     public void setFechaNacimiento(Date fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
+
+    public String getContrasenia() {
+        return contrasenia;
+    }
+
+    public void setContrasenia(String contrasenia) {
+        this.contrasenia = contrasenia;
+    }
     
     public DataUsuario darDatos(){
-        return new DataUsuario(nick, nombre, apellido, email, fechaNacimiento);
+        return new DataUsuario(nick, nombre, apellido, email, fechaNacimiento, contrasenia);
     }
 }

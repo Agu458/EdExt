@@ -4,7 +4,9 @@ DataTypes\DataEstudiante.class
 Entidades\Usuario.class
 Entidades\Estudiante.class
 DataTypes\DataInscripcionEdicion.class
+Entidades\Categoria.class
 Entidades\Profesor.class
+Entidades\Categoria_.class
 Entidades\InscripcionEdicion_.class
 DataTypes\DataEdicion.class
 Entidades\InscripcionPrograma.class

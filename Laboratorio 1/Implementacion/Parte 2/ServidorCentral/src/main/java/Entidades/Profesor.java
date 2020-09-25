@@ -14,12 +14,14 @@ public class Profesor extends Usuario {
     @ManyToMany(mappedBy = "profesores")
     @MapKey(name = "nombreEdicion")
     private Map<String, Edicion> ediciones;
+    @ManyToMany
+    private List<Instituto> institutos;
 
     public Profesor() {
     }
 
-    public Profesor(Instituto instituto, String nick, String nombre, String apellido, String email, Date fechaNacimiento) {
-        super(nick, nombre, apellido, email, fechaNacimiento);
+    public Profesor(Instituto instituto, String nick, String nombre, String apellido, String email, Date fechaNacimiento, String contrasenia) {
+        super(nick, nombre, apellido, email, fechaNacimiento, contrasenia);
         this.instituto = instituto;
         this.ediciones = new HashMap();
     }
@@ -30,7 +32,7 @@ public class Profesor extends Usuario {
         for(Edicion e : ediciones.values()){
             eds.add(e.darDatos());
         }
-        return new DataProfesor(instituto.darDatos().getNombre(), super.getNick(), super.getNombre(), super.getApellido(), super.getEmail(), super.getFechaNacimiento(), eds);
+        return new DataProfesor(instituto.darDatos().getNombre(), super.getNick(), super.getNombre(), super.getApellido(), super.getEmail(), super.getFechaNacimiento(), eds, super.getContrasenia());
     }
 
     public Instituto getInstituto() {

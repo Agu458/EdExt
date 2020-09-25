@@ -34,11 +34,13 @@ public class Curso implements Serializable {
     private List<ProgramaFormacion> programas;
     @OneToOne
     private Instituto instituto;
+    @OneToMany
+    private List<Categoria> categorias;
 
     public Curso() {
     }
 
-    public Curso(String nombre, String descripcion, int duracion, int horas, int creditos, Date fechaRegistro, String URL, List<Curso> previas, Instituto instituto) {
+    public Curso(String nombre, String descripcion, int duracion, int horas, int creditos, Date fechaRegistro, String URL, List<Curso> previas, Instituto instituto, List<Categoria> categorias) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.duracion = duracion;
@@ -49,6 +51,7 @@ public class Curso implements Serializable {
         this.previas = previas;
         this.ediciones = new HashMap();
         this.instituto = instituto;
+        this.categorias = categorias;
     }
 
     public String getNombre() {
@@ -202,7 +205,12 @@ public class Curso implements Serializable {
         if(instituto != null){
             insti = instituto.getNombre();
         }
-        return new DataCurso(nombre, descripcion, duracion, horas, creditos, fechaRegistro, URL, prevs, edis, actual, progs, insti);
+        
+        List<String> cat = new ArrayList();
+        for(Categoria c : categorias){
+            cat.add(c.getNombre());
+        }
+        return new DataCurso(nombre, descripcion, duracion, horas, creditos, fechaRegistro, URL, prevs, edis, actual, progs, insti, cat);
     }
     
     public boolean validarNombreEdicion(String nombre){
@@ -213,4 +221,13 @@ public class Curso implements Serializable {
     public void agregarPrograma(ProgramaFormacion pf){
         programas.add(pf);
     }
+
+    public List<Categoria> getCategorias() {
+        return categorias;
+    }
+
+    public void setCategorias(List<Categoria> categorias) {
+        this.categorias = categorias;
+    }
+    
 }
