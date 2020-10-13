@@ -281,14 +281,7 @@ public class Sistema implements ISistema {
                         prevs.add(c);
                     }
                 }
-                List<Categoria> categorias = new ArrayList();
-                for(String c : dc.getCategorias()){
-                    Categoria categoria = em.find(Categoria.class, c);
-                    if(categoria != null){
-                        categorias.add(categoria);
-                    }
-                }
-                Curso curso = new Curso(dc.getNombre(), dc.getDescripcion(), dc.getDuracion(), dc.getHoras(), dc.getCreditos(), dc.getFechaRegistro(), dc.getURL(), prevs, i, categorias);
+                Curso curso = new Curso(dc.getNombre(), dc.getDescripcion(), dc.getDuracion(), dc.getHoras(), dc.getCreditos(), dc.getFechaRegistro(), dc.getURL(), prevs, i);
                 em.persist(curso);
                 i.agregarCurso(curso);
             }

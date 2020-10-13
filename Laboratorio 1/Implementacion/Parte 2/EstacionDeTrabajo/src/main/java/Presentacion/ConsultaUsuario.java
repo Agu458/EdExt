@@ -7,6 +7,7 @@ package Presentacion;
 
 import DataTypes.*;
 import java.util.List;
+import java.util.Map;
 import javax.swing.DefaultListModel;
 
 /**
@@ -18,6 +19,9 @@ public class ConsultaUsuario extends javax.swing.JInternalFrame {
     /**
      * Creates new form ConsultaUsuario
      */
+    
+    private DataUsuario usuarioActual;
+    
     public ConsultaUsuario() {
         initComponents();
         List<String> u = Principal.is.listarUsuarios();
@@ -224,6 +228,7 @@ public class ConsultaUsuario extends javax.swing.JInternalFrame {
         String email = (String) this.jComboBox1.getSelectedItem();
         
         DataUsuario du = Principal.is.darDatosUsuario(email);
+        this.usuarioActual = du;
         
         if (du != null) {
             if (du instanceof DataEstudiante) {
@@ -235,8 +240,7 @@ public class ConsultaUsuario extends javax.swing.JInternalFrame {
                 this.jDateChooser1.setDate(de.getFechaNacimiento());
                 this.jTextField7.setText("-");
                 DefaultListModel dlm1 = new DefaultListModel();
-                for(Object o : de.getInscripcionEdiciones()){
-                    DataEdicion edicion = (DataEdicion) o;
+                for(DataEdicion edicion : de.getInscripcionEdiciones().values()){
                     if(edicion != null){
                         dlm1.addElement(edicion.getNombre());
                     }
@@ -252,8 +256,7 @@ public class ConsultaUsuario extends javax.swing.JInternalFrame {
                 this.jDateChooser1.setDate(dp.getFechaNacimiento());
                 this.jTextField7.setText(dp.getInstituto());
                 DefaultListModel dlm1 = new DefaultListModel();
-                for(Object o : dp.getEdiciones()){
-                    DataEdicion edicion = (DataEdicion) o;
+                for(DataEdicion edicion : dp.getEdiciones().values()){
                     if(edicion != null){
                         dlm1.addElement(edicion.getNombre());
                     }
@@ -281,6 +284,27 @@ public class ConsultaUsuario extends javax.swing.JInternalFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        
+        DataUsuario du = this.usuarioActual;
+        if(du instanceof DataEstudiante){
+            DataEstudiante de = (DataEstudiante) du;
+            Map<String, DataEdicion> ediciones = de.getInscripcionEdiciones();
+            for(String s : this.jList1.getSelectedValuesList()){
+                DataEdicion dedicion = ediciones.get(s);
+                infoEdicion ie = new infoEdicion(dedicion, dedicion.getCurso());
+                Principal.Desktop.add(ie);
+                ie.show();
+            }
+        }else{
+            DataProfesor dp = (DataProfesor) du;
+            Map<String, DataEdicion> ediciones = dp.getEdiciones();
+            for(String s : this.jList1.getSelectedValuesList()){
+                DataEdicion dedicion = ediciones.get(s);
+                infoEdicion ie = new infoEdicion(dedicion, dedicion.getCurso());
+                Principal.Desktop.add(ie);
+                ie.show();
+            }
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -2,18 +2,19 @@ package DataTypes;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 public class DataProfesor extends DataUsuario {
 
     private String instituto;
-    private List<DataEdicion> ediciones;
+    private Map<String, DataEdicion> ediciones;
 
     public DataProfesor(String instituto, String nick, String nombre, String apellido, String email, Date fechaNacimiento,  String contrasenia) {
         super(nick, nombre, apellido, email, fechaNacimiento, contrasenia);
         this.instituto = instituto;
     }
     
-    public DataProfesor(String instituto, String nick, String nombre, String apellido, String email, Date fechaNacimiento, List<DataEdicion> ediciones, String contrasenia) {
+    public DataProfesor(String instituto, String nick, String nombre, String apellido, String email, Date fechaNacimiento, Map<String, DataEdicion> ediciones, String contrasenia) {
         super(nick, nombre, apellido, email, fechaNacimiento, contrasenia);
         this.instituto = instituto;
         this.ediciones = ediciones;
@@ -23,7 +24,7 @@ public class DataProfesor extends DataUsuario {
         return instituto;
     }
 
-    public List<DataEdicion> getEdiciones() {
+    public Map<String, DataEdicion> getEdiciones() {
         return ediciones;
     }
 

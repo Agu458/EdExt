@@ -19,7 +19,7 @@ public class DataCurso {
     private String instituto;
     private List<String> categorias;
 
-    public DataCurso(String nombre, String descripcion, int duracion, int horas, int creditos, Date fechaRegistro, String URL, List<String> previas, List<String> categorias) {
+    public DataCurso(String nombre, String descripcion, int duracion, int horas, int creditos, Date fechaRegistro, String URL, List<String> previas) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.duracion = duracion;
@@ -28,10 +28,9 @@ public class DataCurso {
         this.fechaRegistro = fechaRegistro;
         this.URL = URL;
         this.previas = previas;
-        this.categorias = categorias;
     }
 
-    public DataCurso(String nombre, String descripcion, int duracion, int horas, int creditos, Date fechaRegistro, String URL, List<String> previas, List<DataEdicion> ediciones, DataEdicion edicionAgtual, List<String> programas, String instituto, List<String> categorias) {
+    public DataCurso(String nombre, String descripcion, int duracion, int horas, int creditos, Date fechaRegistro, String URL, List<String> previas, List<DataEdicion> ediciones, DataEdicion edicionAgtual, List<String> programas, String instituto) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.duracion = duracion;
@@ -44,7 +43,6 @@ public class DataCurso {
         this.edicionAgtual = edicionAgtual;
         this.programas = programas;
         this.instituto = instituto;
-        this.categorias = categorias;
     }
 
     public String getNombre() {

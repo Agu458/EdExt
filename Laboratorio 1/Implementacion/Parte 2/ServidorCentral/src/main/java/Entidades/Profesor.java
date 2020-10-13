@@ -28,9 +28,9 @@ public class Profesor extends Usuario {
 
     @Override
     public DataUsuario darDatos() {
-        List<DataEdicion> eds = new ArrayList();
+        Map<String, DataEdicion> eds = new HashMap();
         for(Edicion e : ediciones.values()){
-            eds.add(e.darDatos());
+            eds.put(e.getNombreEdicion(), e.darDatos());
         }
         return new DataProfesor(instituto.darDatos().getNombre(), super.getNick(), super.getNombre(), super.getApellido(), super.getEmail(), super.getFechaNacimiento(), eds, super.getContrasenia());
     }
