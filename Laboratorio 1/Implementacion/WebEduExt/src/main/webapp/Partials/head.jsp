@@ -9,11 +9,6 @@
 <%@page import="Logica.Fabrica"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
     
-    <%
-        ISistema is = Fabrica.getInstance().getISistema();
-        List<String> institutos = is.listarInstitutos();
-    %>
-    
     <!-- Basic -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">   
@@ -32,7 +27,7 @@
     <link rel="apple-touch-icon" href="http://localhost:8080/WebEduExt/Partials/images/favicon.jpg">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="http://localhost:8080/WebEduExt/Partials/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <!-- Site CSS -->
     <link rel="stylesheet" href="http://localhost:8080/WebEduExt/Partials/style.css">
     <!-- ALL VERSION CSS -->
@@ -47,4 +42,5 @@
 
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 

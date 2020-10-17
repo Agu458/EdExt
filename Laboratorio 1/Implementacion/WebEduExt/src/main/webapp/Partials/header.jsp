@@ -89,13 +89,7 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-12">
-                                    <select class="form-control" name="instituto">
-                                        <option selected value="vacio">Seleccione...</option>
-                                        <%
-                                            for (String s : institutos) {%>
-                                                <option value="<%= s%>"><%= s%></option>
-                                            <% }
-                                        %>
+                                    <select class="form-control" id="selinsti" name="instituto" hidden>
                                     </select>
                                 </div>
                             </div>
