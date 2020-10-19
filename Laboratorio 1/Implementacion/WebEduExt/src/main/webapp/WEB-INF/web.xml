@@ -12,6 +12,10 @@
         <servlet-name>Logout</servlet-name>
         <servlet-class>Logica.Logout</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Validar</servlet-name>
+        <servlet-class>Logica.Validar</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -23,6 +27,10 @@
     <servlet-mapping>
         <servlet-name>Logout</servlet-name>
         <url-pattern>/Logout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Validar</servlet-name>
+        <url-pattern>/Validar</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

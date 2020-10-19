@@ -4,6 +4,7 @@
     Author     : Agustin
 --%>
 
+<%@page import="DataTypes.DataUsuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!-- Modal -->
@@ -23,15 +24,15 @@
                 <!-- Tab panes -->
                 <div class="tab-content">
                     <div class="tab-pane active" id="Login">
-                        <form role="form" class="form-horizontal">
+                        <form role="form" class="form-horizontal" action="Login" method="POST">
                             <div class="form-group">
                                 <div class="col-sm-12">
-                                    <input class="form-control" id="exampleInputPassword1" placeholder="Email" type="email">
+                                    <input class="form-control" id="exampleInputPassword1" placeholder="Email" type="email" name="email">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-12">
-                                    <input class="form-control" id="password" placeholder="Password" type="password">
+                                    <input class="form-control" id="password" placeholder="Password" type="password" name="password">
                                 </div>
                             </div>
                             <div class="row">
@@ -45,10 +46,11 @@
                         </form>
                     </div>
                     <div class="tab-pane" id="Registration">
-                        <form role="form" class="form-horizontal">
+                        <form role="form" class="form-horizontal" action="Registrarse" method="POST" >
                             <div class="form-group">
                                 <div class="col-sm-12">
-                                    <input class="form-control" type="text" placeholder="Nick" name="nick" required>
+                                    <input class="form-control" id="nick" type="text" placeholder="Nick" name="nick" required>
+                                    <div class="alert alert-danger" id="nickValido" role="alert"> El nick se encuentra en uso ... </div>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -84,22 +86,19 @@
                             <div class="form-group">
                                 <div class="col-sm-12">
                                     <label for="#docente" >Es Docente?</label>
-                                    <input class="form-control" id="docente" type="checkbox" name="docente" required>
+                                    <input class="form-control" id="docente" type="checkbox" name="docente">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-12">
-                                    <select class="form-control" id="selinsti" name="instituto" hidden>
-                                    </select>
+                                    <select class="form-control" id="selinsti" name="instituto"></select>
                                 </div>
                             </div>
                             <div class="row">							
                                 <div class="col-sm-10">
-                                    <button type="button" class="btn btn-dark btn-radius btn-brd grd1">
+                                    <button type="submit" class="btn btn-dark btn-radius btn-brd grd1">
                                         Guardar y Continuar
                                     </button>
-                                    <button type="button" class="btn btn-dark btn-radius btn-brd grd1">
-                                        Cancelar</button>
                                 </div>
                             </div>
                         </form>
@@ -144,11 +143,76 @@
                     </li>
                     <li class="nav-item"><a class="nav-link" href="contact.html">Contacto</a></li>
                 </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a class="hover-btn-new log orange" href="#" data-toggle="modal" data-target="#login"><span>Ingresar</span></a></li>
-                </ul>
+                <%
+                    session = request.getSession(false);
+                    if (session != null && session.getAttribute("email") != null) {
+                        DataUsuario du = (DataUsuario) session.getAttribute("usuario");
+                    %>
+                        <div class="dropdown">
+                            <a class="btn btn-outline-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-user"></i> <%= du.getNick() %>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+                                <a class="dropdown-item disabled" > <%= du.getEmail() %> </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#"><i class="fas fa-user"></i>   VerPerfil </a>
+                                <a class="dropdown-item" href="Logout"><i class="fas fa-sign-out-alt"></i>   Salir </a>
+                            </div>
+                        </div>
+                <%  } else {%>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a class="hover-btn-new log orange" href="#" data-toggle="modal" data-target="#login"><span>Ingresar</span></a></li>
+                        </ul> 
+                <%  }  %>
             </div>
         </div>
     </nav>
 </header>
 <!-- End header -->
+<script>
+    $(document).ready(function () {
+        var selinsti = $('#selinsti');
+        selinsti.hide();
+        $('#docente').click(function () {
+            selinsti.empty();
+            selinsti.append(`<option value="vacio" selected> Seleccione Instituto... </option>`);
+            selinsti.toggle();
+            $.ajax({
+                type: 'GET',
+                url: 'Registrarse',
+                success: function (response) {
+                    let institutos = JSON.parse(response);
+                    institutos.forEach(instituto => {
+                        let template = '<option value="' + instituto + '">' + instituto + '</option>';
+                        $('#selinsti').append(template);
+                    });
+                }
+            });
+        });
+        
+        
+        var nickValido = $('#nickValido');
+        var campoNick = $('#nick');
+        nickValido.hide();
+        $('#nick').keyup(function(){
+            nickValido.hide();
+            let nick = campoNick.val();
+            let validar = 'validarNick';
+            $.ajax({
+                type: 'POST',
+                data: {nick:nick, validar:validar},
+                url: 'Validar',
+                success: function(response){
+                    let valido = JSON.parse(response);
+                    if(!valido){
+                        campoNick.addClass("text-danger");
+                        nickValido.show();
+                    } else {
+                        campoNick.removeClass("text-danger");
+                        nickValido.hide();
+                    }
+                }
+            });
+        });
+    });
+</script>

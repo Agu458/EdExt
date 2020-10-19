@@ -5,20 +5,22 @@
  */
 package Logica;
 
-import DataTypes.DataUsuario;
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Agustin
  */
-public class Login extends HttpServlet {
-
+public class Validar extends HttpServlet {
+    
+    public Fabrica fab = Fabrica.getInstance();
+    public ISistema is = fab.getISistema();
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -28,21 +30,21 @@ public class Login extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    public Fabrica fab = Fabrica.getInstance();
-    public ISistema is = fab.getISistema();
-    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String email = request.getParameter("email");
-        String contrasenia = request.getParameter("password");
-        
-        DataUsuario du = is.darDatosUsuario(email);
-        if(du != null && du.getContrasenia().equals(contrasenia)){
-            HttpSession session = request.getSession();
-            session.setAttribute("email", email);
-            session.setAttribute("usuario", du);
+        response.setContentType("text/plain");
+        PrintWriter out = response.getWriter();
+
+        String validar = (String) request.getParameter("validar");
+        if (validar != null) {
+            if (validar.equals("validarNick")) {
+                String nick = request.getParameter("nick");
+                if (nick != null) {
+                    Boolean valido =  is.validarNick(nick);
+                    out.println(valido);
+                }
+            }
         }
-        request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
