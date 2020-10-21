@@ -28,8 +28,8 @@ public class Login extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    public Fabrica fab = Fabrica.getInstance();
-    public ISistema is = fab.getISistema();
+    private Fabrica fab = Fabrica.getInstance();
+    private ISistema is = fab.getISistema();
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -42,7 +42,7 @@ public class Login extends HttpServlet {
             session.setAttribute("email", email);
             session.setAttribute("usuario", du);
         }
-        request.getRequestDispatcher("index.jsp").forward(request, response);
+        response.sendRedirect("index.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

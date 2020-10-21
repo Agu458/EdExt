@@ -18,8 +18,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class Validar extends HttpServlet {
     
-    public Fabrica fab = Fabrica.getInstance();
-    public ISistema is = fab.getISistema();
+    private Fabrica fab = Fabrica.getInstance();
+    private ISistema is = fab.getISistema();
     
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>

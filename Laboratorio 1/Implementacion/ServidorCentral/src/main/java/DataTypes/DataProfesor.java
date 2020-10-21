@@ -9,13 +9,13 @@ public class DataProfesor extends DataUsuario {
     private String instituto;
     private Map<String, DataEdicion> ediciones;
 
-    public DataProfesor(String instituto, String nick, String nombre, String apellido, String email, Date fechaNacimiento,  String contrasenia) {
-        super(nick, nombre, apellido, email, fechaNacimiento, contrasenia);
+    public DataProfesor(String instituto, String nick, String nombre, String apellido, String email, Date fechaNacimiento,  String contrasenia ,String imagen) {
+        super(nick, nombre, apellido, email, fechaNacimiento, contrasenia ,imagen);
         this.instituto = instituto;
     }
     
-    public DataProfesor(String instituto, String nick, String nombre, String apellido, String email, Date fechaNacimiento, Map<String, DataEdicion> ediciones, String contrasenia) {
-        super(nick, nombre, apellido, email, fechaNacimiento, contrasenia);
+    public DataProfesor(String instituto, String nick, String nombre, String apellido, String email, Date fechaNacimiento, Map<String, DataEdicion> ediciones, String contrasenia ,String imagen) {
+        super(nick, nombre, apellido, email, fechaNacimiento, contrasenia ,imagen);
         this.instituto = instituto;
         this.ediciones = ediciones;
     }

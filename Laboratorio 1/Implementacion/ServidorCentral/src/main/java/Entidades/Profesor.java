@@ -20,8 +20,8 @@ public class Profesor extends Usuario {
     public Profesor() {
     }
 
-    public Profesor(Instituto instituto, String nick, String nombre, String apellido, String email, Date fechaNacimiento, String contrasenia) {
-        super(nick, nombre, apellido, email, fechaNacimiento, contrasenia);
+    public Profesor(Instituto instituto, String nick, String nombre, String apellido, String email, Date fechaNacimiento, String contrasenia ,String imagen ) {
+        super(nick, nombre, apellido, email, fechaNacimiento, contrasenia ,imagen);
         this.instituto = instituto;
         this.ediciones = new HashMap();
     }
@@ -32,7 +32,7 @@ public class Profesor extends Usuario {
         for(Edicion e : ediciones.values()){
             eds.put(e.getNombreEdicion(), e.darDatos());
         }
-        return new DataProfesor(instituto.darDatos().getNombre(), super.getNick(), super.getNombre(), super.getApellido(), super.getEmail(), super.getFechaNacimiento(), eds, super.getContrasenia());
+        return new DataProfesor(instituto.darDatos().getNombre(), super.getNick(), super.getNombre(), super.getApellido(), super.getEmail(), super.getFechaNacimiento(), eds, super.getContrasenia() ,super.getimagen());
     }
 
     public Instituto getInstituto() {

@@ -4,8 +4,15 @@
     Author     : Agustin
 --%>
 
-<%@page import="DataTypes.DataUsuario"%>
+<%@page import="DataTypes.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<%  session = request.getSession(false);
+    DataUsuario du = null;
+    if (session != null && session.getAttribute("email") != null) {
+        du = (DataUsuario) session.getAttribute("usuario");
+    }
+%>
 
 <!-- Modal -->
 <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -113,7 +120,7 @@
 <header class="top-navbar">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-            <a class="navbar-brand" href="index.html">
+            <a class="navbar-brand" href="index.jsp">
                 <img src="http://localhost:8080/WebEduExt/Partials/images/logo2.png" height="60px" alt="" />
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-host" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
@@ -123,7 +130,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbars-host">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active"><a class="nav-link" href="index.jsp">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.jsp">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="about.html">Sobre Nosotros</a></li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Consultas </a>
@@ -142,12 +149,17 @@
                         </div>
                     </li>
                     <li class="nav-item"><a class="nav-link" href="contact.html">Contacto</a></li>
+                    <%  if( du != null ) {
+                            if( du instanceof DataEstudiante ) { %>
+                                <li class="nav-item"><a class="nav-link" href="estudiante.jsp">Estudiante</a></li>
+                            <% } else { %>
+                                <li class="nav-item"><a class="nav-link" href="profesor.jsp">Profesor</a></li>
+                            <% }
+                    } %>
                 </ul>
                 <%
-                    session = request.getSession(false);
-                    if (session != null && session.getAttribute("email") != null) {
-                        DataUsuario du = (DataUsuario) session.getAttribute("usuario");
-                    %>
+                    if( du != null ) {
+                %>
                         <div class="dropdown">
                             <a class="btn btn-outline-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-user"></i> <%= du.getNick() %>
@@ -155,7 +167,7 @@
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
                                 <a class="dropdown-item disabled" > <%= du.getEmail() %> </a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#"><i class="fas fa-user"></i>   VerPerfil </a>
+                                <a class="dropdown-item" href="perfil.jsp"><i class="fas fa-user"></i>   VerPerfil </a>
                                 <a class="dropdown-item" href="Logout"><i class="fas fa-sign-out-alt"></i>   Salir </a>
                             </div>
                         </div>
@@ -169,50 +181,4 @@
     </nav>
 </header>
 <!-- End header -->
-<script>
-    $(document).ready(function () {
-        var selinsti = $('#selinsti');
-        selinsti.hide();
-        $('#docente').click(function () {
-            selinsti.empty();
-            selinsti.append(`<option value="vacio" selected> Seleccione Instituto... </option>`);
-            selinsti.toggle();
-            $.ajax({
-                type: 'GET',
-                url: 'Registrarse',
-                success: function (response) {
-                    let institutos = JSON.parse(response);
-                    institutos.forEach(instituto => {
-                        let template = '<option value="' + instituto + '">' + instituto + '</option>';
-                        $('#selinsti').append(template);
-                    });
-                }
-            });
-        });
-        
-        
-        var nickValido = $('#nickValido');
-        var campoNick = $('#nick');
-        nickValido.hide();
-        $('#nick').keyup(function(){
-            nickValido.hide();
-            let nick = campoNick.val();
-            let validar = 'validarNick';
-            $.ajax({
-                type: 'POST',
-                data: {nick:nick, validar:validar},
-                url: 'Validar',
-                success: function(response){
-                    let valido = JSON.parse(response);
-                    if(!valido){
-                        campoNick.addClass("text-danger");
-                        nickValido.show();
-                    } else {
-                        campoNick.removeClass("text-danger");
-                        nickValido.hide();
-                    }
-                }
-            });
-        });
-    });
-</script>
+<script src="http://localhost:8080/WebEduExt/Partials/js/header.js"></script>

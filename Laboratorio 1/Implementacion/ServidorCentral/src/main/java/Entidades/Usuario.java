@@ -24,17 +24,19 @@ public class Usuario implements Serializable {
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date fechaNacimiento;
     private String contrasenia;
+    private String imagen;
 
     public Usuario() {
     }
 
-    public Usuario(String nick, String nombre, String apellido, String email, Date fechaNacimiento, String contrasenia) {
+    public Usuario(String nick, String nombre, String apellido, String email, Date fechaNacimiento, String contrasenia ,String imagen) {
         this.nick = nick;
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
         this.fechaNacimiento = fechaNacimiento;
         this.contrasenia = contrasenia;
+        this.imagen = imagen;
     }
 
     public String getNick() {
@@ -84,8 +86,17 @@ public class Usuario implements Serializable {
     public void setContrasenia(String contrasenia) {
         this.contrasenia = contrasenia;
     }
-    
+
+    public String getimagen() {
+        return imagen;
+    }
+
+
+    public void setimagen(String imagen) {
+        this.imagen = imagen;
+    }
+        
     public DataUsuario darDatos(){
-        return new DataUsuario(nick, nombre, apellido, email, fechaNacimiento, contrasenia);
+        return new DataUsuario(nick, nombre, apellido, email, fechaNacimiento, contrasenia ,imagen);
     }
 }

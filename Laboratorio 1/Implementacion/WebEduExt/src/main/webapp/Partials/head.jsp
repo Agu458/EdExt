@@ -17,7 +17,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- Site Metas -->
-<title>EduExt - Home</title>  
+<title>EduExt</title>  
 <meta name="keywords" content="">
 <meta name="description" content="">
 <meta name="author" content="">

@@ -117,7 +117,7 @@ public class Sistema implements ISistema {
             DataEstudiante de = (DataEstudiante) du;
             try {
                 em.getTransaction().begin();
-                Estudiante es = new Estudiante(de.getNick(), de.getNombre(), de.getApellido(), de.getEmail(), de.getFechaNacimiento(), de.getContrasenia());
+                Estudiante es = new Estudiante(de.getNick(), de.getNombre(), de.getApellido(), de.getEmail(), de.getFechaNacimiento(), de.getContrasenia() ,de.getimagen());
                 em.persist(es);
                 em.getTransaction().commit();
             } catch (Exception e) {
@@ -134,7 +134,7 @@ public class Sistema implements ISistema {
                     insti = new Instituto(dp.getInstituto());
                     em.persist(insti);
                 }
-                Profesor p = new Profesor(insti, dp.getNick(), dp.getNombre(), dp.getApellido(), dp.getEmail(), dp.getFechaNacimiento(), dp.getContrasenia());
+                Profesor p = new Profesor(insti, dp.getNick(), dp.getNombre(), dp.getApellido(), dp.getEmail(), dp.getFechaNacimiento(), dp.getContrasenia() ,dp.getimagen());
                 em.persist(p);
                 em.getTransaction().commit();
             } catch (Exception e) {
@@ -250,6 +250,7 @@ public class Sistema implements ISistema {
             u.setApellido(du.getApellido());
             u.setFechaNacimiento(du.getFechaNacimiento());
             u.setContrasenia(du.getContrasenia());
+            u.setimagen(du.getimagen());
             em.persist(u);
             em.getTransaction().commit();
         } catch (Exception e) {

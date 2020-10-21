@@ -12,6 +12,7 @@
 @import url(css/animate.min.css);
 @import url(css/bootstrap-touch-slider.css);
 @import url(css/flaticon.css);
+@import url(css/timeline.min.css);
 @import url(css/prettyPhoto.css);
 @import url(css/owl.carousel.css);
 @import url(css/font-awesome.min.css);
@@ -309,7 +310,7 @@ a img.aligncenter {
   left: 0;
   width: 100%;
   height: 50%;
-  background: #eea412;
+  background: #01254e;
   z-index: -1;
   transition: top 1.2s linear 3.1s;
 }
@@ -320,7 +321,7 @@ a img.aligncenter {
   left: 0;
   width: 100%;
   height: 50%;
-  background: #eea412;
+  background: #01254e;
   z-index: -1;
   transition: bottom 1.2s linear 3.1s;
 }
@@ -657,16 +658,16 @@ a img.aligncenter {
   width: 100%;
 }
 .navbar-right li a.hover-btn-new::after {
-  background: #ffffff !important;
+  background: #01254e !important;
   height: 100%;
-  left: 0;
+  left: 150;
   top: 0;
   width: 100%;
 }
 .navbar-right li a.hover-btn-new span{
 	position: relative;
 	z-index: 2;
-	color: #333333;
+	color: #fff;
 }
 .navbar-right li a.hover-btn-new:hover:after {
   height: 0;
@@ -1014,7 +1015,7 @@ a img.aligncenter {
 
 .customwidget a.hover-btn-new::before,
 .customwidget a.hover-btn-new::after {
-  background: #9dc15b;
+  background: #eea412;
   content: '';
   position: absolute;
   z-index: 1;
@@ -1061,7 +1062,7 @@ a img.aligncenter {
 }
 .message-box a.hover-btn-new::before,
 .message-box a.hover-btn-new::after {
-	background: #eea412;
+	background: #01254e;
 	content: '';
 	position: absolute;
 	z-index: 1;
@@ -1675,7 +1676,7 @@ a img.aligncenter {
 }
 
 .icon-wrapper p small:hover a{
-	color: #9dc15b;
+	color: #eea412;
 }
 
 .icon-wrapper p small:after {
@@ -2402,7 +2403,7 @@ select.mobile-device {
 .contact_form {
     border: none;
     box-shadow: 0 5px 14px rgba(0, 0, 0, 0.1);
-    background-color: #333333;
+    background-color: #01254e;
     padding: 40px 30px;
 	margin-right: -15px;
 }
@@ -2842,8 +2843,8 @@ body.host_version .first-section .effect-1.slide-btn::after{
 
 /**-------------- inner Page css ---------------**/
 
-.all-title-box-estu{
-	background: url(images/estudiante.jpg)no-repeat;
+.all-title-box-perfil{
+	background: url(http://localhost:8080/WebEduExt/Partials/images/perfil.png)no-repeat;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
@@ -2853,27 +2854,7 @@ body.host_version .first-section .effect-1.slide-btn::after{
 }
 
 
-.all-title-box-estu h1{
-	color: #fff;
-	font-weight: 600;
-	text-transform: capitalize;
-	padding-top: 11%;
-	font-size: 48px;
-	line-height: 0px;
-}
-
-.all-title-box-prof{
-	background: url(images/profesor.jpg)no-repeat;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
-	background-position: center;
-	min-height: 300px;
-}
-
-
-.all-title-box-prof h1{
+.all-title-box-perfil h1{
 	color: #fff;
 	font-weight: 600;
 	text-transform: capitalize;
@@ -2936,7 +2917,7 @@ span.m_1 {
   color: #fff;
   font-size: 20px;
   font-weight: 400;
-  background: #9dc15b;
+  background: #eea412;
 }
 
 .dmoain-pricing table .domain-head th {
@@ -3160,8 +3141,8 @@ span.m_1 {
 }
 
 #testimonial-box .desc:hover{
-	background: #9dc15b;
-	border: 1px solid #9dc15b;
+	background: #eea412;
+	border: 1px solid #eea412;
 }
 
 #testimonial-box .desc:hover .lead{
@@ -3282,7 +3263,7 @@ span.m_1 {
 
 .widget.server a.hover-btn-new::before,
 .widget.server a.hover-btn-new::after {
-  background: #9dc15b;
+  background: #eea412;
   content: '';
   position: absolute;
   z-index: 1;
@@ -3911,16 +3892,102 @@ a.link-style3 {
 
 
 
+body{
+    background: #f5f5f5;
+    margin-top:20px;
+}
 
+.ui-w-80 {
+    width: 80px !important;
+    height: auto;
+}
 
+.btn-default {
+    border-color: rgba(24,28,33,0.1);
+    background: rgba(0,0,0,0);
+    color: #4E5155;
+}
 
+label.btn {
+    margin-bottom: 0;
+}
 
+.btn-outline-primary {
+    border-color: #26B4FF;
+    background: transparent;
+    color: #26B4FF;
+}
 
+.btn {
+    cursor: pointer;
+}
 
+.text-light {
+    color: #babbbc !important;
+}
 
+.btn-facebook {
+    border-color: rgba(0,0,0,0);
+    background: #3B5998;
+    color: #fff;
+}
 
+.btn-instagram {
+    border-color: rgba(0,0,0,0);
+    background: #000;
+    color: #fff;
+}
 
+.card {
+    background-clip: padding-box;
+    box-shadow: 0 1px 4px rgba(24,28,33,0.012);
+}
 
+.row-bordered {
+    overflow: hidden;
+}
 
-
-
+.account-settings-fileinput {
+    position: absolute;
+    visibility: hidden;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+}
+.account-settings-links .list-group-item.active {
+    font-weight: bold !important;
+}
+html:not(.dark-style) .account-settings-links .list-group-item.active {
+    background: transparent !important;
+}
+.account-settings-multiselect ~ .select2-container {
+    width: 100% !important;
+}
+.light-style .account-settings-links .list-group-item {
+    padding: 0.85rem 1.5rem;
+    border-color: rgba(24, 28, 33, 0.03) !important;
+}
+.light-style .account-settings-links .list-group-item.active {
+    color: #4e5155 !important;
+}
+.material-style .account-settings-links .list-group-item {
+    padding: 0.85rem 1.5rem;
+    border-color: rgba(24, 28, 33, 0.03) !important;
+}
+.material-style .account-settings-links .list-group-item.active {
+    color: #4e5155 !important;
+}
+.dark-style .account-settings-links .list-group-item {
+    padding: 0.85rem 1.5rem;
+    border-color: rgba(255, 255, 255, 0.03) !important;
+}
+.dark-style .account-settings-links .list-group-item.active {
+    color: #fff !important;
+}
+.light-style .account-settings-links .list-group-item.active {
+    color: #4E5155 !important;
+}
+.light-style .account-settings-links .list-group-item {
+    padding: 0.85rem 1.5rem;
+    border-color: rgba(24,28,33,0.03) !important;
+}

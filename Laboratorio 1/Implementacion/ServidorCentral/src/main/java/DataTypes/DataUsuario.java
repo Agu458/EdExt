@@ -10,14 +10,16 @@ public class DataUsuario {
     private final String email;
     private final Date fechaNacimiento;
     private final String contrasenia;
-
-    public DataUsuario(String nick, String nombre, String apellido, String email, Date fechaNacimiento, String contrasenia) {
+    private final String imagen;
+    
+    public DataUsuario(String nick, String nombre, String apellido, String email, Date fechaNacimiento, String contrasenia ,String imagen) {
         this.nick = nick;
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
         this.fechaNacimiento = fechaNacimiento;
         this.contrasenia = contrasenia;
+        this.imagen = imagen;
     }
 
     public String getNick() {
@@ -44,9 +46,8 @@ public class DataUsuario {
         return contrasenia;
     }
 
-    @Override
-    public String toString() {
-        return "DataUsuario{" + ", nick=" + nick + ", nombre=" + nombre + ", apellido=" + apellido + ", email=" + email + ", fechaNacimiento=" + fechaNacimiento + '}';
+    public String getimagen() {
+        return imagen;
     }
 
 }

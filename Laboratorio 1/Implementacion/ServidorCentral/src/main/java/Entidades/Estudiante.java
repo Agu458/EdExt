@@ -27,8 +27,8 @@ public class Estudiante extends Usuario {
     public Estudiante() {
     }
 
-    public Estudiante(String nick, String nombre, String apellido, String email, Date fechaNacimiento, String contrasenia) {
-        super(nick, nombre, apellido, email, fechaNacimiento,contrasenia);
+    public Estudiante(String nick, String nombre, String apellido, String email, Date fechaNacimiento, String contrasenia ,String imagen) {
+        super(nick, nombre, apellido, email, fechaNacimiento,contrasenia ,imagen);
         inscripcionEdiciones = new HashMap();
         inscripcionProgramas = new HashMap();
     }
@@ -71,6 +71,7 @@ public class Estudiante extends Usuario {
                 progs.put(dpf.getNombre(), dpf);
             }
         }
-        return new DataEstudiante(eds, progs, super.getNick(), super.getNombre(), super.getApellido(), super.getEmail(), super.getFechaNacimiento(), super.getContrasenia());
+        return new DataEstudiante(eds, progs, super.getNick(), super.getNombre(), super.getApellido(), super.getEmail(), super.getFechaNacimiento(),
+        super.getContrasenia() ,super.getimagen());
     }
 }

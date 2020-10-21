@@ -25,8 +25,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class Registrarse extends HttpServlet {
 
-    public Fabrica fab = Fabrica.getInstance();
-    public ISistema is = fab.getISistema();
+    private Fabrica fab = Fabrica.getInstance();
+    private ISistema is = fab.getISistema();
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -79,7 +79,7 @@ public class Registrarse extends HttpServlet {
         if (docente == null) {
             if (contrasenia.equals(contrasenia2)) {
                 if (is.validarEmail(email) && is.validarNick(nick)) {
-                    DataUsuario du = new DataEstudiante(nick, nombre, apellido, email, fechaNacimiento, contrasenia);
+                    DataUsuario du = new DataEstudiante(nick, nombre, apellido, email, fechaNacimiento, contrasenia, null);
                     is.altaUsuario(du);
                 }
             }
@@ -87,7 +87,7 @@ public class Registrarse extends HttpServlet {
             String instituto = request.getParameter("instituto");
             if (!instituto.equals("vacio")) {
                 if (is.validarEmail(email) && is.validarNick(nick)) {
-                    DataUsuario du = new DataProfesor(instituto, nick, nombre, apellido, email, fechaNacimiento, contrasenia);
+                    DataUsuario du = new DataProfesor(instituto, nick, nombre, apellido, email, fechaNacimiento, contrasenia, null);
                     is.altaUsuario(du);
                 }
             }
