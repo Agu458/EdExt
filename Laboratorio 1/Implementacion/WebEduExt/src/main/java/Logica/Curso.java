@@ -35,9 +35,31 @@ public class Curso extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setContentType("text/plain");
+        PrintWriter out = response.getWriter();
+        
         String action = request.getParameter("action");
+        
         if(action != null){
-            
+            if(action.equals("darCurso")){
+                
+            }
+            if(action.equals("cursosInsti")){
+                
+                String instituto = request.getParameter("insti");
+                if(instituto != null){
+                    List cursos = is.listarCursosInstituto(instituto);
+                    String json = new Gson().toJson(cursos);
+                    out.println(json);
+                }
+            }
+            if(action.equals("validarNombreCurso")){
+                String nombre = request.getParameter("nombre");
+                if (nombre != null) {
+                    Boolean valido =  is.validarNombreCurso(nombre);
+                    out.println(valido);
+                }
+            }
         }
     }
 

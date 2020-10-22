@@ -40,13 +40,6 @@ public class Registrarse extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/plain");
-        PrintWriter out = response.getWriter();
-        
-        List institutos = is.listarInstitutos();
-        String json = new Gson().toJson(institutos);
-        
-        out.println(json);
     }
 
     /**
