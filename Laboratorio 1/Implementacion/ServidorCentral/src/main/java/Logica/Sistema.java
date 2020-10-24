@@ -52,7 +52,6 @@ public class Sistema implements ISistema {
             em.persist(i);
             em.getTransaction().commit();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
             em.getTransaction().rollback();
         }
         em.close();
@@ -68,7 +67,6 @@ public class Sistema implements ISistema {
             em.remove(i);
             em.getTransaction().commit();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
             em.getTransaction().rollback();
         }
         em.close();
@@ -87,7 +85,6 @@ public class Sistema implements ISistema {
             }
             em.getTransaction().commit();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
             em.getTransaction().rollback();
         }
         return instis;
@@ -121,7 +118,6 @@ public class Sistema implements ISistema {
                 em.persist(es);
                 em.getTransaction().commit();
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, e.getMessage());
                 em.getTransaction().rollback();
             }
             em.close();
@@ -138,7 +134,6 @@ public class Sistema implements ISistema {
                 em.persist(p);
                 em.getTransaction().commit();
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, e.getMessage());
                 em.getTransaction().rollback();
             }
             em.close();
@@ -158,7 +153,6 @@ public class Sistema implements ISistema {
             }
             em.getTransaction().commit();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
             em.getTransaction().rollback();
         }
         em.close();
@@ -175,7 +169,6 @@ public class Sistema implements ISistema {
             u = usu.darDatos();
             em.getTransaction().commit();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
             em.getTransaction().rollback();
         }
         em.close();
@@ -195,7 +188,6 @@ public class Sistema implements ISistema {
             }
             em.getTransaction().commit();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
             em.getTransaction().rollback();
         }
         em.close();
@@ -215,7 +207,6 @@ public class Sistema implements ISistema {
             }
             em.getTransaction().commit();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
             em.getTransaction().rollback();
         }
         em.close();
@@ -233,7 +224,7 @@ public class Sistema implements ISistema {
             }
             em.getTransaction().rollback();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+            e.printStackTrace();
             em.getTransaction().rollback();
         }
         em.close();
@@ -254,7 +245,6 @@ public class Sistema implements ISistema {
             em.persist(u);
             em.getTransaction().commit();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
             em.getTransaction().rollback();
         }
         em.close();
@@ -282,13 +272,19 @@ public class Sistema implements ISistema {
                         prevs.add(c);
                     }
                 }
-                Curso curso = new Curso(dc.getNombre(), dc.getDescripcion(), dc.getDuracion(), dc.getHoras(), dc.getCreditos(), dc.getFechaRegistro(), dc.getURL(), prevs, i);
+                List<Categoria> cats = new ArrayList();
+                for(String s : dc.getCategorias()){
+                    Categoria cat = em.find(Categoria.class, s);
+                    if(cat != null){
+                        cats.add(cat);
+                    }
+                }
+                Curso curso = new Curso(dc.getNombre(), dc.getDescripcion(), dc.getDuracion(), dc.getHoras(), dc.getCreditos(), dc.getFechaRegistro(), dc.getURL(), prevs, i, cats);
                 em.persist(curso);
                 i.agregarCurso(curso);
             }
             em.getTransaction().commit();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
             em.getTransaction().rollback();
         }
         em.close();
@@ -304,7 +300,6 @@ public class Sistema implements ISistema {
             cursos = i.darCursos();
             em.getTransaction().commit();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
             em.getTransaction().rollback();
         }
         em.close();
@@ -325,7 +320,6 @@ public class Sistema implements ISistema {
             }
             em.getTransaction().commit();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
             em.getTransaction().rollback();
         }
         em.close();
@@ -345,7 +339,6 @@ public class Sistema implements ISistema {
                 }
                 em.getTransaction().commit();
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, e.getMessage());
                 em.getTransaction().rollback();
             }
         }
@@ -368,7 +361,6 @@ public class Sistema implements ISistema {
             }
             em.getTransaction().commit();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
             em.getTransaction().rollback();
         }
         em.close();
@@ -396,7 +388,6 @@ public class Sistema implements ISistema {
             }
             em.getTransaction().commit();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
             em.getTransaction().rollback();
         }
         em.close();
@@ -414,7 +405,6 @@ public class Sistema implements ISistema {
             }
             em.getTransaction().commit();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
             em.getTransaction().rollback();
         }
         em.close();
@@ -435,7 +425,6 @@ public class Sistema implements ISistema {
             }
             em.getTransaction().commit();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
             em.getTransaction().rollback();
         }
         em.close();
@@ -451,7 +440,6 @@ public class Sistema implements ISistema {
             ediciones = c.darEdiciones();
             em.getTransaction().commit();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
             em.getTransaction().rollback();
         }
         em.close();
@@ -468,7 +456,6 @@ public class Sistema implements ISistema {
             edicion = c.darDatosEdicion(nombreEdicion);
             em.getTransaction().commit();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
             em.getTransaction().rollback();
         }
         em.close();
@@ -491,7 +478,6 @@ public class Sistema implements ISistema {
             em.persist(pf);
             em.getTransaction().commit();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
             em.getTransaction().rollback();
         }
         em.close();
@@ -510,7 +496,6 @@ public class Sistema implements ISistema {
             }
             em.getTransaction().commit();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
             em.getTransaction().rollback();
         }
         em.close();
@@ -530,7 +515,6 @@ public class Sistema implements ISistema {
             }
             em.getTransaction().commit();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
             em.getTransaction().rollback();
         }
         em.close();
@@ -550,7 +534,6 @@ public class Sistema implements ISistema {
             }
             em.getTransaction().commit();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
             em.getTransaction().rollback();
         }
         em.close();
@@ -568,10 +551,50 @@ public class Sistema implements ISistema {
             }
             em.getTransaction().commit();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
             em.getTransaction().rollback();
         }
         em.close();
         return dpf;
+    }
+    
+    // Categorias
+    @Override
+    public Boolean validarNombreCategoria(String nombre){
+        EntityManager em = emf.createEntityManager();
+        Categoria cat = em.find(Categoria.class, nombre);
+        return (cat == null);
+    }
+    
+    @Override
+    public void altaCategoria(String nombre){
+        EntityManager em = emf.createEntityManager();
+        try {
+            em.getTransaction().begin();
+            Categoria cat = new Categoria(nombre);
+            em.persist(cat);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+        }
+    }
+    
+    @Override
+    public List<DataCurso> listarCursosCategoria(String nombre){
+        EntityManager em = emf.createEntityManager();
+        List<DataCurso> cursos = new ArrayList();
+        try {
+            em.getTransaction().begin();
+            List Cursos = em.createQuery("SELECT c FROM Curso c").getResultList();
+            for(Object o : Cursos){
+                Curso c = (Curso) o;
+                if(c.caonteieneCategoria(nombre)){
+                    cursos.add(c.darDatos());
+                }
+            }
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+        }
+        return cursos;
     }
 }

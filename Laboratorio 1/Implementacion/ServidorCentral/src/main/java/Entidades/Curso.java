@@ -6,6 +6,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import javax.persistence.*;
@@ -34,11 +35,13 @@ public class Curso implements Serializable {
     private List<ProgramaFormacion> programas;
     @OneToOne
     private Instituto instituto;
+    @OneToMany
+    private List<Categoria> categorias;
 
     public Curso() {
     }
 
-    public Curso(String nombre, String descripcion, int duracion, int horas, int creditos, Date fechaRegistro, String URL, List<Curso> previas, Instituto instituto) {
+    public Curso(String nombre, String descripcion, int duracion, int horas, int creditos, Date fechaRegistro, String URL, List<Curso> previas, Instituto instituto, List<Categoria> categorias) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.duracion = duracion;
@@ -49,6 +52,7 @@ public class Curso implements Serializable {
         this.previas = previas;
         this.ediciones = new HashMap();
         this.instituto = instituto;
+        this.categorias = categorias;
     }
 
     public String getNombre() {
@@ -203,7 +207,12 @@ public class Curso implements Serializable {
             insti = instituto.getNombre();
         }
         
-        return new DataCurso(nombre, descripcion, duracion, horas, creditos, fechaRegistro, URL, prevs, edis, actual, progs, insti);
+        List<String> cats = new ArrayList();
+        for(Categoria cat : categorias){
+            cats.add(cat.getNombre());
+        }
+        
+        return new DataCurso(nombre, descripcion, duracion, horas, creditos, fechaRegistro, URL, prevs, edis, actual, progs, insti, cats);
     }
     
     public boolean validarNombreEdicion(String nombre){
@@ -213,5 +222,25 @@ public class Curso implements Serializable {
     
     public void agregarPrograma(ProgramaFormacion pf){
         programas.add(pf);
+    }
+
+    public List<Categoria> getCategorias() {
+        return categorias;
+    }
+
+    public void setCategorias(List<Categoria> categorias) {
+        this.categorias = categorias;
+    }
+    
+    public boolean caonteieneCategoria(String cat){
+        boolean encontre = false;
+        Iterator it = categorias.iterator();
+        while(it.hasNext() && !encontre){
+            Categoria c = (Categoria) it.next();
+            if(c.getNombre() == cat){
+                encontre = true;
+            }
+        }
+        return encontre;
     }
 }

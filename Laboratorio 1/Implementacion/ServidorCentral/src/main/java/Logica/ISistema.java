@@ -66,4 +66,10 @@ public interface ISistema {
     public void agregarCursoAPrograma(String nombre, String nombreCurso);
     
     public DataProgramaFormacion darProgramaFormacion(String nombre);
+    
+    public Boolean validarNombreCategoria(String nombre);
+    
+    public void altaCategoria(String nombre);
+    
+    public List<DataCurso> listarCursosCategoria(String nombre);
 }

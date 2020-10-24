@@ -40,6 +40,26 @@ public class Registrarse extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setContentType("text/plain");
+        PrintWriter out = response.getWriter();
+
+        String validar = (String) request.getParameter("validar");
+        if (validar != null) {
+            if (validar.equals("validarNick")) {
+                String nick = request.getParameter("nick");
+                if (nick != null) {
+                    Boolean valido =  is.validarNick(nick);
+                    out.println(valido);
+                }
+            }
+            if (validar.equals("validarEmail")) {
+                String email = request.getParameter("email");
+                if (email != null) {
+                    Boolean valido =  is.validarNick(email);
+                    out.println(valido);
+                }
+            }
+        }
     }
 
     /**

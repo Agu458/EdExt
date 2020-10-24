@@ -9,6 +9,7 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 
 @Entity
@@ -24,6 +25,8 @@ public class ProgramaFormacion implements Serializable {
     private Date fechaIni;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date fechaFin;
+    @OneToMany
+    private List<Categoria> categorias;
 
     public ProgramaFormacion() {
     }
@@ -53,6 +56,12 @@ public class ProgramaFormacion implements Serializable {
     
     public void agregarCurso(Curso c){
         cursos.add(c);
+        for(Categoria cat : c.getCategorias()){
+            String nombre = cat.getNombre();
+            if(!caonteieneCategoria(nombre)){
+                categorias.add(cat);
+            }
+        }
     }
 
     public String getDescripcion() {
@@ -85,7 +94,13 @@ public class ProgramaFormacion implements Serializable {
             String dp = cur.getNombre();
             c.add(dp);
         }
-        return new DataProgramaFormacion(nombre, c, descripcion, fechaIni, fechaFin);
+        
+        List<String> cats = new ArrayList();
+        for(Categoria cat : categorias){
+            cats.add(cat.getNombre());
+        }
+        
+        return new DataProgramaFormacion(nombre, c, descripcion, fechaIni, fechaFin, cats);
     }
     
     public boolean conteneCurso(String curso){
@@ -94,6 +109,18 @@ public class ProgramaFormacion implements Serializable {
         while(it.hasNext() && !encontre){
             Curso c = (Curso) it.next();
             if(c.getNombre() == curso){
+                encontre = true;
+            }
+        }
+        return encontre;
+    }
+    
+    public boolean caonteieneCategoria(String cat){
+        boolean encontre = false;
+        Iterator it = categorias.iterator();
+        while(it.hasNext() && !encontre){
+            Categoria c = (Categoria) it.next();
+            if(c.getNombre() == cat){
                 encontre = true;
             }
         }

@@ -6,6 +6,7 @@
 package Presentacion;
 
 import DataTypes.DataCurso;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -235,7 +236,8 @@ public class AltaCurso extends javax.swing.JInternalFrame {
                     previas = this.jList1.getSelectedValuesList();
                     Calendar c = Calendar.getInstance();
                     Date fecha = new Date(c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DATE));
-                    DataCurso dc = new DataCurso(nombre, descripcion, duracion, horas, creditos, fecha, URL, previas);
+                    List<String> categorias = new ArrayList();
+                    DataCurso dc = new DataCurso(nombre, descripcion, duracion, horas, creditos, fecha, URL, previas, categorias);
 
                     Principal.is.altaCurso(dc, (String) this.jComboBox1.getSelectedItem());
 

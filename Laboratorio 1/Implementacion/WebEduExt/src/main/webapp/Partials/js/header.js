@@ -5,6 +5,10 @@
  */
 
 $(document).ready(function () {
+    $('#contraseniaValida').hide();
+    $('#nickValido').hide();
+    $('#emailValido').hide();
+    
     var selinsti = $('#selinsti');
     selinsti.hide();
     $('#docente').click(function () {
@@ -23,29 +27,67 @@ $(document).ready(function () {
             }
         });
     });
-
-
-    var nickValido = $('#nickValido');
-    var campoNick = $('#nick');
-    nickValido.hide();
-    $('#nick').keyup(function () {
-        nickValido.hide();
-        let nick = campoNick.val();
-        let validar = 'validarNick';
+    
+    function validarNick(){
+        let valido = true;
+        let validarNick = "validarNick";
+        let nick = $('#nick').val();
         $.ajax({
-            type: 'POST',
-            data: {nick: nick, validar: validar},
-            url: 'Validar',
+            type: 'GET',
+            url: 'Registrarse',
+            data: {validar: validarNick, nick: nick},
             success: function (response) {
-                let valido = JSON.parse(response);
-                if (!valido) {
-                    campoNick.addClass("text-danger");
-                    nickValido.show();
+                let nickValido = JSON.parse(response);
+                if (!nickValido) {
+                    valido = false;
+                    $('#nickValido').show();
                 } else {
-                    campoNick.removeClass("text-danger");
-                    nickValido.hide();
+                    $('#nickValido').hide();
                 }
             }
         });
-    });
+        return valido;
+    }
+
+    function validarEmail(){
+        let valido = true;
+        let email = $('#email').val();
+        let validarEmail = "validarEmail";
+        
+        $.ajax({
+            type: 'GET',
+            url: 'Registrarse',
+            data: {validar: validarEmail, email: email},
+            success: function (response) {
+                let emailValido = JSON.parse(response);
+                if (!emailValido) {
+                    valido = false;
+                    $('#emailValido').show();
+                } else {
+                    $('#emailValido').hide();
+                }
+            }
+        });
+        return valido;
+    }
+
+    function validarRegistro() {
+        let valido = true;
+        let contrasenia = $('#contrasenia').val();
+        let contrasenia2 = $('#contrasenia2').val();
+
+        valido = validarNick();
+
+        valido = validarEmail();
+        
+        if (contrasenia2 !== contrasenia) {
+            valido = false;
+            $('#contraseniaValida').show();
+        } else {
+            $('#contraseniaValida').hide();
+        }
+
+        return valido;
+    }
+
 });

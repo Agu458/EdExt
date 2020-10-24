@@ -58,12 +58,14 @@ Presentacion\ConsultaEdicion.class
 Presentacion\ConsultaCurso$2.class
 Presentacion\Principal$15.class
 Presentacion\ConsultaUsuario$4.class
+Presentacion\AltaCategoria.class
 Presentacion\AltaCurso$3.class
 Presentacion\AltaPrograma.class
 Presentacion\ConsultaCurso$5.class
 Presentacion\Principal.class
 Presentacion\AgregarCursoPrograma$1.class
 Presentacion\Principal$9.class
+Presentacion\AltaCategoria$1.class
 Presentacion\Principal$13.class
 Presentacion\Principal$2.class
 Presentacion\AltaEdicion$1.class
@@ -79,3 +81,4 @@ Presentacion\ConsultaCurso$1.class
 Presentacion\AltaCurso$2.class
 Presentacion\AltaUsuario$2.class
 Presentacion\Principal$5.class
+Presentacion\Principal$16.class

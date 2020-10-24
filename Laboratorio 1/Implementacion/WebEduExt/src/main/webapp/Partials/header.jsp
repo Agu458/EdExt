@@ -15,6 +15,18 @@
 %>
 
 <!-- Modal -->
+<div class="modal fade" id="messageModal" tabindex="-1" aria-labelledby="messageModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body" id="message">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
@@ -53,7 +65,7 @@
                         </form>
                     </div>
                     <div class="tab-pane" id="Registration">
-                        <form role="form" class="form-horizontal" action="Registrarse" method="POST" >
+                        <form role="form" class="form-horizontal" action="Registrarse" method="POST" onsubmit="return validarRegistro();">
                             <div class="form-group">
                                 <div class="col-sm-12">
                                     <input class="form-control" id="nick" type="text" placeholder="Nick" name="nick" required>
@@ -73,16 +85,18 @@
                             <div class="form-group">
                                 <div class="col-sm-12">
                                     <input class="form-control" type="email" placeholder="Email" name="email" required>
+                                    <div class="alert alert-danger" id="emailValido" role="alert"> El email se encuentra en uso ... </div>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-12">
-                                    <input class="form-control" type="password" placeholder="Password" name="password" required>
+                                    <input class="form-control" type="password" id="contrasenia" placeholder="Password" name="password" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-12">
-                                    <input class="form-control" type="password" placeholder="Retype Password" name="password2" required>
+                                    <input class="form-control" type="password" id="contrasenia2" placeholder="Retype Password" name="password2" required>
+                                    <div class="alert alert-danger" id="contraseniaValida" role="alert"> Las contrasenias no coinciden ... </div>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -149,33 +163,33 @@
                         </div>
                     </li>
                     <li class="nav-item"><a class="nav-link" href="contact.html">Contacto</a></li>
-                    <%  if( du != null ) {
-                            if( du instanceof DataEstudiante ) { %>
-                                <li class="nav-item"><a class="nav-link" href="estudiante.jsp">Estudiante</a></li>
-                            <% } else { %>
-                                <li class="nav-item"><a class="nav-link" href="profesor.jsp">Profesor</a></li>
-                            <% }
-                    } %>
+                        <%  if (du != null) {
+                                if (du instanceof DataEstudiante) { %>
+                    <li class="nav-item"><a class="nav-link" href="estudiante.jsp">Estudiante</a></li>
+                        <% } else { %>
+                    <li class="nav-item"><a class="nav-link" href="profesor.jsp">Profesor</a></li>
+                        <% }
+                            } %>
                 </ul>
                 <%
-                    if( du != null ) {
+                    if (du != null) {
                 %>
-                        <div class="dropdown">
-                            <a class="btn btn-outline-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-user"></i> <%= du.getNick() %>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
-                                <a class="dropdown-item disabled" > <%= du.getEmail() %> </a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="perfil.jsp"><i class="fas fa-user"></i>   VerPerfil </a>
-                                <a class="dropdown-item" href="Logout"><i class="fas fa-sign-out-alt"></i>   Salir </a>
-                            </div>
-                        </div>
+                <div class="dropdown">
+                    <a class="btn btn-outline-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-user"></i> <%= du.getNick()%>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+                        <a class="dropdown-item disabled" > <%= du.getEmail()%> </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="perfil.jsp"><i class="fas fa-user"></i>   VerPerfil </a>
+                        <a class="dropdown-item" href="Logout"><i class="fas fa-sign-out-alt"></i>   Salir </a>
+                    </div>
+                </div>
                 <%  } else {%>
-                        <ul class="nav navbar-nav navbar-right">
-                            <li><a class="hover-btn-new log orange" href="#" data-toggle="modal" data-target="#login"><span>Ingresar</span></a></li>
-                        </ul> 
-                <%  }  %>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a class="hover-btn-new log orange" href="#" data-toggle="modal" data-target="#login"><span>Ingresar</span></a></li>
+                </ul> 
+                <%  }%>
             </div>
         </div>
     </nav>
