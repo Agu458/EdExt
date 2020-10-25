@@ -5,9 +5,13 @@
  */
 package Logica;
 
+import DataTypes.DataCurso;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -19,11 +23,10 @@ import javax.servlet.http.HttpServletResponse;
  * @author Agustin
  */
 public class Curso extends HttpServlet {
-    
+
     private Fabrica fab = Fabrica.getInstance();
     private ISistema is = fab.getISistema();
-    
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -37,29 +40,41 @@ public class Curso extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/plain");
         PrintWriter out = response.getWriter();
-        
+
         String action = request.getParameter("action");
-        
-        if(action != null){
-            if(action.equals("darCurso")){
-                
+
+        if (action != null) {
+            if (action.equals("darCategorias")) {
+                List categorias = is.listarCategorias();
+                String json = new Gson().toJson(categorias);
+                out.println(json);
             }
-            if(action.equals("cursosInsti")){
-                
+            if (action.equals("cursosInsti")) {
                 String instituto = request.getParameter("insti");
-                if(instituto != null){
+                if (instituto != null) {
                     List cursos = is.listarCursosInstituto(instituto);
                     String json = new Gson().toJson(cursos);
                     out.println(json);
                 }
             }
-            if(action.equals("validarNombreCurso")){
+        }
+
+        String validar = request.getParameter("validar");
+        if (validar != null) {
+            if (validar.equals("validarNombreCurso")) {
                 String nombre = request.getParameter("nombre");
                 if (nombre != null) {
-                    Boolean valido =  is.validarNombreCurso(nombre);
+                    Boolean valido = is.validarNombreCurso(nombre);
                     out.println(valido);
                 }
             }
+        }
+        
+        String consultarCurso = request.getParameter("consultarCurso");
+        if(consultarCurso != null){
+            DataCurso dc = is.darDatosCurso(consultarCurso);
+            request.setAttribute("curso", dc);
+            request.getRequestDispatcher("mostrarInfoCurso.jsp").forward(request, response);
         }
     }
 
@@ -74,7 +89,35 @@ public class Curso extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        response.setContentType("text/plain");
+        PrintWriter out = response.getWriter();
+
+        String accion = request.getParameter("accion");
+        if (accion.equals("altaCurso")) {
+            String nombre = request.getParameter("nombre");
+            String descripcion = request.getParameter("descripcion");
+            String instituto = request.getParameter("instituto");
+            int duracion = Integer.parseInt(request.getParameter("duracion"));
+            int horas = Integer.parseInt(request.getParameter("horas"));
+            int creditos = Integer.parseInt(request.getParameter("creditos"));
+            String url = request.getParameter("url");
+
+            String[] prevs = request.getParameterValues("previas");
+            List<String> previas = new ArrayList();
+            if (prevs != null) {
+                previas = Arrays.asList(prevs);
+            }
+
+            String[] cats = request.getParameterValues("categorias");
+            List<String> categorias = new ArrayList();
+            if (cats != null) {
+                categorias = Arrays.asList(cats);
+            }
+
+            DataCurso dc = new DataCurso(nombre, descripcion, duracion, horas, creditos, new Date(), url, previas, categorias);
+            is.altaCurso(dc, instituto);
+            response.sendRedirect("altacurso.jsp");
+        }
     }
 
     /**

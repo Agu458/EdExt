@@ -15,65 +15,57 @@
 
         <div class="container p-4">
             <div class="card">
-                <h2 class="card-header text-center text-white bg-dark">Alta de un Curso</h2>
+                <h2 class="card-header text-center text-white bg-warning">Alta de un Curso</h2>
                 <div class="card-header" >
-                    <form>
+                    <form action="Curso" method="POST" onsubmit="return validarAltaCurso();">
                         <div class="form-group">
                             <label for="instituto">Instituto</label>
-                            <select id="instituto" class="form-control" required="">
-                                <option selected>Choose...</option>
+                            <select id="instituto" class="form-control" required="" name="instituto">
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="nombre">Nombre</label>
-                            <input type="text" class="form-control" id="nombre" required="">
-                            <div class="alert alert-danger" id="nombreValido" role="alert"> El nombre se encuentra en uso ... </div>
+                            <input type="text" class="form-control" id="nombre" required="" name="nombre">
+                            <div class="alert alert-danger mt-4" id="nombreValido" role="alert"> El nombre del curso se encuentra en uso ... </div>
                         </div>
                         <div class="form-group">
                             <label for="descripcion">Descripción</label>
-                            <textarea class="form-control" id="descripcion" ></textarea>
+                            <textarea class="form-control" id="descripcion" name="descripcion" required=""></textarea>
                         </div>
                         <div class="row">
                             <div class="col-sm">
                                 <div class="form-group">
                                     <label for="duracion">Duracion</label>
-                                    <input type="number" class="form-control" id="duracion">
+                                    <input type="number" class="form-control" id="duracion" name="duracion" required="">
                                 </div>
                             </div>
                             <div class="col-sm">
                                 <div class="form-group">
                                     <label for="horas">Cantidad de Horas</label>
-                                    <input type="number" class="form-control" id="horas">
+                                    <input type="number" class="form-control" id="horas" name="horas" required="">
                                 </div>
                             </div>
                             <div class="col-sm">
                                 <div class="form-group">
                                     <label for="creditos">Cantidad de Creditos</label>
-                                    <input type="number" class="form-control" id="creditos" >
+                                    <input type="number" class="form-control" id="creditos" name="creditos" required="">
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="url">URL</label>
-                            <input type="url" class="form-control" id="url" >
+                            <input type="url" class="form-control" id="url" name="url" required="">
                         </div>
                         <div class="form-group">
                             <label for="previas">Previas</label>
-                            <select multiple class="form-control" id="previas" >
-
-                            </select>
+                            <select multiple class="custom-select" id="previas" name="previas"></select>
                         </div>
                         <div class="form-group">
                             <label for="categorias">Categorias</label>
-                            <select multiple class="form-control" id="categorias">
-
-                            </select>
+                            <select multiple class="form-control" id="categorias" name="categorias"></select>
                         </div>
                         <div class="form-group text-center">
-                            <button class="btn btn-primary" id="verificar">Verificar</button>
-                        </div>
-                        <div class="form-group text-center">
-                            <button type="submit" class="btn btn-primary" onclick="validarNombreCurso(); return false;" value="altaCurso" >Crear Curso</button>
+                            <button type="submit" name="accion" class="btn btn-primary" value="altaCurso">Crear Curso</button>
                         </div>
                     </form>
                 </div>

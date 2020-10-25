@@ -72,4 +72,8 @@ public interface ISistema {
     public void altaCategoria(String nombre);
     
     public List<DataCurso> listarCursosCategoria(String nombre);
+    
+    public List<String> listarCategorias();
+    
+    public List<String> listarProfesoresInstituto(String instituto);
 }

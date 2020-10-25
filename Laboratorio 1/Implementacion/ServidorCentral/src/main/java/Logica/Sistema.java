@@ -131,6 +131,7 @@ public class Sistema implements ISistema {
                     em.persist(insti);
                 }
                 Profesor p = new Profesor(insti, dp.getNick(), dp.getNombre(), dp.getApellido(), dp.getEmail(), dp.getFechaNacimiento(), dp.getContrasenia() ,dp.getimagen());
+                insti.agregarProfesor(p);
                 em.persist(p);
                 em.getTransaction().commit();
             } catch (Exception e) {
@@ -213,6 +214,7 @@ public class Sistema implements ISistema {
         return ests;
     }
     
+    @Override
     public List<String> listarProfesoresInstituto(String instituto){
         EntityManager em = emf.createEntityManager();
         List<String> p = new ArrayList();
@@ -240,7 +242,6 @@ public class Sistema implements ISistema {
             u.setNombre(du.getNombre());
             u.setApellido(du.getApellido());
             u.setFechaNacimiento(du.getFechaNacimiento());
-            u.setContrasenia(du.getContrasenia());
             u.setimagen(du.getimagen());
             em.persist(u);
             em.getTransaction().commit();
@@ -584,8 +585,8 @@ public class Sistema implements ISistema {
         List<DataCurso> cursos = new ArrayList();
         try {
             em.getTransaction().begin();
-            List Cursos = em.createQuery("SELECT c FROM Curso c").getResultList();
-            for(Object o : Cursos){
+            List curs = em.createQuery("SELECT c FROM Curso c").getResultList();
+            for(Object o : curs){
                 Curso c = (Curso) o;
                 if(c.caonteieneCategoria(nombre)){
                     cursos.add(c.darDatos());
@@ -596,5 +597,23 @@ public class Sistema implements ISistema {
             em.getTransaction().rollback();
         }
         return cursos;
+    }
+    
+    @Override
+    public List<String> listarCategorias(){
+        EntityManager em = emf.createEntityManager();
+        List<String> categorias = new ArrayList();
+        try {
+            em.getTransaction().begin();
+            List cats = em.createQuery("SELECT c FROM Categoria c").getResultList();
+            for(Object o : cats){
+                Categoria cat = (Categoria) o;
+                categorias.add(cat.getNombre());
+            }
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+        }
+        return categorias;
     }
 }

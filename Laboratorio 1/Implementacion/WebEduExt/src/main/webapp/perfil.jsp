@@ -54,30 +54,31 @@
                                 <hr class="border-light m-0">
 
                                 <div class="card-body">
-                                    <div class="form-group">
-                                        <label class="form-label">Nick</label>
-                                        <input id="nick" type="text" class="form-control mb-1" value="<%= du.getNick() %>" disabled="">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label">Nombre</label>
-                                        <input id="nombre" type="text" class="form-control" value="<%= du.getNombre() %>">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label">Apellido</label>
-                                        <input id="apellido" type="text" class="form-control" value="<%= du.getApellido() %>">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label">E-mail</label>
-                                        <input id="email" type="text" class="form-control mb-1" value="<%= du.getEmail() %>" disabled="">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label">Fecha de Nacimiento</label>
-                                        <input id="fecha" type="date" class="form-control" value="<%= du.getFechaNacimiento() %>">
-                                    </div>
-                                    <div class="text-right mt-3">
-                                        <button type="button" class="btn btn-primary">Guardar Cambios</button>&nbsp;
-                                        <button type="button" class="btn btn-default">Cancelar</button>
-                                    </div>
+                                    <form action="Usuario" method="POST">
+                                        <div class="form-group">
+                                            <label class="form-label">Nick</label>
+                                            <input id="nick" type="text" name="nick" class="form-control mb-1" value="<%= du.getNick() %>" readonly="">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label">Nombre</label>
+                                            <input id="nombre" type="text" name="nombre" class="form-control" value="<%= du.getNombre() %>">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label">Apellido</label>
+                                            <input id="apellido" type="text" name="apellido" class="form-control" value="<%= du.getApellido() %>">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label">E-mail</label>
+                                            <input id="email" type="text" name="email" class="form-control mb-1" value="<%= du.getEmail() %>" readonly="">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label">Fecha de Nacimiento</label>
+                                            <input id="fecha" type="date" class="form-control" name="fecha" value="<%= du.getFechaNacimiento() %>">
+                                        </div>
+                                        <div class="text-right mt-3">
+                                            <button type="submit" class="btn btn-primary">Guardar Cambios</button>&nbsp;
+                                        </div>
+                                    </form>
                                 </div>
 
                             </div>

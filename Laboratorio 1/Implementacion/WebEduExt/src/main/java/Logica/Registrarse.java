@@ -28,7 +28,6 @@ public class Registrarse extends HttpServlet {
     private Fabrica fab = Fabrica.getInstance();
     private ISistema is = fab.getISistema();
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -55,7 +54,7 @@ public class Registrarse extends HttpServlet {
             if (validar.equals("validarEmail")) {
                 String email = request.getParameter("email");
                 if (email != null) {
-                    Boolean valido =  is.validarNick(email);
+                    Boolean valido =  is.validarEmail(email);
                     out.println(valido);
                 }
             }
@@ -79,10 +78,10 @@ public class Registrarse extends HttpServlet {
         String email = request.getParameter("email");
         String contrasenia = request.getParameter("password");
         String contrasenia2 = request.getParameter("password2");
-        String fecha= request.getParameter("fecha");
+        String fecha = request.getParameter("fecha");
         String docente = request.getParameter("docente");
 
-        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
         Date fechaNacimiento = null;
         try {
             fechaNacimiento = formato.parse(fecha);

@@ -13,20 +13,20 @@
         <servlet-class>Logica.Logout</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>Validar</servlet-name>
-        <servlet-class>Logica.Validar</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>Perfil</servlet-name>
-        <servlet-class>Logica.Perfil</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>Curso</servlet-name>
         <servlet-class>Logica.Curso</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>Instituto</servlet-name>
         <servlet-class>Logica.Instituto</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Usuario</servlet-name>
+        <servlet-class>Logica.Usuario</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Edicion</servlet-name>
+        <servlet-class>Logica.Edicion</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
@@ -41,20 +41,20 @@
         <url-pattern>/Logout</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>Validar</servlet-name>
-        <url-pattern>/Validar</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>Perfil</servlet-name>
-        <url-pattern>/Perfil</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>Curso</servlet-name>
         <url-pattern>/Curso</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Instituto</servlet-name>
         <url-pattern>/Instituto</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Usuario</servlet-name>
+        <url-pattern>/Usuario</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Edicion</servlet-name>
+        <url-pattern>/Edicion</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

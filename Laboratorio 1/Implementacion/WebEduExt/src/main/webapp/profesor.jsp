@@ -35,7 +35,7 @@
                     <div class="col-lg-3 col-md-6 col-12">
                         <div class="our-team">
                             <div class="team-content">
-                                <a class="title" href="altaedicion.jsp">Alta Edición</a>
+                                <a class="title" href="altaEdicion.jsp">Alta Edición</a>
                                 <span class="post">Crear una edición para un curso</span>
                             </div>
                         </div>

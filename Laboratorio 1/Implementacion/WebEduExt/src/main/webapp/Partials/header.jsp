@@ -15,18 +15,6 @@
 %>
 
 <!-- Modal -->
-<div class="modal fade" id="messageModal" tabindex="-1" aria-labelledby="messageModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-body" id="message">
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-
 <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
@@ -53,6 +41,9 @@
                                 <div class="col-sm-12">
                                     <input class="form-control" id="password" placeholder="Password" type="password" name="password">
                                 </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="alert alert-danger" id="loginValido" role="alert"> Las credenciales son incorrectas ... </div>
                             </div>
                             <div class="row">
                                 <div class="col-sm-10">
@@ -145,24 +136,15 @@
             <div class="collapse navbar-collapse" id="navbars-host">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item"><a class="nav-link" href="index.jsp">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="about.html">Sobre Nosotros</a></li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Consultas </a>
                         <div class="dropdown-menu" aria-labelledby="dropdown-a">
-                            <a class="dropdown-item" href="consultarcurso.html">Consultar Curso </a>
-                            <a class="dropdown-item" href="consultaredicion.html">Consultar Edicion </a>
-                            <a class="dropdown-item" href="consultarprograma.html">Consultar Programa </a>
-                            <a class="dropdown-item" href="consultarusuario.html">Consultar Usuario </a>
+                            <a class="dropdown-item" href="consultarCurso.jsp">Consultar Curso </a>
+                            <a class="dropdown-item" href="consultarEdicion.jsp">Consultar Edicion </a>
+                            <a class="dropdown-item" href="consultarPrograma.jsp">Consultar Programa </a>
+                            <a class="dropdown-item" href="Usuario">Consultar Usuario </a>
                         </div>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Blog </a>
-                        <div class="dropdown-menu" aria-labelledby="dropdown-a">
-                            <a class="dropdown-item" href="blog.html">Blog </a>
-                            <a class="dropdown-item" href="blog-single.html">Blog single </a>
-                        </div>
-                    </li>
-                    <li class="nav-item"><a class="nav-link" href="contact.html">Contacto</a></li>
                         <%  if (du != null) {
                                 if (du instanceof DataEstudiante) { %>
                     <li class="nav-item"><a class="nav-link" href="estudiante.jsp">Estudiante</a></li>

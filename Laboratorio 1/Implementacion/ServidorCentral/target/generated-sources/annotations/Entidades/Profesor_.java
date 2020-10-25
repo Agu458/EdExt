@@ -8,7 +8,7 @@ import javax.persistence.metamodel.MapAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2020-10-24T14:32:54")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2020-10-25T16:43:33")
 @StaticMetamodel(Profesor.class)
 public class Profesor_ extends Usuario_ {
 
