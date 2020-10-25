@@ -37,15 +37,15 @@ public class Instituto extends HttpServlet {
         response.setContentType("text/plain");
         PrintWriter out = response.getWriter();
 
-        String action = request.getParameter("action");
-        if (action != null) {
-            if (action.equals("listarInstitutos")) {
+        String accion = request.getParameter("accion");
+        if (accion != null) {
+            if (accion.equals("listarInstitutos")) {
                 List institutos = is.listarInstitutos();
                 String json = new Gson().toJson(institutos);
 
                 out.println(json);
             }
-            if(action.equals("listarProfesoresInstituto")){
+            if(accion.equals("listarProfesoresInstituto")){
                 String instituto = request.getParameter("instituto");
                 List profesores = is.listarProfesoresInstituto(instituto);
                 String json = new Gson().toJson(profesores);

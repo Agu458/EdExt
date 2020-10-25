@@ -92,13 +92,14 @@
             }
 
             $(document).ready(function () {
-
+                let accion = "listarInstitutos";
                 var selinsti = $('#instituto');
                 selinsti.empty();
                 selinsti.append(`<option value="vacio" selected> Seleccione Instituto... </option>`);
                 $.ajax({
                     type: 'GET',
                     url: 'Instituto',
+                    data: {accion: accion},
                     success: function (response) {
                         let institutos = JSON.parse(response);
                         institutos.forEach(instituto => {
@@ -107,7 +108,8 @@
                         });
                     }
                 });
-                
+
+                var selprofesores = $('#profesores');
                 var selcurso = $('#curso');
                 selinsti.change(function () {
                     selcurso.empty();
@@ -128,7 +130,23 @@
                             }
                         }
                     });
-                    
+
+                    selprofesores.empty();
+                    let accion = "listarProfesoresInstituto";
+                    $.ajax({
+                        type: 'GET',
+                        url: 'Instituto',
+                        data: { accion:accion , insti:insti},
+                        success: function (response) {
+                            let profesores = JSON.parse(response);
+                            if (profesores !== null) {
+                                profesores.forEach(profesor => {
+                                    let template = '<option value="' + profesor + '">' + profesor + '</option>';
+                                    selprofesores.append(template);
+                                });
+                            }
+                        }
+                    });
                 });
             });
         </script>

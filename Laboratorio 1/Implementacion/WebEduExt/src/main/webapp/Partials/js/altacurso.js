@@ -8,11 +8,11 @@ $('#nombreValido').hide();
 
 function validarAltaCurso() {
     let nombre = $('#nombre').val();
-    let validarNombre = "validarNombreEdicion";
+    let validar = "validarNombreCurso";
     $.ajax({
         type: 'GET',
         url: 'Curso',
-        data: {validar: validarNombre, nombre: nombre},
+        data: { validar:validar , nombre:nombre },
         success: function (response) {
             let nombreValido = JSON.parse(response);
             if (!nombreValido) {
@@ -23,24 +23,22 @@ function validarAltaCurso() {
         }
     });
     if ($('#nombreValido').is(":visible")) {
-        return true;
-    } else {
         return false;
+    } else {
+        return true;
     }
 }
 
 $(document).ready(function () {
 
     var selinsti = $('#instituto');
-    selinsti.hide();
     selinsti.empty();
     selinsti.append(`<option value="vacio" selected> Seleccione Instituto... </option>`);
-    selinsti.toggle();
-    let action = "listarInstitutos";
+    let accion = "listarInstitutos";
     $.ajax({
         type: 'GET',
         url: 'Instituto',
-        data: {action:action},
+        data: {accion:accion},
         success: function (response) {
             let institutos = JSON.parse(response);
             institutos.forEach(instituto => {

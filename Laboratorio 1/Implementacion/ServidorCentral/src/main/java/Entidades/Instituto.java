@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.MapKey;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Instituto implements Serializable {
@@ -21,7 +22,7 @@ public class Instituto implements Serializable {
     @OneToMany
     @MapKey(name = "nombre")
     private Map<String,Curso> cursos;
-    @ManyToMany(mappedBy = "institutos")
+    @OneToMany(mappedBy = "instituto")
     private List<Profesor> profesores;
 
     public Instituto() {

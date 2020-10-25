@@ -83,11 +83,11 @@ $(document).ready(function () {
         selinsti.empty();
         selinsti.append(`<option value="vacio" selected> Seleccione Instituto... </option>`);
         selinsti.toggle();
-        let action = "listarInstitutos";
+        let accion = "listarInstitutos";
         $.ajax({
             type: 'GET',
             url: 'Instituto',
-            data: {action:action},
+            data: {accion:accion},
             success: function (response) {
                 let institutos = JSON.parse(response);
                 institutos.forEach(instituto => {

@@ -74,13 +74,13 @@
             });
 
             $(document).ready(function () {
-                let action = "listarInstitutos";
+                let accion = "listarInstitutos";
                 selinstituto.empty();
                 selinstituto.append(`<option value="vacio" selected> Seleccione Instituto... </option>`);
                 $.ajax({
                     type: 'GET',
                     url: 'Instituto',
-                    data: {action:action},
+                    data: {accion:accion},
                     success: function (response) {
                         let institutos = JSON.parse(response);
                         institutos.forEach(instituto => {

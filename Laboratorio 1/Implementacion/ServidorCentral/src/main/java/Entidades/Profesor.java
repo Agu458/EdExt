@@ -9,13 +9,12 @@ import javax.persistence.*;
 @Entity
 public class Profesor extends Usuario {
 
-    @OneToOne
+
+    @ManyToOne
     private Instituto instituto;
     @ManyToMany(mappedBy = "profesores")
     @MapKey(name = "nombreEdicion")
     private Map<String, Edicion> ediciones;
-    @ManyToMany
-    private List<Instituto> institutos;
 
     public Profesor() {
     }
