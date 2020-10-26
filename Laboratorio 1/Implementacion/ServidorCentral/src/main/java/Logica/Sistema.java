@@ -580,22 +580,24 @@ public class Sistema implements ISistema {
     }
     
     @Override
-    public List<DataCurso> listarCursosCategoria(String nombre){
+    public List<String> listarCursosCategoria(String nombre){
         EntityManager em = emf.createEntityManager();
-        List<DataCurso> cursos = new ArrayList();
+        List<String> cursos = new ArrayList();
         try {
             em.getTransaction().begin();
-            List curs = em.createQuery("SELECT c FROM Curso c").getResultList();
-            for(Object o : curs){
+            String q = "SELECT c FROM Curso c";
+            List cur = em.createQuery(q).getResultList();
+            for (Object o : cur) {
                 Curso c = (Curso) o;
-                if(c.caonteieneCategoria(nombre)){
-                    cursos.add(c.darDatos());
+                if(c.conteieneCategoria(nombre)){
+                    cursos.add(c.getNombre());
                 }
             }
             em.getTransaction().commit();
         } catch (Exception e) {
             em.getTransaction().rollback();
         }
+        em.close();
         return cursos;
     }
     

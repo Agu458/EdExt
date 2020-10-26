@@ -17,7 +17,7 @@
             <div class="card">
                 <h2 class="card-header text-center text-white bg-warning">Alta de una Edicion</h2>
                 <div class="card-header" >
-                    <form action="Edicion" method="POST" onsubmit="">
+                    <form action="Edicion" method="POST">
                         <div class="form-group">
                             <label for="instituto">Instituto</label>
                             <select id="instituto" class="form-control" required="" name="instituto">
@@ -55,7 +55,7 @@
                         </div>
                         <div class="form-group">
                             <label for="profesores">Profesores</label>
-                            <select multiple class="form-control" id="profesores" name="profesores"></select>
+                            <select multiple class="form-control" id="profesores" name="profesores" required=""></select>
                         </div>
                         <div class="form-group text-center">
                             <button type="submit" name="accion" class="btn btn-primary" value="altaEdicion">Crear Edicion</button>
@@ -67,29 +67,6 @@
 
         <script>
             $('#nombreValido').hide();
-            function validarAltaEdicion() {
-                let curso = $('#curso').val();
-                let nombre = $('#nombre').val();
-                let action = "validarNombreEdicion";
-                $.ajax({
-                    type: 'GET',
-                    url: 'Edicion',
-                    data: {action: action, nombre: nombre, curso: curso},
-                    success: function (response) {
-                        let valido = JSON.parse(response);
-                        if (!valido) {
-                            $('#nombreValido').show();
-                        } else {
-                            $('#nombreValido').hide();
-                        }
-                    }
-                });
-                if ($('#nombreValido').is("visible")) {
-                    return true;
-                } else {
-                    return false;
-                }
-            }
 
             $(document).ready(function () {
                 let accion = "listarInstitutos";
@@ -136,7 +113,7 @@
                     $.ajax({
                         type: 'GET',
                         url: 'Instituto',
-                        data: { accion:accion , insti:insti},
+                        data: { accion:accion , instituto:insti},
                         success: function (response) {
                             let profesores = JSON.parse(response);
                             if (profesores !== null) {

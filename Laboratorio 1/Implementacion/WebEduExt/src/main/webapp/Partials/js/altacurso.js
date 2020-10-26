@@ -6,29 +6,6 @@
 
 $('#nombreValido').hide();
 
-function validarAltaCurso() {
-    let nombre = $('#nombre').val();
-    let validar = "validarNombreCurso";
-    $.ajax({
-        type: 'GET',
-        url: 'Curso',
-        data: { validar:validar , nombre:nombre },
-        success: function (response) {
-            let nombreValido = JSON.parse(response);
-            if (!nombreValido) {
-                $('#nombreValido').show();
-            } else {
-                $('#nombreValido').hide();
-            }
-        }
-    });
-    if ($('#nombreValido').is(":visible")) {
-        return false;
-    } else {
-        return true;
-    }
-}
-
 $(document).ready(function () {
 
     var selinsti = $('#instituto');
@@ -50,11 +27,11 @@ $(document).ready(function () {
 
     var categorias = $('#categorias');
     categorias.empty();
-    let action = "darCategorias";
+    accion = "darCategorias";
     $.ajax({
         type: 'GET',
         url: 'Curso',
-        data: {action: action},
+        data: {accion: accion},
         success: function (response) {
             let cats = JSON.parse(response);
             if (cats !== null) {
@@ -70,11 +47,11 @@ $(document).ready(function () {
     selinsti.change(function () {
         previas.empty();
         let insti = selinsti.val();
-        let action = "cursosInsti";
+        accion = "cursosInsti";
         $.ajax({
             type: 'GET',
             url: 'Curso',
-            data: {action: action, insti: insti},
+            data: {accion: accion, insti: insti},
             success: function (response) {
                 let cursos = JSON.parse(response);
                 if (cursos !== null) {
@@ -82,31 +59,6 @@ $(document).ready(function () {
                         let template = '<option value="' + curso + '">' + curso + '</option>';
                         previas.append(template);
                     });
-                }
-            }
-        });
-    });
-
-    $('#verificar').click(function () {
-        var nombre = $('#nombre');
-        let action = "validarNombreCurso";
-        var campoNombre = $('#nombre');
-        var nombreValido = $('#nombreValido');
-        $.ajax({
-            type: 'GET',
-            url: 'Curso',
-            data: {action: action, nombre: nombre},
-            success: function (response) {
-                let valido = JSON.parse(response);
-                if (!valido) {
-                    console.log(valido);
-                    campoNombre.addClass("text-danger");
-                    nombreValido.show();
-                    return false;
-                } else {
-                    campoNombre.removeClass("text-danger");
-                    nombreValido.hide();
-                    return true;
                 }
             }
         });

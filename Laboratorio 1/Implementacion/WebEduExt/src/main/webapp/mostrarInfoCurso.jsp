@@ -4,6 +4,7 @@
     Author     : Agustin
 --%>
 
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     DataCurso dc = (DataCurso) request.getAttribute("curso");
@@ -24,7 +25,7 @@
             <div class="card p-4">
                 <h2 class="text-center"> Datos del Curso </h2>
                 <div class="form-group">
-                    <label for="nombre">Instituto</label>
+                    <label for="instituto">Instituto</label>
                     <input type="text" class="form-control" id="instituto" name="instituto" readonly="" value="<%= dc.getInstituto()%>">
                 </div>
                 <div class="form-group">
@@ -52,6 +53,16 @@
                         <div class="form-group">
                             <label for="creditos">Cantidad de Creditos</label>
                             <input type="number" class="form-control" id="creditos" name="creditos" readonly="" value="<%= dc.getCreditos()%>">
+                        </div>
+                    </div>
+                        <div class="col-sm">
+                        <div class="form-group">
+                            <label for="fechareg">Fecha de Publicación</label>
+                            <%
+                                SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+                                String fechareg = formato.format(dc.getFechaRegistro());
+                            %>
+                            <input class="form-control" type="date" name="fechareg" readonly="" value="<%= fechareg%>">
                         </div>
                     </div>
                 </div>
@@ -91,6 +102,39 @@
                                 for (String s : dc.getCategorias()) {
                             %>
                             <label class="list-group-item"> <%= s%></label>
+                            <%
+                                }
+                            %>
+                        </div>
+                    </form>
+                </div>
+                <div class="form-group">
+                    <label for="edicionActual">Edicion Actual</label>
+                    <%
+                        if (dc.getEdicionAgtual() != null) {
+                    %>
+                    <input type="text" class="form-control" id="edicionActual" name="edicionActual" readonly="" value="<%= dc.getEdicionAgtual().getNombre()%>">
+                    <%
+                        } else {
+                    %>
+                    <input type="text" class="form-control" id="edicionActual" name="edicionActual" readonly="" value="No tiene ...">
+                    <%
+                        }
+                    %>
+                </div>
+                <div class="form-group">
+                    <label for="ediciones">Ediciones</label>
+                    <form action="Edicion" method="GET">
+                        <div class="list-group" id="ediciones">
+                            <%
+                                if (dc.getEdiciones().isEmpty()) {
+                            %>
+                            <label class="list-group-item"> No tiene ...</label>
+                            <%
+                                }
+                                for (DataEdicion de : dc.getEdiciones()) {
+                            %>
+                            <button type="submit" class="list-group-item list-group-item-action" name="consultarEdicion" value="<%= de.getCurso() %>,<%= de.getNombre()%>" ><%= de.getNombre() %></button>
                             <%
                                 }
                             %>

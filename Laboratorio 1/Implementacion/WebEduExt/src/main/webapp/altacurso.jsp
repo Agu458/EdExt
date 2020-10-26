@@ -17,7 +17,7 @@
             <div class="card">
                 <h2 class="card-header text-center text-white bg-warning">Alta de un Curso</h2>
                 <div class="card-header" >
-                    <form action="Curso" method="POST" onsubmit="return validarAltaCurso();">
+                    <form action="Curso" method="POST">
                         <div class="form-group">
                             <label for="instituto">Instituto</label>
                             <select id="instituto" class="form-control" required="" name="instituto">

@@ -41,21 +41,34 @@ public class Curso extends HttpServlet {
         response.setContentType("text/plain");
         PrintWriter out = response.getWriter();
 
-        String action = request.getParameter("action");
+        String accion = request.getParameter("accion");
 
-        if (action != null) {
-            if (action.equals("darCategorias")) {
+        if (accion != null) {
+            if (accion.equals("darCategorias")) {
                 List categorias = is.listarCategorias();
                 String json = new Gson().toJson(categorias);
                 out.println(json);
             }
-            if (action.equals("cursosInsti")) {
+            if (accion.equals("cursosInsti")) {
                 String instituto = request.getParameter("insti");
                 if (instituto != null) {
                     List cursos = is.listarCursosInstituto(instituto);
                     String json = new Gson().toJson(cursos);
                     out.println(json);
                 }
+            }
+            if(accion.equals("cursosCategoria")){
+                String categoria = request.getParameter("categoria");
+                if(categoria != null){
+                    List cursos = is.listarCursosCategoria(categoria);
+                    String json = new Gson().toJson(cursos);
+                    out.println(json);
+                }
+            }
+            if(accion.equals("listarCursos")){
+                List cursos = is.listarCursos();
+                String json = new Gson().toJson(cursos);
+                out.println(json);
             }
         }
 

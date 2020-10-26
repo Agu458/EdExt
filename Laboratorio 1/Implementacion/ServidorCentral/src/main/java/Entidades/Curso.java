@@ -144,7 +144,7 @@ public class Curso implements Serializable {
     }
 
     public DataEdicion darActual() {
-        if(edicionActual != null){
+        if (edicionActual != null) {
             return edicionActual.darDatos();
         }
         return null;
@@ -157,16 +157,16 @@ public class Curso implements Serializable {
     public void setProgramas(List<ProgramaFormacion> programas) {
         this.programas = programas;
     }
-    
-    public List<String> darEdiciones(){
+
+    public List<String> darEdiciones() {
         List<String> eds = new ArrayList();
-        for(Edicion e : ediciones.values()){
+        for (Edicion e : ediciones.values()) {
             eds.add(e.getNombreEdicion());
         }
         return eds;
     }
-    
-    public DataEdicion darDatosEdicion(String nombreEdicion){
+
+    public DataEdicion darDatosEdicion(String nombreEdicion) {
         Edicion e = ediciones.get(nombreEdicion);
         return e.darDatos();
     }
@@ -196,31 +196,31 @@ public class Curso implements Serializable {
         for (Curso c : previas) {
             prevs.add(c.getNombre());
         }
-        
+
         DataEdicion actual = null;
-        if(edicionActual != null){
+        if (edicionActual != null) {
             actual = edicionActual.darDatos();
         }
-        
+
         String insti = null;
-        if(instituto != null){
+        if (instituto != null) {
             insti = instituto.getNombre();
         }
-        
+
         List<String> cats = new ArrayList();
-        for(Categoria cat : categorias){
+        for (Categoria cat : categorias) {
             cats.add(cat.getNombre());
         }
-        
+
         return new DataCurso(nombre, descripcion, duracion, horas, creditos, fechaRegistro, URL, prevs, edis, actual, progs, insti, cats);
     }
-    
-    public boolean validarNombreEdicion(String nombre){
+
+    public boolean validarNombreEdicion(String nombre) {
         Edicion e = ediciones.get(nombre);
         return (e == null);
     }
-    
-    public void agregarPrograma(ProgramaFormacion pf){
+
+    public void agregarPrograma(ProgramaFormacion pf) {
         programas.add(pf);
     }
 
@@ -231,14 +231,16 @@ public class Curso implements Serializable {
     public void setCategorias(List<Categoria> categorias) {
         this.categorias = categorias;
     }
-    
-    public boolean caonteieneCategoria(String cat){
+
+    public boolean conteieneCategoria(String cat) {
         boolean encontre = false;
-        Iterator it = categorias.iterator();
-        while(it.hasNext() && !encontre){
-            Categoria c = (Categoria) it.next();
-            if(c.getNombre() == cat){
-                encontre = true;
+        for (Categoria c : categorias) {
+            if (encontre) {
+                break;
+            } else {
+                if (c.getNombre().equals(cat)) {
+                    encontre = true;
+                }
             }
         }
         return encontre;

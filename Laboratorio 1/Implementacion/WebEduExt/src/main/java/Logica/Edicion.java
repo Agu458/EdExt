@@ -43,7 +43,7 @@ public class Edicion extends HttpServlet {
 
         String action = request.getParameter("action");
         if (action != null) {
-            if (action.equals("validarNombreCurso")) {
+            if (action.equals("validarNombreEdicion")) {
                 String nombre = request.getParameter("nombre");
                 if (nombre != null) {
                     String curso = request.getParameter("curso");
@@ -52,6 +52,24 @@ public class Edicion extends HttpServlet {
                         out.println(valido);
                     }
                 }
+            }
+        }
+        
+        String consultarEdicion = request.getParameter("consultarEdicion");
+        if(consultarEdicion != null){
+            String nombre = null;
+            String curso = null;
+            String[] datos = null;
+            try {
+                datos = consultarEdicion.split(",");
+                curso = datos[0];
+                nombre = datos[1];
+            } catch (Exception e) {
+            }
+            if(nombre != null && curso != null){
+                DataEdicion de = is.darDatosEdicion(curso, nombre);
+                request.setAttribute("datosEdicion", de);
+                request.getRequestDispatcher("mostrarInfoEdicion.jsp").forward(request, response);
             }
         }
     }
@@ -70,30 +88,39 @@ public class Edicion extends HttpServlet {
         String accion = request.getParameter("accion");
         if (accion != null && accion.equals("altaEdicion")) {
             String instituto = request.getParameter("instituto");
-            String curso = request.getParameter("curso");
-            String nombre = request.getParameter("nombre");
-            int cupos = Integer.parseInt(request.getParameter("cupos"));
-            
-            String fecha1 = request.getParameter("fechaini");
-            String fecha2 = request.getParameter("fechafin");
-            SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
-            Date fechaIni = null;
-            Date fechaFin = null;
-            try {
-                fechaIni = formato.parse(fecha1);
-                fechaFin = formato.parse(fecha2);
-            } catch (Exception e) {
+            if (instituto != null) {
+                String curso = request.getParameter("curso");
+                if (curso != null) {
+                    String nombre = request.getParameter("nombre");
+                    if (nombre != null && is.validarNombreEdicion(curso, nombre)) {
+                        String cupo = request.getParameter("cupos");
+                        int cupos = 0;
+                        if (!cupo.equals("")) {
+                            cupos = Integer.parseInt(cupo);
+                        }
+
+                        String fecha1 = request.getParameter("fechaini");
+                        String fecha2 = request.getParameter("fechafin");
+                        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+                        Date fechaIni = null;
+                        Date fechaFin = null;
+                        try {
+                            fechaIni = formato.parse(fecha1);
+                            fechaFin = formato.parse(fecha2);
+                        } catch (Exception e) {
+                        }
+
+                        String[] profs = request.getParameterValues("profesores");
+                        List<String> profesores = new ArrayList();
+                        if (profs != null) {
+                            profesores = Arrays.asList(profs);
+                        }
+
+                        DataEdicion de = new DataEdicion(nombre, fechaIni, fechaFin, cupos, new Date(), profesores);
+                        is.altaEdicionCurso(de, curso);
+                    }
+                }
             }
-            
-            String[] profs = request.getParameterValues("profesores");
-            List<String> profesores = new ArrayList();
-            if (profs != null) {
-                profesores = Arrays.asList(profs);
-            }
-            
-            DataEdicion de = new DataEdicion(nombre, fechaIni, fechaFin, cupos, new Date(), profesores);
-            is.altaEdicionCurso(de, curso);
-            
             response.sendRedirect("altaEdicion.jsp");
         }
     }
