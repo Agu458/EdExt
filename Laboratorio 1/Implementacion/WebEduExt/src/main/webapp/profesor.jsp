@@ -44,7 +44,7 @@
                     <div class="col-lg-3 col-md-6 col-12">
                         <div class="our-team">
                             <div class="team-content">
-                                <a class="title" href="altaprograma.jsp">Alta Programa</a>
+                                <a class="title" href="altaPrograma.jsp">Alta Programa</a>
                                 <span class="post" href="altaedicion.html">Crear un programa de formación</span>
                             </div>
                         </div>

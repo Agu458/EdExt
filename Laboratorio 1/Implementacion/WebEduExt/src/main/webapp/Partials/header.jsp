@@ -128,6 +128,10 @@
             <a class="navbar-brand" href="index.jsp">
                 <img src="http://localhost:8080/WebEduExt/Partials/images/logo2.png" height="60px" alt="" />
             </a>
+            <form class="form-inline" action="buscar.jsp" method="GET">
+                <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search" name="Busqueda">
+                <button class="btn btn-outline-light" type="submit">Buscar</button>
+            </form>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-host" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -140,11 +144,11 @@
                         <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Consultas </a>
                         <div class="dropdown-menu" aria-labelledby="dropdown-a">
                             <a class="dropdown-item" href="consultarCurso.jsp">Consultar Curso </a>
-                            <a class="dropdown-item" href="consultarPrograma.jsp">Consultar Programa </a>
+                            <a class="dropdown-item" href="ProgramaFormacion?accion=listarProgramas">Consultar Programa </a>
                             <a class="dropdown-item" href="Usuario">Consultar Usuario </a>
                         </div>
                     </li>
-                        <%  if (du != null) {
+                    <%  if (du != null) {
                                 if (du instanceof DataEstudiante) { %>
                     <li class="nav-item"><a class="nav-link" href="estudiante.jsp">Estudiante</a></li>
                         <% } else { %>
