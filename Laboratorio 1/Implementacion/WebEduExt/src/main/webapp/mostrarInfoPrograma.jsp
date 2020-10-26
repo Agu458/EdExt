@@ -24,6 +24,14 @@
                     <label for="nombre">Nombre</label>
                     <input type="text" class="form-control" id="nombre" name="nombre" readonly="" value="<%= dpf.getNombre() %>">
                 </div>
+                <div class="form-group">
+                    <label for="nombre">Nombre</label>
+                    <text type="text" class="form-control" id="nombre" name="nombre" readonly="" value="<%= dpf.getNombre() %>">
+                </div>
+                <div class="form-group">
+                    <label for="descripcion">Descripción</label>
+                    <textarea class="form-control" id="descripcion" name="descripcion" readonly=""><%= dpf.getDescripcion()%></textarea>
+                </div>
                 <div class="row">
                     <div class="col-sm">
                         <div class="form-group">

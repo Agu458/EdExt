@@ -41,7 +41,18 @@
                             <div class="tab-pane fade active show" id="account-general">
 
                                 <div class="card-body media align-items-center">
-                                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" class="d-block ui-w-80">
+                                    <%
+                                        String imagen = du.getimagen();
+                                        if(imagen != null){
+                                    %>
+                                    <img src="<%= imagen %>" alt="" class="d-block ui-w-80">
+                                    <%
+                                        } else {
+                                    %>
+                                    <img src="https://www.bootdey.com/img/Content/avatar/avatar1.png" alt="" class="d-block ui-w-80">
+                                    <%
+}
+                                    %>
                                     <div class="media-body ml-4">
                                         <label class="btn btn-outline-primary">
                                             Editar Foto
