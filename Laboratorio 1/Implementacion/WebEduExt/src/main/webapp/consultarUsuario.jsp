@@ -23,15 +23,17 @@
         </div>
         <div class="container p-4">
             <div class="card p-4">
-                <div class="list-group">
-                    <%
-                        for(String s : usuarios){
-                    %>
-                            <a href="#" class="list-group-item list-group-item-action"><%= s %></a>
-                    <%
-                        }
-                    %>
-                </div>
+                    <form action="Usuario" method="GET">
+                        <div class="list-group">
+                            <%
+                                for (String s : usuarios) {
+                            %>
+                            <button type="submit" class="list-group-item list-group-item-action" name="verDatosUsuario" value="<%= s%>" ><%= s%></button>
+                            <%
+                                }
+                            %>
+                        </div>
+                    </form>
             </div>
         </div>
 

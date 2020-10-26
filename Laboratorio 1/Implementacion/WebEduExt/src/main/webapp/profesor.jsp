@@ -53,7 +53,7 @@
                     <div class="col-lg-3 col-md-6 col-12">
                         <div class="our-team">
                             <div class="team-content">
-                                <a class="title" href="cursoprograma.jsp">Curso-Programa</a>
+                                <a class="title" href="agregarCursoPrograma.jsp">Curso-Programa</a>
                                 <span class="post">Agregar curso a un programa</span>
                             </div>
                         </div>

@@ -40,28 +40,33 @@ public class Usuario extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/plain");
         PrintWriter out = response.getWriter();
-        
+
         String accion = request.getParameter("accion");
-        if(accion != null){
-            if(accion.equals("listarUsuarios")){
+        if (accion != null) {
+            if (accion.equals("listarUsuarios")) {
                 List<String> usuarios = is.listarUsuarios();
                 request.setAttribute("usuarios", usuarios);
                 request.getRequestDispatcher("consultarUsuario.jsp").forward(request, response);
             }
-            if(accion.equals("verPerfil")){
+            if (accion.equals("verPerfil")) {
                 HttpSession session = request.getSession();
                 String email = (String) session.getAttribute("email");
-                if(email != null){
+                if (email != null) {
                     DataUsuario du = is.darDatosUsuario(email);
                     session.setAttribute("usuario", du);
                     request.getRequestDispatcher("perfil.jsp").forward(request, response);
-                }
-                else{
+                } else {
                     response.sendRedirect("index.jsp");
                 }
             }
         }
-        
+
+        String verDatosUsuario = request.getParameter("verDatosUsuario");
+        if (verDatosUsuario != null) {
+            DataUsuario du = is.darDatosUsuario(verDatosUsuario);
+            request.setAttribute("verDatosUsuario", du);
+            request.getRequestDispatcher("mostrarInfoUsuario.jsp").forward(request, response);
+        }
     }
 
     /**
@@ -88,9 +93,9 @@ public class Usuario extends HttpServlet {
         }
         DataUsuario du = new DataUsuario(nick, nombre, apellido, email, fechaNacimiento, "", null);
         is.modificarUsuario(du);
-        
+
         du = is.darDatosUsuario(email);
-        if(du != null){
+        if (du != null) {
             HttpSession session = request.getSession();
             session.setAttribute("usuario", du);
         }

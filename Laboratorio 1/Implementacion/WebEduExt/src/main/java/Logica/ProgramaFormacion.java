@@ -6,6 +6,7 @@
 package Logica;
 
 import DataTypes.DataProgramaFormacion;
+import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
@@ -45,6 +46,11 @@ public class ProgramaFormacion extends HttpServlet {
                 List programas = is.listarProgramas();
                 request.setAttribute("programas", programas);
                 request.getRequestDispatcher("consultarPrograma.jsp").forward(request, response);
+            }
+            if(accion.equals("darProgramas")){
+                List programas = is.listarProgramas();
+                String json = new Gson().toJson(programas);
+                out.println(json);
             }
         }
         
@@ -90,6 +96,14 @@ public class ProgramaFormacion extends HttpServlet {
                     is.altaProgramaFormacion(dpf);
                     
                     response.sendRedirect("altaPrograma.jsp");
+                }
+            }
+            if(accion.equals("agregarCursoPrograma")){
+                String programa = request.getParameter("programa");
+                String curso = request.getParameter("curso");
+                if(!programa.equals("vacio") && programa != null && !curso.equals("vacio") && curso != null){
+                    is.agregarCursoAPrograma(programa, curso);
+                    response.sendRedirect("agregarCursoPrograma.jsp");
                 }
             }
         }

@@ -145,7 +145,7 @@
                         <div class="dropdown-menu" aria-labelledby="dropdown-a">
                             <a class="dropdown-item" href="consultarCurso.jsp">Consultar Curso </a>
                             <a class="dropdown-item" href="ProgramaFormacion?accion=listarProgramas">Consultar Programa </a>
-                            <a class="dropdown-item" href="Usuario">Consultar Usuario </a>
+                            <a class="dropdown-item" href="Usuario?accion=listarUsuarios">Consultar Usuario </a>
                         </div>
                     </li>
                     <%  if (du != null) {
