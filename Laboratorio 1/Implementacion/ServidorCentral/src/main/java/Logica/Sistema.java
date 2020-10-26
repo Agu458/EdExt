@@ -10,6 +10,7 @@ import Entidades.Categoria;
 import Entidades.Curso;
 import Entidades.Edicion;
 import Entidades.Estudiante;
+import Entidades.InscripcionEdicion;
 import Entidades.Instituto;
 import Entidades.Profesor;
 import Entidades.ProgramaFormacion;
@@ -18,7 +19,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.*;
-import javax.swing.JOptionPane;
 
 public class Sistema implements ISistema {
 
@@ -417,11 +417,13 @@ public class Sistema implements ISistema {
         EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
+            InscripcionEdicion ie = null;
             Estudiante e = em.find(Estudiante.class, estudiante);
             if (e != null) {
                 Curso c = em.find(Curso.class, curso);
                 if (c != null) {
-                    e.inscribirEdicion(c.getEdicionActual(), fecha, em);
+                    ie = e.inscribirEdicion(c.getEdicionActual(), fecha, em);
+                    c.getEdicionActual().inscribirEstudiante(ie);
                 }
             }
             em.getTransaction().commit();

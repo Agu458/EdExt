@@ -12,6 +12,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.MapKey;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 
@@ -33,6 +34,9 @@ public class Edicion implements Serializable {
     private Map<String, Profesor> profesores;
     @OneToOne
     private Curso curso;
+    @OneToMany
+    @MapKey(name = "id")
+    private Map<String, InscripcionEdicion> inscriptos;
 
     public Edicion() {
     }
@@ -119,5 +123,13 @@ public class Edicion implements Serializable {
     public void setCurso(Curso curso) {
         this.curso = curso;
     }
-
+    
+    public void inscribirEstudiante(InscripcionEdicion inscripcion){
+        if(inscripcion != null){
+            Usuario usu = inscripcion.getEstudiante();
+            if(usu != null){
+                inscriptos.put(usu.getEmail(), inscripcion);
+            }
+        }
+    }
 }

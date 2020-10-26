@@ -4,6 +4,7 @@
     Author     : Agustin
 --%>
 
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,8 +32,8 @@
                         <div class="list-group list-group-flush account-settings-links">
                             <a class="list-group-item list-group-item-action active" data-toggle="list" href="#account-general">General</a>
                             <a class="list-group-item list-group-item-action" data-toggle="list" href="#account-change-password">Cambiar Contraseña</a>
-                            <a class="list-group-item list-group-item-action" data-toggle="list" href="#account-social-links">Cursos</a>
-                            <a class="list-group-item list-group-item-action" data-toggle="list" href="#account-connections">Programas</a>
+                            <a class="list-group-item list-group-item-action" data-toggle="list" href="#account-editions">Ediciones</a>
+                            <a class="list-group-item list-group-item-action" data-toggle="list" href="#account-programs">Programas</a>
                         </div>
                     </div>
                     <div class="col-md-9">
@@ -57,23 +58,27 @@
                                     <form action="Usuario" method="POST">
                                         <div class="form-group">
                                             <label class="form-label">Nick</label>
-                                            <input id="nick" type="text" name="nick" class="form-control mb-1" value="<%= du.getNick() %>" readonly="">
+                                            <input id="nick" type="text" name="nick" class="form-control mb-1" value="<%= du.getNick()%>" readonly="">
                                         </div>
                                         <div class="form-group">
                                             <label class="form-label">Nombre</label>
-                                            <input id="nombre" type="text" name="nombre" class="form-control" value="<%= du.getNombre() %>">
+                                            <input id="nombre" type="text" name="nombre" class="form-control" value="<%= du.getNombre()%>">
                                         </div>
                                         <div class="form-group">
                                             <label class="form-label">Apellido</label>
-                                            <input id="apellido" type="text" name="apellido" class="form-control" value="<%= du.getApellido() %>">
+                                            <input id="apellido" type="text" name="apellido" class="form-control" value="<%= du.getApellido()%>">
                                         </div>
                                         <div class="form-group">
                                             <label class="form-label">E-mail</label>
-                                            <input id="email" type="text" name="email" class="form-control mb-1" value="<%= du.getEmail() %>" readonly="">
+                                            <input id="email" type="text" name="email" class="form-control mb-1" value="<%= du.getEmail()%>" readonly="">
                                         </div>
                                         <div class="form-group">
+                                            <%
+                                                SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+                                                String fechaNac = formato.format(du.getFechaNacimiento());
+                                            %>
                                             <label class="form-label">Fecha de Nacimiento</label>
-                                            <input id="fecha" type="date" class="form-control" name="fecha" value="<%= du.getFechaNacimiento() %>">
+                                            <input id="fecha" type="date" class="form-control" name="fecha" value="<%= fechaNac%>">
                                         </div>
                                         <div class="text-right mt-3">
                                             <button type="submit" class="btn btn-primary">Guardar Cambios</button>&nbsp;
@@ -105,50 +110,33 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="tab-pane fade" id="account-social-links">
-                                <div class="form-group">
-                                    <label class="form-label">Cursos Inscriptos</label>
-                                    <select class="custom-select" value="Cursos">
-                                        <option>CURSO 1</option>
-                                        <option>Curso 2</option>
-                                        <option>CURSO 3</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label">Ediciones</label>
-                                    <table class="table">
-                                        <thead class="thead-dark">
-                                            <tr>
-                                                <th scope="col">#</th>
-                                                <th scope="col">Nombre</th>
-                                                <th scope="col">Fecha Inicio</th>
-                                                <th scope="col">Fecha Fin</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <th scope="row">1</th>
-                                                <td>Nombre 1</td>
-                                                <td>Fecha Ini 1</td>
-                                                <td>Fecha Fin 1</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">2</th>
-                                                <td>Nombre 2</td>
-                                                <td>Fecha Ini 2</td>
-                                                <td>Fecha Fin 2</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">3</th>
-                                                <td>Nombre 3</td>
-                                                <td>Fecha Ini 3</td>
-                                                <td>Fecha Fin 3</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                            <div class="tab-pane fade" id="account-editions">
+                                <div class="form-group p-4">
+                                    <div class="list-group" id="ediciones">
+                                        <form action="Edicion" method="GET">
+                                            <%
+                                                if (du instanceof DataEstudiante) {
+                                                    DataEstudiante de = (DataEstudiante) du;
+                                                    for (DataEdicion edicion : de.getInscripcionEdiciones().values()) {
+                                            %>
+                                            <button type="submit" class="list-group-item list-group-item-action" name="consultarEdicion" value="<%= edicion.getCurso()%>,<%= edicion.getNombre()%>" > <%= edicion.getNombre()%> </button>
+                                            <%
+                                                    }
+                                                } else {
+                                                    DataProfesor dp = (DataProfesor) du;
+                                                    for (DataEdicion edicion : dp.getEdiciones().values()) {
+                                            %>
+                                            <button type="submit" class="list-group-item list-group-item-action" name="consultarEdicion" value="<%= edicion.getCurso()%>,<%= edicion.getNombre()%>" > <%= edicion.getNombre()%> </button>
+                                            <%
+                                                    }
+                                                }
+                                            %>
+                                            
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="tab-pane fade" id="account-connections">
+                            <div class="tab-pane fade" id="account-programs">
                                 <div class="form-group">
                                     <label class="form-label">Programas Inscriptos</label>
                                     <select class="custom-select" value="Cursos">

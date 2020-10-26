@@ -6,12 +6,18 @@ import java.util.Date;
 public class DataInscripcionEdicion {
     private Long id;
     private Date fecha;
-    private String edicion;
+    private DataEdicion edicion;
+    private EstadoInscripcion estado;
+    private float calificacion;
+    private DataUsuario estudiante;
 
-    public DataInscripcionEdicion(Long id, Date fecha, String edicion) {
+    public DataInscripcionEdicion(Long id, Date fecha, DataEdicion edicion, EstadoInscripcion estado, float calificacion, DataUsuario estudiante) {
         this.id = id;
         this.fecha = fecha;
         this.edicion = edicion;
+        this.estado = estado;
+        this.calificacion = calificacion;
+        this.estudiante = estudiante;
     }
 
     public Long getId() {
@@ -22,8 +28,20 @@ public class DataInscripcionEdicion {
         return fecha;
     }
 
-    public String getEdicion() {
+    public DataEdicion getEdicion() {
         return edicion;
+    }
+
+    public EstadoInscripcion getEstado() {
+        return estado;
+    }
+
+    public float getCalificacion() {
+        return calificacion;
+    }
+
+    public DataUsuario getEstudiante() {
+        return estudiante;
     }
     
 }

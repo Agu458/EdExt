@@ -1,6 +1,7 @@
 package Entidades;
 
 import Entidades.Curso;
+import Entidades.InscripcionEdicion;
 import Entidades.Profesor;
 import java.util.Date;
 import javax.annotation.Generated;
@@ -8,7 +9,7 @@ import javax.persistence.metamodel.MapAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2020-10-26T00:07:46")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2020-10-26T11:58:29")
 @StaticMetamodel(Edicion.class)
 public class Edicion_ { 
 
@@ -19,5 +20,6 @@ public class Edicion_ {
     public static volatile SingularAttribute<Edicion, Date> fechaPublicacion;
     public static volatile SingularAttribute<Edicion, Date> fechaFin;
     public static volatile SingularAttribute<Edicion, String> nombreEdicion;
+    public static volatile MapAttribute<Edicion, String, InscripcionEdicion> inscriptos;
 
 }

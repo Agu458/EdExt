@@ -10,6 +10,7 @@ Entidades\Categoria_.class
 Entidades\InscripcionEdicion_.class
 DataTypes\DataEdicion.class
 Entidades\InscripcionPrograma.class
+DataTypes\EstadoInscripcion.class
 Logica\ISistema.class
 DataTypes\DataUsuario.class
 Entidades\Edicion_.class

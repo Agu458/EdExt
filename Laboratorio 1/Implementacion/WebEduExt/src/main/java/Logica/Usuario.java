@@ -41,9 +41,27 @@ public class Usuario extends HttpServlet {
         response.setContentType("text/plain");
         PrintWriter out = response.getWriter();
         
-        List<String> usuarios = is.listarUsuarios();
-        request.setAttribute("usuarios", usuarios);
-        request.getRequestDispatcher("consultarUsuario.jsp").forward(request, response);
+        String accion = request.getParameter("accion");
+        if(accion != null){
+            if(accion.equals("listarUsuarios")){
+                List<String> usuarios = is.listarUsuarios();
+                request.setAttribute("usuarios", usuarios);
+                request.getRequestDispatcher("consultarUsuario.jsp").forward(request, response);
+            }
+            if(accion.equals("verPerfil")){
+                HttpSession session = request.getSession();
+                String email = (String) session.getAttribute("email");
+                if(email != null){
+                    DataUsuario du = is.darDatosUsuario(email);
+                    session.setAttribute("usuario", du);
+                    request.getRequestDispatcher("perfil.jsp").forward(request, response);
+                }
+                else{
+                    response.sendRedirect("index.jsp");
+                }
+            }
+        }
+        
     }
 
     /**

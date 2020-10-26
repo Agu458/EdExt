@@ -49,10 +49,11 @@ public class Estudiante extends Usuario {
         this.inscripcionProgramas = inscripcionProgramas;
     }
     
-    public void inscribirEdicion(Edicion e, Date fecha, EntityManager em){
-        InscripcionEdicion ie = new InscripcionEdicion(fecha, e);
+    public InscripcionEdicion inscribirEdicion(Edicion e, Date fecha, EntityManager em){
+        InscripcionEdicion ie = new InscripcionEdicion(fecha, e, this);
         inscripcionEdiciones.put(e.getNombreEdicion(), ie);
         em.persist(ie);
+        return ie;
     }
     
     @Override

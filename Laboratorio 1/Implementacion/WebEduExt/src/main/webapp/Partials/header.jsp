@@ -140,7 +140,6 @@
                         <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">Consultas </a>
                         <div class="dropdown-menu" aria-labelledby="dropdown-a">
                             <a class="dropdown-item" href="consultarCurso.jsp">Consultar Curso </a>
-                            <a class="dropdown-item" href="consultarEdicion.jsp">Consultar Edicion </a>
                             <a class="dropdown-item" href="consultarPrograma.jsp">Consultar Programa </a>
                             <a class="dropdown-item" href="Usuario">Consultar Usuario </a>
                         </div>
@@ -163,7 +162,7 @@
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
                         <a class="dropdown-item disabled" > <%= du.getEmail()%> </a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="perfil.jsp"><i class="fas fa-user"></i>   VerPerfil </a>
+                        <a class="dropdown-item" href="Usuario?accion=verPerfil"><i class="fas fa-user"></i>   VerPerfil </a>
                         <a class="dropdown-item" href="Logout"><i class="fas fa-sign-out-alt"></i>   Salir </a>
                     </div>
                 </div>

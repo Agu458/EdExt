@@ -6,6 +6,7 @@
 package Logica;
 
 import DataTypes.DataEdicion;
+import DataTypes.DataUsuario;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
@@ -17,6 +18,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -54,9 +56,9 @@ public class Edicion extends HttpServlet {
                 }
             }
         }
-        
+
         String consultarEdicion = request.getParameter("consultarEdicion");
-        if(consultarEdicion != null){
+        if (consultarEdicion != null) {
             String nombre = null;
             String curso = null;
             String[] datos = null;
@@ -66,11 +68,18 @@ public class Edicion extends HttpServlet {
                 nombre = datos[1];
             } catch (Exception e) {
             }
-            if(nombre != null && curso != null){
+            if (nombre != null && curso != null) {
                 DataEdicion de = is.darDatosEdicion(curso, nombre);
                 request.setAttribute("datosEdicion", de);
                 request.getRequestDispatcher("mostrarInfoEdicion.jsp").forward(request, response);
             }
+        }
+
+        String inscribirEdicionCurso = request.getParameter("inscribirEdicionCurso");
+        if (inscribirEdicionCurso != null) {
+            DataEdicion de = is.darEdicionActual(inscribirEdicionCurso);
+            request.setAttribute("edicion", de);
+            request.getRequestDispatcher("inscripcion_edicion.jsp").forward(request, response);
         }
     }
 
@@ -86,42 +95,55 @@ public class Edicion extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String accion = request.getParameter("accion");
-        if (accion != null && accion.equals("altaEdicion")) {
-            String instituto = request.getParameter("instituto");
-            if (instituto != null) {
-                String curso = request.getParameter("curso");
-                if (curso != null) {
-                    String nombre = request.getParameter("nombre");
-                    if (nombre != null && is.validarNombreEdicion(curso, nombre)) {
-                        String cupo = request.getParameter("cupos");
-                        int cupos = 0;
-                        if (!cupo.equals("")) {
-                            cupos = Integer.parseInt(cupo);
-                        }
+        if (accion != null) {
+            if (accion.equals("altaEdicion")) {
+                String instituto = request.getParameter("instituto");
+                if (instituto != null) {
+                    String curso = request.getParameter("curso");
+                    if (curso != null) {
+                        String nombre = request.getParameter("nombre");
+                        if (nombre != null && is.validarNombreEdicion(curso, nombre)) {
+                            String cupo = request.getParameter("cupos");
+                            int cupos = 0;
+                            if (!cupo.equals("")) {
+                                cupos = Integer.parseInt(cupo);
+                            }
 
-                        String fecha1 = request.getParameter("fechaini");
-                        String fecha2 = request.getParameter("fechafin");
-                        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
-                        Date fechaIni = null;
-                        Date fechaFin = null;
-                        try {
-                            fechaIni = formato.parse(fecha1);
-                            fechaFin = formato.parse(fecha2);
-                        } catch (Exception e) {
-                        }
+                            String fecha1 = request.getParameter("fechaini");
+                            String fecha2 = request.getParameter("fechafin");
+                            SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+                            Date fechaIni = null;
+                            Date fechaFin = null;
+                            try {
+                                fechaIni = formato.parse(fecha1);
+                                fechaFin = formato.parse(fecha2);
+                            } catch (Exception e) {
+                            }
 
-                        String[] profs = request.getParameterValues("profesores");
-                        List<String> profesores = new ArrayList();
-                        if (profs != null) {
-                            profesores = Arrays.asList(profs);
-                        }
+                            String[] profs = request.getParameterValues("profesores");
+                            List<String> profesores = new ArrayList();
+                            if (profs != null) {
+                                profesores = Arrays.asList(profs);
+                            }
 
-                        DataEdicion de = new DataEdicion(nombre, fechaIni, fechaFin, cupos, new Date(), profesores);
-                        is.altaEdicionCurso(de, curso);
+                            DataEdicion de = new DataEdicion(nombre, fechaIni, fechaFin, cupos, new Date(), profesores);
+                            is.altaEdicionCurso(de, curso);
+                        }
                     }
                 }
+                response.sendRedirect("altaEdicion.jsp");
             }
-            response.sendRedirect("altaEdicion.jsp");
+            
+            if(accion.equals("altaInscripcionEdicion")){
+                String curso = request.getParameter("curso");
+                if(curso != null){
+                    String estudiante = request.getParameter("estudiante");
+                    if(estudiante != null){
+                        is.inscripcionEdicion(curso, estudiante, new Date());
+                    }
+                }
+                response.sendRedirect("inscripcion_edicion.jsp");
+            }
         }
     }
 

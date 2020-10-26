@@ -92,11 +92,11 @@
                     selcurso.empty();
                     selcurso.append(`<option value="vacio" selected> Seleccione Curso... </option>`);
                     let insti = selinsti.val();
-                    let action = "cursosInsti";
+                    let accion = "cursosInsti";
                     $.ajax({
                         type: 'GET',
                         url: 'Curso',
-                        data: {action: action, insti: insti},
+                        data: {accion: accion, insti: insti},
                         success: function (response) {
                             let cursos = JSON.parse(response);
                             if (cursos !== null) {
@@ -109,7 +109,7 @@
                     });
 
                     selprofesores.empty();
-                    let accion = "listarProfesoresInstituto";
+                    accion = "listarProfesoresInstituto";
                     $.ajax({
                         type: 'GET',
                         url: 'Instituto',

@@ -28,6 +28,10 @@
         <servlet-name>Edicion</servlet-name>
         <servlet-class>Logica.Edicion</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ProgramaFormacion</servlet-name>
+        <servlet-class>Logica.ProgramaFormacion</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -55,6 +59,10 @@
     <servlet-mapping>
         <servlet-name>Edicion</servlet-name>
         <url-pattern>/Edicion</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProgramaFormacion</servlet-name>
+        <url-pattern>/ProgramaFormacion</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
