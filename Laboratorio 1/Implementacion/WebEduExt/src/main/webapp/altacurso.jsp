@@ -3,7 +3,14 @@
     Created on : 20 oct. 2020, 17:34:25
     Author     : Agustin
 --%>
-
+<%
+    if(session.getAttribute("email") == null || session.getAttribute("usuario") instanceof DataEstudiante){
+        %>
+        <!-- Redirige al servlet de iniciar sesión -->
+        <meta http-equiv="refresh" content="0;URL=/WebEduExt/error.jsp">
+        <%
+    } else {
+%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -77,3 +84,6 @@
         <%@include file="/Partials/footer.jsp" %>
     </body>
 </html>
+<%
+    }
+%>
