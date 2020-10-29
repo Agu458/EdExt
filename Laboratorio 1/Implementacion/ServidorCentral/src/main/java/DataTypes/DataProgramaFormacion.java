@@ -11,6 +11,7 @@ public class DataProgramaFormacion {
     private Date fechaIni;
     private Date fechaFin;
     private List<String> categorias;
+    private List<String> inscriptos;
 
     public DataProgramaFormacion(String nombre, String descripcion, Date fechaIni, Date fechaFin) {
         this.nombre = nombre;
@@ -19,13 +20,14 @@ public class DataProgramaFormacion {
         this.fechaFin = fechaFin;
     }
     
-    public DataProgramaFormacion(String nombre, List<String> cursos, String descripcion, Date fechaIni, Date fechaFin, List<String> categorias) {
+    public DataProgramaFormacion(String nombre, List<String> cursos, String descripcion, Date fechaIni, Date fechaFin, List<String> categorias, List<String> inscriptos) {
         this.nombre = nombre;
         this.cursos = cursos;
         this.descripcion = descripcion;
         this.fechaIni = fechaIni;
         this.fechaFin = fechaFin;
         this.categorias = categorias;
+        this.inscriptos = inscriptos;
     }
 
     public String getNombre() {
@@ -50,6 +52,10 @@ public class DataProgramaFormacion {
 
     public List<String> getCategorias() {
         return categorias;
+    }
+
+    public List<String> getInscriptos() {
+        return inscriptos;
     }
     
 }

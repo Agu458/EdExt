@@ -11,6 +11,7 @@ import Entidades.Curso;
 import Entidades.Edicion;
 import Entidades.Estudiante;
 import Entidades.InscripcionEdicion;
+import Entidades.InscripcionPrograma;
 import Entidades.Instituto;
 import Entidades.Profesor;
 import Entidades.ProgramaFormacion;
@@ -114,7 +115,7 @@ public class Sistema implements ISistema {
             DataEstudiante de = (DataEstudiante) du;
             try {
                 em.getTransaction().begin();
-                Estudiante es = new Estudiante(de.getNick(), de.getNombre(), de.getApellido(), de.getEmail(), de.getFechaNacimiento(), de.getContrasenia() ,de.getimagen());
+                Estudiante es = new Estudiante(de.getNick(), de.getNombre(), de.getApellido(), de.getEmail(), de.getFechaNacimiento(), de.getContrasenia(), de.getimagen());
                 em.persist(es);
                 em.getTransaction().commit();
             } catch (Exception e) {
@@ -130,7 +131,7 @@ public class Sistema implements ISistema {
                     insti = new Instituto(dp.getInstituto());
                     em.persist(insti);
                 }
-                Profesor p = new Profesor(insti, dp.getNick(), dp.getNombre(), dp.getApellido(), dp.getEmail(), dp.getFechaNacimiento(), dp.getContrasenia() ,dp.getimagen());
+                Profesor p = new Profesor(insti, dp.getNick(), dp.getNombre(), dp.getApellido(), dp.getEmail(), dp.getFechaNacimiento(), dp.getContrasenia(), dp.getimagen());
                 insti.agregarProfesor(p);
                 em.persist(p);
                 em.getTransaction().commit();
@@ -213,15 +214,15 @@ public class Sistema implements ISistema {
         em.close();
         return ests;
     }
-    
+
     @Override
-    public List<String> listarProfesoresInstituto(String instituto){
+    public List<String> listarProfesoresInstituto(String instituto) {
         EntityManager em = emf.createEntityManager();
         List<String> p = new ArrayList();
         try {
             em.getTransaction().begin();
             Instituto i = em.find(Instituto.class, instituto);
-            if(i != null){
+            if (i != null) {
                 p = i.darProfesores();
             }
             em.getTransaction().rollback();
@@ -274,9 +275,9 @@ public class Sistema implements ISistema {
                     }
                 }
                 List<Categoria> cats = new ArrayList();
-                for(String s : dc.getCategorias()){
+                for (String s : dc.getCategorias()) {
                     Categoria cat = em.find(Categoria.class, s);
-                    if(cat != null){
+                    if (cat != null) {
                         cats.add(cat);
                     }
                 }
@@ -417,20 +418,29 @@ public class Sistema implements ISistema {
         EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
-            InscripcionEdicion ie = null;
-            Estudiante e = em.find(Estudiante.class, estudiante);
-            if (e != null) {
-                Curso c = em.find(Curso.class, curso);
-                if (c != null) {
-                    ie = e.inscribirEdicion(c.getEdicionActual(), fecha, em);
-                    c.getEdicionActual().inscribirEstudiante(ie);
+            if (estudiante != null) {
+                System.out.println(estudiante);
+                Estudiante est = em.find(Estudiante.class, estudiante);
+                System.out.println(est.getEmail());
+                if (curso != null) {
+                    System.out.println(curso);
+                    Curso cur = em.find(Curso.class, curso);
+                    System.out.println(cur.getNombre());
+                    if (est != null && cur != null) {
+                        InscripcionEdicion inscripcion = est.inscribirseAUnaEdicion(cur.getEdicionActual(), fecha);
+                        cur.getEdicionActual().agregarInscripcion(inscripcion);
+                        em.persist(inscripcion);
+                    }
                 }
             }
             em.getTransaction().commit();
         } catch (Exception e) {
             em.getTransaction().rollback();
         }
-        em.close();
+    }
+
+    public void inscripcionAPrograma(String programa, String estudiante, Date fecha) {
+
     }
 
     @Override
@@ -504,9 +514,9 @@ public class Sistema implements ISistema {
         em.close();
         return dpf;
     }
-    
+
     @Override
-    public boolean conteneCurso(String nombre, String curso){
+    public boolean conteneCurso(String nombre, String curso) {
         EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
@@ -559,17 +569,17 @@ public class Sistema implements ISistema {
         em.close();
         return dpf;
     }
-    
+
     // Categorias
     @Override
-    public Boolean validarNombreCategoria(String nombre){
+    public Boolean validarNombreCategoria(String nombre) {
         EntityManager em = emf.createEntityManager();
         Categoria cat = em.find(Categoria.class, nombre);
         return (cat == null);
     }
-    
+
     @Override
-    public void altaCategoria(String nombre){
+    public void altaCategoria(String nombre) {
         EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
@@ -580,9 +590,9 @@ public class Sistema implements ISistema {
             em.getTransaction().rollback();
         }
     }
-    
+
     @Override
-    public List<String> listarCursosCategoria(String nombre){
+    public List<String> listarCursosCategoria(String nombre) {
         EntityManager em = emf.createEntityManager();
         List<String> cursos = new ArrayList();
         try {
@@ -591,7 +601,7 @@ public class Sistema implements ISistema {
             List cur = em.createQuery(q).getResultList();
             for (Object o : cur) {
                 Curso c = (Curso) o;
-                if(c.conteieneCategoria(nombre)){
+                if (c.conteieneCategoria(nombre)) {
                     cursos.add(c.getNombre());
                 }
             }
@@ -602,15 +612,15 @@ public class Sistema implements ISistema {
         em.close();
         return cursos;
     }
-    
+
     @Override
-    public List<String> listarCategorias(){
+    public List<String> listarCategorias() {
         EntityManager em = emf.createEntityManager();
         List<String> categorias = new ArrayList();
         try {
             em.getTransaction().begin();
             List cats = em.createQuery("SELECT c FROM Categoria c").getResultList();
-            for(Object o : cats){
+            for (Object o : cats) {
                 Categoria cat = (Categoria) o;
                 categorias.add(cat.getNombre());
             }
@@ -619,5 +629,54 @@ public class Sistema implements ISistema {
             em.getTransaction().rollback();
         }
         return categorias;
+    }
+
+    @Override
+    public List<String> listarInscriptosAEdicion(String curso, String edicion) {
+        EntityManager em = emf.createEntityManager();
+        List<String> inscriptos = null;
+        try {
+            em.getTransaction().begin();
+            Curso cur = em.find(Curso.class, curso);
+            if (cur != null) {
+                inscriptos = cur.darInscriptosEdicion(edicion);
+            }
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+        }
+        return inscriptos;
+    }
+
+    @Override
+    public void aceptarInscripciones(String curso, String edicion, List<String> estudiantes) {
+        EntityManager em = emf.createEntityManager();
+        try {
+            em.getTransaction().begin();
+            Curso cur = em.find(Curso.class, curso);
+            if (cur != null) {
+                cur.aceptarInscripciones(edicion, estudiantes);
+            }
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+        }
+    }
+    
+    @Override
+    public List<String> listarAceptadosAEdicion(String curso, String edicion){
+        EntityManager em = emf.createEntityManager();
+        List<String> aceptados = null;
+        try {
+            em.getTransaction().begin();
+            Curso cur = em.find(Curso.class, curso);
+            if (cur != null) {
+                aceptados = cur.darAceptadosAEdicion(edicion);
+            }
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+        }
+        return aceptados;
     }
 }

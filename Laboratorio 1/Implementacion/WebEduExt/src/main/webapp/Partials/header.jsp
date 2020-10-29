@@ -34,7 +34,7 @@
                         <form role="form" class="form-horizontal" action="Login" method="POST">
                             <div class="form-group">
                                 <div class="col-sm-12">
-                                    <input class="form-control" id="exampleInputPassword1" placeholder="Email" type="email" name="email">
+                                    <input class="form-control" placeholder="Email" type="email" name="email">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -56,7 +56,7 @@
                         </form>
                     </div>
                     <div class="tab-pane" id="Registration">
-                        <form role="form" class="form-horizontal" action="Registrarse" method="POST" onsubmit="return validarRegistro();">
+                        <form role="form" class="form-horizontal" action="Registrarse" method="POST">
                             <div class="form-group">
                                 <div class="col-sm-12">
                                     <input class="form-control" id="nick" type="text" placeholder="Nick" name="nick" required>
@@ -75,7 +75,7 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-12">
-                                    <input class="form-control" type="email" placeholder="Email" name="email" required>
+                                    <input class="form-control" id="email" type="email" placeholder="Email" name="email" required>
                                     <div class="alert alert-danger" id="emailValido" role="alert"> El email se encuentra en uso ... </div>
                                 </div>
                             </div>
@@ -108,7 +108,7 @@
                             </div>
                             <div class="row">							
                                 <div class="col-sm-10">
-                                    <button type="submit" class="btn btn-dark btn-radius btn-brd grd1">
+                                    <button type="submit" class="btn btn-dark btn-radius btn-brd grd1" id="btnRegistrar">
                                         Guardar y Continuar
                                     </button>
                                 </div>

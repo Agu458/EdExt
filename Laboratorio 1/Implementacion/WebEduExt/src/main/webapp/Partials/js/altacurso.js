@@ -6,8 +6,33 @@
 
 $('#nombreValido').hide();
 
-$(document).ready(function () {
+function validarNombre() {
+    var btnAltaCurso = $('#btnAltaCurso');
+    let validar = "validarNombreCurso";
+    let nombre = $('#nombre').val();
+    $.ajax({
+        type: 'GET',
+        url: 'Curso',
+        data: {validar: validar, nombre: nombre},
+        success: function (response) {
+            let nombreValido = JSON.parse(response);
+            if (!nombreValido) {
+                $('#nombreValido').show();
+                btnAltaCurso.attr("disabled", true);
+            } else {
+                $('#nombreValido').hide();
+                btnAltaCurso.attr("disabled", false);
+            }
+        }
+    });
+}
 
+$(document).ready(function () {
+    
+    $('#nombre').keyup(function () {
+        validarNombre();
+    });
+    
     var selinsti = $('#instituto');
     selinsti.empty();
     selinsti.append(`<option value="vacio" selected> Seleccione Instituto... </option>`);

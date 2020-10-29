@@ -62,7 +62,7 @@
                     <div class="col-lg-4 col-md-6 col-12">
                         <div class="our-team">
                             <div class="team-content">
-                                <a class="title" href="estudiantesedicion.jsp">Estudiantes-Edicion</a>
+                                <a class="title" href="seleccionarEstudiantesEdicion.jsp">Estudiantes-Edicion</a>
                                 <span class="post">Agregar estudiantes a edición</span>
                             </div>
                         </div>
@@ -71,7 +71,7 @@
                     <div class="col-lg-4 col-md-6 col-12">
                         <div class="our-team">
                             <div class="team-content">
-                                <a class="title" href="estudiantesaceptados.html">Estudiantes Aceptados</a>
+                                <a class="title" href="estudiantesAceptados.jsp">Estudiantes Aceptados</a>
                                 <span class="post">Inscripciones aceptadas en edicion</span>
                             </div>
                         </div>

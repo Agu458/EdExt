@@ -171,6 +171,21 @@ public class Curso implements Serializable {
         return e.darDatos();
     }
 
+    public List<String> darInscriptosEdicion(String nombreEdicion) {
+        Edicion e = ediciones.get(nombreEdicion);
+        return e.darInscriptos();
+    }
+    
+    public List<String> darAceptadosAEdicion(String nombreEdicion){
+        Edicion e = ediciones.get(nombreEdicion);
+        return e.darAceptados();
+    }
+    
+    public void aceptarInscripciones(String nombreEdicion, List<String> estudiantes){
+        Edicion e = ediciones.get(nombreEdicion);
+        e.aceptarInscripciones(estudiantes);
+    }
+    
     public Instituto getInstituto() {
         return instituto;
     }

@@ -2,8 +2,10 @@ package Entidades;
 
 import DataTypes.DataEdicion;
 import DataTypes.DataEstudiante;
+import DataTypes.DataInscripcionEdicion;
 import DataTypes.DataProgramaFormacion;
 import DataTypes.DataUsuario;
+import DataTypes.EstadoInscripcion;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -18,61 +20,85 @@ import javax.persistence.OneToMany;
 public class Estudiante extends Usuario {
 
     @OneToMany
-    @MapKey(name = "id")
-    private Map<String, InscripcionEdicion> inscripcionEdiciones;
+    private List<InscripcionEdicion> inscripcionEdiciones;
     @OneToMany
-    @MapKey(name = "id")
-    private Map<String, InscripcionPrograma> inscripcionProgramas;
+    private List<InscripcionPrograma> inscripcionProgramas;
 
     public Estudiante() {
     }
 
-    public Estudiante(String nick, String nombre, String apellido, String email, Date fechaNacimiento, String contrasenia ,String imagen) {
-        super(nick, nombre, apellido, email, fechaNacimiento,contrasenia ,imagen);
-        inscripcionEdiciones = new HashMap();
-        inscripcionProgramas = new HashMap();
+    public Estudiante(String nick, String nombre, String apellido, String email, Date fechaNacimiento, String contrasenia, String imagen) {
+        super(nick, nombre, apellido, email, fechaNacimiento, contrasenia, imagen);
+        inscripcionEdiciones = new ArrayList();
+        inscripcionProgramas = new ArrayList();
     }
 
-    public Map getInscripcionEdiciones() {
+    public List getInscripcionEdiciones() {
         return inscripcionEdiciones;
     }
 
-    public void setInscripcionEdiciones(Map inscripcionEdiciones) {
+    public void setInscripcionEdiciones(List inscripcionEdiciones) {
         this.inscripcionEdiciones = inscripcionEdiciones;
     }
 
-    public Map getInscripcionProgramas() {
+    public List getInscripcionProgramas() {
         return inscripcionProgramas;
     }
 
-    public void setInscripcionProgramas(Map inscripcionProgramas) {
+    public void setInscripcionProgramas(List inscripcionProgramas) {
         this.inscripcionProgramas = inscripcionProgramas;
     }
-    
-    public InscripcionEdicion inscribirEdicion(Edicion e, Date fecha, EntityManager em){
-        InscripcionEdicion ie = new InscripcionEdicion(fecha, e, this);
-        inscripcionEdiciones.put(e.getNombreEdicion(), ie);
-        em.persist(ie);
-        return ie;
+
+    public boolean estaInscripto(String edicion) {
+        for (InscripcionEdicion aux : inscripcionEdiciones) {
+            if (aux.getEdicion().getNombreEdicion() == edicion) {
+                return true;
+            }
+        }
+        return false;
     }
-    
+
+    public InscripcionEdicion darInscripcionEdicion(String edicion) {
+        for (InscripcionEdicion aux : inscripcionEdiciones) {
+            if (aux.getEdicion().getNombreEdicion() == edicion) {
+                return aux;
+            }
+        }
+        return null;
+    }
+
+    public InscripcionEdicion inscribirseAUnaEdicion(Edicion edicion, Date fecha) {
+        InscripcionEdicion inscripcion = this.darInscripcionEdicion(edicion.getNombreEdicion());
+        if (inscripcion != null) {
+            if (inscripcion.getEstado() == EstadoInscripcion.RECHASADO) {
+                inscripcion.setEstado(EstadoInscripcion.INSCRIPTO);
+                inscripcion.setInscripcionesPrevias(inscripcion.getInscripcionesPrevias() + 1);
+            }
+
+        } else {
+            inscripcion = new InscripcionEdicion(fecha, edicion, this);
+            inscripcionEdiciones.add(inscripcion);
+        }
+        return inscripcion;
+    }
+
     @Override
     public DataUsuario darDatos() {
-        Map<String, DataEdicion> eds = new HashMap();
-        for (InscripcionEdicion ie : inscripcionEdiciones.values()) {
-            if(ie.getEdicion() != null){
-                DataEdicion de = ie.getEdicion().darDatos();
-                eds.put(de.getNombre(), de);
+        Map<String, DataInscripcionEdicion> eds = new HashMap();
+        for (InscripcionEdicion ie : inscripcionEdiciones) {
+            if (ie != null) {
+                DataInscripcionEdicion die = ie.darDatos();
+                eds.put(die.getEdicion().getNombre(), die);
             }
         }
         Map<String, DataProgramaFormacion> progs = new HashMap();
-        for (InscripcionPrograma ip : inscripcionProgramas.values()) {
-            if(ip.getPrograma() != null){
+        for (InscripcionPrograma ip : inscripcionProgramas) {
+            if (ip.getPrograma() != null) {
                 DataProgramaFormacion dpf = ip.getPrograma().darDatos();
                 progs.put(dpf.getNombre(), dpf);
             }
         }
         return new DataEstudiante(eds, progs, super.getNick(), super.getNombre(), super.getApellido(), super.getEmail(), super.getFechaNacimiento(),
-        super.getContrasenia() ,super.getimagen());
+                super.getContrasenia(), super.getimagen());
     }
 }

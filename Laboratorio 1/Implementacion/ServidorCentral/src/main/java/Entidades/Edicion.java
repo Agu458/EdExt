@@ -1,7 +1,7 @@
-
 package Entidades;
 
 import DataTypes.DataEdicion;
+import DataTypes.EstadoInscripcion;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -35,8 +35,7 @@ public class Edicion implements Serializable {
     @OneToOne
     private Curso curso;
     @OneToMany
-    @MapKey(name = "id")
-    private Map<String, InscripcionEdicion> inscriptos;
+    private List<InscripcionEdicion> inscriptos;
 
     public Edicion() {
     }
@@ -48,7 +47,7 @@ public class Edicion implements Serializable {
         this.cupos = cupos;
         this.fechaPublicacion = fechaPublicacion;
         this.profesores = new HashMap();
-        for(Profesor p : profesores){
+        for (Profesor p : profesores) {
             this.profesores.put(p.getEmail(), p);
         }
         this.curso = curso;
@@ -102,17 +101,17 @@ public class Edicion implements Serializable {
         this.profesores = profesores;
     }
 
-    public DataEdicion darDatos(){
+    public DataEdicion darDatos() {
         List<String> dps = new ArrayList();
-        for(Profesor p : profesores.values()){
+        for (Profesor p : profesores.values()) {
             dps.add(p.getEmail());
         }
-        
+
         String c = null;
-        if(this.curso != null){
+        if (this.curso != null) {
             c = this.curso.getNombre();
         }
-        
+
         return new DataEdicion(nombreEdicion, fechaIni, fechaFin, cupos, fechaPublicacion, dps, c);
     }
 
@@ -123,12 +122,68 @@ public class Edicion implements Serializable {
     public void setCurso(Curso curso) {
         this.curso = curso;
     }
+
+    public boolean estaInscripto(String email) {
+        for (InscripcionEdicion aux : inscriptos) {
+            if (aux.getEstudiante().getEmail() == email) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void agregarInscripcion(InscripcionEdicion inscripcion) {
+        if (!this.estaInscripto(inscripcion.getEstudiante().getEmail())) {
+            inscriptos.add(inscripcion);
+        }
+    }
+
+    public List<String> darInscriptos() {
+        List<String> insc = new ArrayList();
+        for (InscripcionEdicion inscripcion : this.inscriptos) {
+            if (inscripcion.getEstado() == EstadoInscripcion.INSCRIPTO) {
+                insc.add(inscripcion.getEstudiante().getEmail());
+            }
+        }
+        return insc;
+    }
     
-    public void inscribirEstudiante(InscripcionEdicion inscripcion){
-        if(inscripcion != null){
-            Usuario usu = inscripcion.getEstudiante();
-            if(usu != null){
-                inscriptos.put(usu.getEmail(), inscripcion);
+    public List<String> darAceptados() {
+        List<String> insc = new ArrayList();
+        for (InscripcionEdicion inscripcion : this.inscriptos) {
+            if (inscripcion.getEstado() == EstadoInscripcion.ACEPTADO) {
+                insc.add(inscripcion.getEstudiante().getEmail());
+            }
+        }
+        return insc;
+    }
+
+    public InscripcionEdicion darInscripcion(String email) {
+        InscripcionEdicion ie = null;
+        boolean encontre = false;
+        for (InscripcionEdicion aux : inscriptos) {
+            if (!encontre) {
+                if (aux.getEstudiante().getEmail() == email) {
+                    ie = aux;
+                    encontre = true;
+                }
+            } else {
+                break;
+            }
+        }
+        return ie;
+    }
+
+    public void aceptarInscripciones(List<String> estudiantes) {
+        for (InscripcionEdicion ie : inscriptos) {
+            for (String s : estudiantes) {
+                if (ie.getEstudiante().getEmail().equals(s)) {
+                    ie.setEstado(EstadoInscripcion.ACEPTADO);
+                } else {
+                    if(ie.getEstado() != EstadoInscripcion.ACEPTADO){
+                        ie.setEstado(EstadoInscripcion.RECHASADO);
+                    }
+                }
             }
         }
     }

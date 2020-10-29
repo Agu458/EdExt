@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
@@ -27,6 +28,7 @@ public class ProgramaFormacion implements Serializable {
     private Date fechaFin;
     @OneToMany
     private List<Categoria> categorias;
+    private Map<String, InscripcionPrograma> inscriptos;
 
     public ProgramaFormacion() {
     }
@@ -88,6 +90,12 @@ public class ProgramaFormacion implements Serializable {
         this.fechaFin = fechaFin;
     }
     
+    public void inscribirEstudiante(InscripcionPrograma ip){
+        if(ip != null){
+            inscriptos.put(ip.getEstudiante().getEmail(), ip);
+        }
+    }
+    
     public DataProgramaFormacion darDatos(){
         List<String> c = new ArrayList();
         for(Curso cur : cursos){
@@ -100,7 +108,12 @@ public class ProgramaFormacion implements Serializable {
             cats.add(cat.getNombre());
         }
         
-        return new DataProgramaFormacion(nombre, c, descripcion, fechaIni, fechaFin, cats);
+        List<String> insc = new ArrayList();
+        for(InscripcionPrograma ip : inscriptos.values()){
+            insc.add(ip.getEstudiante().getEmail());
+        }
+        
+        return new DataProgramaFormacion(nombre, c, descripcion, fechaIni, fechaFin, cats, insc);
     }
     
     public boolean conteneCurso(String curso){

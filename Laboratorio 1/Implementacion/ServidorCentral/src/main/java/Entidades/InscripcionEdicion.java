@@ -30,6 +30,7 @@ public class InscripcionEdicion implements Serializable{
     @Enumerated(EnumType.STRING)
     private EstadoInscripcion estado;
     private float calificacion;
+    private Integer inscripcionesPrevias;
 
     public InscripcionEdicion() {
     }
@@ -40,6 +41,7 @@ public class InscripcionEdicion implements Serializable{
         this.estado = EstadoInscripcion.INSCRIPTO;
         this.calificacion = 0;
         this.estudiante = estudiante;
+        this.inscripcionesPrevias = 0;
     }
 
     public Long getId() {
@@ -89,8 +91,16 @@ public class InscripcionEdicion implements Serializable{
     public void setEstudiante(Usuario estudiante) {
         this.estudiante = estudiante;
     }
+
+    public Integer getInscripcionesPrevias() {
+        return inscripcionesPrevias;
+    }
+
+    public void setInscripcionesPrevias(Integer inscripcionesPrevias) {
+        this.inscripcionesPrevias = inscripcionesPrevias;
+    }
     
     public DataInscripcionEdicion darDatos(){
-        return new DataInscripcionEdicion(id, fecha, edicion.darDatos(), estado, calificacion, estudiante.darDatos());
+        return new DataInscripcionEdicion(id, fecha, edicion.darDatos(), estado, calificacion, estudiante.getEmail(), inscripcionesPrevias);
     }
 }

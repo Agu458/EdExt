@@ -65,7 +65,7 @@
                             <select multiple class="form-control" id="categorias" name="categorias"></select>
                         </div>
                         <div class="form-group text-center">
-                            <button type="submit" name="accion" class="btn btn-primary" value="altaCurso">Crear Curso</button>
+                            <button type="submit" id="btnAltaCurso" name="accion" class="btn btn-primary" value="altaCurso">Crear Curso</button>
                         </div>
                     </form>
                 </div>

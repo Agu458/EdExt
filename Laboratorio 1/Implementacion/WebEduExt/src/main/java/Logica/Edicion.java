@@ -43,9 +43,9 @@ public class Edicion extends HttpServlet {
         response.setContentType("text/plain");
         PrintWriter out = response.getWriter();
 
-        String action = request.getParameter("action");
-        if (action != null) {
-            if (action.equals("validarNombreEdicion")) {
+        String accion = request.getParameter("action");
+        if (accion != null) {
+            if (accion.equals("validarNombreEdicion")) {
                 String nombre = request.getParameter("nombre");
                 if (nombre != null) {
                     String curso = request.getParameter("curso");
@@ -54,6 +54,46 @@ public class Edicion extends HttpServlet {
                         out.println(valido);
                     }
                 }
+            }
+        }
+
+        String seleccionarInscriptosEdicion = request.getParameter("seleccionarInscriptosEdicion");
+        if (seleccionarInscriptosEdicion != null) {
+            String edicion = null;
+            String curso = null;
+            String[] datos = null;
+            try {
+                datos = seleccionarInscriptosEdicion.split(",");
+                curso = datos[0];
+                edicion = datos[1];
+            } catch (Exception e) {
+            }
+            if (edicion != null && curso != null) {
+                List inscriptos = is.listarInscriptosAEdicion(curso, edicion);
+                DataEdicion de = is.darDatosEdicion(curso, edicion);
+                request.setAttribute("inscriptos", inscriptos);
+                request.setAttribute("edicion", de);
+                request.getRequestDispatcher("seleccionarEstudiantesEdicion.jsp").forward(request, response);
+            }
+        }
+        
+        String darAceptadosAEdicion = request.getParameter("darAceptadosAEdicion");
+        if(darAceptadosAEdicion != null){
+            String edicion = null;
+            String curso = null;
+            String[] datos = null;
+            try {
+                datos = seleccionarInscriptosEdicion.split(",");
+                curso = datos[0];
+                edicion = datos[1];
+            } catch (Exception e) {
+            }
+            if (edicion != null && curso != null) {
+                List inscriptos = is.listarAceptadosAEdicion(curso, edicion);
+                DataEdicion de = is.darDatosEdicion(curso, edicion);
+                request.setAttribute("inscriptos", inscriptos);
+                request.setAttribute("edicion", de);
+                request.getRequestDispatcher("estudiantesAceptados.jsp").forward(request, response);
             }
         }
 
@@ -133,16 +173,32 @@ public class Edicion extends HttpServlet {
                 }
                 response.sendRedirect("altaEdicion.jsp");
             }
-            
-            if(accion.equals("altaInscripcionEdicion")){
+
+            if (accion.equals("altaInscripcionEdicion")) {
                 String curso = request.getParameter("curso");
-                if(curso != null){
+                if (curso != null) {
                     String estudiante = request.getParameter("estudiante");
-                    if(estudiante != null){
+                    if (estudiante != null) {
                         is.inscripcionEdicion(curso, estudiante, new Date());
                     }
                 }
                 response.sendRedirect("inscripcion_edicion.jsp");
+            }
+
+            if (accion.equals("aceptarEstudiantes")) {
+                String[] acep = request.getParameterValues("aceptados");
+                List<String> aceptados = new ArrayList();
+                if (acep != null) {
+                    aceptados = Arrays.asList(acep);
+                }
+                
+                String curso = request.getParameter("curso");
+                String edicion = request.getParameter("edicion");
+                
+                if(curso != null && edicion != null && !aceptados.isEmpty()){
+                    is.aceptarInscripciones(curso, edicion, aceptados);
+                    response.sendRedirect("seleccionarEstudiantesEdicion.jsp");
+                }
             }
         }
     }

@@ -76,4 +76,10 @@ public interface ISistema {
     public List<String> listarCategorias();
     
     public List<String> listarProfesoresInstituto(String instituto);
+    
+    public List<String> listarInscriptosAEdicion(String curso, String edicion);
+    
+    public void aceptarInscripciones(String curso, String edicion, List<String> estudiantes);
+    
+    public List<String> listarAceptadosAEdicion(String curso, String edicion);
 }

@@ -5,7 +5,7 @@
  */
 
 function validarNick() {
-    let valido = true;
+    var btnRegistrar = $('#btnRegistrar');
     let validarNick = "validarNick";
     let nick = $('#nick').val();
     $.ajax({
@@ -15,22 +15,22 @@ function validarNick() {
         success: function (response) {
             let nickValido = JSON.parse(response);
             if (!nickValido) {
-                valido = false;
                 $('#nickValido').show();
+                btnRegistrar.attr("disabled", true);
             } else {
-                valido = true;
                 $('#nickValido').hide();
+                if (!$('#contraseniaValida').is(":visible") && !$('#emailValido').is(":visible")) {
+                    btnRegistrar.attr("disabled", false);
+                }
             }
         }
     });
-    return valido;
 }
 
 function validarEmail() {
-    let valido = true;
+    var btnRegistrar = $('#btnRegistrar');
     let email = $('#email').val();
     let validarEmail = "validarEmail";
-
     $.ajax({
         type: 'GET',
         url: 'Registrarse',
@@ -38,45 +38,52 @@ function validarEmail() {
         success: function (response) {
             let emailValido = JSON.parse(response);
             if (!emailValido) {
-                valido = false;
                 $('#emailValido').show();
+                btnRegistrar.attr("disabled", true);
             } else {
-                valido = true;
                 $('#emailValido').hide();
+                if (!$('#nickValido').is(":visible") && !$('#contraseniaValida').is(":visible")) {
+                    btnRegistrar.attr("disabled", false);
+                }
             }
         }
     });
-    return valido;
 }
 
 function validarContrasenia() {
+    var btnRegistrar = $('#btnRegistrar');
     let contrasenia = $('#contrasenia').val();
     let contrasenia2 = $('#contrasenia2').val();
 
     if (contrasenia2 !== contrasenia) {
         $('#contraseniaValida').show();
-        return false;
+        btnRegistrar.attr("disabled", true);
     } else {
         $('#contraseniaValida').hide();
-        return true;
+        if (!$('#nickValido').is(":visible") && !$('#emailValido').is(":visible")) {
+            btnRegistrar.attr("disabled", false);
+        }
     }
 }
-
-function validarRegistro() {
-    if (validarNick() && validarEmail() && validarContrasenia()) {
-        return true;
-    } else {
-        return false;
-    }
-}
-
 
 $(document).ready(function () {
     $('#contraseniaValida').hide();
     $('#nickValido').hide();
     $('#emailValido').hide();
     $('#loginValido').hide();
-    
+
+    $('#nick').keyup(function () {
+        validarNick();
+    });
+
+    $('#email').keyup(function () {
+        validarEmail()();
+    });
+
+    $('#contrasenia2').keyup(function () {
+        validarContrasenia();
+    });
+
     var selinsti = $('#selinsti');
     selinsti.hide();
     $('#docente').click(function () {
@@ -87,7 +94,7 @@ $(document).ready(function () {
         $.ajax({
             type: 'GET',
             url: 'Instituto',
-            data: {accion:accion},
+            data: {accion: accion},
             success: function (response) {
                 let institutos = JSON.parse(response);
                 institutos.forEach(instituto => {

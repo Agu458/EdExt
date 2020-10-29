@@ -70,6 +70,15 @@ public class Curso extends HttpServlet {
                 String json = new Gson().toJson(cursos);
                 out.println(json);
             }
+            if(accion.equals("listarEdicionesCurso")){
+                String curso = request.getParameter("curso");
+                if(curso != null){
+                    List ediciones = is.listarEdiciones(curso);
+                String json = new Gson().toJson(ediciones);
+                out.println(json);
+                }
+                
+            }
         }
 
         String validar = request.getParameter("validar");

@@ -241,9 +241,9 @@ public class ConsultaUsuario extends javax.swing.JInternalFrame {
                 this.jTextField7.setText("-");
                 this.jLabel9.setIcon(new ImageIcon(de.getimagen()));
                 DefaultListModel dlm1 = new DefaultListModel();
-                for(DataEdicion edicion : de.getInscripcionEdiciones().values()){
+                for(DataInscripcionEdicion edicion : de.getInscripcionEdiciones().values()){
                     if(edicion != null){
-                        dlm1.addElement(edicion.getNombre());
+                        dlm1.addElement(edicion.getEdicion().getNombre());
                     }
                 }
                 this.jList1.setModel(dlm1);
@@ -290,10 +290,10 @@ public class ConsultaUsuario extends javax.swing.JInternalFrame {
         DataUsuario du = this.usuarioActual;
         if(du instanceof DataEstudiante){
             DataEstudiante de = (DataEstudiante) du;
-            Map<String, DataEdicion> ediciones = de.getInscripcionEdiciones();
+            Map<String, DataInscripcionEdicion> ediciones = de.getInscripcionEdiciones();
             for(String s : this.jList1.getSelectedValuesList()){
-                DataEdicion dedicion = ediciones.get(s);
-                infoEdicion ie = new infoEdicion(dedicion, dedicion.getCurso());
+                DataInscripcionEdicion dedicion = ediciones.get(s);
+                infoEdicion ie = new infoEdicion(dedicion.getEdicion(), dedicion.getEdicion().getCurso());
                 Principal.Desktop.add(ie);
                 ie.show();
             }
