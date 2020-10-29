@@ -33,7 +33,13 @@
                             <a class="list-group-item list-group-item-action active" data-toggle="list" href="#account-general">General</a>
                             <a class="list-group-item list-group-item-action" data-toggle="list" href="#account-change-password">Cambiar Contraseña</a>
                             <a class="list-group-item list-group-item-action" data-toggle="list" href="#account-editions">Ediciones</a>
-                            <a class="list-group-item list-group-item-action" data-toggle="list" href="#account-programs">Programas</a>
+                            <%
+                                if (du instanceof DataEstudiante) {
+                            %>
+                                    <a class="list-group-item list-group-item-action" data-toggle="list" href="#account-programs">Programas</a>
+                            <%
+                                }
+                            %>
                         </div>
                     </div>
                     <div class="col-md-9">
@@ -43,15 +49,15 @@
                                 <div class="card-body media align-items-center">
                                     <%
                                         String imagen = du.getimagen();
-                                        if(imagen != null){
+                                        if (imagen != null) {
                                     %>
-                                    <img src="<%= imagen %>" alt="" class="d-block ui-w-80">
+                                    <img src="<%= imagen%>" alt="" class="d-block ui-w-80">
                                     <%
-                                        } else {
+                                    } else {
                                     %>
                                     <img src="https://www.bootdey.com/img/Content/avatar/avatar1.png" alt="" class="d-block ui-w-80">
                                     <%
-}
+                                        }
                                     %>
                                     <div class="media-body ml-4">
                                         <label class="btn btn-outline-primary">
@@ -129,79 +135,58 @@
                                                 if (du instanceof DataEstudiante) {
                                                     DataEstudiante de = (DataEstudiante) du;
                                                     for (DataInscripcionEdicion edicion : de.getInscripcionEdiciones().values()) {
-                                                        if(edicion.getEstado() == EstadoInscripcion.ACEPTADO){
+                                                        if (edicion.getEstado() == EstadoInscripcion.ACEPTADO) {
                                             %>
                                             <button type="submit" class="list-group-item list-group-item-action list-group-item-success" name="consultarEdicion" value="<%= edicion.getEdicion().getCurso()%>,<%= edicion.getEdicion().getNombre()%>" > <%= edicion.getEdicion().getNombre()%> </button>
                                             <%
-                                                        } else {
-                                                            if(edicion.getEstado() == EstadoInscripcion.RECHASADO){
+                                            } else {
+                                                if (edicion.getEstado() == EstadoInscripcion.RECHASADO) {
                                             %>
                                             <button type="submit" class="list-group-item list-group-item-action list-group-item-danger" name="consultarEdicion" value="<%= edicion.getEdicion().getCurso()%>,<%= edicion.getEdicion().getNombre()%>" > <%= edicion.getEdicion().getNombre()%> </button>
                                             <%
-                                                            } else {
+                                            } else {
                                             %>
                                             <button type="submit" class="list-group-item list-group-item-action list-group-item-primary" name="consultarEdicion" value="<%= edicion.getEdicion().getCurso()%>,<%= edicion.getEdicion().getNombre()%>" > <%= edicion.getEdicion().getNombre()%> </button>
                                             <%
-                                                            }
                                                         }
                                                     }
-                                                } else {
-                                                    DataProfesor dp = (DataProfesor) du;
-                                                    for (DataEdicion edicion : dp.getEdiciones().values()) {
+                                                }
+                                            } else {
+                                                DataProfesor dp = (DataProfesor) du;
+                                                for (DataEdicion edicion : dp.getEdiciones().values()) {
                                             %>
                                             <button type="submit" class="list-group-item list-group-item-action" name="consultarEdicion" value="<%= edicion.getCurso()%>,<%= edicion.getNombre()%>" > <%= edicion.getNombre()%> </button>
                                             <%
                                                     }
                                                 }
                                             %>
-                                            
+
                                         </form>
                                     </div>
                                 </div>
                             </div>
+                            <%
+                                if (du instanceof DataEstudiante) {
+                                    DataEstudiante de = (DataEstudiante) du;
+                            %>
                             <div class="tab-pane fade" id="account-programs">
-                                <div class="form-group">
-                                    <label class="form-label">Programas Inscriptos</label>
-                                    <select class="custom-select" value="Cursos">
-                                        <option>Programa 1</option>
-                                        <option>Programa 2</option>
-                                        <option>Programa 3</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label">Cursos</label>
-                                    <table class="table">
-                                        <thead class="thead-dark">
-                                            <tr>
-                                                <th scope="col">#</th>
-                                                <th scope="col">Nombre</th>
-                                                <th scope="col">Duracion (Numero de semanas)</th>
-                                                <th scope="col">Creditos</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <th scope="row">1</th>
-                                                <td>Nombre 1</td>
-                                                <td>Duracion 1</td>
-                                                <td>Creditos 1</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">2</th>
-                                                <td>Nombre 2</td>
-                                                <td>Duracion 2</td>
-                                                <td>Creditos 2</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">3</th>
-                                                <td>Nombre 3</td>
-                                                <td>Duracion 3</td>
-                                                <td>Creditos 3</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                <div class="form-group p-4">
+                                    <div class="list-group" id="ediciones">
+                                        <form action="ProgramaFormacion" method="GET">
+                                            <%
+                                            for (DataProgramaFormacion programa : de.getInscripcionProgramas().values()) {
+                                            %>
+                                            <button type="submit" class="list-group-item list-group-item-action" name="consultarPrograma" value="<%= programa.getNombre() %>" > <%= programa.getNombre() %> </button>
+                                            <%
+                                                    }
+                                            %>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
+                            <%
+                                }
+                            %>
                         </div>
                     </div>
                 </div>

@@ -82,4 +82,6 @@ public interface ISistema {
     public void aceptarInscripciones(String curso, String edicion, List<String> estudiantes);
     
     public List<String> listarAceptadosAEdicion(String curso, String edicion);
+    
+    public void inscripcionAPrograma(String programa, String estudiante, Date fecha);
 }

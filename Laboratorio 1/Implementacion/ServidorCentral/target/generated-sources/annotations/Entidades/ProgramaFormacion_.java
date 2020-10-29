@@ -6,11 +6,10 @@ import Entidades.InscripcionPrograma;
 import java.util.Date;
 import javax.annotation.Generated;
 import javax.persistence.metamodel.ListAttribute;
-import javax.persistence.metamodel.MapAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2020-10-29T01:28:51")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2020-10-29T15:04:10")
 @StaticMetamodel(ProgramaFormacion.class)
 public class ProgramaFormacion_ { 
 
@@ -20,6 +19,6 @@ public class ProgramaFormacion_ {
     public static volatile ListAttribute<ProgramaFormacion, Categoria> categorias;
     public static volatile SingularAttribute<ProgramaFormacion, String> nombre;
     public static volatile SingularAttribute<ProgramaFormacion, Date> fechaFin;
-    public static volatile MapAttribute<ProgramaFormacion, String, InscripcionPrograma> inscriptos;
+    public static volatile ListAttribute<ProgramaFormacion, InscripcionPrograma> inscriptos;
 
 }

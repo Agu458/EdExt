@@ -35,7 +35,7 @@
                     <div class="col-lg-4 col-md-6 col-12">
                         <div class="our-team">
                             <div class="team-content">
-                                <a class="title" href="inscripcion_programa.jsp">Inscripcion a Programa</a>
+                                <a class="title" href="inscripcionAPrograma.jsp">Inscripcion a Programa</a>
                                 <span class="post">Inscribirse a programa de formación.</span>
                             </div>
                         </div>

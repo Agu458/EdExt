@@ -106,6 +106,15 @@ public class ProgramaFormacion extends HttpServlet {
                     response.sendRedirect("agregarCursoPrograma.jsp");
                 }
             }
+            if(accion.equals("altaInscripcionPrograma")){
+                String estudiante = request.getParameter("estudiante");
+                String programa = request.getParameter("programa");
+
+                if(estudiante != null && programa != null){
+                    is.inscripcionAPrograma(programa, estudiante, new Date());
+                    response.sendRedirect("inscripcionAPrograma.jsp");
+                }
+            }
         }
     }
 

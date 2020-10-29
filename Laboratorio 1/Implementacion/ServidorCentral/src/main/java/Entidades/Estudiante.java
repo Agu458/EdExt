@@ -67,6 +67,15 @@ public class Estudiante extends Usuario {
         return null;
     }
 
+    public InscripcionPrograma darInscripcionPrograma(String programa) {
+        for (InscripcionPrograma aux : inscripcionProgramas) {
+            if (aux.getPrograma().getNombre() == programa) {
+                return aux;
+            }
+        }
+        return null;
+    }
+    
     public InscripcionEdicion inscribirseAUnaEdicion(Edicion edicion, Date fecha) {
         InscripcionEdicion inscripcion = this.darInscripcionEdicion(edicion.getNombreEdicion());
         if (inscripcion != null) {
@@ -82,6 +91,15 @@ public class Estudiante extends Usuario {
         return inscripcion;
     }
 
+    public InscripcionPrograma inscribirseAUnPrograma(ProgramaFormacion programa, Date fecha) {
+        InscripcionPrograma inscripcion = this.darInscripcionPrograma(programa.getNombre());
+        if (inscripcion == null) {
+            inscripcion = new InscripcionPrograma(fecha, programa, this);
+            inscripcionProgramas.add(inscripcion);
+        }
+        return inscripcion;
+    } 
+    
     @Override
     public DataUsuario darDatos() {
         Map<String, DataInscripcionEdicion> eds = new HashMap();

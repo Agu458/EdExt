@@ -83,7 +83,7 @@ public class Edicion extends HttpServlet {
             String curso = null;
             String[] datos = null;
             try {
-                datos = seleccionarInscriptosEdicion.split(",");
+                datos = darAceptadosAEdicion.split(",");
                 curso = datos[0];
                 edicion = datos[1];
             } catch (Exception e) {
@@ -91,7 +91,7 @@ public class Edicion extends HttpServlet {
             if (edicion != null && curso != null) {
                 List inscriptos = is.listarAceptadosAEdicion(curso, edicion);
                 DataEdicion de = is.darDatosEdicion(curso, edicion);
-                request.setAttribute("inscriptos", inscriptos);
+                request.setAttribute("aceptados", inscriptos);
                 request.setAttribute("edicion", de);
                 request.getRequestDispatcher("estudiantesAceptados.jsp").forward(request, response);
             }

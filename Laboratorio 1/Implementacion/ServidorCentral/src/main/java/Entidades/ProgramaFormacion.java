@@ -28,7 +28,7 @@ public class ProgramaFormacion implements Serializable {
     private Date fechaFin;
     @OneToMany
     private List<Categoria> categorias;
-    private Map<String, InscripcionPrograma> inscriptos;
+    private List<InscripcionPrograma> inscriptos;
 
     public ProgramaFormacion() {
     }
@@ -38,6 +38,7 @@ public class ProgramaFormacion implements Serializable {
         this.descripcion = descripcion;
         this.fechaIni = fechaIni;
         this.fechaFin = fechaFin;
+        this.inscriptos = new ArrayList();
     }
 
     public String getNombre() {
@@ -90,9 +91,18 @@ public class ProgramaFormacion implements Serializable {
         this.fechaFin = fechaFin;
     }
     
-    public void inscribirEstudiante(InscripcionPrograma ip){
-        if(ip != null){
-            inscriptos.put(ip.getEstudiante().getEmail(), ip);
+    public boolean estaInscripto(String email) {
+        for (InscripcionPrograma aux : inscriptos) {
+            if (aux.getEstudiante().getEmail() == email) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void agregarInscripcion(InscripcionPrograma inscripcion) {
+        if (!this.estaInscripto(inscripcion.getEstudiante().getEmail())) {
+            inscriptos.add(inscripcion);
         }
     }
     
@@ -109,7 +119,7 @@ public class ProgramaFormacion implements Serializable {
         }
         
         List<String> insc = new ArrayList();
-        for(InscripcionPrograma ip : inscriptos.values()){
+        for(InscripcionPrograma ip : inscriptos){
             insc.add(ip.getEstudiante().getEmail());
         }
         

@@ -419,13 +419,9 @@ public class Sistema implements ISistema {
         try {
             em.getTransaction().begin();
             if (estudiante != null) {
-                System.out.println(estudiante);
                 Estudiante est = em.find(Estudiante.class, estudiante);
-                System.out.println(est.getEmail());
                 if (curso != null) {
-                    System.out.println(curso);
                     Curso cur = em.find(Curso.class, curso);
-                    System.out.println(cur.getNombre());
                     if (est != null && cur != null) {
                         InscripcionEdicion inscripcion = est.inscribirseAUnaEdicion(cur.getEdicionActual(), fecha);
                         cur.getEdicionActual().agregarInscripcion(inscripcion);
@@ -439,8 +435,26 @@ public class Sistema implements ISistema {
         }
     }
 
+    @Override
     public void inscripcionAPrograma(String programa, String estudiante, Date fecha) {
-
+        EntityManager em = emf.createEntityManager();
+        try {
+            em.getTransaction().begin();
+            if(programa != null){
+                ProgramaFormacion prog = em.find(ProgramaFormacion.class, programa);
+                if(estudiante != null){
+                    Estudiante est = em.find(Estudiante.class, estudiante);
+                    if(prog != null && est != null){
+                        InscripcionPrograma inscripcion = est.inscribirseAUnPrograma(prog, fecha);
+                        prog.agregarInscripcion(inscripcion);
+                        em.persist(inscripcion);
+                    }
+                }
+            }
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+        }
     }
 
     @Override
