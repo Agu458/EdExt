@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI (http://jax-ws.java.net). RI's version is JAX-WS RI 2.3.1 svn-revision#6ef5f7eb9a938dbc4562f25f8fa0b67cc4ff2dbb. --><xs:schema xmlns:tns="http://Servidor/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://Servidor/">
+
+<xs:complexType name="dataProgramaFormacion">
+<xs:sequence>
+<xs:element name="nombre" type="xs:string" minOccurs="0"/>
+<xs:element name="cursos" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="descripcion" type="xs:string" minOccurs="0"/>
+<xs:element name="fechaIni" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="fechaFin" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="categorias" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="inscriptos" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="data">
+<xs:sequence>
+<xs:element name="data" type="xs:anyType" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dataEdicion">
+<xs:sequence>
+<xs:element name="nombre" type="xs:string" minOccurs="0"/>
+<xs:element name="fechaIni" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="fechaFin" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="cupos" type="xs:int"/>
+<xs:element name="fechaPublicacion" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="profesores" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="curso" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dataCurso">
+<xs:sequence>
+<xs:element name="nombre" type="xs:string" minOccurs="0"/>
+<xs:element name="descripcion" type="xs:string" minOccurs="0"/>
+<xs:element name="duracion" type="xs:int"/>
+<xs:element name="horas" type="xs:int"/>
+<xs:element name="creditos" type="xs:int"/>
+<xs:element name="fechaRegistro" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="URL" type="xs:string" minOccurs="0"/>
+<xs:element name="previas" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="ediciones" type="tns:dataEdicion" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="edicionAgtual" type="tns:dataEdicion" minOccurs="0"/>
+<xs:element name="programas" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="instituto" type="xs:string" minOccurs="0"/>
+<xs:element name="categorias" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dataUsuario">
+<xs:sequence>
+<xs:element name="nick" type="xs:string" minOccurs="0"/>
+<xs:element name="nombre" type="xs:string" minOccurs="0"/>
+<xs:element name="apellido" type="xs:string" minOccurs="0"/>
+<xs:element name="email" type="xs:string" minOccurs="0"/>
+<xs:element name="fechaNacimiento" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="contrasenia" type="xs:string" minOccurs="0"/>
+<xs:element name="imagen" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>
