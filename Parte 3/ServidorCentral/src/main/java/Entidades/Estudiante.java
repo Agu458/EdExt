@@ -102,18 +102,18 @@ public class Estudiante extends Usuario {
     
     @Override
     public DataUsuario darDatos() {
-        Map<String, DataInscripcionEdicion> eds = new HashMap();
+        List<DataInscripcionEdicion> eds = new ArrayList();
         for (InscripcionEdicion ie : inscripcionEdiciones) {
             if (ie != null) {
                 DataInscripcionEdicion die = ie.darDatos();
-                eds.put(die.getEdicion().getNombre(), die);
+                eds.add(die);
             }
         }
-        Map<String, DataProgramaFormacion> progs = new HashMap();
+        List<DataProgramaFormacion> progs = new ArrayList();
         for (InscripcionPrograma ip : inscripcionProgramas) {
             if (ip.getPrograma() != null) {
                 DataProgramaFormacion dpf = ip.getPrograma().darDatos();
-                progs.put(dpf.getNombre(), dpf);
+                progs.add(dpf);
             }
         }
         return new DataEstudiante(eds, progs, super.getNick(), super.getNombre(), super.getApellido(), super.getEmail(), super.getFechaNacimiento(),

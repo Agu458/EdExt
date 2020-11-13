@@ -20,28 +20,7 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;extension base="{http://Servidor/}dataUsuario">
  *       &lt;sequence>
  *         &lt;element name="instituto" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="ediciones">
- *           &lt;complexType>
- *             &lt;complexContent>
- *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *                 &lt;sequence>
- *                   &lt;element name="entry" maxOccurs="unbounded" minOccurs="0">
- *                     &lt;complexType>
- *                       &lt;complexContent>
- *                         &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *                           &lt;sequence>
- *                             &lt;element name="key" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *                             &lt;element name="value" type="{http://Servidor/}dataEdicion" minOccurs="0"/>
- *                           &lt;/sequence>
- *                         &lt;/restriction>
- *                       &lt;/complexContent>
- *                     &lt;/complexType>
- *                   &lt;/element>
- *                 &lt;/sequence>
- *               &lt;/restriction>
- *             &lt;/complexContent>
- *           &lt;/complexType>
- *         &lt;/element>
+ *         &lt;element name="ediciones" type="{http://Servidor/}dataEdicion" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/extension>
  *   &lt;/complexContent>
@@ -60,8 +39,8 @@ public class DataProfesor
 {
 
     protected String instituto;
-    @XmlElement(required = true)
-    protected DataProfesor.Ediciones ediciones;
+    @XmlElement(nillable = true)
+    protected List<DataEdicion> ediciones;
 
     /**
      * Obtiene el valor de la propiedad instituto.
@@ -88,178 +67,32 @@ public class DataProfesor
     }
 
     /**
-     * Obtiene el valor de la propiedad ediciones.
+     * Gets the value of the ediciones property.
      * 
-     * @return
-     *     possible object is
-     *     {@link DataProfesor.Ediciones }
-     *     
-     */
-    public DataProfesor.Ediciones getEdiciones() {
-        return ediciones;
-    }
-
-    /**
-     * Define el valor de la propiedad ediciones.
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the ediciones property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link DataProfesor.Ediciones }
-     *     
-     */
-    public void setEdiciones(DataProfesor.Ediciones value) {
-        this.ediciones = value;
-    }
-
-
-    /**
-     * <p>Clase Java para anonymous complex type.
-     * 
-     * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
-     * 
+     * <p>
+     * For example, to add a new item, do as follows:
      * <pre>
-     * &lt;complexType>
-     *   &lt;complexContent>
-     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-     *       &lt;sequence>
-     *         &lt;element name="entry" maxOccurs="unbounded" minOccurs="0">
-     *           &lt;complexType>
-     *             &lt;complexContent>
-     *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-     *                 &lt;sequence>
-     *                   &lt;element name="key" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-     *                   &lt;element name="value" type="{http://Servidor/}dataEdicion" minOccurs="0"/>
-     *                 &lt;/sequence>
-     *               &lt;/restriction>
-     *             &lt;/complexContent>
-     *           &lt;/complexType>
-     *         &lt;/element>
-     *       &lt;/sequence>
-     *     &lt;/restriction>
-     *   &lt;/complexContent>
-     * &lt;/complexType>
+     *    getEdiciones().add(newItem);
      * </pre>
      * 
      * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link DataEdicion }
+     * 
+     * 
      */
-    @XmlAccessorType(XmlAccessType.FIELD)
-    @XmlType(name = "", propOrder = {
-        "entry"
-    })
-    public static class Ediciones {
-
-        protected List<DataProfesor.Ediciones.Entry> entry;
-
-        /**
-         * Gets the value of the entry property.
-         * 
-         * <p>
-         * This accessor method returns a reference to the live list,
-         * not a snapshot. Therefore any modification you make to the
-         * returned list will be present inside the JAXB object.
-         * This is why there is not a <CODE>set</CODE> method for the entry property.
-         * 
-         * <p>
-         * For example, to add a new item, do as follows:
-         * <pre>
-         *    getEntry().add(newItem);
-         * </pre>
-         * 
-         * 
-         * <p>
-         * Objects of the following type(s) are allowed in the list
-         * {@link DataProfesor.Ediciones.Entry }
-         * 
-         * 
-         */
-        public List<DataProfesor.Ediciones.Entry> getEntry() {
-            if (entry == null) {
-                entry = new ArrayList<DataProfesor.Ediciones.Entry>();
-            }
-            return this.entry;
+    public List<DataEdicion> getEdiciones() {
+        if (ediciones == null) {
+            ediciones = new ArrayList<DataEdicion>();
         }
-
-
-        /**
-         * <p>Clase Java para anonymous complex type.
-         * 
-         * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
-         * 
-         * <pre>
-         * &lt;complexType>
-         *   &lt;complexContent>
-         *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-         *       &lt;sequence>
-         *         &lt;element name="key" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-         *         &lt;element name="value" type="{http://Servidor/}dataEdicion" minOccurs="0"/>
-         *       &lt;/sequence>
-         *     &lt;/restriction>
-         *   &lt;/complexContent>
-         * &lt;/complexType>
-         * </pre>
-         * 
-         * 
-         */
-        @XmlAccessorType(XmlAccessType.FIELD)
-        @XmlType(name = "", propOrder = {
-            "key",
-            "value"
-        })
-        public static class Entry {
-
-            protected String key;
-            protected DataEdicion value;
-
-            /**
-             * Obtiene el valor de la propiedad key.
-             * 
-             * @return
-             *     possible object is
-             *     {@link String }
-             *     
-             */
-            public String getKey() {
-                return key;
-            }
-
-            /**
-             * Define el valor de la propiedad key.
-             * 
-             * @param value
-             *     allowed object is
-             *     {@link String }
-             *     
-             */
-            public void setKey(String value) {
-                this.key = value;
-            }
-
-            /**
-             * Obtiene el valor de la propiedad value.
-             * 
-             * @return
-             *     possible object is
-             *     {@link DataEdicion }
-             *     
-             */
-            public DataEdicion getValue() {
-                return value;
-            }
-
-            /**
-             * Define el valor de la propiedad value.
-             * 
-             * @param value
-             *     allowed object is
-             *     {@link DataEdicion }
-             *     
-             */
-            public void setValue(DataEdicion value) {
-                this.value = value;
-            }
-
-        }
-
+        return this.ediciones;
     }
 
 }

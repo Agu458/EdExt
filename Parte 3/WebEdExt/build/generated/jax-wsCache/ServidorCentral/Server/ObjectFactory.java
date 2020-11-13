@@ -114,46 +114,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link DataProfesor }
-     * 
-     */
-    public DataProfesor createDataProfesor() {
-        return new DataProfesor();
-    }
-
-    /**
-     * Create an instance of {@link DataProfesor.Ediciones }
-     * 
-     */
-    public DataProfesor.Ediciones createDataProfesorEdiciones() {
-        return new DataProfesor.Ediciones();
-    }
-
-    /**
-     * Create an instance of {@link DataEstudiante }
-     * 
-     */
-    public DataEstudiante createDataEstudiante() {
-        return new DataEstudiante();
-    }
-
-    /**
-     * Create an instance of {@link DataEstudiante.InscripcionProgramas }
-     * 
-     */
-    public DataEstudiante.InscripcionProgramas createDataEstudianteInscripcionProgramas() {
-        return new DataEstudiante.InscripcionProgramas();
-    }
-
-    /**
-     * Create an instance of {@link DataEstudiante.InscripcionEdiciones }
-     * 
-     */
-    public DataEstudiante.InscripcionEdiciones createDataEstudianteInscripcionEdiciones() {
-        return new DataEstudiante.InscripcionEdiciones();
-    }
-
-    /**
      * Create an instance of {@link DarEdicionActualResponse }
      * 
      */
@@ -530,6 +490,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link DataEstudiante }
+     * 
+     */
+    public DataEstudiante createDataEstudiante() {
+        return new DataEstudiante();
+    }
+
+    /**
      * Create an instance of {@link AltaEdicionCursoResponse }
      * 
      */
@@ -655,6 +623,14 @@ public class ObjectFactory {
      */
     public AltaCategoria createAltaCategoria() {
         return new AltaCategoria();
+    }
+
+    /**
+     * Create an instance of {@link DataProfesor }
+     * 
+     */
+    public DataProfesor createDataProfesor() {
+        return new DataProfesor();
     }
 
     /**
@@ -791,30 +767,6 @@ public class ObjectFactory {
      */
     public Lista createLista() {
         return new Lista();
-    }
-
-    /**
-     * Create an instance of {@link DataProfesor.Ediciones.Entry }
-     * 
-     */
-    public DataProfesor.Ediciones.Entry createDataProfesorEdicionesEntry() {
-        return new DataProfesor.Ediciones.Entry();
-    }
-
-    /**
-     * Create an instance of {@link DataEstudiante.InscripcionProgramas.Entry }
-     * 
-     */
-    public DataEstudiante.InscripcionProgramas.Entry createDataEstudianteInscripcionProgramasEntry() {
-        return new DataEstudiante.InscripcionProgramas.Entry();
-    }
-
-    /**
-     * Create an instance of {@link DataEstudiante.InscripcionEdiciones.Entry }
-     * 
-     */
-    public DataEstudiante.InscripcionEdiciones.Entry createDataEstudianteInscripcionEdicionesEntry() {
-        return new DataEstudiante.InscripcionEdiciones.Entry();
     }
 
     /**

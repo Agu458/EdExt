@@ -97,7 +97,7 @@
                                         <div class="form-group">
                                             <%
                                                 SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
-                                                String fechaNac = formato.format(du.getFechaNacimiento());
+                                                String fechaNac = formato.format(du.getFechaNacimiento().toGregorianCalendar().getTime());
                                             %>
                                             <label class="form-label">Fecha de Nacimiento</label>
                                             <input id="fecha" type="date" class="form-control" name="fecha" value="<%= fechaNac%>">
@@ -139,7 +139,7 @@
                                             <%
                                                 if (du instanceof DataEstudiante) {
                                                     DataEstudiante de = (DataEstudiante) du;
-                                                    for (DataInscripcionEdicion edicion : de.getInscripcionEdiciones().values()) {
+                                                    for (DataInscripcionEdicion edicion : de.getInscripcionEdiciones()) {
                                                         if (edicion.getEstado() == EstadoInscripcion.ACEPTADO) {
                                             %>
                                             <button type="submit" class="list-group-item list-group-item-action list-group-item-success" name="consultarEdicion" value="<%= edicion.getEdicion().getCurso()%>,<%= edicion.getEdicion().getNombre()%>" > <%= edicion.getEdicion().getNombre()%> </button>
@@ -158,7 +158,7 @@
                                                 }
                                             } else {
                                                 DataProfesor dp = (DataProfesor) du;
-                                                for (DataEdicion edicion : dp.getEdiciones().values()) {
+                                                for (DataEdicion edicion : dp.getEdiciones()) {
                                             %>
                                             <button type="submit" class="list-group-item list-group-item-action" name="consultarEdicion" value="<%= edicion.getCurso()%>,<%= edicion.getNombre()%>" > <%= edicion.getNombre()%> </button>
                                             <%
@@ -179,7 +179,7 @@
                                     <div class="list-group" id="ediciones">
                                         <form action="ProgramaFormacion" method="GET">
                                             <%
-                                            for (DataProgramaFormacion programa : de.getInscripcionProgramas().values()) {
+                                            for (DataProgramaFormacion programa : de.getInscripcionProgramas()) {
                                             %>
                                             <button type="submit" class="list-group-item list-group-item-action" name="consultarPrograma" value="<%= programa.getNombre() %>" > <%= programa.getNombre() %> </button>
                                             <%

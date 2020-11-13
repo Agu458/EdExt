@@ -11,8 +11,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class DataEstudiante extends DataUsuario{
     
-    Map<String, DataInscripcionEdicion> inscripcionEdiciones;
-    Map<String, DataProgramaFormacion> inscripcionProgramas;
+    List<DataInscripcionEdicion> inscripcionEdiciones;
+    List<DataProgramaFormacion> inscripcionProgramas;
 
     public DataEstudiante(){
     }
@@ -21,17 +21,17 @@ public class DataEstudiante extends DataUsuario{
         super(nick, nombre, apellido, email, fechaNacimiento, contrasenia ,imagen);
     }
 
-    public DataEstudiante(Map<String, DataInscripcionEdicion> inscripcionEdiciones, Map<String, DataProgramaFormacion> inscripcionProgramas, String nick, String nombre, String apellido, String email, Date fechaNacimiento, String contrasenia ,String imagen) {
+    public DataEstudiante(List<DataInscripcionEdicion> inscripcionEdiciones, List<DataProgramaFormacion> inscripcionProgramas, String nick, String nombre, String apellido, String email, Date fechaNacimiento, String contrasenia ,String imagen) {
         super(nick, nombre, apellido, email, fechaNacimiento, contrasenia ,imagen);
         this.inscripcionEdiciones = inscripcionEdiciones;
         this.inscripcionProgramas = inscripcionProgramas;
     }
 
-    public Map<String, DataInscripcionEdicion> getInscripcionEdiciones() {
+    public List<DataInscripcionEdicion> getInscripcionEdiciones() {
         return inscripcionEdiciones;
     }
 
-    public Map<String, DataProgramaFormacion> getInscripcionProgramas() {
+    public List<DataProgramaFormacion> getInscripcionProgramas() {
         return inscripcionProgramas;
     }
     

@@ -12,7 +12,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class DataProfesor extends DataUsuario {
 
     private String instituto;
-    private Map<String, DataEdicion> ediciones;
+    private List<DataEdicion> ediciones;
 
     public DataProfesor(){
     }
@@ -22,7 +22,7 @@ public class DataProfesor extends DataUsuario {
         this.instituto = instituto;
     }
     
-    public DataProfesor(String instituto, String nick, String nombre, String apellido, String email, Date fechaNacimiento, Map<String, DataEdicion> ediciones, String contrasenia ,String imagen) {
+    public DataProfesor(String instituto, String nick, String nombre, String apellido, String email, Date fechaNacimiento, List<DataEdicion> ediciones, String contrasenia ,String imagen) {
         super(nick, nombre, apellido, email, fechaNacimiento, contrasenia ,imagen);
         this.instituto = instituto;
         this.ediciones = ediciones;
@@ -32,7 +32,7 @@ public class DataProfesor extends DataUsuario {
         return instituto;
     }
 
-    public Map<String, DataEdicion> getEdiciones() {
+    public List<DataEdicion> getEdiciones() {
         return ediciones;
     }
 

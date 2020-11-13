@@ -6,6 +6,7 @@
 package Presentacion;
 
 import DataTypes.*;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.swing.DefaultListModel;
@@ -241,7 +242,7 @@ public class ConsultaUsuario extends javax.swing.JInternalFrame {
                 this.jTextField7.setText("-");
                 this.jLabel9.setIcon(new ImageIcon(de.getimagen()));
                 DefaultListModel dlm1 = new DefaultListModel();
-                for(DataInscripcionEdicion edicion : de.getInscripcionEdiciones().values()){
+                for(DataInscripcionEdicion edicion : de.getInscripcionEdiciones()){
                     if(edicion != null){
                         dlm1.addElement(edicion.getEdicion().getNombre());
                     }
@@ -258,7 +259,7 @@ public class ConsultaUsuario extends javax.swing.JInternalFrame {
                 this.jTextField7.setText(dp.getInstituto());
                 this.jLabel9.setIcon(new ImageIcon(dp.getimagen()));
                 DefaultListModel dlm1 = new DefaultListModel();
-                for(DataEdicion edicion : dp.getEdiciones().values()){
+                for(DataEdicion edicion : dp.getEdiciones()){
                     if(edicion != null){
                         dlm1.addElement(edicion.getNombre());
                     }
@@ -290,7 +291,13 @@ public class ConsultaUsuario extends javax.swing.JInternalFrame {
         DataUsuario du = this.usuarioActual;
         if(du instanceof DataEstudiante){
             DataEstudiante de = (DataEstudiante) du;
-            Map<String, DataInscripcionEdicion> ediciones = de.getInscripcionEdiciones();
+            
+            Map<String, DataInscripcionEdicion> ediciones = new HashMap();
+            List<DataInscripcionEdicion> eds = de.getInscripcionEdiciones();
+            for(DataInscripcionEdicion die : eds){
+                ediciones.put(die.getEdicion().getNombre(), die);
+            }
+            
             for(String s : this.jList1.getSelectedValuesList()){
                 DataInscripcionEdicion dedicion = ediciones.get(s);
                 infoEdicion ie = new infoEdicion(dedicion.getEdicion(), dedicion.getEdicion().getCurso());
@@ -299,7 +306,13 @@ public class ConsultaUsuario extends javax.swing.JInternalFrame {
             }
         }else{
             DataProfesor dp = (DataProfesor) du;
-            Map<String, DataEdicion> ediciones = dp.getEdiciones();
+            
+            Map<String, DataEdicion> ediciones = new HashMap();
+            List<DataEdicion> eds = dp.getEdiciones();
+            for(DataEdicion de : eds){
+                ediciones.put(de.getNombre(), de);
+            }
+            
             for(String s : this.jList1.getSelectedValuesList()){
                 DataEdicion dedicion = ediciones.get(s);
                 infoEdicion ie = new infoEdicion(dedicion, dedicion.getCurso());
