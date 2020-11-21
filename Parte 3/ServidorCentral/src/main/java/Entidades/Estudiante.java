@@ -68,9 +68,9 @@ public class Estudiante extends Usuario {
     }
     
     public InscripcionEdicion darInscripcionEdicion(String edicion) {
-        for (InscripcionEdicion aux : inscripcionEdiciones) {
-            if (aux.getEdicion().getNombreEdicion() == edicion) {
-                return aux;
+        for (InscripcionEdicion ie : this.inscripcionEdiciones) {
+            if (ie.getEdicion().getNombreEdicion().equals(edicion)) {
+                return ie;
             }
         }
         return null;
@@ -132,12 +132,24 @@ public class Estudiante extends Usuario {
     public void cancelarInscripcionEdicion(String edicion, EntityManager em){
         InscripcionEdicion inscripcion = this.darInscripcionEdicion(edicion);
         if(inscripcion != null){
-            inscripcion.getEdicion().cancelarInscripcionEstudiante(inscripcion);
-            this.inscripcionEdiciones.remove(inscripcion);
-            em.remove(inscripcion);
-            inscripcion.setEdicion(null);
-            inscripcion.setEstudiante(null);
-            inscripcion = null;
+            if(inscripcion.getEstado() == EstadoInscripcion.INSCRIPTO){
+                inscripcion.getEdicion().cancelarInscripcionEstudiante(inscripcion);
+                this.inscripcionEdiciones.remove(inscripcion);
+                em.remove(inscripcion);
+                inscripcion.setEdicion(null);
+                inscripcion.setEstudiante(null);
+                inscripcion = null;
+            }
         }
+    }
+    
+    public List<DataEdicion> darInscripcionesActivasEdicion(){
+        List<DataEdicion> result = new ArrayList();
+        for(InscripcionEdicion inscripcion : inscripcionEdiciones){
+            if(inscripcion.getEstado() == EstadoInscripcion.ACEPTADO){
+                result.add(inscripcion.getEdicion().darDatos());
+            }
+        }
+        return result;
     }
 }

@@ -44,11 +44,12 @@
                     <div class="col-lg-4 col-md-6 col-12">
                         <div class="our-team">
                             <div class="team-content">
-                                <a class="title" href="res_insc.html">Resultado de inscripciones</a>
-                                <span class="post">Listar resultados de inscripciones a ediciones de cursos</span>
+                                <a class="title" href="Comentario">Agregar Comentario</a>
+                                <span class="post">Agregar comentario a ediciones de cursos</span>
                             </div>
                         </div>
                     </div>
+                    
                 </div><!-- end row -->
             </div><!-- end container -->
         </div><!-- end section -->

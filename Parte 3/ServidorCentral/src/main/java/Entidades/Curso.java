@@ -266,4 +266,13 @@ public class Curso implements Serializable {
     public Edicion darEdicion(String edicion){
         return ediciones.get(edicion);
     }
+    
+    //Comentarios de la edicion
+    public void agregarComentarioEdicion(String edicion, String estudiante, String cuerpo, Date fechaPublicacion, EntityManager em){
+        Edicion ed = this.darEdicion(edicion);
+        if(ed != null){
+            ed.agregarComentario(estudiante, cuerpo, fechaPublicacion, em);
+        }
+    }
+    
 }

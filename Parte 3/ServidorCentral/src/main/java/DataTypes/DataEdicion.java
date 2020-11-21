@@ -18,6 +18,7 @@ public class DataEdicion {
     private Date fechaPublicacion;
     private List<String> profesores;
     private String curso;
+    private List<DataComentario> comentarios;
 
     public DataEdicion() {
     }
@@ -31,7 +32,7 @@ public class DataEdicion {
         this.profesores = profesores;
     }
     
-    public DataEdicion(String nombre, Date fechaIni, Date fechaFin, int cupos, int aceptados, Date fechaPublicacion, List<String> profesores, String curso) {
+    public DataEdicion(String nombre, Date fechaIni, Date fechaFin, int cupos, int aceptados, Date fechaPublicacion, List<String> profesores, String curso, List<DataComentario> comentarios) {
         this.nombre = nombre;
         this.fechaIni = fechaIni;
         this.fechaFin = fechaFin;
@@ -40,6 +41,7 @@ public class DataEdicion {
         this.profesores = profesores;
         this.curso = curso;
         this.aceptados = aceptados;
+        this.comentarios = comentarios;
     }
 
     public String getNombre() {
@@ -74,4 +76,9 @@ public class DataEdicion {
         return curso;
     }
 
+    public List<DataComentario> getComentarios() {
+        return comentarios;
+    }
+    
+    
 }

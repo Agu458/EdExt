@@ -222,6 +222,23 @@ public class Edicion extends HttpServlet {
                 }
             }
         }
+        
+        String desistirDeInscripcion = request.getParameter("desistirDeInscripcion");
+        if(desistirDeInscripcion != null){
+            String estudiante = null;
+            String edicion = null;
+            String[] datos = null;
+            try {
+                datos = desistirDeInscripcion.split(",");
+                estudiante = datos[0];
+                edicion = datos[1];
+            } catch (Exception e) {
+            }
+            if (estudiante != null && edicion != null) {
+                port.desistirDeInscripcion(estudiante, edicion);
+                response.sendRedirect("index.jsp");
+            }
+        }
     }
 
     /**

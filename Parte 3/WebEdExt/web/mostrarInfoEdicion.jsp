@@ -4,6 +4,7 @@
     Author     : Agustin
 --%>
 
+<%@page import="Server.DataComentario"%>
 <%@page import="Server.DataEdicion"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -66,20 +67,23 @@
                 </div>
                 <div class="form-group">
                     <label for="profesores">Profesores</label>
-                        <div class="list-group" id="profesores">
-                            <%
-                                if (de.getProfesores().isEmpty()) {
-                            %>
-                            <label class="list-group-item"> No tiene ...</label>
-                            <%
-                                }
-                                for (String s : de.getProfesores()) {
-                            %>
-                            <label class="list-group-item"> <%= s%></label>
-                            <%
-                                }
-                            %>
-                        </div>
+                    <div class="list-group" id="profesores">
+                        <%
+                            if (de.getProfesores().isEmpty()) {
+                        %>
+                        <label class="list-group-item"> No tiene ...</label>
+                        <%
+                            }
+                            for (String s : de.getProfesores()) {
+                        %>
+                        <label class="list-group-item"> <%= s%></label>
+                        <%
+                            }
+                        %>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="comentarios">Comentarios</label>
                 </div>
             </div>
         </div>

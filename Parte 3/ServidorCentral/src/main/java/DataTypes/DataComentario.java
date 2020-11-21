@@ -5,6 +5,7 @@
  */
 package DataTypes;
 
+import java.util.Date;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -18,15 +19,19 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class DataComentario {
     
+    private Long id;
     private String estudiante;
+    private Date fechaPublicacion;
     private String cuerpo;
     private List<DataComentario> respuestas;
 
     public DataComentario() {
     }
 
-    public DataComentario(String estudiante, String cuerpo, List<DataComentario> respuestas) {
+    public DataComentario(Long id, String estudiante, Date fechaPublicacion, String cuerpo, List<DataComentario> respuestas) {
+        this.id = id;
         this.estudiante = estudiante;
+        this.fechaPublicacion = fechaPublicacion;
         this.cuerpo = cuerpo;
         this.respuestas = respuestas;
     }
@@ -42,6 +47,13 @@ public class DataComentario {
     public List<DataComentario> getRespuestas() {
         return respuestas;
     }
-    
+
+    public Long getId() {
+        return id;
+    }
+
+    public Date getFechaPublicacion() {
+        return fechaPublicacion;
+    }
     
 }

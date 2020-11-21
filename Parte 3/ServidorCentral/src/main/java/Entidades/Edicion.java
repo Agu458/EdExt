@@ -1,5 +1,6 @@
 package Entidades;
 
+import DataTypes.DataComentario;
 import DataTypes.DataEdicion;
 import DataTypes.EstadoInscripcion;
 import java.io.Serializable;
@@ -9,6 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.persistence.Entity;
+import javax.persistence.EntityManager;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.MapKey;
@@ -37,6 +39,8 @@ public class Edicion implements Serializable {
     @OneToMany
     private List<InscripcionEdicion> inscriptos;
     private int aceptados;
+    @OneToMany
+    private List<Comentario> comentarios;
     
     public Edicion() {
     }
@@ -48,6 +52,7 @@ public class Edicion implements Serializable {
         this.cupos = cupos;
         this.fechaPublicacion = fechaPublicacion;
         this.profesores = new HashMap();
+        this.comentarios = new ArrayList();
         for (Profesor p : profesores) {
             this.profesores.put(p.getEmail(), p);
         }
@@ -114,7 +119,12 @@ public class Edicion implements Serializable {
             c = this.curso.getNombre();
         }
 
-        return new DataEdicion(nombreEdicion, fechaIni, fechaFin, cupos, aceptados, fechaPublicacion, dps, c);
+        List<DataComentario> coms = new ArrayList();
+        for(Comentario comentario : comentarios){
+            coms.add(comentario.darDatos());
+        }
+        
+        return new DataEdicion(nombreEdicion, fechaIni, fechaFin, cupos, aceptados, fechaPublicacion, dps, c, coms);
     }
 
     public Curso getCurso() {
@@ -229,5 +239,21 @@ public class Edicion implements Serializable {
         } else {
             return true;
         }
+    }
+    
+    //Comentarios de la edicion
+
+    public List<Comentario> getComentarios() {
+        return comentarios;
+    }
+
+    public void setComentarios(List<Comentario> comentarios) {
+        this.comentarios = comentarios;
+    }
+    
+    public void agregarComentario(String estudiante, String cuerpo, Date fechaPublicacion, EntityManager em){
+        Comentario comentario = new Comentario(estudiante, cuerpo, fechaPublicacion);
+        this.comentarios.add(comentario);
+        em.persist(comentario);
     }
 }

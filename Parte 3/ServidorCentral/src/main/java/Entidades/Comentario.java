@@ -8,11 +8,13 @@ package Entidades;
 import DataTypes.DataComentario;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
 
 /**
  *
@@ -26,6 +28,8 @@ public class Comentario implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String estudiante;
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date fechaPublicacion;
     private String cuerpo;
     private List<Comentario> respuestas;
 
@@ -33,9 +37,11 @@ public class Comentario implements Serializable {
     }
 
     // Constructor del comentario
-    public Comentario(String estudiante, String cuerpo) {
+    public Comentario(String estudiante, String cuerpo, Date fechaPublicacion) {
         this.estudiante = estudiante;
         this.cuerpo = cuerpo;
+        this.fechaPublicacion = fechaPublicacion;
+        this.respuestas = new ArrayList();
     }
     
     public Long getId() {
@@ -58,6 +64,14 @@ public class Comentario implements Serializable {
         this.cuerpo = cuerpo;
     }
 
+    public Date getFechaPublicacion() {
+        return fechaPublicacion;
+    }
+
+    public void setFechaPublicacion(Date fechaPublicacion) {
+        this.fechaPublicacion = fechaPublicacion;
+    }
+
     public List<Comentario> getRespuestas() {
         return respuestas;
     }
@@ -71,6 +85,6 @@ public class Comentario implements Serializable {
         for(Comentario resp : respuestas){
             coms.add(resp.darDatos());
         }
-        return new DataComentario(estudiante, cuerpo, coms);
+        return new DataComentario(id, estudiante, fechaPublicacion, cuerpo, coms);
     }
 }

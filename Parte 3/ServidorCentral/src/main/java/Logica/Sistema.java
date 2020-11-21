@@ -324,7 +324,7 @@ public class Sistema implements ISistema {
         em.close();
         return cursos;
     }
-    
+
     @Override
     public List<String> listarCursos() {
         EntityManager em = emf.createEntityManager();
@@ -457,11 +457,11 @@ public class Sistema implements ISistema {
         EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
-            if(programa != null){
+            if (programa != null) {
                 ProgramaFormacion prog = em.find(ProgramaFormacion.class, programa);
-                if(estudiante != null){
+                if (estudiante != null) {
                     Estudiante est = em.find(Estudiante.class, estudiante);
-                    if(prog != null && est != null){
+                    if (prog != null && est != null) {
                         InscripcionPrograma inscripcion = est.inscribirseAUnPrograma(prog, fecha);
                         prog.agregarInscripcion(inscripcion);
                         em.persist(inscripcion);
@@ -606,6 +606,7 @@ public class Sistema implements ISistema {
     public Boolean validarNombreCategoria(String nombre) {
         EntityManager em = emf.createEntityManager();
         Categoria cat = em.find(Categoria.class, nombre);
+        em.close();
         return (cat == null);
     }
 
@@ -620,6 +621,7 @@ public class Sistema implements ISistema {
         } catch (Exception e) {
             em.getTransaction().rollback();
         }
+        em.close();
     }
 
     @Override
@@ -659,6 +661,7 @@ public class Sistema implements ISistema {
         } catch (Exception e) {
             em.getTransaction().rollback();
         }
+        em.close();
         return categorias;
     }
 
@@ -676,6 +679,7 @@ public class Sistema implements ISistema {
         } catch (Exception e) {
             em.getTransaction().rollback();
         }
+        em.close();
         return inscriptos;
     }
 
@@ -692,10 +696,11 @@ public class Sistema implements ISistema {
         } catch (Exception e) {
             em.getTransaction().rollback();
         }
+        em.close();
     }
-    
+
     @Override
-    public List<String> listarAceptadosAEdicion(String curso, String edicion){
+    public List<String> listarAceptadosAEdicion(String curso, String edicion) {
         EntityManager em = emf.createEntityManager();
         List<String> aceptados = null;
         try {
@@ -708,18 +713,19 @@ public class Sistema implements ISistema {
         } catch (Exception e) {
             em.getTransaction().rollback();
         }
+        em.close();
         return aceptados;
     }
-    
-    
+
     //Permite a un estudiante desistir de una inscripcion
-    public void desistirDeInscripcion(String estudiante, String edicion){
+    @Override
+    public void desistirDeInscripcion(String estudiante, String edicion) {
         EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
-            if(estudiante != null && edicion != null){
+            if (estudiante != null && edicion != null) {
                 Estudiante est = em.find(Estudiante.class, estudiante);
-                if(est != null){
+                if (est != null) {
                     est.cancelarInscripcionEdicion(edicion, em);
                 }
             }
@@ -728,8 +734,9 @@ public class Sistema implements ISistema {
             e.printStackTrace();
             em.getTransaction().rollback();
         }
+        em.close();
     }
-    
+
     @Override
     public DataInscripcionEdicion darDatosInscripcionEdicion(String estudiante, String edicion) {
         EntityManager em = emf.createEntityManager();
@@ -737,7 +744,7 @@ public class Sistema implements ISistema {
         try {
             em.getTransaction().begin();
             Estudiante est = em.find(Estudiante.class, estudiante);
-            if(est != null){
+            if (est != null) {
                 die = est.darDatosInscripcionEdicion(edicion);
             }
             em.getTransaction().commit();
@@ -745,6 +752,45 @@ public class Sistema implements ISistema {
             e.printStackTrace();
             em.getTransaction().rollback();
         }
+        em.close();
         return die;
     }
+
+    public void agregarComentarioEdicionCurso(String curso, String edicion, String estudiante, String cuerpo, Date fechaPublicacion) {
+        EntityManager em = emf.createEntityManager();
+        try {
+            em.getTransaction().begin();
+            if (curso != null && edicion != null && estudiante != null && cuerpo != null && fechaPublicacion != null) {
+                Curso c = em.find(Curso.class, curso);
+                if (c != null) {
+                    c.agregarComentarioEdicion(edicion, estudiante, cuerpo, fechaPublicacion, em);
+                }
+            }
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            em.getTransaction().rollback();
+        }
+        em.close();
+    }
+    
+    public List<DataEdicion> edicionesEstudiante(String estudiante){
+        EntityManager em = emf.createEntityManager();
+        List<DataEdicion> result = new ArrayList();
+        try {
+            em.getTransaction().begin();
+            if(estudiante != null){
+                Estudiante est = em.find(Estudiante.class, estudiante);
+                if(est != null){
+                    result = est.darInscripcionesActivasEdicion();
+                }
+            }
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            em.getTransaction().rollback();
+        }
+        return result;
+    }
+    
 }

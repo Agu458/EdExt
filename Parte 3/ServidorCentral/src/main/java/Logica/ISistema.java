@@ -90,5 +90,11 @@ public interface ISistema {
     
     public List<String> listarCursosConEdicionInstituto(String instituto);
     
+    public void desistirDeInscripcion(String estudiante, String edicion);
+    
     public DataInscripcionEdicion darDatosInscripcionEdicion(String estudiante, String edicion);
+    
+    public void agregarComentarioEdicionCurso(String curso, String edicion, String estudiante, String cuerpo, Date fechaPublicacion);
+    
+    public List<DataEdicion> edicionesEstudiante(String estudiante);
 }

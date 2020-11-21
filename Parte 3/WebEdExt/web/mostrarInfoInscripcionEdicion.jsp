@@ -4,6 +4,7 @@
     Author     : Agustin
 --%>
 
+<%@page import="Server.EstadoInscripcion"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="Server.DataInscripcionEdicion"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -47,6 +48,20 @@
                     <label for="calificacion">Calificacion</label>
                     <input type="text" class="form-control" id="calificacion" name="calificacion" readonly="" value="<%= die.getCalificacion() %>">
                 </div>
+                <div class="form-group">
+                    <label for="video">Video</label>
+                    <input type="text" class="form-control" id="video" name="video" readonly="" value="<%= die.getUrlVideo() %>">
+                </div>
+                <%
+                    if( die.getEstado() == EstadoInscripcion.INSCRIPTO ){
+                %>
+                    <form action="Edicion" method="POST">
+                        <button type="submit" class="btn btn-danger" name="desistirDeInscripcion" value="<%= die.getEstudiante()%>,<%= die.getEdicion().getNombre()%>" >Desistir de inscripcion</button>
+                    </form>
+                <%
+                    }
+                %>
+                
             </div>
         </div>
 

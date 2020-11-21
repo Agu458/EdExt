@@ -271,8 +271,23 @@ public class PublicadorServidorCentral {
     }
     
     @WebMethod
+    public void desistirDeInscripcion(String estudiante, String edicion){
+        sistema.desistirDeInscripcion(estudiante, edicion);
+    }
+    
+    @WebMethod
     public DataInscripcionEdicion darDatosInscripcionEdicion(String estudiante, String edicion){
         return sistema.darDatosInscripcionEdicion(estudiante, edicion);
     }
-
+    
+    @WebMethod
+    public void agregarComentarioEdicionCurso(String curso, String edicion, String estudiante, String cuerpo, Date fechaPublicacion){
+        sistema.agregarComentarioEdicionCurso(curso, edicion, estudiante, cuerpo, fechaPublicacion);
+    }
+    
+    @WebMethod
+    public List<DataEdicion> edicionesEstudiante(String estudiante){
+        return sistema.edicionesEstudiante(estudiante);
+    }
+    
 }

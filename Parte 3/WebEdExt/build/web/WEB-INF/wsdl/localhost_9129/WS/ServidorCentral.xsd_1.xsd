@@ -4,6 +4,10 @@
 
 <xs:element name="aceptarInscripcionesResponse" type="tns:aceptarInscripcionesResponse"/>
 
+<xs:element name="agregarComentarioEdicionCurso" type="tns:agregarComentarioEdicionCurso"/>
+
+<xs:element name="agregarComentarioEdicionCursoResponse" type="tns:agregarComentarioEdicionCursoResponse"/>
+
 <xs:element name="agregarCursoAPrograma" type="tns:agregarCursoAPrograma"/>
 
 <xs:element name="agregarCursoAProgramaResponse" type="tns:agregarCursoAProgramaResponse"/>
@@ -60,6 +64,8 @@
 
 <xs:element name="darProgramaFormacionResponse" type="tns:darProgramaFormacionResponse"/>
 
+<xs:element name="dataComentario" type="tns:dataComentario"/>
+
 <xs:element name="dataCurso" type="tns:dataCurso"/>
 
 <xs:element name="dataEdicion" type="tns:dataEdicion"/>
@@ -73,6 +79,14 @@
 <xs:element name="dataProgramaFormacion" type="tns:dataProgramaFormacion"/>
 
 <xs:element name="dataUsuario" type="tns:dataUsuario"/>
+
+<xs:element name="desistirDeInscripcion" type="tns:desistirDeInscripcion"/>
+
+<xs:element name="desistirDeInscripcionResponse" type="tns:desistirDeInscripcionResponse"/>
+
+<xs:element name="edicionesEstudiante" type="tns:edicionesEstudiante"/>
+
+<xs:element name="edicionesEstudianteResponse" type="tns:edicionesEstudianteResponse"/>
 
 <xs:element name="inscripcionAPrograma" type="tns:inscripcionAPrograma"/>
 
@@ -194,11 +208,11 @@
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="listarProfesores">
+<xs:complexType name="listarUsuarios">
 <xs:sequence/>
 </xs:complexType>
 
-<xs:complexType name="listarProfesoresResponse">
+<xs:complexType name="listarUsuariosResponse">
 <xs:sequence>
 <xs:element name="return" type="tns:lista" minOccurs="0"/>
 </xs:sequence>
@@ -210,11 +224,11 @@
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="listarUsuarios">
+<xs:complexType name="listarProfesores">
 <xs:sequence/>
 </xs:complexType>
 
-<xs:complexType name="listarUsuariosResponse">
+<xs:complexType name="listarProfesoresResponse">
 <xs:sequence>
 <xs:element name="return" type="tns:lista" minOccurs="0"/>
 </xs:sequence>
@@ -243,6 +257,17 @@
 <xs:element name="fechaPublicacion" type="xs:dateTime" minOccurs="0"/>
 <xs:element name="profesores" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
 <xs:element name="curso" type="xs:string" minOccurs="0"/>
+<xs:element name="comentarios" type="tns:dataComentario" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dataComentario">
+<xs:sequence>
+<xs:element name="id" type="xs:long" minOccurs="0"/>
+<xs:element name="estudiante" type="xs:string" minOccurs="0"/>
+<xs:element name="fechaPublicacion" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="cuerpo" type="xs:string" minOccurs="0"/>
+<xs:element name="respuestas" type="tns:dataComentario" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
 </xs:sequence>
 </xs:complexType>
 
@@ -310,21 +335,21 @@
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="listarCursos">
-<xs:sequence/>
-</xs:complexType>
-
-<xs:complexType name="listarCursosResponse">
-<xs:sequence>
-<xs:element name="return" type="tns:lista" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
 <xs:complexType name="listarProgramas">
 <xs:sequence/>
 </xs:complexType>
 
 <xs:complexType name="listarProgramasResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:lista" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="listarCursos">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="listarCursosResponse">
 <xs:sequence>
 <xs:element name="return" type="tns:lista" minOccurs="0"/>
 </xs:sequence>
@@ -361,16 +386,6 @@
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="altaInstituto">
-<xs:sequence>
-<xs:element name="arg0" type="xs:string" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="altaInstitutoResponse">
-<xs:sequence/>
-</xs:complexType>
-
 <xs:complexType name="validarNombreCategoria">
 <xs:sequence>
 <xs:element name="arg0" type="xs:string" minOccurs="0"/>
@@ -383,6 +398,27 @@
 </xs:sequence>
 </xs:complexType>
 
+<xs:complexType name="altaInstituto">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="altaInstitutoResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="desistirDeInscripcion">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"/>
+<xs:element name="arg1" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="desistirDeInscripcionResponse">
+<xs:sequence/>
+</xs:complexType>
+
 <xs:complexType name="validarNombreCurso">
 <xs:sequence>
 <xs:element name="arg0" type="xs:string" minOccurs="0"/>
@@ -392,18 +428,6 @@
 <xs:complexType name="validarNombreCursoResponse">
 <xs:sequence>
 <xs:element name="return" type="xs:boolean"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="listarEdiciones">
-<xs:sequence>
-<xs:element name="arg0" type="xs:string" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="listarEdicionesResponse">
-<xs:sequence>
-<xs:element name="return" type="tns:lista" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 
@@ -419,11 +443,13 @@
 <xs:sequence/>
 </xs:complexType>
 
-<xs:complexType name="listarCategorias">
-<xs:sequence/>
+<xs:complexType name="listarEdiciones">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"/>
+</xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="listarCategoriasResponse">
+<xs:complexType name="listarEdicionesResponse">
 <xs:sequence>
 <xs:element name="return" type="tns:lista" minOccurs="0"/>
 </xs:sequence>
@@ -448,6 +474,16 @@
 </xs:complexType>
 
 <xs:complexType name="listarProfesoresInstitutoResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:lista" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="listarCategorias">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="listarCategoriasResponse">
 <xs:sequence>
 <xs:element name="return" type="tns:lista" minOccurs="0"/>
 </xs:sequence>
@@ -482,15 +518,15 @@
 <xs:sequence/>
 </xs:complexType>
 
-<xs:complexType name="validarNombreInstituto">
+<xs:complexType name="edicionesEstudiante">
 <xs:sequence>
 <xs:element name="arg0" type="xs:string" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="validarNombreInstitutoResponse">
+<xs:complexType name="edicionesEstudianteResponse">
 <xs:sequence>
-<xs:element name="return" type="xs:boolean"/>
+<xs:element name="return" type="tns:dataEdicion" minOccurs="0" maxOccurs="unbounded"/>
 </xs:sequence>
 </xs:complexType>
 
@@ -504,6 +540,18 @@
 
 <xs:complexType name="aceptarInscripcionesResponse">
 <xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="validarNombreInstituto">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="validarNombreInstitutoResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"/>
+</xs:sequence>
 </xs:complexType>
 
 <xs:complexType name="validarEmail">
@@ -602,6 +650,18 @@
 <xs:sequence/>
 </xs:complexType>
 
+<xs:complexType name="listarCursosConEdicionInstituto">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="listarCursosConEdicionInstitutoResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:lista" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
 <xs:complexType name="altaUsuario">
 <xs:sequence>
 <xs:element name="arg0" type="xs:string" minOccurs="0"/>
@@ -617,18 +677,6 @@
 
 <xs:complexType name="altaUsuarioResponse">
 <xs:sequence/>
-</xs:complexType>
-
-<xs:complexType name="listarCursosConEdicionInstituto">
-<xs:sequence>
-<xs:element name="arg0" type="xs:string" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="listarCursosConEdicionInstitutoResponse">
-<xs:sequence>
-<xs:element name="return" type="tns:lista" minOccurs="0"/>
-</xs:sequence>
 </xs:complexType>
 
 <xs:complexType name="darDatosInscripcionEdicion">
@@ -705,19 +753,6 @@
 <xs:sequence/>
 </xs:complexType>
 
-<xs:complexType name="conteneCurso">
-<xs:sequence>
-<xs:element name="arg0" type="xs:string" minOccurs="0"/>
-<xs:element name="arg1" type="xs:string" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="conteneCursoResponse">
-<xs:sequence>
-<xs:element name="return" type="xs:boolean"/>
-</xs:sequence>
-</xs:complexType>
-
 <xs:complexType name="listarInscriptosAEdicion">
 <xs:sequence>
 <xs:element name="arg0" type="xs:string" minOccurs="0"/>
@@ -731,6 +766,19 @@
 </xs:sequence>
 </xs:complexType>
 
+<xs:complexType name="conteneCurso">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"/>
+<xs:element name="arg1" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="conteneCursoResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+
 <xs:complexType name="listarCursosInstituto">
 <xs:sequence>
 <xs:element name="arg0" type="xs:string" minOccurs="0"/>
@@ -741,6 +789,20 @@
 <xs:sequence>
 <xs:element name="return" type="tns:lista" minOccurs="0"/>
 </xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="agregarComentarioEdicionCurso">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"/>
+<xs:element name="arg1" type="xs:string" minOccurs="0"/>
+<xs:element name="arg2" type="xs:string" minOccurs="0"/>
+<xs:element name="arg3" type="xs:string" minOccurs="0"/>
+<xs:element name="arg4" type="xs:dateTime" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="agregarComentarioEdicionCursoResponse">
+<xs:sequence/>
 </xs:complexType>
 
 <xs:simpleType name="estadoInscripcion">
