@@ -6,7 +6,7 @@
 package Logic;
 
 import Server.DataEdicion;
-import Server.DataUsuario;
+import Server.DataInscripcionEdicion;
 import Server.Lista;
 import Server.PublicadorServidorCentralService;
 import java.io.IOException;
@@ -15,16 +15,11 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import javax.xml.datatype.DatatypeConfigurationException;
-import javax.xml.datatype.DatatypeFactory;
-import javax.xml.datatype.XMLGregorianCalendar;
 
 /**
  *
@@ -129,6 +124,24 @@ public class Edicion extends HttpServlet {
             request.setAttribute("edicion", de);
             request.getRequestDispatcher("inscripcion_edicion.jsp").forward(request, response);
         }
+        
+        String consultarInscripcionEdicion = request.getParameter("consultarInscripcionEdicion");
+        if(consultarInscripcionEdicion != null){
+            String estudiante = null;
+            String edicion = null;
+            String[] datos = null;
+            try {
+                datos = consultarInscripcionEdicion.split(",");
+                estudiante = datos[0];
+                edicion = datos[1];
+            } catch (Exception e) {
+            }
+            if (estudiante != null && edicion != null) {
+                DataInscripcionEdicion die = port.darDatosInscripcionEdicion(estudiante, edicion);
+                request.setAttribute("datosInscripcion", die);
+                request.getRequestDispatcher("mostrarInfoInscripcionEdicion.jsp").forward(request, response);
+            }
+        }
     }
 
     /**
@@ -186,7 +199,8 @@ public class Edicion extends HttpServlet {
                 if (curso != null) {
                     String estudiante = request.getParameter("estudiante");
                     if (estudiante != null) {
-                        port.inscripcionEdicion(curso, estudiante, Login.GetXmlGregorianCalendar(new Date()));
+                        String video = request.getParameter("video");
+                        port.inscripcionEdicion(curso, estudiante, Login.GetXmlGregorianCalendar(new Date()), video);
                     }
                 }
                 response.sendRedirect("inscripcion_edicion.jsp");

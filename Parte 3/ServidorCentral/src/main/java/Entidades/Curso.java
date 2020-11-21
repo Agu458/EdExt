@@ -183,7 +183,9 @@ public class Curso implements Serializable {
     
     public void aceptarInscripciones(String nombreEdicion, List<String> estudiantes){
         Edicion e = ediciones.get(nombreEdicion);
-        e.aceptarInscripciones(estudiantes);
+        if(e.quedanCupos(estudiantes.size())){
+            e.aceptarInscripciones(estudiantes);
+        }
     }
     
     public Instituto getInstituto() {

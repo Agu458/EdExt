@@ -142,16 +142,16 @@
                                                     for (DataInscripcionEdicion edicion : de.getInscripcionEdiciones()) {
                                                         if (edicion.getEstado() == EstadoInscripcion.ACEPTADO) {
                                             %>
-                                            <button type="submit" class="list-group-item list-group-item-action list-group-item-success" name="consultarEdicion" value="<%= edicion.getEdicion().getCurso()%>,<%= edicion.getEdicion().getNombre()%>" > <%= edicion.getEdicion().getNombre()%> </button>
+                                            <button type="submit" class="list-group-item list-group-item-action list-group-item-success" name="consultarInscripcionEdicion" value="<%= edicion.getEstudiante() %>,<%= edicion.getEdicion().getNombre()%>" > <%= edicion.getEdicion().getNombre()%> </button>
                                             <%
                                             } else {
                                                 if (edicion.getEstado() == EstadoInscripcion.RECHASADO) {
                                             %>
-                                            <button type="submit" class="list-group-item list-group-item-action list-group-item-danger" name="consultarEdicion" value="<%= edicion.getEdicion().getCurso()%>,<%= edicion.getEdicion().getNombre()%>" > <%= edicion.getEdicion().getNombre()%> </button>
+                                            <button type="submit" class="list-group-item list-group-item-action list-group-item-danger" name="consultarInscripcionEdicion" value="<%= edicion.getEstudiante() %>,<%= edicion.getEdicion().getNombre()%>" > <%= edicion.getEdicion().getNombre()%> </button>
                                             <%
                                             } else {
                                             %>
-                                            <button type="submit" class="list-group-item list-group-item-action list-group-item-primary" name="consultarEdicion" value="<%= edicion.getEdicion().getCurso()%>,<%= edicion.getEdicion().getNombre()%>" > <%= edicion.getEdicion().getNombre()%> </button>
+                                            <button type="submit" class="list-group-item list-group-item-action list-group-item-primary" name="consultarInscripcionEdicion" value="<%= edicion.getEstudiante() %>,<%= edicion.getEdicion().getNombre()%>" > <%= edicion.getEdicion().getNombre()%> </button>
                                             <%
                                                         }
                                                     }

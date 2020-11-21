@@ -36,7 +36,8 @@ public class Edicion implements Serializable {
     private Curso curso;
     @OneToMany
     private List<InscripcionEdicion> inscriptos;
-
+    private int aceptados;
+    
     public Edicion() {
     }
 
@@ -51,6 +52,7 @@ public class Edicion implements Serializable {
             this.profesores.put(p.getEmail(), p);
         }
         this.curso = curso;
+        this.aceptados = 0;
     }
 
     public String getNombreEdicion() {
@@ -112,7 +114,7 @@ public class Edicion implements Serializable {
             c = this.curso.getNombre();
         }
 
-        return new DataEdicion(nombreEdicion, fechaIni, fechaFin, cupos, fechaPublicacion, dps, c);
+        return new DataEdicion(nombreEdicion, fechaIni, fechaFin, cupos, aceptados, fechaPublicacion, dps, c);
     }
 
     public Curso getCurso() {
@@ -147,11 +149,29 @@ public class Edicion implements Serializable {
         }
         return insc;
     }
+
+    public List<InscripcionEdicion> getInscriptos() {
+        return inscriptos;
+    }
+
+    public void setInscriptos(List<InscripcionEdicion> inscriptos) {
+        this.inscriptos = inscriptos;
+    }
+
+    public int getAceptados() {
+        return aceptados;
+    }
+
+    public void setAceptados(int aceptados) {
+        this.aceptados = aceptados;
+    }
+
     
+
     public List<String> darAceptados() {
         List<String> insc = new ArrayList();
         for (InscripcionEdicion inscripcion : this.inscriptos) {
-            if (inscripcion.getEstado() == EstadoInscripcion.ACEPTADO) {
+            if(inscripcion.getEstado() == EstadoInscripcion.ACEPTADO){
                 insc.add(inscripcion.getEstudiante().getEmail());
             }
         }
@@ -179,18 +199,35 @@ public class Edicion implements Serializable {
             for (String s : estudiantes) {
                 if (ie.getEstudiante().getEmail().equals(s)) {
                     ie.setEstado(EstadoInscripcion.ACEPTADO);
+                    this.aceptados = this.aceptados + 1;
                 } else {
-                    if(ie.getEstado() != EstadoInscripcion.ACEPTADO){
+                    if (ie.getEstado() != EstadoInscripcion.ACEPTADO) {
                         ie.setEstado(EstadoInscripcion.RECHASADO);
                     }
                 }
             }
         }
     }
-    
-    public void cancelarInscripcionEstudiante(InscripcionEdicion inscripcion){
-        if(inscripcion != null){
+
+    public void cancelarInscripcionEstudiante(InscripcionEdicion inscripcion) {
+        if (inscripcion != null) {
             inscriptos.remove(inscripcion);
+        }
+    }
+
+    public boolean quedanCupos(int cupos) {
+        if (this.cupos != 0) {
+            if (this.aceptados < this.cupos) {
+                if ((this.aceptados + cupos) <= this.cupos) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } else {
+                return false;
+            }
+        } else {
+            return true;
         }
     }
 }

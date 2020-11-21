@@ -31,17 +31,19 @@ public class InscripcionEdicion implements Serializable{
     private EstadoInscripcion estado;
     private float calificacion;
     private Integer inscripcionesPrevias;
+    private String urlVideo;
 
     public InscripcionEdicion() {
     }
 
-    public InscripcionEdicion(Date fecha, Edicion edicion, Usuario estudiante) {
+    public InscripcionEdicion(Date fecha, Edicion edicion, Usuario estudiante, String urlVideo) {
         this.fecha = fecha;
         this.edicion = edicion;
         this.estado = EstadoInscripcion.INSCRIPTO;
         this.calificacion = 0;
         this.estudiante = estudiante;
         this.inscripcionesPrevias = 0;
+        this.urlVideo = urlVideo;
     }
 
     public Long getId() {
@@ -99,8 +101,16 @@ public class InscripcionEdicion implements Serializable{
     public void setInscripcionesPrevias(Integer inscripcionesPrevias) {
         this.inscripcionesPrevias = inscripcionesPrevias;
     }
+
+    public String getUrlVideo() {
+        return urlVideo;
+    }
+
+    public void setUrlVideo(String urlVideo) {
+        this.urlVideo = urlVideo;
+    }
     
     public DataInscripcionEdicion darDatos(){
-        return new DataInscripcionEdicion(id, fecha, edicion.darDatos(), estado, calificacion, estudiante.getEmail(), inscripcionesPrevias);
+        return new DataInscripcionEdicion(id, fecha, edicion.darDatos(), estado, calificacion, estudiante.getEmail(), inscripcionesPrevias, urlVideo);
     }
 }

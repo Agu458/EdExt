@@ -2,6 +2,7 @@
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
   <persistence-unit name="EdExtPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>Entidades.Categoria</class>
     <class>Entidades.Curso</class>
     <class>Entidades.Edicion</class>
     <class>Entidades.Estudiante</class>
@@ -11,8 +12,7 @@
     <class>Entidades.Profesor</class>
     <class>Entidades.ProgramaFormacion</class>
     <class>Entidades.Usuario</class>
-    <class>Entidades.Categoria</class>
-    <class>Entidades.idInscEdicion</class>
+    <class>Entidades.Comentario</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/EdExt"/>
       <property name="javax.persistence.jdbc.user" value="root"/>

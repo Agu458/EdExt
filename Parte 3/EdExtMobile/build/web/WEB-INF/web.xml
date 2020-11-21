@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <filter>
+        <filter-name>AuthEstudiante</filter-name>
+        <filter-class>Filters.AuthEstudiante</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AuthEstudiante</filter-name>
+        <url-pattern>/Pages/*</url-pattern>
+        <url-pattern>/Curso</url-pattern>
+        <url-pattern>/Edicion</url-pattern>
+        <url-pattern>/Logout</url-pattern>
+    </filter-mapping>
     <servlet>
         <servlet-name>Home</servlet-name>
         <servlet-class>Logic.Home</servlet-class>
@@ -16,6 +27,10 @@
         <servlet-name>Curso</servlet-name>
         <servlet-class>Logic.Curso</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Edicion</servlet-name>
+        <servlet-class>Logic.Edicion</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Home</servlet-name>
         <url-pattern>/Home</url-pattern>
@@ -31,6 +46,10 @@
     <servlet-mapping>
         <servlet-name>Curso</servlet-name>
         <url-pattern>/Curso</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Edicion</servlet-name>
+        <url-pattern>/Edicion</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

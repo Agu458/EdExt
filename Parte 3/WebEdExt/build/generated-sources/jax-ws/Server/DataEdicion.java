@@ -25,6 +25,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="fechaIni" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
  *         &lt;element name="fechaFin" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
  *         &lt;element name="cupos" type="{http://www.w3.org/2001/XMLSchema}int"/>
+ *         &lt;element name="aceptados" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="fechaPublicacion" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
  *         &lt;element name="profesores" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="curso" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
@@ -42,6 +43,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "fechaIni",
     "fechaFin",
     "cupos",
+    "aceptados",
     "fechaPublicacion",
     "profesores",
     "curso"
@@ -54,6 +56,7 @@ public class DataEdicion {
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar fechaFin;
     protected int cupos;
+    protected int aceptados;
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar fechaPublicacion;
     @XmlElement(nillable = true)
@@ -146,6 +149,22 @@ public class DataEdicion {
      */
     public void setCupos(int value) {
         this.cupos = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad aceptados.
+     * 
+     */
+    public int getAceptados() {
+        return aceptados;
+    }
+
+    /**
+     * Define el valor de la propiedad aceptados.
+     * 
+     */
+    public void setAceptados(int value) {
+        this.aceptados = value;
     }
 
     /**

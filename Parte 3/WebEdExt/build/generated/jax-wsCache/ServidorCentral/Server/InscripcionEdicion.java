@@ -21,6 +21,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="arg0" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="arg1" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="arg2" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
+ *         &lt;element name="arg3" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -33,7 +34,8 @@ import javax.xml.datatype.XMLGregorianCalendar;
 @XmlType(name = "inscripcionEdicion", propOrder = {
     "arg0",
     "arg1",
-    "arg2"
+    "arg2",
+    "arg3"
 })
 public class InscripcionEdicion {
 
@@ -41,6 +43,7 @@ public class InscripcionEdicion {
     protected String arg1;
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar arg2;
+    protected String arg3;
 
     /**
      * Obtiene el valor de la propiedad arg0.
@@ -112,6 +115,30 @@ public class InscripcionEdicion {
      */
     public void setArg2(XMLGregorianCalendar value) {
         this.arg2 = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad arg3.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getArg3() {
+        return arg3;
+    }
+
+    /**
+     * Define el valor de la propiedad arg3.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setArg3(String value) {
+        this.arg3 = value;
     }
 
 }

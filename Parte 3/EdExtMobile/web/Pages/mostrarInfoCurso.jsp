@@ -74,7 +74,7 @@
                 </div>
                 <div class="form-group">
                     <label for="previas">Previas</label>
-                    <form action="Curso" method="GET">
+                    <form action="/EdExtMobile/Curso" method="GET">
                         <div class="list-group" id="previas">
                             <%
                                 if (dc.getPrevias().isEmpty()) {
@@ -93,8 +93,7 @@
                 </div>
                 <div class="form-group">
                     <label for="categorias">Categorias</label>
-                    <form action="Curso" method="GET">
-                        <div class="list-group" id="categorias">
+                    <div class="list-group" id="categorias">
                             <%
                                 if (dc.getCategorias().isEmpty()) {
                             %>
@@ -107,8 +106,7 @@
                             <%
                                 }
                             %>
-                        </div>
-                    </form>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="edicionActual">Edicion Actual</label>
@@ -126,7 +124,7 @@
                 </div>
                 <div class="form-group">
                     <label for="ediciones">Ediciones</label>
-                    <form action="Edicion" method="GET">
+                    <form action="/EdExtMobile/Edicion" method="GET">
                         <div class="list-group" id="ediciones">
                             <%
                                 if (dc.getEdiciones().isEmpty()) {

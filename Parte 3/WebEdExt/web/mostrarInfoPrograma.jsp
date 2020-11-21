@@ -35,7 +35,7 @@
                             <label for="fechaini">Fecha de Inicio</label>
                             <%
                                 SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
-                                String fechaIni = formato.format(dpf.getFechaIni());
+                                String fechaIni = formato.format(dpf.getFechaIni().toGregorianCalendar().getTime());
                             %>
                             <input class="form-control" type="date" name="fechaini" readonly="" value="<%= fechaIni%>">
                         </div>
@@ -44,7 +44,7 @@
                         <div class="form-group">
                             <label for="fechafin">Fecha de Finalizacion</label>
                             <%
-                                String fechaFin = formato.format(dpf.getFechaFin());
+                                String fechaFin = formato.format(dpf.getFechaFin().toGregorianCalendar().getTime());
                             %>
                             <input class="form-control" type="date" name="fechafin" readonly="" value="<%= fechaFin%>">
                         </div>

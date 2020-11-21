@@ -2,6 +2,7 @@ package Logica;
 
 import DataTypes.DataCurso;
 import DataTypes.DataEdicion;
+import DataTypes.DataInscripcionEdicion;
 import DataTypes.DataProgramaFormacion;
 import DataTypes.DataUsuario;
 import java.util.Date;
@@ -51,7 +52,7 @@ public interface ISistema {
     
     public DataEdicion darEdicionActual(String curso);
     
-    public void inscripcionEdicion(String curso, String estudiante, Date fecha);
+    public void inscripcionEdicion(String curso, String estudiante, Date fecha, String urlVideo);
     
     public List<String> listarEdiciones(String curso);
     
@@ -86,4 +87,8 @@ public interface ISistema {
     public List<String> listarAceptadosAEdicion(String curso, String edicion);
     
     public void inscripcionAPrograma(String programa, String estudiante, Date fecha);
+    
+    public List<String> listarCursosConEdicionInstituto(String instituto);
+    
+    public DataInscripcionEdicion darDatosInscripcionEdicion(String estudiante, String edicion);
 }

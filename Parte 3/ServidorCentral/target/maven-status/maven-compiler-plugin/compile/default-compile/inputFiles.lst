@@ -5,6 +5,7 @@ C:\Users\Agustín\Documents\NetBeansProjects\ServidorCentral\src\main\java\DataTy
 C:\Users\Agustín\Documents\NetBeansProjects\ServidorCentral\src\main\java\DataTypes\EstadoInscripcion.java
 C:\Users\Agustín\Documents\NetBeansProjects\ServidorCentral\src\main\java\Entidades\Curso.java
 C:\Users\Agustín\Documents\NetBeansProjects\ServidorCentral\src\main\java\DataTypes\DataUsuario.java
+C:\Users\Agustín\Documents\NetBeansProjects\ServidorCentral\src\main\java\Entidades\Comentario.java
 C:\Users\Agustín\Documents\NetBeansProjects\ServidorCentral\src\main\java\Entidades\Instituto.java
 C:\Users\Agustín\Documents\NetBeansProjects\ServidorCentral\src\main\java\DataTypes\DataEdicion.java
 C:\Users\Agustín\Documents\NetBeansProjects\ServidorCentral\src\main\java\DataTypes\DataProgramaFormacion.java
@@ -15,6 +16,7 @@ C:\Users\Agustín\Documents\NetBeansProjects\ServidorCentral\src\main\java\Entida
 C:\Users\Agustín\Documents\NetBeansProjects\ServidorCentral\src\main\java\Entidades\Categoria.java
 C:\Users\Agustín\Documents\NetBeansProjects\ServidorCentral\src\main\java\DataTypes\DataInscripcionPrograma.java
 C:\Users\Agustín\Documents\NetBeansProjects\ServidorCentral\src\main\java\Logica\Sistema.java
+C:\Users\Agustín\Documents\NetBeansProjects\ServidorCentral\src\main\java\DataTypes\DataComentario.java
 C:\Users\Agustín\Documents\NetBeansProjects\ServidorCentral\src\main\java\DataTypes\DataInstituto.java
 C:\Users\Agustín\Documents\NetBeansProjects\ServidorCentral\src\main\java\DataTypes\DataProfesor.java
 C:\Users\Agustín\Documents\NetBeansProjects\ServidorCentral\src\main\java\Logica\ISistema.java

@@ -136,7 +136,7 @@ public class InscripcionEdicion extends javax.swing.JInternalFrame {
             String estudiante = (String) this.jComboBox3.getSelectedItem();
             Calendar c = Calendar.getInstance();
             Date fecha = new Date(c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DATE));
-            Principal.is.inscripcionEdicion(curso, estudiante, fecha);
+            Principal.is.inscripcionEdicion(curso, estudiante, fecha, null);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

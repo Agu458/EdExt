@@ -65,6 +65,15 @@ public class Curso extends HttpServlet {
                     out.println(json);
                 }
             }
+            if (accion.equals("cursosInstiConEdicion")) {
+                String instituto = request.getParameter("insti");
+                if (instituto != null) {
+                    Lista data = port.listarCursosConEdicionInstituto(instituto);
+                    List cursos = data.getLista();
+                    String json = new Gson().toJson(cursos);
+                    out.println(json);
+                }
+            }
             if (accion.equals("cursosCategoria")) {
                 String categoria = request.getParameter("categoria");
                 if (categoria != null) {

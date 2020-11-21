@@ -16,11 +16,12 @@ public class DataInscripcionEdicion {
     private float calificacion;
     private String estudiante;
     private Integer inscripcionesPrevias;
+    private String urlVideo;
 
     public DataInscripcionEdicion() {
     }
 
-    public DataInscripcionEdicion(Long id, Date fecha, DataEdicion edicion, EstadoInscripcion estado, float calificacion, String estudiante, Integer inscripcionesPrevias) {
+    public DataInscripcionEdicion(Long id, Date fecha, DataEdicion edicion, EstadoInscripcion estado, float calificacion, String estudiante, Integer inscripcionesPrevias, String urlVideo) {
         this.id = id;
         this.fecha = fecha;
         this.edicion = edicion;
@@ -28,6 +29,7 @@ public class DataInscripcionEdicion {
         this.calificacion = calificacion;
         this.estudiante = estudiante;
         this.inscripcionesPrevias = inscripcionesPrevias;
+        this.urlVideo = urlVideo;
     }
 
     public Long getId() {
@@ -56,6 +58,10 @@ public class DataInscripcionEdicion {
 
     public Integer getInscripcionesPrevias() {
         return inscripcionesPrevias;
+    }
+
+    public String getUrlVideo() {
+        return urlVideo;
     }
     
 }

@@ -58,6 +58,15 @@ public class Estudiante extends Usuario {
         return false;
     }
 
+    public DataInscripcionEdicion darDatosInscripcionEdicion(String edicion){
+        for(InscripcionEdicion ie : this.inscripcionEdiciones){
+            if(ie.getEdicion().getNombreEdicion().equals(edicion)){
+                return ie.darDatos();
+            }
+        }
+        return null;
+    }
+    
     public InscripcionEdicion darInscripcionEdicion(String edicion) {
         for (InscripcionEdicion aux : inscripcionEdiciones) {
             if (aux.getEdicion().getNombreEdicion() == edicion) {
@@ -76,7 +85,7 @@ public class Estudiante extends Usuario {
         return null;
     }
     
-    public InscripcionEdicion inscribirseAUnaEdicion(Edicion edicion, Date fecha) {
+    public InscripcionEdicion inscribirseAUnaEdicion(Edicion edicion, Date fecha, String urlVideo) {
         InscripcionEdicion inscripcion = this.darInscripcionEdicion(edicion.getNombreEdicion());
         if (inscripcion != null) {
             if (inscripcion.getEstado() == EstadoInscripcion.RECHASADO) {
@@ -85,7 +94,7 @@ public class Estudiante extends Usuario {
             }
 
         } else {
-            inscripcion = new InscripcionEdicion(fecha, edicion, this);
+            inscripcion = new InscripcionEdicion(fecha, edicion, this, urlVideo);
             inscripcionEdiciones.add(inscripcion);
         }
         return inscripcion;

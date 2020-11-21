@@ -50,6 +50,16 @@ public class Instituto implements Serializable {
         }
         return c;
     }
+    
+    public List<String> darCursosConEdicion(){
+        List<String> c = new ArrayList();
+        for (Curso curso : cursos.values()) {
+            if(curso.getEdicionActual() != null){
+                c.add(curso.getNombre());
+            }
+        }
+        return c;
+    }
 
     public void setCursos(Map<String, Curso> cursos) {
         this.cursos = cursos;

@@ -34,7 +34,7 @@
                             <label for="fechaini">Fecha de Inicio</label>
                             <%
                                 SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
-                                String fechaIni = formato.format(de.getFechaIni());
+                                String fechaIni = formato.format(de.getFechaIni().toGregorianCalendar().getTime());
                             %>
                             <input class="form-control" type="date" name="fechaini" readonly="" value="<%= fechaIni%>">
                         </div>
@@ -43,7 +43,7 @@
                         <div class="form-group">
                             <label for="fechafin">Fecha de Finalizacion</label>
                             <%
-                                String fechaFin = formato.format(de.getFechaFin());
+                                String fechaFin = formato.format(de.getFechaFin().toGregorianCalendar().getTime());
                             %>
                             <input class="form-control" type="date" name="fechafin" readonly="" value="<%= fechaFin%>">
                         </div>
@@ -52,7 +52,7 @@
                         <div class="form-group">
                             <label for="fechafin">Fecha de Publicación</label>
                             <%
-                                String fechaReg = formato.format(de.getFechaPublicacion());
+                                String fechaReg = formato.format(de.getFechaPublicacion().toGregorianCalendar().getTime());
                             %>
                             <input class="form-control" type="date" name="fechafin" readonly="" value="<%= fechaReg%>">
                         </div>

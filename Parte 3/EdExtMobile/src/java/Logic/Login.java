@@ -7,9 +7,9 @@ package Logic;
 
 import Model.SessionState;
 import Server.DataUsuario;
+import Server.DataEstudiante;
 import Server.PublicadorServidorCentralService;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -42,11 +42,15 @@ public class Login extends HttpServlet {
         String password = request.getParameter("password");
         if (email != null && password != null) {
             DataUsuario usuario = port.darDatosUsuario(email);
-            if (!usuario.getEmail().equals("")) {
-                if (usuario.getContrasenia().equals(password)) {
-                    session.setAttribute("SessionState", SessionState.LOGGED);
-                    session.setAttribute("email", usuario.getEmail());
-                    session.setAttribute("usuario", usuario);
+            if (usuario instanceof DataEstudiante) {
+                if (!usuario.getEmail().equals("")) {
+                    if (usuario.getContrasenia().equals(password)) {
+                        session.setAttribute("SessionState", SessionState.LOGGED);
+                        session.setAttribute("email", usuario.getEmail());
+                        session.setAttribute("usuario", usuario);
+                    } else {
+                        session.setAttribute("SessionState", SessionState.LOGIN_FAILED);
+                    }
                 } else {
                     session.setAttribute("SessionState", SessionState.LOGIN_FAILED);
                 }

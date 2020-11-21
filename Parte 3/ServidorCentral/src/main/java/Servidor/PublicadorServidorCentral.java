@@ -8,11 +8,11 @@ package Servidor;
 import DataTypes.DataCurso;
 import DataTypes.DataEdicion;
 import DataTypes.DataEstudiante;
+import DataTypes.DataInscripcionEdicion;
 import DataTypes.DataProfesor;
 import DataTypes.DataProgramaFormacion;
 import DataTypes.DataUsuario;
 import DataTypes.Lista;
-import Entidades.Curso_;
 import Logica.Fabrica;
 import Logica.ISistema;
 import java.util.ArrayList;
@@ -132,6 +132,11 @@ public class PublicadorServidorCentral {
     }
 
     @WebMethod
+    public Lista listarCursosConEdicionInstituto(String instituto){
+        return new Lista(sistema.listarCursosConEdicionInstituto(instituto));
+    }
+    
+    @WebMethod
     public Lista listarCursos() {
         return new Lista(sistema.listarCursos());
     }
@@ -166,8 +171,8 @@ public class PublicadorServidorCentral {
     }
 
     @WebMethod
-    public void inscripcionEdicion(String curso, String estudiante, Date fecha) {
-        sistema.inscripcionEdicion(curso, estudiante, fecha);
+    public void inscripcionEdicion(String curso, String estudiante, Date fecha, String urlVideo) {
+        sistema.inscripcionEdicion(curso, estudiante, fecha, urlVideo);
     }
 
     @WebMethod
@@ -263,6 +268,11 @@ public class PublicadorServidorCentral {
     @WebMethod
     public void inscripcionAPrograma(String programa, String estudiante, Date fecha) {
         sistema.inscripcionAPrograma(programa, estudiante, fecha);
+    }
+    
+    @WebMethod
+    public DataInscripcionEdicion darDatosInscripcionEdicion(String estudiante, String edicion){
+        return sistema.darDatosInscripcionEdicion(estudiante, edicion);
     }
 
 }

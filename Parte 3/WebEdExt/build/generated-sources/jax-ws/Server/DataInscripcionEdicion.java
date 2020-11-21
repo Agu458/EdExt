@@ -25,6 +25,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="calificacion" type="{http://www.w3.org/2001/XMLSchema}float"/>
  *         &lt;element name="estudiante" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="inscripcionesPrevias" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
+ *         &lt;element name="urlVideo" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -41,7 +42,8 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "estado",
     "calificacion",
     "estudiante",
-    "inscripcionesPrevias"
+    "inscripcionesPrevias",
+    "urlVideo"
 })
 public class DataInscripcionEdicion {
 
@@ -53,6 +55,7 @@ public class DataInscripcionEdicion {
     protected float calificacion;
     protected String estudiante;
     protected Integer inscripcionesPrevias;
+    protected String urlVideo;
 
     /**
      * Obtiene el valor de la propiedad id.
@@ -212,6 +215,30 @@ public class DataInscripcionEdicion {
      */
     public void setInscripcionesPrevias(Integer value) {
         this.inscripcionesPrevias = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad urlVideo.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getUrlVideo() {
+        return urlVideo;
+    }
+
+    /**
+     * Define el valor de la propiedad urlVideo.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setUrlVideo(String value) {
+        this.urlVideo = value;
     }
 
 }

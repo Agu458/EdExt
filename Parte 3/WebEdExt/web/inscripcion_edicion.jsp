@@ -78,7 +78,7 @@
                                     <label for="fechaini">Fecha de Inicio</label>
                                     <%
                                         SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
-                                        String fechaIni = formato.format(de.getFechaIni());
+                                        String fechaIni = formato.format(de.getFechaIni().toGregorianCalendar().getTime());
                                     %>
                                     <input class="form-control" type="date" name="fechaini" disabled="" value="<%= fechaIni%>">
                                 </div>
@@ -87,7 +87,7 @@
                                 <div class="form-group">
                                     <label for="fechafin">Fecha de Finalizacion</label>
                                     <%
-                                        String fechaFin = formato.format(de.getFechaFin());
+                                        String fechaFin = formato.format(de.getFechaFin().toGregorianCalendar().getTime());
                                     %>
                                     <input class="form-control" type="date" name="fechafin" disabled="" value="<%= fechaFin%>">
                                 </div>
@@ -96,7 +96,7 @@
                                 <div class="form-group">
                                     <label for="fechafin">Fecha de Publicación</label>
                                     <%
-                                        String fechaReg = formato.format(de.getFechaPublicacion());
+                                        String fechaReg = formato.format(de.getFechaPublicacion().toGregorianCalendar().getTime());
                                     %>
                                     <input class="form-control" type="date" name="fechafin" disabled="" value="<%= fechaReg%>">
                                 </div>
@@ -105,6 +105,15 @@
                                 <div class="form-group">
                                     <label for="cupos">Cupos</label>
                                     <input type="number" class="form-control" id="cupos" name="cupos" disabled="" value="<%= de.getCupos()%>">
+                                </div>
+                            </div>
+                                <div class="col-sm">
+                                <div class="form-group">
+                                    <%
+                                    int cuposRestantes = (de.getCupos() - de.getAceptados());
+                                    %>
+                                    <label for="cuposRestantes">Cupos Restantes</label>
+                                    <input type="number" class="form-control" id="cuposRestantes" name="cuposRestantes" disabled="" value="<%= cuposRestantes %>">
                                 </div>
                             </div>
                         </div>
@@ -129,9 +138,28 @@
                             <label for="estudiante">Estudiante</label>
                             <input type="text" class="form-control" id="nombre" name="estudiante" readonly="" value="<%= du.getEmail()%>">
                         </div>
-                        <div class="form-group text-center">
-                            <button type="submit" name="accion" class="btn btn-primary" value="altaInscripcionEdicion">Inscribirse</button>
+                        <div class="form-group">
+                            <label for="video">URL video</label>
+                            <input type="url" class="form-control" id="video" name="video" value="">
                         </div>
+                            <%
+                                if(cuposRestantes != 0){
+                            %>
+                            <div class="form-group text-center">
+                                <button type="submit" name="accion" class="btn btn-primary" value="altaInscripcionEdicion">Inscribirse</button>
+                            </div>
+                            <%
+                                } else {
+                            %>
+                                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                    <strong>No quedan cupos</strong> Prueba otro curso.
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            <%
+                                }
+                            %>
                     </form>
                 </div>
             </div>
@@ -151,7 +179,7 @@
                 var listCursosInstituto = $('#listCursosInstituto');
                 listCursosInstituto.empty();
                 let insti = selinstituto.val();
-                let accion = "cursosInsti";
+                let accion = "cursosInstiConEdicion";
                 $.ajax({
                     type: 'GET',
                     url: 'Curso',

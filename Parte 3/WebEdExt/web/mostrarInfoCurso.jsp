@@ -62,7 +62,7 @@
                             <label for="fechareg">Fecha de Publicación</label>
                             <%
                                 SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
-                                String fechareg = formato.format(dc.getFechaRegistro());
+                                String fechareg = formato.format(dc.getFechaRegistro().toGregorianCalendar().getTime());
                             %>
                             <input class="form-control" type="date" name="fechareg" readonly="" value="<%= fechareg%>">
                         </div>

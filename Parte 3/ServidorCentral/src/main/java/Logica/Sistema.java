@@ -3,6 +3,7 @@ package Logica;
 import DataTypes.DataCurso;
 import DataTypes.DataEdicion;
 import DataTypes.DataEstudiante;
+import DataTypes.DataInscripcionEdicion;
 import DataTypes.DataProfesor;
 import DataTypes.DataProgramaFormacion;
 import DataTypes.DataUsuario;
@@ -309,6 +310,22 @@ public class Sistema implements ISistema {
     }
 
     @Override
+    public List<String> listarCursosConEdicionInstituto(String instituto) {
+        EntityManager em = emf.createEntityManager();
+        List<String> cursos = null;
+        try {
+            em.getTransaction().begin();
+            Instituto i = em.find(Instituto.class, instituto);
+            cursos = i.darCursosConEdicion();
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+        }
+        em.close();
+        return cursos;
+    }
+    
+    @Override
     public List<String> listarCursos() {
         EntityManager em = emf.createEntityManager();
         List<String> cursos = new ArrayList();
@@ -414,7 +431,7 @@ public class Sistema implements ISistema {
     }
 
     @Override
-    public void inscripcionEdicion(String curso, String estudiante, Date fecha) {
+    public void inscripcionEdicion(String curso, String estudiante, Date fecha, String urlVideo) {
         EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
@@ -423,7 +440,7 @@ public class Sistema implements ISistema {
                 if (curso != null) {
                     Curso cur = em.find(Curso.class, curso);
                     if (est != null && cur != null) {
-                        InscripcionEdicion inscripcion = est.inscribirseAUnaEdicion(cur.getEdicionActual(), fecha);
+                        InscripcionEdicion inscripcion = est.inscribirseAUnaEdicion(cur.getEdicionActual(), fecha, urlVideo);
                         cur.getEdicionActual().agregarInscripcion(inscripcion);
                         em.persist(inscripcion);
                     }
@@ -713,5 +730,21 @@ public class Sistema implements ISistema {
         }
     }
     
-    
+    @Override
+    public DataInscripcionEdicion darDatosInscripcionEdicion(String estudiante, String edicion) {
+        EntityManager em = emf.createEntityManager();
+        DataInscripcionEdicion die = null;
+        try {
+            em.getTransaction().begin();
+            Estudiante est = em.find(Estudiante.class, estudiante);
+            if(est != null){
+                die = est.darDatosInscripcionEdicion(edicion);
+            }
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            em.getTransaction().rollback();
+        }
+        return die;
+    }
 }

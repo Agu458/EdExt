@@ -44,7 +44,7 @@
                 <div class="form-group">
                     <%
                         SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
-                        String fechaNac = formato.format(usu.getFechaNacimiento());
+                        String fechaNac = formato.format(usu.getFechaNacimiento().toGregorianCalendar().getTime());
                     %>
                     <label class="form-label">Fecha de Nacimiento</label>
                     <input id="fecha" type="date" class="form-control" name="fecha" value="<%= fechaNac %>" readonly="">

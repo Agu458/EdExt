@@ -24,8 +24,11 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
+    private final static QName _DarDatosInscripcionEdicionResponse_QNAME = new QName("http://Servidor/", "darDatosInscripcionEdicionResponse");
     private final static QName _ListarCursosCategoria_QNAME = new QName("http://Servidor/", "listarCursosCategoria");
     private final static QName _AltaUsuario_QNAME = new QName("http://Servidor/", "altaUsuario");
+    private final static QName _ListarCursosConEdicionInstituto_QNAME = new QName("http://Servidor/", "listarCursosConEdicionInstituto");
+    private final static QName _DarDatosInscripcionEdicion_QNAME = new QName("http://Servidor/", "darDatosInscripcionEdicion");
     private final static QName _ValidarNickResponse_QNAME = new QName("http://Servidor/", "validarNickResponse");
     private final static QName _ValidarNombreInstitutoResponse_QNAME = new QName("http://Servidor/", "validarNombreInstitutoResponse");
     private final static QName _AltaEdicionCurso_QNAME = new QName("http://Servidor/", "altaEdicionCurso");
@@ -61,6 +64,7 @@ public class ObjectFactory {
     private final static QName _InscripcionEdicionResponse_QNAME = new QName("http://Servidor/", "inscripcionEdicionResponse");
     private final static QName _ListarProfesoresInstituto_QNAME = new QName("http://Servidor/", "listarProfesoresInstituto");
     private final static QName _DarEdicionActual_QNAME = new QName("http://Servidor/", "darEdicionActual");
+    private final static QName _ListarCursosConEdicionInstitutoResponse_QNAME = new QName("http://Servidor/", "listarCursosConEdicionInstitutoResponse");
     private final static QName _ValidarNombreCurso_QNAME = new QName("http://Servidor/", "validarNombreCurso");
     private final static QName _DataProgramaFormacion_QNAME = new QName("http://Servidor/", "dataProgramaFormacion");
     private final static QName _DataEstudiante_QNAME = new QName("http://Servidor/", "dataEstudiante");
@@ -458,6 +462,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link ListarCursosConEdicionInstitutoResponse }
+     * 
+     */
+    public ListarCursosConEdicionInstitutoResponse createListarCursosConEdicionInstitutoResponse() {
+        return new ListarCursosConEdicionInstitutoResponse();
+    }
+
+    /**
      * Create an instance of {@link DataProgramaFormacion }
      * 
      */
@@ -682,11 +694,35 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link DarDatosInscripcionEdicionResponse }
+     * 
+     */
+    public DarDatosInscripcionEdicionResponse createDarDatosInscripcionEdicionResponse() {
+        return new DarDatosInscripcionEdicionResponse();
+    }
+
+    /**
      * Create an instance of {@link AltaUsuario }
      * 
      */
     public AltaUsuario createAltaUsuario() {
         return new AltaUsuario();
+    }
+
+    /**
+     * Create an instance of {@link ListarCursosConEdicionInstituto }
+     * 
+     */
+    public ListarCursosConEdicionInstituto createListarCursosConEdicionInstituto() {
+        return new ListarCursosConEdicionInstituto();
+    }
+
+    /**
+     * Create an instance of {@link DarDatosInscripcionEdicion }
+     * 
+     */
+    public DarDatosInscripcionEdicion createDarDatosInscripcionEdicion() {
+        return new DarDatosInscripcionEdicion();
     }
 
     /**
@@ -770,6 +806,15 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link DarDatosInscripcionEdicionResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://Servidor/", name = "darDatosInscripcionEdicionResponse")
+    public JAXBElement<DarDatosInscripcionEdicionResponse> createDarDatosInscripcionEdicionResponse(DarDatosInscripcionEdicionResponse value) {
+        return new JAXBElement<DarDatosInscripcionEdicionResponse>(_DarDatosInscripcionEdicionResponse_QNAME, DarDatosInscripcionEdicionResponse.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link ListarCursosCategoria }{@code >}}
      * 
      */
@@ -785,6 +830,24 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://Servidor/", name = "altaUsuario")
     public JAXBElement<AltaUsuario> createAltaUsuario(AltaUsuario value) {
         return new JAXBElement<AltaUsuario>(_AltaUsuario_QNAME, AltaUsuario.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ListarCursosConEdicionInstituto }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://Servidor/", name = "listarCursosConEdicionInstituto")
+    public JAXBElement<ListarCursosConEdicionInstituto> createListarCursosConEdicionInstituto(ListarCursosConEdicionInstituto value) {
+        return new JAXBElement<ListarCursosConEdicionInstituto>(_ListarCursosConEdicionInstituto_QNAME, ListarCursosConEdicionInstituto.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link DarDatosInscripcionEdicion }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://Servidor/", name = "darDatosInscripcionEdicion")
+    public JAXBElement<DarDatosInscripcionEdicion> createDarDatosInscripcionEdicion(DarDatosInscripcionEdicion value) {
+        return new JAXBElement<DarDatosInscripcionEdicion>(_DarDatosInscripcionEdicion_QNAME, DarDatosInscripcionEdicion.class, null, value);
     }
 
     /**
@@ -1100,6 +1163,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://Servidor/", name = "darEdicionActual")
     public JAXBElement<DarEdicionActual> createDarEdicionActual(DarEdicionActual value) {
         return new JAXBElement<DarEdicionActual>(_DarEdicionActual_QNAME, DarEdicionActual.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ListarCursosConEdicionInstitutoResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://Servidor/", name = "listarCursosConEdicionInstitutoResponse")
+    public JAXBElement<ListarCursosConEdicionInstitutoResponse> createListarCursosConEdicionInstitutoResponse(ListarCursosConEdicionInstitutoResponse value) {
+        return new JAXBElement<ListarCursosConEdicionInstitutoResponse>(_ListarCursosConEdicionInstitutoResponse_QNAME, ListarCursosConEdicionInstitutoResponse.class, null, value);
     }
 
     /**
