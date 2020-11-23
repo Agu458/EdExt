@@ -97,4 +97,6 @@ public interface ISistema {
     public void agregarComentarioEdicionCurso(String curso, String edicion, String estudiante, String cuerpo, Date fechaPublicacion);
     
     public List<DataEdicion> edicionesEstudiante(String estudiante);
+    
+    public void valorarCurso(String curso, Double valoracion);
 }

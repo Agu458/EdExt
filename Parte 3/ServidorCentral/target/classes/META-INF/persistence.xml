@@ -3,16 +3,16 @@
   <persistence-unit name="EdExtPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>Entidades.Categoria</class>
+    <class>Entidades.Comentario</class>
     <class>Entidades.Curso</class>
-    <class>Entidades.Edicion</class>
     <class>Entidades.Estudiante</class>
     <class>Entidades.InscripcionEdicion</class>
     <class>Entidades.InscripcionPrograma</class>
     <class>Entidades.Instituto</class>
     <class>Entidades.Profesor</class>
-    <class>Entidades.ProgramaFormacion</class>
     <class>Entidades.Usuario</class>
-    <class>Entidades.Comentario</class>
+    <class>Entidades.Edicion</class>
+    <class>Entidades.ProgramaFormacion</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/EdExt"/>
       <property name="javax.persistence.jdbc.user" value="root"/>

@@ -57,7 +57,7 @@
                             <input type="number" class="form-control" id="creditos" name="creditos" readonly="" value="<%= dc.getCreditos()%>">
                         </div>
                     </div>
-                        <div class="col-sm">
+                    <div class="col-sm">
                         <div class="form-group">
                             <label for="fechareg">Fecha de Publicación</label>
                             <%
@@ -117,7 +117,7 @@
                     %>
                     <input type="text" class="form-control" id="edicionActual" name="edicionActual" readonly="" value="<%= dc.getEdicionAgtual().getNombre()%>">
                     <%
-                        } else {
+                    } else {
                     %>
                     <input type="text" class="form-control" id="edicionActual" name="edicionActual" readonly="" value="No tiene ...">
                     <%
@@ -136,7 +136,7 @@
                                 }
                                 for (DataEdicion de : dc.getEdiciones()) {
                             %>
-                            <button type="submit" class="list-group-item list-group-item-action" name="consultarEdicion" value="<%= de.getCurso() %>,<%= de.getNombre()%>" ><%= de.getNombre() %></button>
+                            <button type="submit" class="list-group-item list-group-item-action" name="consultarEdicion" value="<%= de.getCurso()%>,<%= de.getNombre()%>" ><%= de.getNombre()%></button>
                             <%
                                 }
                             %>

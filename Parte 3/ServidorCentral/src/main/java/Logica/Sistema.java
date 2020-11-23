@@ -796,4 +796,22 @@ public class Sistema implements ISistema {
         return result;
     }
     
+    @Override
+    public void valorarCurso(String curso, Double valoracion){
+        EntityManager em = emf.createEntityManager();
+        try {
+            em.getTransaction().begin();
+            if(curso != null){
+                Curso cur = em.find(Curso.class, curso);
+                if(cur != null){
+                    cur.valorar(valoracion);
+                }
+            }
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            em.getTransaction().rollback();
+        }
+        em.close();
+    }
 }

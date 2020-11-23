@@ -12,23 +12,26 @@
 %>
 
 <header>
-    <div class="collapse" id="navbarToggleExternalContent">
-        <div class="bg-dark p-4">
-            <h5 class="text-white h4">EdExt Mobile</h5>
-            <ul class="navbar-nav">
-                <li class="nav-item active">
-                    <a class="nav-link text-white" href="/EdExtMobile/Home">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="/EdExtMobile/Logout">Logout</a>
-                </li>
-            </ul>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand js-scroll-trigger" href="/EdExtMobile/Home">EdExt</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="/EdExtMobile/Home"><i class="fas fa-home"></i> Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="/EdExtMobile/Logout"><i class="fas fa-door-open"></i> Salir</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="#"><i class="fas fa-user"></i> Perfil</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-    </div>
-    <nav class="navbar navbar-dark bg-dark">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <span class="navbar-brand mb-0 h1"><%= du.getEmail()%></span>
     </nav>
 </header>

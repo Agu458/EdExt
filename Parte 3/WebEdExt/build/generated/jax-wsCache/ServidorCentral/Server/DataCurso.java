@@ -34,6 +34,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="programas" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="instituto" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="categorias" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="valoracion" type="{http://Servidor/}dataValoracion" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -56,7 +57,8 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "edicionAgtual",
     "programas",
     "instituto",
-    "categorias"
+    "categorias",
+    "valoracion"
 })
 public class DataCurso {
 
@@ -79,6 +81,7 @@ public class DataCurso {
     protected String instituto;
     @XmlElement(nillable = true)
     protected List<String> categorias;
+    protected DataValoracion valoracion;
 
     /**
      * Obtiene el valor de la propiedad nombre.
@@ -386,6 +389,30 @@ public class DataCurso {
             categorias = new ArrayList<String>();
         }
         return this.categorias;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad valoracion.
+     * 
+     * @return
+     *     possible object is
+     *     {@link DataValoracion }
+     *     
+     */
+    public DataValoracion getValoracion() {
+        return valoracion;
+    }
+
+    /**
+     * Define el valor de la propiedad valoracion.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link DataValoracion }
+     *     
+     */
+    public void setValoracion(DataValoracion value) {
+        this.valoracion = value;
     }
 
 }

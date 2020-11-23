@@ -2,6 +2,7 @@ package Entidades;
 
 import DataTypes.DataCurso;
 import DataTypes.DataEdicion;
+import DataTypes.DataValoracion;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -37,6 +38,7 @@ public class Curso implements Serializable {
     private Instituto instituto;
     @OneToMany
     private List<Categoria> categorias;
+    private List<Double> valoraciones;
 
     public Curso() {
     }
@@ -53,6 +55,7 @@ public class Curso implements Serializable {
         this.ediciones = new HashMap();
         this.instituto = instituto;
         this.categorias = categorias;
+        this.valoraciones = new ArrayList();
     }
 
     public String getNombre() {
@@ -229,7 +232,7 @@ public class Curso implements Serializable {
             cats.add(cat.getNombre());
         }
 
-        return new DataCurso(nombre, descripcion, duracion, horas, creditos, fechaRegistro, URL, prevs, edis, actual, progs, insti, cats);
+        return new DataCurso(nombre, descripcion, duracion, horas, creditos, fechaRegistro, URL, prevs, edis, actual, progs, insti, cats, new DataValoracion(valoraciones));
     }
 
     public boolean validarNombreEdicion(String nombre) {
@@ -275,4 +278,17 @@ public class Curso implements Serializable {
         }
     }
     
+    // Valoracion del curso
+
+    public List<Double> getValoraciones() {
+        return valoraciones;
+    }
+
+    public void setValoraciones(List<Double> valoraciones) {
+        this.valoraciones = valoraciones;
+    }
+    
+    public void valorar(Double valoracion){
+        this.valoraciones.add(valoracion);
+    }
 }

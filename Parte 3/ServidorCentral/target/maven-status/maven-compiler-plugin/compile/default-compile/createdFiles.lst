@@ -37,4 +37,5 @@ Logica\Sistema.class
 DataTypes\DataCurso.class
 Logica\Fabrica.class
 Entidades\Curso.class
+DataTypes\DataValoracion.class
 Entidades\ProgramaFormacion.class

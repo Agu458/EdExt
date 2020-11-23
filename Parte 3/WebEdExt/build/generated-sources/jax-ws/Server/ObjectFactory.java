@@ -65,6 +65,7 @@ public class ObjectFactory {
     private final static QName _DataCurso_QNAME = new QName("http://Servidor/", "dataCurso");
     private final static QName _AltaProgramaFormacionResponse_QNAME = new QName("http://Servidor/", "altaProgramaFormacionResponse");
     private final static QName _DataEdicion_QNAME = new QName("http://Servidor/", "dataEdicion");
+    private final static QName _DataValoracion_QNAME = new QName("http://Servidor/", "dataValoracion");
     private final static QName _InscripcionEdicionResponse_QNAME = new QName("http://Servidor/", "inscripcionEdicionResponse");
     private final static QName _ListarProfesoresInstituto_QNAME = new QName("http://Servidor/", "listarProfesoresInstituto");
     private final static QName _DarEdicionActual_QNAME = new QName("http://Servidor/", "darEdicionActual");
@@ -73,6 +74,7 @@ public class ObjectFactory {
     private final static QName _DesistirDeInscripcion_QNAME = new QName("http://Servidor/", "desistirDeInscripcion");
     private final static QName _ValidarNombreCurso_QNAME = new QName("http://Servidor/", "validarNombreCurso");
     private final static QName _DataProgramaFormacion_QNAME = new QName("http://Servidor/", "dataProgramaFormacion");
+    private final static QName _ValorarCursoResponse_QNAME = new QName("http://Servidor/", "valorarCursoResponse");
     private final static QName _DataEstudiante_QNAME = new QName("http://Servidor/", "dataEstudiante");
     private final static QName _InscripcionAPrograma_QNAME = new QName("http://Servidor/", "inscripcionAPrograma");
     private final static QName _ListarEdiciones_QNAME = new QName("http://Servidor/", "listarEdiciones");
@@ -107,6 +109,7 @@ public class ObjectFactory {
     private final static QName _DataInscripcionEdicion_QNAME = new QName("http://Servidor/", "dataInscripcionEdicion");
     private final static QName _ListarCursosInstitutoResponse_QNAME = new QName("http://Servidor/", "listarCursosInstitutoResponse");
     private final static QName _DarEdicionActualResponse_QNAME = new QName("http://Servidor/", "darEdicionActualResponse");
+    private final static QName _ValorarCurso_QNAME = new QName("http://Servidor/", "valorarCurso");
     private final static QName _DesistirDeInscripcionResponse_QNAME = new QName("http://Servidor/", "desistirDeInscripcionResponse");
     private final static QName _ListarAceptadosAEdicion_QNAME = new QName("http://Servidor/", "listarAceptadosAEdicion");
     private final static QName _ListarCategorias_QNAME = new QName("http://Servidor/", "listarCategorias");
@@ -138,6 +141,14 @@ public class ObjectFactory {
      */
     public ListarCursosInstitutoResponse createListarCursosInstitutoResponse() {
         return new ListarCursosInstitutoResponse();
+    }
+
+    /**
+     * Create an instance of {@link ValorarCurso }
+     * 
+     */
+    public ValorarCurso createValorarCurso() {
+        return new ValorarCurso();
     }
 
     /**
@@ -453,6 +464,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link DataValoracion }
+     * 
+     */
+    public DataValoracion createDataValoracion() {
+        return new DataValoracion();
+    }
+
+    /**
      * Create an instance of {@link ListarProfesoresInstituto }
      * 
      */
@@ -498,6 +517,14 @@ public class ObjectFactory {
      */
     public DataProgramaFormacion createDataProgramaFormacion() {
         return new DataProgramaFormacion();
+    }
+
+    /**
+     * Create an instance of {@link ValorarCursoResponse }
+     * 
+     */
+    public ValorarCursoResponse createValorarCursoResponse() {
+        return new ValorarCursoResponse();
     }
 
     /**
@@ -1238,6 +1265,15 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link DataValoracion }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://Servidor/", name = "dataValoracion")
+    public JAXBElement<DataValoracion> createDataValoracion(DataValoracion value) {
+        return new JAXBElement<DataValoracion>(_DataValoracion_QNAME, DataValoracion.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link InscripcionEdicionResponse }{@code >}}
      * 
      */
@@ -1307,6 +1343,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://Servidor/", name = "dataProgramaFormacion")
     public JAXBElement<DataProgramaFormacion> createDataProgramaFormacion(DataProgramaFormacion value) {
         return new JAXBElement<DataProgramaFormacion>(_DataProgramaFormacion_QNAME, DataProgramaFormacion.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ValorarCursoResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://Servidor/", name = "valorarCursoResponse")
+    public JAXBElement<ValorarCursoResponse> createValorarCursoResponse(ValorarCursoResponse value) {
+        return new JAXBElement<ValorarCursoResponse>(_ValorarCursoResponse_QNAME, ValorarCursoResponse.class, null, value);
     }
 
     /**
@@ -1613,6 +1658,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://Servidor/", name = "darEdicionActualResponse")
     public JAXBElement<DarEdicionActualResponse> createDarEdicionActualResponse(DarEdicionActualResponse value) {
         return new JAXBElement<DarEdicionActualResponse>(_DarEdicionActualResponse_QNAME, DarEdicionActualResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ValorarCurso }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://Servidor/", name = "valorarCurso")
+    public JAXBElement<ValorarCurso> createValorarCurso(ValorarCurso value) {
+        return new JAXBElement<ValorarCurso>(_ValorarCurso_QNAME, ValorarCurso.class, null, value);
     }
 
     /**

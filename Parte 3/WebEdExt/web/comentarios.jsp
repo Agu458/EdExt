@@ -29,18 +29,21 @@
                 <div class="form-group">
                     <label for="comentarios">Comentarios</label>
                     <!-- Contenedor Principal -->
-                    <div class="card" id="comentarios">
 
-                        <%
-                            if (de.getComentarios().isEmpty()) {
-                        %>
+
+                    <%
+                        if (de.getComentarios().isEmpty()) {
+                    %>
+                    <div class="list-group-item">
                         No hay comentarios...
-                        <%
-                        } else {
-                        %>
+                    </div>
+                    <%
+                    } else {
+                    %>
+                    <div class="card" id="comentarios">
                         <div class="comments-container">
                             <ul id="comments-list" class="comments-list">
-                                
+
                                 <%
                                     for (DataComentario dc : de.getComentarios()) {
                                 %>
@@ -51,12 +54,12 @@
                                         <!-- Contenedor del Comentario -->
                                         <div class="comment-box">
                                             <div class="comment-head">
-                                                <h6 class="comment-name"><a href="#"><%= dc.getEstudiante() %></a></h6>
-                                                <span><%= dc.getFechaPublicacion().toGregorianCalendar().getTime() %></span>
+                                                <h6 class="comment-name"><a href="#"><%= dc.getEstudiante()%></a></h6>
+                                                <span><%= dc.getFechaPublicacion().toGregorianCalendar().getTime()%></span>
                                                 <i class="fa fa-reply"></i>
                                             </div>
                                             <div class="comment-content">
-                                                <%= dc.getCuerpo() %>
+                                                <%= dc.getCuerpo()%>
                                             </div>
                                         </div>
                                     </div>
@@ -64,13 +67,13 @@
                                 <%
                                     }
                                 %>
-                                
+
                             </ul>
                         </div>
-                        <%
-                            }
-                        %>
                     </div>
+                    <%
+                        }
+                    %>
                 </div>
 
                 <div class="form-group">

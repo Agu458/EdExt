@@ -24,12 +24,17 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
+    private final static QName _DarDatosInscripcionEdicionResponse_QNAME = new QName("http://Servidor/", "darDatosInscripcionEdicionResponse");
     private final static QName _ListarCursosCategoria_QNAME = new QName("http://Servidor/", "listarCursosCategoria");
     private final static QName _AltaUsuario_QNAME = new QName("http://Servidor/", "altaUsuario");
+    private final static QName _ListarCursosConEdicionInstituto_QNAME = new QName("http://Servidor/", "listarCursosConEdicionInstituto");
+    private final static QName _DarDatosInscripcionEdicion_QNAME = new QName("http://Servidor/", "darDatosInscripcionEdicion");
     private final static QName _ValidarNickResponse_QNAME = new QName("http://Servidor/", "validarNickResponse");
     private final static QName _ValidarNombreInstitutoResponse_QNAME = new QName("http://Servidor/", "validarNombreInstitutoResponse");
     private final static QName _AltaEdicionCurso_QNAME = new QName("http://Servidor/", "altaEdicionCurso");
     private final static QName _ListarCursosResponse_QNAME = new QName("http://Servidor/", "listarCursosResponse");
+    private final static QName _EdicionesEstudiante_QNAME = new QName("http://Servidor/", "edicionesEstudiante");
+    private final static QName _EdicionesEstudianteResponse_QNAME = new QName("http://Servidor/", "edicionesEstudianteResponse");
     private final static QName _ModificarUsuario_QNAME = new QName("http://Servidor/", "modificarUsuario");
     private final static QName _AceptarInscripciones_QNAME = new QName("http://Servidor/", "aceptarInscripciones");
     private final static QName _ValidarNombreCategoriaResponse_QNAME = new QName("http://Servidor/", "validarNombreCategoriaResponse");
@@ -37,6 +42,8 @@ public class ObjectFactory {
     private final static QName _ValidarNombreProgramaResponse_QNAME = new QName("http://Servidor/", "validarNombreProgramaResponse");
     private final static QName _ListarAceptadosAEdicionResponse_QNAME = new QName("http://Servidor/", "listarAceptadosAEdicionResponse");
     private final static QName _ListarInscriptosAEdicion_QNAME = new QName("http://Servidor/", "listarInscriptosAEdicion");
+    private final static QName _AgregarComentarioEdicionCurso_QNAME = new QName("http://Servidor/", "agregarComentarioEdicionCurso");
+    private final static QName _DataComentario_QNAME = new QName("http://Servidor/", "dataComentario");
     private final static QName _ModificarUsuarioResponse_QNAME = new QName("http://Servidor/", "modificarUsuarioResponse");
     private final static QName _ListarProgramasResponse_QNAME = new QName("http://Servidor/", "listarProgramasResponse");
     private final static QName _ListarEstudiantesResponse_QNAME = new QName("http://Servidor/", "listarEstudiantesResponse");
@@ -58,11 +65,16 @@ public class ObjectFactory {
     private final static QName _DataCurso_QNAME = new QName("http://Servidor/", "dataCurso");
     private final static QName _AltaProgramaFormacionResponse_QNAME = new QName("http://Servidor/", "altaProgramaFormacionResponse");
     private final static QName _DataEdicion_QNAME = new QName("http://Servidor/", "dataEdicion");
+    private final static QName _DataValoracion_QNAME = new QName("http://Servidor/", "dataValoracion");
     private final static QName _InscripcionEdicionResponse_QNAME = new QName("http://Servidor/", "inscripcionEdicionResponse");
     private final static QName _ListarProfesoresInstituto_QNAME = new QName("http://Servidor/", "listarProfesoresInstituto");
     private final static QName _DarEdicionActual_QNAME = new QName("http://Servidor/", "darEdicionActual");
+    private final static QName _AgregarComentarioEdicionCursoResponse_QNAME = new QName("http://Servidor/", "agregarComentarioEdicionCursoResponse");
+    private final static QName _ListarCursosConEdicionInstitutoResponse_QNAME = new QName("http://Servidor/", "listarCursosConEdicionInstitutoResponse");
+    private final static QName _DesistirDeInscripcion_QNAME = new QName("http://Servidor/", "desistirDeInscripcion");
     private final static QName _ValidarNombreCurso_QNAME = new QName("http://Servidor/", "validarNombreCurso");
     private final static QName _DataProgramaFormacion_QNAME = new QName("http://Servidor/", "dataProgramaFormacion");
+    private final static QName _ValorarCursoResponse_QNAME = new QName("http://Servidor/", "valorarCursoResponse");
     private final static QName _DataEstudiante_QNAME = new QName("http://Servidor/", "dataEstudiante");
     private final static QName _InscripcionAPrograma_QNAME = new QName("http://Servidor/", "inscripcionAPrograma");
     private final static QName _ListarEdiciones_QNAME = new QName("http://Servidor/", "listarEdiciones");
@@ -97,6 +109,8 @@ public class ObjectFactory {
     private final static QName _DataInscripcionEdicion_QNAME = new QName("http://Servidor/", "dataInscripcionEdicion");
     private final static QName _ListarCursosInstitutoResponse_QNAME = new QName("http://Servidor/", "listarCursosInstitutoResponse");
     private final static QName _DarEdicionActualResponse_QNAME = new QName("http://Servidor/", "darEdicionActualResponse");
+    private final static QName _ValorarCurso_QNAME = new QName("http://Servidor/", "valorarCurso");
+    private final static QName _DesistirDeInscripcionResponse_QNAME = new QName("http://Servidor/", "desistirDeInscripcionResponse");
     private final static QName _ListarAceptadosAEdicion_QNAME = new QName("http://Servidor/", "listarAceptadosAEdicion");
     private final static QName _ListarCategorias_QNAME = new QName("http://Servidor/", "listarCategorias");
     private final static QName _ValidarNombrePrograma_QNAME = new QName("http://Servidor/", "validarNombrePrograma");
@@ -130,6 +144,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link ValorarCurso }
+     * 
+     */
+    public ValorarCurso createValorarCurso() {
+        return new ValorarCurso();
+    }
+
+    /**
      * Create an instance of {@link ListarCategorias }
      * 
      */
@@ -143,6 +165,14 @@ public class ObjectFactory {
      */
     public ValidarNombrePrograma createValidarNombrePrograma() {
         return new ValidarNombrePrograma();
+    }
+
+    /**
+     * Create an instance of {@link DesistirDeInscripcionResponse }
+     * 
+     */
+    public DesistirDeInscripcionResponse createDesistirDeInscripcionResponse() {
+        return new DesistirDeInscripcionResponse();
     }
 
     /**
@@ -434,6 +464,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link DataValoracion }
+     * 
+     */
+    public DataValoracion createDataValoracion() {
+        return new DataValoracion();
+    }
+
+    /**
      * Create an instance of {@link ListarProfesoresInstituto }
      * 
      */
@@ -450,6 +488,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link AgregarComentarioEdicionCursoResponse }
+     * 
+     */
+    public AgregarComentarioEdicionCursoResponse createAgregarComentarioEdicionCursoResponse() {
+        return new AgregarComentarioEdicionCursoResponse();
+    }
+
+    /**
      * Create an instance of {@link DarEdicionActual }
      * 
      */
@@ -458,11 +504,35 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link ListarCursosConEdicionInstitutoResponse }
+     * 
+     */
+    public ListarCursosConEdicionInstitutoResponse createListarCursosConEdicionInstitutoResponse() {
+        return new ListarCursosConEdicionInstitutoResponse();
+    }
+
+    /**
      * Create an instance of {@link DataProgramaFormacion }
      * 
      */
     public DataProgramaFormacion createDataProgramaFormacion() {
         return new DataProgramaFormacion();
+    }
+
+    /**
+     * Create an instance of {@link ValorarCursoResponse }
+     * 
+     */
+    public ValorarCursoResponse createValorarCursoResponse() {
+        return new ValorarCursoResponse();
+    }
+
+    /**
+     * Create an instance of {@link DesistirDeInscripcion }
+     * 
+     */
+    public DesistirDeInscripcion createDesistirDeInscripcion() {
+        return new DesistirDeInscripcion();
     }
 
     /**
@@ -602,6 +672,22 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link AgregarComentarioEdicionCurso }
+     * 
+     */
+    public AgregarComentarioEdicionCurso createAgregarComentarioEdicionCurso() {
+        return new AgregarComentarioEdicionCurso();
+    }
+
+    /**
+     * Create an instance of {@link DataComentario }
+     * 
+     */
+    public DataComentario createDataComentario() {
+        return new DataComentario();
+    }
+
+    /**
      * Create an instance of {@link ModificarUsuarioResponse }
      * 
      */
@@ -682,11 +768,35 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link DarDatosInscripcionEdicionResponse }
+     * 
+     */
+    public DarDatosInscripcionEdicionResponse createDarDatosInscripcionEdicionResponse() {
+        return new DarDatosInscripcionEdicionResponse();
+    }
+
+    /**
      * Create an instance of {@link AltaUsuario }
      * 
      */
     public AltaUsuario createAltaUsuario() {
         return new AltaUsuario();
+    }
+
+    /**
+     * Create an instance of {@link ListarCursosConEdicionInstituto }
+     * 
+     */
+    public ListarCursosConEdicionInstituto createListarCursosConEdicionInstituto() {
+        return new ListarCursosConEdicionInstituto();
+    }
+
+    /**
+     * Create an instance of {@link DarDatosInscripcionEdicion }
+     * 
+     */
+    public DarDatosInscripcionEdicion createDarDatosInscripcionEdicion() {
+        return new DarDatosInscripcionEdicion();
     }
 
     /**
@@ -722,11 +832,27 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link EdicionesEstudianteResponse }
+     * 
+     */
+    public EdicionesEstudianteResponse createEdicionesEstudianteResponse() {
+        return new EdicionesEstudianteResponse();
+    }
+
+    /**
      * Create an instance of {@link ModificarUsuario }
      * 
      */
     public ModificarUsuario createModificarUsuario() {
         return new ModificarUsuario();
+    }
+
+    /**
+     * Create an instance of {@link EdicionesEstudiante }
+     * 
+     */
+    public EdicionesEstudiante createEdicionesEstudiante() {
+        return new EdicionesEstudiante();
     }
 
     /**
@@ -770,6 +896,15 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link DarDatosInscripcionEdicionResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://Servidor/", name = "darDatosInscripcionEdicionResponse")
+    public JAXBElement<DarDatosInscripcionEdicionResponse> createDarDatosInscripcionEdicionResponse(DarDatosInscripcionEdicionResponse value) {
+        return new JAXBElement<DarDatosInscripcionEdicionResponse>(_DarDatosInscripcionEdicionResponse_QNAME, DarDatosInscripcionEdicionResponse.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link ListarCursosCategoria }{@code >}}
      * 
      */
@@ -785,6 +920,24 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://Servidor/", name = "altaUsuario")
     public JAXBElement<AltaUsuario> createAltaUsuario(AltaUsuario value) {
         return new JAXBElement<AltaUsuario>(_AltaUsuario_QNAME, AltaUsuario.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ListarCursosConEdicionInstituto }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://Servidor/", name = "listarCursosConEdicionInstituto")
+    public JAXBElement<ListarCursosConEdicionInstituto> createListarCursosConEdicionInstituto(ListarCursosConEdicionInstituto value) {
+        return new JAXBElement<ListarCursosConEdicionInstituto>(_ListarCursosConEdicionInstituto_QNAME, ListarCursosConEdicionInstituto.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link DarDatosInscripcionEdicion }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://Servidor/", name = "darDatosInscripcionEdicion")
+    public JAXBElement<DarDatosInscripcionEdicion> createDarDatosInscripcionEdicion(DarDatosInscripcionEdicion value) {
+        return new JAXBElement<DarDatosInscripcionEdicion>(_DarDatosInscripcionEdicion_QNAME, DarDatosInscripcionEdicion.class, null, value);
     }
 
     /**
@@ -821,6 +974,24 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://Servidor/", name = "listarCursosResponse")
     public JAXBElement<ListarCursosResponse> createListarCursosResponse(ListarCursosResponse value) {
         return new JAXBElement<ListarCursosResponse>(_ListarCursosResponse_QNAME, ListarCursosResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link EdicionesEstudiante }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://Servidor/", name = "edicionesEstudiante")
+    public JAXBElement<EdicionesEstudiante> createEdicionesEstudiante(EdicionesEstudiante value) {
+        return new JAXBElement<EdicionesEstudiante>(_EdicionesEstudiante_QNAME, EdicionesEstudiante.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link EdicionesEstudianteResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://Servidor/", name = "edicionesEstudianteResponse")
+    public JAXBElement<EdicionesEstudianteResponse> createEdicionesEstudianteResponse(EdicionesEstudianteResponse value) {
+        return new JAXBElement<EdicionesEstudianteResponse>(_EdicionesEstudianteResponse_QNAME, EdicionesEstudianteResponse.class, null, value);
     }
 
     /**
@@ -884,6 +1055,24 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://Servidor/", name = "listarInscriptosAEdicion")
     public JAXBElement<ListarInscriptosAEdicion> createListarInscriptosAEdicion(ListarInscriptosAEdicion value) {
         return new JAXBElement<ListarInscriptosAEdicion>(_ListarInscriptosAEdicion_QNAME, ListarInscriptosAEdicion.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link AgregarComentarioEdicionCurso }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://Servidor/", name = "agregarComentarioEdicionCurso")
+    public JAXBElement<AgregarComentarioEdicionCurso> createAgregarComentarioEdicionCurso(AgregarComentarioEdicionCurso value) {
+        return new JAXBElement<AgregarComentarioEdicionCurso>(_AgregarComentarioEdicionCurso_QNAME, AgregarComentarioEdicionCurso.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link DataComentario }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://Servidor/", name = "dataComentario")
+    public JAXBElement<DataComentario> createDataComentario(DataComentario value) {
+        return new JAXBElement<DataComentario>(_DataComentario_QNAME, DataComentario.class, null, value);
     }
 
     /**
@@ -1076,6 +1265,15 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link DataValoracion }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://Servidor/", name = "dataValoracion")
+    public JAXBElement<DataValoracion> createDataValoracion(DataValoracion value) {
+        return new JAXBElement<DataValoracion>(_DataValoracion_QNAME, DataValoracion.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link InscripcionEdicionResponse }{@code >}}
      * 
      */
@@ -1103,6 +1301,33 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link AgregarComentarioEdicionCursoResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://Servidor/", name = "agregarComentarioEdicionCursoResponse")
+    public JAXBElement<AgregarComentarioEdicionCursoResponse> createAgregarComentarioEdicionCursoResponse(AgregarComentarioEdicionCursoResponse value) {
+        return new JAXBElement<AgregarComentarioEdicionCursoResponse>(_AgregarComentarioEdicionCursoResponse_QNAME, AgregarComentarioEdicionCursoResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ListarCursosConEdicionInstitutoResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://Servidor/", name = "listarCursosConEdicionInstitutoResponse")
+    public JAXBElement<ListarCursosConEdicionInstitutoResponse> createListarCursosConEdicionInstitutoResponse(ListarCursosConEdicionInstitutoResponse value) {
+        return new JAXBElement<ListarCursosConEdicionInstitutoResponse>(_ListarCursosConEdicionInstitutoResponse_QNAME, ListarCursosConEdicionInstitutoResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link DesistirDeInscripcion }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://Servidor/", name = "desistirDeInscripcion")
+    public JAXBElement<DesistirDeInscripcion> createDesistirDeInscripcion(DesistirDeInscripcion value) {
+        return new JAXBElement<DesistirDeInscripcion>(_DesistirDeInscripcion_QNAME, DesistirDeInscripcion.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link ValidarNombreCurso }{@code >}}
      * 
      */
@@ -1118,6 +1343,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://Servidor/", name = "dataProgramaFormacion")
     public JAXBElement<DataProgramaFormacion> createDataProgramaFormacion(DataProgramaFormacion value) {
         return new JAXBElement<DataProgramaFormacion>(_DataProgramaFormacion_QNAME, DataProgramaFormacion.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ValorarCursoResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://Servidor/", name = "valorarCursoResponse")
+    public JAXBElement<ValorarCursoResponse> createValorarCursoResponse(ValorarCursoResponse value) {
+        return new JAXBElement<ValorarCursoResponse>(_ValorarCursoResponse_QNAME, ValorarCursoResponse.class, null, value);
     }
 
     /**
@@ -1424,6 +1658,24 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://Servidor/", name = "darEdicionActualResponse")
     public JAXBElement<DarEdicionActualResponse> createDarEdicionActualResponse(DarEdicionActualResponse value) {
         return new JAXBElement<DarEdicionActualResponse>(_DarEdicionActualResponse_QNAME, DarEdicionActualResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ValorarCurso }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://Servidor/", name = "valorarCurso")
+    public JAXBElement<ValorarCurso> createValorarCurso(ValorarCurso value) {
+        return new JAXBElement<ValorarCurso>(_ValorarCurso_QNAME, ValorarCurso.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link DesistirDeInscripcionResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://Servidor/", name = "desistirDeInscripcionResponse")
+    public JAXBElement<DesistirDeInscripcionResponse> createDesistirDeInscripcionResponse(DesistirDeInscripcionResponse value) {
+        return new JAXBElement<DesistirDeInscripcionResponse>(_DesistirDeInscripcionResponse_QNAME, DesistirDeInscripcionResponse.class, null, value);
     }
 
     /**

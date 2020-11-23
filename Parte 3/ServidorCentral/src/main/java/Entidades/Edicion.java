@@ -41,10 +41,10 @@ public class Edicion implements Serializable {
     private int aceptados;
     @OneToMany
     private List<Comentario> comentarios;
-    
+
     public Edicion() {
     }
-
+    
     public Edicion(String nombre, Date fechaIni, Date fechaFin, int cupos, Date fechaPublicacion, List<Profesor> profesores, Curso curso) {
         this.nombreEdicion = nombre;
         this.fechaIni = fechaIni;

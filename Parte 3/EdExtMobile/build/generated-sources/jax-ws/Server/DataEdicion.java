@@ -25,9 +25,11 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="fechaIni" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
  *         &lt;element name="fechaFin" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
  *         &lt;element name="cupos" type="{http://www.w3.org/2001/XMLSchema}int"/>
+ *         &lt;element name="aceptados" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="fechaPublicacion" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
  *         &lt;element name="profesores" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="curso" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="comentarios" type="{http://Servidor/}dataComentario" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -42,9 +44,11 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "fechaIni",
     "fechaFin",
     "cupos",
+    "aceptados",
     "fechaPublicacion",
     "profesores",
-    "curso"
+    "curso",
+    "comentarios"
 })
 public class DataEdicion {
 
@@ -54,11 +58,14 @@ public class DataEdicion {
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar fechaFin;
     protected int cupos;
+    protected int aceptados;
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar fechaPublicacion;
     @XmlElement(nillable = true)
     protected List<String> profesores;
     protected String curso;
+    @XmlElement(nillable = true)
+    protected List<DataComentario> comentarios;
 
     /**
      * Obtiene el valor de la propiedad nombre.
@@ -149,6 +156,22 @@ public class DataEdicion {
     }
 
     /**
+     * Obtiene el valor de la propiedad aceptados.
+     * 
+     */
+    public int getAceptados() {
+        return aceptados;
+    }
+
+    /**
+     * Define el valor de la propiedad aceptados.
+     * 
+     */
+    public void setAceptados(int value) {
+        this.aceptados = value;
+    }
+
+    /**
      * Obtiene el valor de la propiedad fechaPublicacion.
      * 
      * @return
@@ -223,6 +246,35 @@ public class DataEdicion {
      */
     public void setCurso(String value) {
         this.curso = value;
+    }
+
+    /**
+     * Gets the value of the comentarios property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the comentarios property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getComentarios().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link DataComentario }
+     * 
+     * 
+     */
+    public List<DataComentario> getComentarios() {
+        if (comentarios == null) {
+            comentarios = new ArrayList<DataComentario>();
+        }
+        return this.comentarios;
     }
 
 }

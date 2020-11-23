@@ -290,4 +290,9 @@ public class PublicadorServidorCentral {
         return sistema.edicionesEstudiante(estudiante);
     }
     
+    @WebMethod
+    public void valorarCurso(String curso, Double valoracion){
+        sistema.valorarCurso(curso, valoracion);
+    }
+    
 }
