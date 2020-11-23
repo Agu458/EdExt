@@ -142,6 +142,24 @@ public class Edicion extends HttpServlet {
                 request.getRequestDispatcher("mostrarInfoInscripcionEdicion.jsp").forward(request, response);
             }
         }
+        
+        String comentariosEdicion = request.getParameter("comentariosEdicion");
+        if(comentariosEdicion != null){
+            String curso = null;
+            String edicion = null;
+            String[] datos = null;
+            try {
+                datos = comentariosEdicion.split(",");
+                curso = datos[0];
+                edicion = datos[1];
+            } catch (Exception e) {
+            }
+            if (curso != null && edicion != null) {
+                DataEdicion de = port.darDatosEdicion(curso, edicion);
+                request.setAttribute("datosEdicion", de);
+                request.getRequestDispatcher("comentarios.jsp").forward(request, response);
+            }
+        }
     }
 
     /**

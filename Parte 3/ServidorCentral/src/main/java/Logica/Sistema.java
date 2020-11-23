@@ -390,6 +390,7 @@ public class Sistema implements ISistema {
     public void altaEdicionCurso(DataEdicion de, String curso) {
         EntityManager em = emf.createEntityManager();
         try {
+            System.out.println("Hola");
             em.getTransaction().begin();
             Curso c = em.find(Curso.class, curso);
             if (c != null) {
@@ -407,6 +408,7 @@ public class Sistema implements ISistema {
             }
             em.getTransaction().commit();
         } catch (Exception e) {
+            e.printStackTrace();
             em.getTransaction().rollback();
         }
         em.close();
@@ -756,6 +758,7 @@ public class Sistema implements ISistema {
         return die;
     }
 
+    @Override
     public void agregarComentarioEdicionCurso(String curso, String edicion, String estudiante, String cuerpo, Date fechaPublicacion) {
         EntityManager em = emf.createEntityManager();
         try {

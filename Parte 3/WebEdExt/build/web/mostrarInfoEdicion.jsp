@@ -8,6 +8,7 @@
 <%@page import="Server.DataEdicion"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <%
     DataEdicion de = (DataEdicion) request.getAttribute("datosEdicion");
 %>
@@ -81,9 +82,6 @@
                             }
                         %>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label for="comentarios">Comentarios</label>
                 </div>
             </div>
         </div>

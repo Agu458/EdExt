@@ -335,21 +335,21 @@
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="listarProgramas">
-<xs:sequence/>
-</xs:complexType>
-
-<xs:complexType name="listarProgramasResponse">
-<xs:sequence>
-<xs:element name="return" type="tns:lista" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
 <xs:complexType name="listarCursos">
 <xs:sequence/>
 </xs:complexType>
 
 <xs:complexType name="listarCursosResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:lista" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="listarProgramas">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="listarProgramasResponse">
 <xs:sequence>
 <xs:element name="return" type="tns:lista" minOccurs="0"/>
 </xs:sequence>
@@ -530,18 +530,6 @@
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="aceptarInscripciones">
-<xs:sequence>
-<xs:element name="arg0" type="xs:string" minOccurs="0"/>
-<xs:element name="arg1" type="xs:string" minOccurs="0"/>
-<xs:element name="arg2" type="xs:anyType" minOccurs="0" maxOccurs="unbounded"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="aceptarInscripcionesResponse">
-<xs:sequence/>
-</xs:complexType>
-
 <xs:complexType name="validarNombreInstituto">
 <xs:sequence>
 <xs:element name="arg0" type="xs:string" minOccurs="0"/>
@@ -552,6 +540,18 @@
 <xs:sequence>
 <xs:element name="return" type="xs:boolean"/>
 </xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="aceptarInscripciones">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"/>
+<xs:element name="arg1" type="xs:string" minOccurs="0"/>
+<xs:element name="arg2" type="xs:anyType" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="aceptarInscripcionesResponse">
+<xs:sequence/>
 </xs:complexType>
 
 <xs:complexType name="validarEmail">

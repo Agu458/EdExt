@@ -21,6 +21,7 @@ Logica\ISistema.class
 DataTypes\DataUsuario.class
 Entidades\Edicion_.class
 Entidades\Instituto.class
+Logica\MainPruebas.class
 DataTypes\DataProfesor.class
 Entidades\InscripcionPrograma_.class
 Entidades\Profesor_.class

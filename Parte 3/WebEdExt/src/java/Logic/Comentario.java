@@ -8,6 +8,7 @@ package Logic;
 import Server.PublicadorServidorCentralService;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -40,7 +41,7 @@ public class Comentario extends HttpServlet {
         if(email != null){
             List ediciones = port.edicionesEstudiante(email);
             request.setAttribute("edicionesEst", ediciones);
-            request.getRequestDispatcher("comentarios.jsp").forward(request, response);
+            request.getRequestDispatcher("comentarEdicion.jsp").forward(request, response);
         }
     }
 
@@ -55,7 +56,17 @@ public class Comentario extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        PrintWriter out = response.getWriter();
+        String curso = request.getParameter("curso");
+        String edicion = request.getParameter("edicion");
+        String estudiante = request.getParameter("estudiante");
+        if(estudiante != null && curso != null && edicion != null){
+            String cuerpo = request.getParameter("cuerpo");
+            if(cuerpo != null){
+                port.agregarComentarioEdicionCurso(curso, edicion, estudiante, cuerpo, Login.GetXmlGregorianCalendar(new Date()));
+                response.sendRedirect("index.jsp");
+            }
+        }
     }
 
     /**
