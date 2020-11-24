@@ -127,7 +127,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
             <a class="navbar-brand" href="index.jsp">
-                <img src="http://localhost:8080/WebEdExt/Partials/images/logo2.png" height="60px" alt="" />
+                <img src="/WebEdExt/Partials/images/logo2.png" height="60px" alt="" />
             </a>
             <form class="form-inline" action="buscar.jsp" method="GET">
                 <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search" name="Busqueda">
@@ -181,4 +181,4 @@
     </nav>
 </header>
 <!-- End header -->
-<script src="http://localhost:8080/WebEdExt/Partials/js/header.js"></script>
+<script src="/WebEdExt/Partials/js/header.js"></script>

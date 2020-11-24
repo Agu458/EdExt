@@ -79,7 +79,7 @@
             </div>
         </div>
 
-        <script src="http://localhost:8080/WebEdExt/Partials/js/altacurso.js" ></script>
+        <script src="/WebEdExt/Partials/js/altacurso.js" ></script>
 
         <%@include file="/Partials/footer.jsp" %>
     </body>

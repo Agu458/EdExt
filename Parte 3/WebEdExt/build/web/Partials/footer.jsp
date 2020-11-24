@@ -10,22 +10,22 @@
     <div class="container">
         <div class="row logos">
             <div class="col-md-2 col-sm-2 col-xs-6 wow fadeInUp">
-                <a href="#"><img src="http://localhost:8080/WebEdExt/Partials/images/logo_01.png" alt="" class="img-repsonsive"></a>
+                <a href="#"><img src="/WebEdExt/Partials/images/logo_01.png" alt="" class="img-repsonsive"></a>
             </div>
             <div class="col-md-2 col-sm-2 col-xs-6 wow fadeInUp">
-                <a href="#"><img src="http://localhost:8080/WebEdExt/Partials/images/logo_02.png" alt="" class="img-repsonsive"></a>
+                <a href="#"><img src="/WebEdExt/Partials/images/logo_02.png" alt="" class="img-repsonsive"></a>
             </div>
             <div class="col-md-2 col-sm-2 col-xs-6 wow fadeInUp">
-                <a href="#"><img src="http://localhost:8080/WebEdExt/Partials/images/logo_03.png" alt="" class="img-repsonsive"></a>
+                <a href="#"><img src="/WebEdExt/Partials/images/logo_03.png" alt="" class="img-repsonsive"></a>
             </div>
             <div class="col-md-2 col-sm-2 col-xs-6 wow fadeInUp">
-                <a href="#"><img src="http://localhost:8080/WebEdExt/Partials/images/logo_04.png" alt="" class="img-repsonsive"></a>
+                <a href="#"><img src="/WebEdExt/Partials/images/logo_04.png" alt="" class="img-repsonsive"></a>
             </div>
             <div class="col-md-2 col-sm-2 col-xs-6 wow fadeInUp">
-                <a href="#"><img src="http://localhost:8080/WebEdExt/Partials/images/logo_05.png" alt="" class="img-repsonsive"></a>
+                <a href="#"><img src="/WebEdExt/Partials/images/logo_05.png" alt="" class="img-repsonsive"></a>
             </div>
             <div class="col-md-2 col-sm-2 col-xs-6 wow fadeInUp">
-                <a href="#"><img src="http://localhost:8080/WebEdExt/Partials/images/logo_06.png" alt="" class="img-repsonsive"></a>
+                <a href="#"><img src="/WebEdExt/Partials/images/logo_06.png" alt="" class="img-repsonsive"></a>
             </div>
         </div><!-- end row -->
     </div><!-- end container -->
@@ -99,6 +99,6 @@
 <a href="#" id="scroll-to-top" class="dmtop global-radius"><i class="fa fa-angle-up"></i></a>
 
 <!-- ALL JS FILES -->
-<script src="http://localhost:8080/WebEdExt/Partials/js/all.js"></script>
+<script src="/WebEdExt/Partials/js/all.js"></script>
 <!-- ALL PLUGINS -->
-<script src="http://localhost:8080/WebEdExt/Partials/js/custom.js"></script>
+<script src="/WebEdExt/Partials/js/custom.js"></script>

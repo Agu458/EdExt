@@ -18,7 +18,7 @@
         <%@include file="/Pages/Partials/head.jsp" %>
 
         <!-- Estilo de los comentarios -->
-        <link rel="stylesheet" href="http://localhost:8080/WebEdExt/Partials/css/comentarios.css">
+        <link rel="stylesheet" href="/EdExtMobile/Src/CSS/comentarios.css">
     </head>
     <body>
 

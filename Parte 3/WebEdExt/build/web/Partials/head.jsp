@@ -21,23 +21,23 @@
 <meta name="author" content="">
 
 <!-- Site Icons -->
-<link rel="shortcut icon" href="http://localhost:8080/WebEdExt/Partials/images/favicon.jpg" type="image/x-icon" />
-<link rel="apple-touch-icon" href="http://localhost:8080/WebEdExt/Partials/images/favicon.jpg">
+<link rel="shortcut icon" href="/WebEdExt/Partials/images/favicon.jpg" type="image/x-icon" />
+<link rel="apple-touch-icon" href="/WebEdExt/Partials/images/favicon.jpg">
 <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 <!-- Site CSS -->
-<link rel="stylesheet" href="http://localhost:8080/WebEdExt/Partials/style.css">
+<link rel="stylesheet" href="/WebEdExt/Partials/style.css">
 <!-- ALL VERSION CSS -->
-<link rel="stylesheet" href="http://localhost:8080/WebEdExt/Partials/css/versions.css">
+<link rel="stylesheet" href="/WebEdExt/Partials/css/versions.css">
 <!-- Responsive CSS -->
-<link rel="stylesheet" href="http://localhost:8080/WebEdExt/Partials/css/responsive.css">
+<link rel="stylesheet" href="/WebEdExt/Partials/css/responsive.css">
 <!-- Custom CSS -->
-<link rel="stylesheet" href="http://localhost:8080/WebEdExt/Partials/css/custom.css">
+<link rel="stylesheet" href="/WebEdExt/Partials/css/custom.css">
 
 <!-- Modernizer for Portfolio -->
-<script src="http://localhost:8080/WebEdExt/Partials/js/modernizer.js"></script>
+<script src="/WebEdExt/Partials/js/modernizer.js"></script>
 
 <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
