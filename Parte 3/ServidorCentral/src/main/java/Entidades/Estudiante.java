@@ -27,7 +27,7 @@ public class Estudiante extends Usuario {
     public Estudiante() {
     }
 
-    public Estudiante(String nick, String nombre, String apellido, String email, Date fechaNacimiento, String contrasenia, String imagen) {
+    public Estudiante(String nick, String nombre, String apellido, String email, Date fechaNacimiento, String contrasenia, byte[] imagen) {
         super(nick, nombre, apellido, email, fechaNacimiento, contrasenia, imagen);
         inscripcionEdiciones = new ArrayList();
         inscripcionProgramas = new ArrayList();

@@ -75,7 +75,7 @@ public class PublicadorServidorCentral {
     }
 
     @WebMethod
-    public void altaUsuario(String instituto, String nick, String nombre, String apellido, String email, Date fechaNacimiento, String contrasenia, String imagen) {
+    public void altaUsuario(String instituto, String nick, String nombre, String apellido, String email, Date fechaNacimiento, String contrasenia, byte[] imagen) {
         DataUsuario du;
         if (instituto == null) {
             du = new DataEstudiante(nick, nombre, apellido, email, fechaNacimiento, contrasenia, imagen);
@@ -94,7 +94,7 @@ public class PublicadorServidorCentral {
     public DataUsuario darDatosUsuario(String email) {
         DataUsuario du = sistema.darDatosUsuario(email);
         if (du == null) {
-            du = new DataUsuario("", "", "", "", null, "", "");
+            du = new DataUsuario("", "", "", "", null, "", null);
         }
         return du;
     }
@@ -110,7 +110,7 @@ public class PublicadorServidorCentral {
     }
 
     @WebMethod
-    public void modificarUsuario(String nick, String nombre, String apellido, String email, Date fechaNacimiento, String contrasenia, String imagen) {
+    public void modificarUsuario(String nick, String nombre, String apellido, String email, Date fechaNacimiento, String contrasenia, byte[] imagen) {
         DataUsuario du = new DataUsuario(nick, nombre, apellido, email, fechaNacimiento, contrasenia, imagen);
         sistema.modificarUsuario(du);
     }

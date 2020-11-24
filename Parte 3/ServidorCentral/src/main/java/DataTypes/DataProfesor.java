@@ -17,12 +17,12 @@ public class DataProfesor extends DataUsuario {
     public DataProfesor(){
     }
     
-    public DataProfesor(String instituto, String nick, String nombre, String apellido, String email, Date fechaNacimiento,  String contrasenia ,String imagen) {
+    public DataProfesor(String instituto, String nick, String nombre, String apellido, String email, Date fechaNacimiento,  String contrasenia ,byte[] imagen) {
         super(nick, nombre, apellido, email, fechaNacimiento, contrasenia ,imagen);
         this.instituto = instituto;
     }
     
-    public DataProfesor(String instituto, String nick, String nombre, String apellido, String email, Date fechaNacimiento, List<DataEdicion> ediciones, String contrasenia ,String imagen) {
+    public DataProfesor(String instituto, String nick, String nombre, String apellido, String email, Date fechaNacimiento, List<DataEdicion> ediciones, String contrasenia ,byte[] imagen) {
         super(nick, nombre, apellido, email, fechaNacimiento, contrasenia ,imagen);
         this.instituto = instituto;
         this.ediciones = ediciones;

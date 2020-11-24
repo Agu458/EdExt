@@ -8,22 +8,29 @@ package Logic;
 import Server.DataUsuario;
 import Server.Lista;
 import Server.PublicadorServidorCentralService;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import javax.imageio.ImageIO;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 
 /**
  *
  * @author Agustin
  */
+@MultipartConfig(fileSizeThreshold=1024*1024, 
+    maxFileSize=1024*1024*5, maxRequestSize=1024*1024*5*5)
 public class Usuario extends HttpServlet {
 
     private Server.PublicadorServidorCentralService service = new PublicadorServidorCentralService();
@@ -90,11 +97,18 @@ public class Usuario extends HttpServlet {
         String fecha = request.getParameter("fecha");
         SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
         Date fechaNacimiento = null;
+        Part imagen = request.getPart("imagen");
+        
+        BufferedImage bImage = ImageIO.read(imagen.getInputStream());
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        ImageIO.write(bImage, "jpg", bos );
+        byte [] data = bos.toByteArray();
+        
         try {
             fechaNacimiento = formato.parse(fecha);
         } catch (Exception e) {
         }
-        port.modificarUsuario(nick, nombre, apellido, email, Login.GetXmlGregorianCalendar(fechaNacimiento) , "", null);
+        port.modificarUsuario(nick, nombre, apellido, email, Login.GetXmlGregorianCalendar(fechaNacimiento) , "", data);
 
         DataUsuario du = port.darDatosUsuario(email);
         if (du != null) {

@@ -1,8 +1,10 @@
 
 package Server;
 
+import javax.xml.bind.JAXBElement;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.datatype.XMLGregorianCalendar;
@@ -24,7 +26,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="arg3" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="arg4" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
  *         &lt;element name="arg5" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="arg6" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="arg6" type="{http://www.w3.org/2001/XMLSchema}base64Binary" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -52,7 +54,8 @@ public class ModificarUsuario {
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar arg4;
     protected String arg5;
-    protected String arg6;
+    @XmlElementRef(name = "arg6", type = JAXBElement.class, required = false)
+    protected JAXBElement<byte[]> arg6;
 
     /**
      * Obtiene el valor de la propiedad arg0.
@@ -203,10 +206,10 @@ public class ModificarUsuario {
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link JAXBElement }{@code <}{@link byte[]}{@code >}
      *     
      */
-    public String getArg6() {
+    public JAXBElement<byte[]> getArg6() {
         return arg6;
     }
 
@@ -215,10 +218,10 @@ public class ModificarUsuario {
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link JAXBElement }{@code <}{@link byte[]}{@code >}
      *     
      */
-    public void setArg6(String value) {
+    public void setArg6(JAXBElement<byte[]> value) {
         this.arg6 = value;
     }
 

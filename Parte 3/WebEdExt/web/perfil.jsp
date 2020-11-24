@@ -4,6 +4,7 @@
     Author     : Agustin
 --%>
 
+<%@page import="java.util.Base64"%>
 <%@page import="Server.DataProgramaFormacion"%>
 <%@page import="Server.DataEdicion"%>
 <%@page import="Server.DataProfesor"%>
@@ -18,8 +19,7 @@
     </head>
     <body>
         <%@include file="/Partials/header.jsp" %>
-
-
+        
         <div class="all-title-box-perfil">
             <div class="container text-center">
                 <h1>Mi Perfil<span class="m_1"></span></h1>
@@ -41,7 +41,7 @@
                             <%
                                 if (du instanceof DataEstudiante) {
                             %>
-                                    <a class="list-group-item list-group-item-action" data-toggle="list" href="#account-programs">Programas</a>
+                            <a class="list-group-item list-group-item-action" data-toggle="list" href="#account-programs">Programas</a>
                             <%
                                 }
                             %>
@@ -50,34 +50,40 @@
                     <div class="col-md-9">
                         <div class="tab-content">
                             <div class="tab-pane fade active show" id="account-general">
+                                <form action="Usuario" method="POST" enctype="multipart/form-data">
+                                    <div class="card-body media align-items-center">
+                                        <%
+                                            byte[] imagen = du.getImagen();
+                                            if (imagen != null) {
+                                                String base64Image = Base64.getEncoder().encodeToString(imagen);
+                                        %>
+                                        <div class="card">
+                                            <img id="imagen" src="data:image/jpg;base64,<%=base64Image%>" style="width:100px !important; height:100px !important"/>
+                                        </div>
+                                        <%
+                                        } else {
+                                        %>
+                                        
+                                        <div class="card">
+                                            <img id="imagen" src="https://www.bootdey.com/img/Content/avatar/avatar1.png" alt="" style="width:100px !important; height:100px !important"/>
+                                        </div>
+                                        <%
+                                            }
+                                        %>
+                                        <div class="media-body ml-4">
+                                            <label class="btn btn-outline-primary">
+                                                Editar Foto
+                                                <input id="imgPath" type="file" class="account-settings-fileinput" name="imagen">
+                                            </label> &nbsp;
+                                            <button type="button" class="btn btn-default md-btn-flat">Reset</button>
 
-                                <div class="card-body media align-items-center">
-                                    <%
-                                        String imagen = du.getImagen();
-                                        if (imagen != null) {
-                                    %>
-                                    <img src="<%= imagen%>" alt="" class="d-block ui-w-80">
-                                    <%
-                                    } else {
-                                    %>
-                                    <img src="https://www.bootdey.com/img/Content/avatar/avatar1.png" alt="" class="d-block ui-w-80">
-                                    <%
-                                        }
-                                    %>
-                                    <div class="media-body ml-4">
-                                        <label class="btn btn-outline-primary">
-                                            Editar Foto
-                                            <input type="file" class="account-settings-fileinput">
-                                        </label> &nbsp;
-                                        <button type="button" class="btn btn-default md-btn-flat">Reset</button>
-
-                                        <div class="text-light small mt-1">Allowed JPG, GIF or PNG. Max size of 800K</div>
+                                            <div class="text-light small mt-1">Allowed JPG, GIF or PNG. Max size of 800K</div>
+                                        </div>
                                     </div>
-                                </div>
-                                <hr class="border-light m-0">
+                                    <hr class="border-light m-0">
 
-                                <div class="card-body">
-                                    <form action="Usuario" method="POST">
+                                    <div class="card-body">
+
                                         <div class="form-group">
                                             <label class="form-label">Nick</label>
                                             <input id="nick" type="text" name="nick" class="form-control mb-1" value="<%= du.getNick()%>" readonly="">
@@ -105,9 +111,8 @@
                                         <div class="text-right mt-3">
                                             <button type="submit" class="btn btn-primary">Guardar Cambios</button>&nbsp;
                                         </div>
-                                    </form>
-                                </div>
-
+                                    </div>
+                                </form>
                             </div>
                             <div class="tab-pane fade" id="account-change-password">
                                 <div class="card-body pb-2">
@@ -142,16 +147,16 @@
                                                     for (DataInscripcionEdicion edicion : de.getInscripcionEdiciones()) {
                                                         if (edicion.getEstado() == EstadoInscripcion.ACEPTADO) {
                                             %>
-                                            <button type="submit" class="list-group-item list-group-item-action list-group-item-success" name="consultarInscripcionEdicion" value="<%= edicion.getEstudiante() %>,<%= edicion.getEdicion().getNombre()%>" > <%= edicion.getEdicion().getNombre()%> </button>
+                                            <button type="submit" class="list-group-item list-group-item-action list-group-item-success" name="consultarInscripcionEdicion" value="<%= edicion.getEstudiante()%>,<%= edicion.getEdicion().getNombre()%>" > <%= edicion.getEdicion().getNombre()%> </button>
                                             <%
                                             } else {
                                                 if (edicion.getEstado() == EstadoInscripcion.RECHASADO) {
                                             %>
-                                            <button type="submit" class="list-group-item list-group-item-action list-group-item-danger" name="consultarInscripcionEdicion" value="<%= edicion.getEstudiante() %>,<%= edicion.getEdicion().getNombre()%>" > <%= edicion.getEdicion().getNombre()%> </button>
+                                            <button type="submit" class="list-group-item list-group-item-action list-group-item-danger" name="consultarInscripcionEdicion" value="<%= edicion.getEstudiante()%>,<%= edicion.getEdicion().getNombre()%>" > <%= edicion.getEdicion().getNombre()%> </button>
                                             <%
                                             } else {
                                             %>
-                                            <button type="submit" class="list-group-item list-group-item-action list-group-item-primary" name="consultarInscripcionEdicion" value="<%= edicion.getEstudiante() %>,<%= edicion.getEdicion().getNombre()%>" > <%= edicion.getEdicion().getNombre()%> </button>
+                                            <button type="submit" class="list-group-item list-group-item-action list-group-item-primary" name="consultarInscripcionEdicion" value="<%= edicion.getEstudiante()%>,<%= edicion.getEdicion().getNombre()%>" > <%= edicion.getEdicion().getNombre()%> </button>
                                             <%
                                                         }
                                                     }
@@ -179,11 +184,11 @@
                                     <div class="list-group" id="ediciones">
                                         <form action="ProgramaFormacion" method="GET">
                                             <%
-                                            for (DataProgramaFormacion programa : de.getInscripcionProgramas()) {
+                                                for (DataProgramaFormacion programa : de.getInscripcionProgramas()) {
                                             %>
-                                            <button type="submit" class="list-group-item list-group-item-action" name="consultarPrograma" value="<%= programa.getNombre() %>" > <%= programa.getNombre() %> </button>
+                                            <button type="submit" class="list-group-item list-group-item-action" name="consultarPrograma" value="<%= programa.getNombre()%>" > <%= programa.getNombre()%> </button>
                                             <%
-                                                    }
+                                                }
                                             %>
                                         </form>
                                     </div>

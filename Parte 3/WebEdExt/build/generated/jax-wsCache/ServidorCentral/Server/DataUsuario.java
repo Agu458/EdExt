@@ -25,7 +25,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="email" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="fechaNacimiento" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
  *         &lt;element name="contrasenia" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="imagen" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="imagen" type="{http://www.w3.org/2001/XMLSchema}base64Binary" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -57,7 +57,7 @@ public class DataUsuario {
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar fechaNacimiento;
     protected String contrasenia;
-    protected String imagen;
+    protected byte[] imagen;
 
     /**
      * Obtiene el valor de la propiedad nick.
@@ -208,10 +208,9 @@ public class DataUsuario {
      * 
      * @return
      *     possible object is
-     *     {@link String }
-     *     
+     *     byte[]
      */
-    public String getImagen() {
+    public byte[] getImagen() {
         return imagen;
     }
 
@@ -220,10 +219,9 @@ public class DataUsuario {
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
-     *     
+     *     byte[]
      */
-    public void setImagen(String value) {
+    public void setImagen(byte[] value) {
         this.imagen = value;
     }
 

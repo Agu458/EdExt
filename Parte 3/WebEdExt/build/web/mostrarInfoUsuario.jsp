@@ -4,6 +4,7 @@
     Author     : Otro
 --%>
 
+<%@page import="java.util.Base64"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
@@ -26,6 +27,26 @@
         <div class="container p-4">
             <div class="card p-4">
                 <div class="form-group">
+                    <%
+                        byte[] imagen = usu.getImagen();
+                        if (imagen != null) {
+                            String base64Image = Base64.getEncoder().encodeToString(imagen);
+                    %>
+                    <div class="card" style="width: 102px">
+                        <img id="imagen" src="data:image/jpg;base64,<%=base64Image%>" style="width:100px !important; height:100px !important"/>
+                    </div>
+                    <%
+                    } else {
+                    %>
+
+                    <div class="card" style="width: 102px;">
+                        <img id="imagen" src="https://www.bootdey.com/img/Content/avatar/avatar1.png" alt="" style="width:100px !important; height:100px !important"/>
+                    </div>
+                    <%
+                        }
+                    %>
+                </div>
+                <div class="form-group">
                     <label class="form-label">Nick</label>
                     <input id="nick" type="text" name="nick" class="form-control mb-1" value="<%= usu.getNick()%>" readonly="">
                 </div>
@@ -47,7 +68,7 @@
                         String fechaNac = formato.format(usu.getFechaNacimiento().toGregorianCalendar().getTime());
                     %>
                     <label class="form-label">Fecha de Nacimiento</label>
-                    <input id="fecha" type="date" class="form-control" name="fecha" value="<%= fechaNac %>" readonly="">
+                    <input id="fecha" type="date" class="form-control" name="fecha" value="<%= fechaNac%>" readonly="">
                 </div>
             </div>
         </div>

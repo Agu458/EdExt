@@ -119,6 +119,8 @@ public class ObjectFactory {
     private final static QName _ValidarNombreCategoria_QNAME = new QName("http://Servidor/", "validarNombreCategoria");
     private final static QName _DarDatosCursoResponse_QNAME = new QName("http://Servidor/", "darDatosCursoResponse");
     private final static QName _AltaCategoriaResponse_QNAME = new QName("http://Servidor/", "altaCategoriaResponse");
+    private final static QName _ModificarUsuarioArg6_QNAME = new QName("", "arg6");
+    private final static QName _AltaUsuarioArg7_QNAME = new QName("", "arg7");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: Server
@@ -1748,6 +1750,24 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://Servidor/", name = "altaCategoriaResponse")
     public JAXBElement<AltaCategoriaResponse> createAltaCategoriaResponse(AltaCategoriaResponse value) {
         return new JAXBElement<AltaCategoriaResponse>(_AltaCategoriaResponse_QNAME, AltaCategoriaResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link byte[]}{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "", name = "arg6", scope = ModificarUsuario.class)
+    public JAXBElement<byte[]> createModificarUsuarioArg6(byte[] value) {
+        return new JAXBElement<byte[]>(_ModificarUsuarioArg6_QNAME, byte[].class, ModificarUsuario.class, ((byte[]) value));
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link byte[]}{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "", name = "arg7", scope = AltaUsuario.class)
+    public JAXBElement<byte[]> createAltaUsuarioArg7(byte[] value) {
+        return new JAXBElement<byte[]>(_AltaUsuarioArg7_QNAME, byte[].class, AltaUsuario.class, ((byte[]) value));
     }
 
 }

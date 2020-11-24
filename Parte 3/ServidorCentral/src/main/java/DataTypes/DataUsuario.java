@@ -17,12 +17,12 @@ public class DataUsuario {
     private String email;
     private Date fechaNacimiento;
     private String contrasenia;
-    private String imagen;
+    private byte[] imagen;
 
     public DataUsuario() {
     }
     
-    public DataUsuario(String nick, String nombre, String apellido, String email, Date fechaNacimiento, String contrasenia ,String imagen) {
+    public DataUsuario(String nick, String nombre, String apellido, String email, Date fechaNacimiento, String contrasenia ,byte[] imagen) {
         this.nick = nick;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -56,7 +56,7 @@ public class DataUsuario {
         return contrasenia;
     }
 
-    public String getimagen() {
+    public byte[] getimagen() {
         return imagen;
     }
 

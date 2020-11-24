@@ -3,11 +3,13 @@ package Entidades;
 import DataTypes.DataUsuario;
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.Lob;
 import javax.persistence.Temporal;
 
 @Entity
@@ -24,12 +26,14 @@ public class Usuario implements Serializable {
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date fechaNacimiento;
     private String contrasenia;
-    private String imagen;
+    @Lob 
+    @Basic
+    private byte[] imagen;
 
     public Usuario() {
     }
 
-    public Usuario(String nick, String nombre, String apellido, String email, Date fechaNacimiento, String contrasenia ,String imagen) {
+    public Usuario(String nick, String nombre, String apellido, String email, Date fechaNacimiento, String contrasenia ,byte[] imagen) {
         this.nick = nick;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -87,12 +91,12 @@ public class Usuario implements Serializable {
         this.contrasenia = contrasenia;
     }
 
-    public String getimagen() {
+    public byte[] getimagen() {
         return imagen;
     }
 
 
-    public void setimagen(String imagen) {
+    public void setimagen(byte[] imagen) {
         this.imagen = imagen;
     }
         

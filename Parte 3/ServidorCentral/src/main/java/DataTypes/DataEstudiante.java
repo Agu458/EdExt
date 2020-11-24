@@ -17,11 +17,11 @@ public class DataEstudiante extends DataUsuario{
     public DataEstudiante(){
     }
     
-    public DataEstudiante(String nick, String nombre, String apellido, String email, Date fechaNacimiento, String contrasenia ,String imagen) {
+    public DataEstudiante(String nick, String nombre, String apellido, String email, Date fechaNacimiento, String contrasenia ,byte[] imagen) {
         super(nick, nombre, apellido, email, fechaNacimiento, contrasenia ,imagen);
     }
 
-    public DataEstudiante(List<DataInscripcionEdicion> inscripcionEdiciones, List<DataProgramaFormacion> inscripcionProgramas, String nick, String nombre, String apellido, String email, Date fechaNacimiento, String contrasenia ,String imagen) {
+    public DataEstudiante(List<DataInscripcionEdicion> inscripcionEdiciones, List<DataProgramaFormacion> inscripcionProgramas, String nick, String nombre, String apellido, String email, Date fechaNacimiento, String contrasenia ,byte[] imagen) {
         super(nick, nombre, apellido, email, fechaNacimiento, contrasenia ,imagen);
         this.inscripcionEdiciones = inscripcionEdiciones;
         this.inscripcionProgramas = inscripcionProgramas;

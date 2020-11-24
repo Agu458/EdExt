@@ -1,8 +1,10 @@
 
 package Server;
 
+import javax.xml.bind.JAXBElement;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.datatype.XMLGregorianCalendar;
@@ -25,7 +27,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="arg4" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="arg5" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
  *         &lt;element name="arg6" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="arg7" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="arg7" type="{http://www.w3.org/2001/XMLSchema}base64Binary" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -55,7 +57,8 @@ public class AltaUsuario {
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar arg5;
     protected String arg6;
-    protected String arg7;
+    @XmlElementRef(name = "arg7", type = JAXBElement.class, required = false)
+    protected JAXBElement<byte[]> arg7;
 
     /**
      * Obtiene el valor de la propiedad arg0.
@@ -230,10 +233,10 @@ public class AltaUsuario {
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link JAXBElement }{@code <}{@link byte[]}{@code >}
      *     
      */
-    public String getArg7() {
+    public JAXBElement<byte[]> getArg7() {
         return arg7;
     }
 
@@ -242,10 +245,10 @@ public class AltaUsuario {
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link JAXBElement }{@code <}{@link byte[]}{@code >}
      *     
      */
-    public void setArg7(String value) {
+    public void setArg7(JAXBElement<byte[]> value) {
         this.arg7 = value;
     }
 
