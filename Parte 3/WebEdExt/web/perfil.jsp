@@ -75,7 +75,7 @@
                                                 Editar Foto
                                                 <input id="imgPath" type="file" class="account-settings-fileinput" name="imagen">
                                             </label> &nbsp;
-                                            <button type="button" class="btn btn-default md-btn-flat">Reset</button>
+                                            <button type="button" class="btn btn-default md-btn-flat" onclick="borrarImagen()">Reset</button>
 
                                             <div class="text-light small mt-1">Allowed JPG, GIF or PNG. Max size of 800K</div>
                                         </div>
@@ -205,7 +205,11 @@
                 EduExt2020
             </h4>
         </div>
-
+                        <script>
+                            function borrarImagen(){
+                                $("#imgPath").attr("value","");
+                            }
+                        </script>
         <%@include file="/Partials/footer.jsp" %>
     </body>
 </html>

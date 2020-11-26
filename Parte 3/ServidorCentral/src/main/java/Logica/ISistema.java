@@ -5,6 +5,7 @@ import DataTypes.DataEdicion;
 import DataTypes.DataInscripcionEdicion;
 import DataTypes.DataProgramaFormacion;
 import DataTypes.DataUsuario;
+import DataTypes.DataValoracion;
 import java.util.Date;
 import java.util.List;
 import javax.xml.bind.annotation.XmlElement;
@@ -98,5 +99,9 @@ public interface ISistema {
     
     public List<DataEdicion> edicionesEstudiante(String estudiante);
     
-    public void valorarCurso(String curso, Double valoracion);
+    public void valorarCurso(String curso, Double valoracion, String estudiante);
+    
+    public List<String> cursosEstudiante(String estudiante);
+    
+    public DataValoracion darValoracionEst(String curso, String estudiante);
 }

@@ -41,6 +41,7 @@ public class Edicion implements Serializable {
     private int aceptados;
     @OneToMany
     private List<Comentario> comentarios;
+    private boolean activa;
 
     public Edicion() {
     }
@@ -58,6 +59,7 @@ public class Edicion implements Serializable {
         }
         this.curso = curso;
         this.aceptados = 0;
+        this.activa = true;
     }
 
     public String getNombreEdicion() {
@@ -124,7 +126,7 @@ public class Edicion implements Serializable {
             coms.add(comentario.darDatos());
         }
         
-        return new DataEdicion(nombreEdicion, fechaIni, fechaFin, cupos, aceptados, fechaPublicacion, dps, c, coms);
+        return new DataEdicion(nombreEdicion, fechaIni, fechaFin, cupos, aceptados, fechaPublicacion, dps, c, coms, activa);
     }
 
     public Curso getCurso() {
@@ -239,6 +241,14 @@ public class Edicion implements Serializable {
         } else {
             return true;
         }
+    }
+
+    public boolean isActiva() {
+        return activa;
+    }
+
+    public void setActiva(boolean activa) {
+        this.activa = activa;
     }
     
     //Comentarios de la edicion

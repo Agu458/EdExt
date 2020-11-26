@@ -5,15 +5,13 @@ import DataTypes.DataEstudiante;
 import DataTypes.DataInscripcionEdicion;
 import DataTypes.DataProgramaFormacion;
 import DataTypes.DataUsuario;
+import DataTypes.DataValoracion;
 import DataTypes.EstadoInscripcion;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
-import javax.persistence.MapKey;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -23,6 +21,8 @@ public class Estudiante extends Usuario {
     private List<InscripcionEdicion> inscripcionEdiciones;
     @OneToMany
     private List<InscripcionPrograma> inscripcionProgramas;
+    @OneToMany
+    private List<Valoracion> valoraciones;
 
     public Estudiante() {
     }
@@ -58,15 +58,15 @@ public class Estudiante extends Usuario {
         return false;
     }
 
-    public DataInscripcionEdicion darDatosInscripcionEdicion(String edicion){
-        for(InscripcionEdicion ie : this.inscripcionEdiciones){
-            if(ie.getEdicion().getNombreEdicion().equals(edicion)){
+    public DataInscripcionEdicion darDatosInscripcionEdicion(String edicion) {
+        for (InscripcionEdicion ie : this.inscripcionEdiciones) {
+            if (ie.getEdicion().getNombreEdicion().equals(edicion)) {
                 return ie.darDatos();
             }
         }
         return null;
     }
-    
+
     public InscripcionEdicion darInscripcionEdicion(String edicion) {
         for (InscripcionEdicion ie : this.inscripcionEdiciones) {
             if (ie.getEdicion().getNombreEdicion().equals(edicion)) {
@@ -84,7 +84,7 @@ public class Estudiante extends Usuario {
         }
         return null;
     }
-    
+
     public InscripcionEdicion inscribirseAUnaEdicion(Edicion edicion, Date fecha, String urlVideo) {
         InscripcionEdicion inscripcion = this.darInscripcionEdicion(edicion.getNombreEdicion());
         if (inscripcion != null) {
@@ -107,8 +107,8 @@ public class Estudiante extends Usuario {
             inscripcionProgramas.add(inscripcion);
         }
         return inscripcion;
-    } 
-    
+    }
+
     @Override
     public DataUsuario darDatos() {
         List<DataInscripcionEdicion> eds = new ArrayList();
@@ -128,11 +128,11 @@ public class Estudiante extends Usuario {
         return new DataEstudiante(eds, progs, super.getNick(), super.getNombre(), super.getApellido(), super.getEmail(), super.getFechaNacimiento(),
                 super.getContrasenia(), super.getimagen());
     }
-    
-    public void cancelarInscripcionEdicion(String edicion, EntityManager em){
+
+    public void cancelarInscripcionEdicion(String edicion, EntityManager em) {
         InscripcionEdicion inscripcion = this.darInscripcionEdicion(edicion);
-        if(inscripcion != null){
-            if(inscripcion.getEstado() == EstadoInscripcion.INSCRIPTO){
+        if (inscripcion != null) {
+            if (inscripcion.getEstado() == EstadoInscripcion.INSCRIPTO) {
                 inscripcion.getEdicion().cancelarInscripcionEstudiante(inscripcion);
                 this.inscripcionEdiciones.remove(inscripcion);
                 em.remove(inscripcion);
@@ -142,14 +142,56 @@ public class Estudiante extends Usuario {
             }
         }
     }
-    
-    public List<DataEdicion> darInscripcionesActivasEdicion(){
+
+    public List<DataEdicion> darInscripcionesActivasEdicion() {
         List<DataEdicion> result = new ArrayList();
-        for(InscripcionEdicion inscripcion : inscripcionEdiciones){
-            if(inscripcion.getEstado() == EstadoInscripcion.ACEPTADO){
+        for (InscripcionEdicion inscripcion : inscripcionEdiciones) {
+            if (inscripcion.getEstado() == EstadoInscripcion.ACEPTADO) {
                 result.add(inscripcion.getEdicion().darDatos());
             }
         }
         return result;
+    }
+
+    // Valoraciones
+    public void valorarCurso(Curso curso, Double valoracion, EntityManager em) {
+        Valoracion val = this.darValoracion(curso.getNombre());
+        if (val != null) {
+            val.setValoracion(valoracion);
+        } else {
+            val = new Valoracion(this, valoracion, curso);
+            this.valoraciones.add(val);
+            curso.agregarValoracion(val);
+            em.persist(val);
+        }
+    }
+
+    public List<String> darInscripcionesActivasCurso() {
+        List<String> result = new ArrayList();
+        for (InscripcionEdicion inscripcion : inscripcionEdiciones) {
+            if (inscripcion.getEstado() == EstadoInscripcion.ACEPTADO) {
+                if (!result.contains(inscripcion.getEdicion().getCurso().getNombre())) {
+                    result.add(inscripcion.getEdicion().getCurso().getNombre());
+                }
+            }
+        }
+        return result;
+    }
+
+    public Valoracion darValoracion(String curso) {
+        for (Valoracion val : this.valoraciones) {
+            if (val.getCurso().getNombre().equals(curso)) {
+                return val;
+            }
+        }
+        return null;
+    }
+
+    public DataValoracion darDatosValoracion(String curso) {
+        Valoracion val = this.darValoracion(curso);
+        if (val != null) {
+            return val.darDatos();
+        }
+        return null;
     }
 }

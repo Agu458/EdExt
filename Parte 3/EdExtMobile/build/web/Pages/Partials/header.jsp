@@ -28,7 +28,7 @@
                         <a class="nav-link js-scroll-trigger" href="/EdExtMobile/Logout"><i class="fas fa-door-open"></i> Salir</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="#"><i class="fas fa-user"></i> Perfil</a>
+                        <a class="nav-link js-scroll-trigger" href="/EdExtMobile/Perfil?accion=verPerfil"><i class="fas fa-user"></i> Perfil</a>
                     </li>
                 </ul>
             </div>

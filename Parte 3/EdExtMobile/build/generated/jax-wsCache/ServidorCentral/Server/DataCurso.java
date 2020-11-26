@@ -34,7 +34,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="programas" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="instituto" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="categorias" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/>
- *         &lt;element name="valoracion" type="{http://Servidor/}dataValoracion" minOccurs="0"/>
+ *         &lt;element name="valoraciones" type="{http://Servidor/}dataValoracion" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -58,7 +58,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "programas",
     "instituto",
     "categorias",
-    "valoracion"
+    "valoraciones"
 })
 public class DataCurso {
 
@@ -81,7 +81,8 @@ public class DataCurso {
     protected String instituto;
     @XmlElement(nillable = true)
     protected List<String> categorias;
-    protected DataValoracion valoracion;
+    @XmlElement(nillable = true)
+    protected List<DataValoracion> valoraciones;
 
     /**
      * Obtiene el valor de la propiedad nombre.
@@ -392,27 +393,32 @@ public class DataCurso {
     }
 
     /**
-     * Obtiene el valor de la propiedad valoracion.
+     * Gets the value of the valoraciones property.
      * 
-     * @return
-     *     possible object is
-     *     {@link DataValoracion }
-     *     
-     */
-    public DataValoracion getValoracion() {
-        return valoracion;
-    }
-
-    /**
-     * Define el valor de la propiedad valoracion.
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the valoraciones property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link DataValoracion }
-     *     
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getValoraciones().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link DataValoracion }
+     * 
+     * 
      */
-    public void setValoracion(DataValoracion value) {
-        this.valoracion = value;
+    public List<DataValoracion> getValoraciones() {
+        if (valoraciones == null) {
+            valoraciones = new ArrayList<DataValoracion>();
+        }
+        return this.valoraciones;
     }
 
 }

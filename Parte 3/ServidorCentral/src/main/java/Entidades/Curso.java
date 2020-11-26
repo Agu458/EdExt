@@ -7,7 +7,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import javax.persistence.*;
@@ -38,7 +37,8 @@ public class Curso implements Serializable {
     private Instituto instituto;
     @OneToMany
     private List<Categoria> categorias;
-    private List<Double> valoraciones;
+    @OneToMany
+    private List<Valoracion> valoraciones;
 
     public Curso() {
     }
@@ -232,7 +232,12 @@ public class Curso implements Serializable {
             cats.add(cat.getNombre());
         }
 
-        return new DataCurso(nombre, descripcion, duracion, horas, creditos, fechaRegistro, URL, prevs, edis, actual, progs, insti, cats, new DataValoracion(valoraciones));
+        List<DataValoracion> vals = new ArrayList();
+        for(Valoracion val : valoraciones){
+            vals.add(val.darDatos());
+        }
+        
+        return new DataCurso(nombre, descripcion, duracion, horas, creditos, fechaRegistro, URL, prevs, edis, actual, progs, insti, cats, vals);
     }
 
     public boolean validarNombreEdicion(String nombre) {
@@ -280,15 +285,15 @@ public class Curso implements Serializable {
     
     // Valoracion del curso
 
-    public List<Double> getValoraciones() {
+    public List<Valoracion> getValoraciones() {
         return valoraciones;
     }
 
-    public void setValoraciones(List<Double> valoraciones) {
+    public void setValoraciones(List<Valoracion> valoraciones) {
         this.valoraciones = valoraciones;
     }
     
-    public void valorar(Double valoracion){
+    public void agregarValoracion(Valoracion valoracion){
         this.valoraciones.add(valoracion);
     }
 }

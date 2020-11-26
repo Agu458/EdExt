@@ -4,6 +4,7 @@
     Author     : Agustín
 --%>
 
+<%@page import="Server.DataValoracion"%>
 <%@page import="java.util.Date"%>
 <%@page import="Server.DataCurso"%>
 <%@page import="java.text.SimpleDateFormat"%>
@@ -11,18 +12,50 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     DataCurso dc = (DataCurso) request.getAttribute("curso");
+    Double suma = 0.0;
+    int cant1 = 0;
+    int cant2 = 0;
+    int cant3 = 0;
+    int cant4 = 0;
+    int cant5 = 0;
+
+    for (DataValoracion val : dc.getValoraciones()) {
+        suma = suma + val.getValoracion();
+        if (val.getValoracion() == 1) {
+            cant1++;
+        } else {
+            if (val.getValoracion() == 2) {
+                cant2++;
+            } else {
+                if (val.getValoracion() == 3) {
+                    cant3++;
+                } else {
+                    if (val.getValoracion() == 4) {
+                        cant4++;
+                    } else {
+                        cant5++;
+                    }
+                }
+            }
+        }
+    }
 %>
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        
+
         <%@include file="/Pages/Partials/head.jsp" %>
-        
+
+        <style>
+            .glyphicon { margin-right:5px;}
+            .rating .glyphicon {font-size: 22px;}
+            .rating-num {font-size: 54px; }
+        </style>
     </head>
     <body>
-        
+
         <%@include file="/Pages/Partials/header.jsp" %>
-        
+
         <div class="container p-4">
             <div class="card p-4">
                 <h2 class="text-center"> Datos del Curso </h2>
@@ -57,7 +90,7 @@
                             <input type="number" class="form-control" id="creditos" name="creditos" readonly="" value="<%= dc.getCreditos()%>">
                         </div>
                     </div>
-                        <div class="col-sm">
+                    <div class="col-sm">
                         <div class="form-group">
                             <label for="fechareg">Fecha de Publicación</label>
                             <%
@@ -94,18 +127,18 @@
                 <div class="form-group">
                     <label for="categorias">Categorias</label>
                     <div class="list-group" id="categorias">
-                            <%
-                                if (dc.getCategorias().isEmpty()) {
-                            %>
-                            <label class="list-group-item"> No tiene ...</label>
-                            <%
-                                }
-                                for (String s : dc.getCategorias()) {
-                            %>
-                            <label class="list-group-item"> <%= s%></label>
-                            <%
-                                }
-                            %>
+                        <%
+                            if (dc.getCategorias().isEmpty()) {
+                        %>
+                        <label class="list-group-item"> No tiene ...</label>
+                        <%
+                            }
+                            for (String s : dc.getCategorias()) {
+                        %>
+                        <label class="list-group-item"> <%= s%></label>
+                        <%
+                            }
+                        %>
                     </div>
                 </div>
                 <div class="form-group">
@@ -115,7 +148,7 @@
                     %>
                     <input type="text" class="form-control" id="edicionActual" name="edicionActual" readonly="" value="<%= dc.getEdicionAgtual().getNombre()%>">
                     <%
-                        } else {
+                    } else {
                     %>
                     <input type="text" class="form-control" id="edicionActual" name="edicionActual" readonly="" value="No tiene ...">
                     <%
@@ -134,17 +167,104 @@
                                 }
                                 for (DataEdicion de : dc.getEdiciones()) {
                             %>
-                            <button type="submit" class="list-group-item list-group-item-action" name="consultarEdicion" value="<%= de.getCurso() %>,<%= de.getNombre()%>" ><%= de.getNombre() %></button>
+                            <button type="submit" class="list-group-item list-group-item-action" name="consultarEdicion" value="<%= de.getCurso()%>,<%= de.getNombre()%>" ><%= de.getNombre()%></button>
                             <%
                                 }
                             %>
                         </div>
                     </form>
                 </div>
+
+                <div class="form-group">
+                    <label for="#valoracionCurso">Valoracion Del Curso</label>
+                    <div class="card p-4 text-center" id="valoracionCurso">
+                        <div class="row">
+                            <div class="col-xs-12 col-md-6">
+                                <div class="well well-sm">
+                                    <div class="row">
+                                        <div class="col-xs-12 col-md-6 text-center">
+                                            <h1 class="rating-num">
+                                                <%= (suma / dc.getValoraciones().size())%></h1>
+                                            <div>
+                                                <span class="fas fa-user"></span> <%= dc.getValoraciones().size()%>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-md-6">
+                                            <div class="row rating-desc">
+                                                <div class="col-xs-3 col-md-3 text-right">
+                                                    <span class="fas fa-star"></span> 5
+                                                </div>
+                                                <div class="col-xs-8 col-md-9">
+                                                    <div class="progress progress-striped">
+                                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="20"
+                                                             aria-valuemin="0" aria-valuemax="100" style="width: <%= (cant5 * 100) / dc.getValoraciones().size()%>%">
+                                                            <span class="sr-only"><%= (cant5 * 100) / dc.getValoraciones().size()%>%</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- end 5 -->
+                                                <div class="col-xs-3 col-md-3 text-right">
+                                                    <span class="fas fa-star"></span> 4
+                                                </div>
+                                                <div class="col-xs-8 col-md-9">
+                                                    <div class="progress">
+                                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="20"
+                                                             aria-valuemin="0" aria-valuemax="100" style="width: <%= (cant4 * 100) / dc.getValoraciones().size()%>%">
+                                                            <span class="sr-only"><%= (cant4 * 100) / dc.getValoraciones().size()%>%</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- end 4 -->
+                                                <div class="col-xs-3 col-md-3 text-right">
+                                                    <span class="fas fa-star"></span> 3
+                                                </div>
+                                                <div class="col-xs-8 col-md-9">
+                                                    <div class="progress">
+                                                        <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20"
+                                                             aria-valuemin="0" aria-valuemax="100" style="width: <%= (cant3 * 100) / dc.getValoraciones().size()%>%">
+                                                            <span class="sr-only"><%= (cant3 * 100) / dc.getValoraciones().size()%>%</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- end 3 -->
+                                                <div class="col-xs-3 col-md-3 text-right">
+                                                    <span class="fas fa-star"></span> 2
+                                                </div>
+                                                <div class="col-xs-8 col-md-9">
+                                                    <div class="progress">
+                                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="20"
+                                                             aria-valuemin="0" aria-valuemax="100" style="width: <%= (cant2 * 100) / dc.getValoraciones().size()%>%">
+                                                            <span class="sr-only"><%= (cant2 * 100) / dc.getValoraciones().size()%>%</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- end 2 -->
+                                                <div class="col-xs-3 col-md-3 text-right">
+                                                    <span class="fas fa-star"></span> 1
+                                                </div>
+                                                <div class="col-xs-8 col-md-9">
+                                                    <div class="progress">
+                                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80"
+                                                             aria-valuemin="0" aria-valuemax="100" style="width: <%= (cant1 * 100) / dc.getValoraciones().size()%>%">
+                                                            <span class="sr-only"><%= (cant1 * 100) / dc.getValoraciones().size()%>%</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- end 1 -->
+                                            </div>
+                                            <!-- end row -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
-                        
+
         <%@include file="/Pages/Partials/footer.jsp" %>
-        
+
     </body>
 </html>

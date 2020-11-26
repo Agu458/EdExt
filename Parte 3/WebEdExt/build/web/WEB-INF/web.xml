@@ -44,6 +44,10 @@
         <servlet-name>Comentario</servlet-name>
         <servlet-class>Logic.Comentario</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Valoracion</servlet-name>
+        <servlet-class>Logic.Valoracion</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -79,6 +83,10 @@
     <servlet-mapping>
         <servlet-name>Comentario</servlet-name>
         <url-pattern>/Comentario</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Valoracion</servlet-name>
+        <url-pattern>/Valoracion</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

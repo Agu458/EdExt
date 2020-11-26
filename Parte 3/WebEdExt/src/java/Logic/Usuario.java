@@ -29,8 +29,8 @@ import javax.servlet.http.Part;
  *
  * @author Agustin
  */
-@MultipartConfig(fileSizeThreshold=1024*1024, 
-    maxFileSize=1024*1024*5, maxRequestSize=1024*1024*5*5)
+@MultipartConfig(fileSizeThreshold = 1024 * 1024,
+        maxFileSize = 1024 * 1024 * 5, maxRequestSize = 1024 * 1024 * 5 * 5)
 public class Usuario extends HttpServlet {
 
     private Server.PublicadorServidorCentralService service = new PublicadorServidorCentralService();
@@ -98,17 +98,22 @@ public class Usuario extends HttpServlet {
         SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
         Date fechaNacimiento = null;
         Part imagen = request.getPart("imagen");
-        
-        BufferedImage bImage = ImageIO.read(imagen.getInputStream());
-        ByteArrayOutputStream bos = new ByteArrayOutputStream();
-        ImageIO.write(bImage, "jpg", bos );
-        byte [] data = bos.toByteArray();
-        
+        byte[] data = null;
+
+        try {
+            BufferedImage bImage = ImageIO.read(imagen.getInputStream());
+            ByteArrayOutputStream bos = new ByteArrayOutputStream();
+            ImageIO.write(bImage, "jpg", bos);
+            data = bos.toByteArray();
+        } catch (Exception e) {
+
+        }
+
         try {
             fechaNacimiento = formato.parse(fecha);
         } catch (Exception e) {
         }
-        port.modificarUsuario(nick, nombre, apellido, email, Login.GetXmlGregorianCalendar(fechaNacimiento) , "", data);
+        port.modificarUsuario(nick, nombre, apellido, email, Login.GetXmlGregorianCalendar(fechaNacimiento), "", data);
 
         DataUsuario du = port.darDatosUsuario(email);
         if (du != null) {

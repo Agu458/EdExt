@@ -5,15 +5,15 @@ import Entidades.Curso;
 import Entidades.Edicion;
 import Entidades.Instituto;
 import Entidades.ProgramaFormacion;
+import Entidades.Valoracion;
 import java.util.Date;
-import java.util.List;
 import javax.annotation.Generated;
 import javax.persistence.metamodel.ListAttribute;
 import javax.persistence.metamodel.MapAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2020-11-23T11:43:47")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2020-11-24T10:04:04")
 @StaticMetamodel(Curso.class)
 public class Curso_ { 
 
@@ -23,7 +23,7 @@ public class Curso_ {
     public static volatile ListAttribute<Curso, Categoria> categorias;
     public static volatile SingularAttribute<Curso, String> nombre;
     public static volatile SingularAttribute<Curso, String> URL;
-    public static volatile SingularAttribute<Curso, List> valoraciones;
+    public static volatile ListAttribute<Curso, Valoracion> valoraciones;
     public static volatile SingularAttribute<Curso, Integer> horas;
     public static volatile SingularAttribute<Curso, Instituto> instituto;
     public static volatile MapAttribute<Curso, String, Edicion> ediciones;

@@ -16,13 +16,10 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="cantValoraciones" type="{http://www.w3.org/2001/XMLSchema}int"/>
- *         &lt;element name="valoracion" type="{http://www.w3.org/2001/XMLSchema}double"/>
- *         &lt;element name="cant5" type="{http://www.w3.org/2001/XMLSchema}int"/>
- *         &lt;element name="cant4" type="{http://www.w3.org/2001/XMLSchema}int"/>
- *         &lt;element name="cant3" type="{http://www.w3.org/2001/XMLSchema}int"/>
- *         &lt;element name="cant2" type="{http://www.w3.org/2001/XMLSchema}int"/>
- *         &lt;element name="cant1" type="{http://www.w3.org/2001/XMLSchema}int"/>
+ *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
+ *         &lt;element name="estudiante" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="valoracion" type="{http://www.w3.org/2001/XMLSchema}double" minOccurs="0"/>
+ *         &lt;element name="curso" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -33,134 +30,112 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "dataValoracion", propOrder = {
-    "cantValoraciones",
+    "id",
+    "estudiante",
     "valoracion",
-    "cant5",
-    "cant4",
-    "cant3",
-    "cant2",
-    "cant1"
+    "curso"
 })
 public class DataValoracion {
 
-    protected int cantValoraciones;
-    protected double valoracion;
-    protected int cant5;
-    protected int cant4;
-    protected int cant3;
-    protected int cant2;
-    protected int cant1;
+    protected Long id;
+    protected String estudiante;
+    protected Double valoracion;
+    protected String curso;
 
     /**
-     * Obtiene el valor de la propiedad cantValoraciones.
+     * Obtiene el valor de la propiedad id.
      * 
+     * @return
+     *     possible object is
+     *     {@link Long }
+     *     
      */
-    public int getCantValoraciones() {
-        return cantValoraciones;
+    public Long getId() {
+        return id;
     }
 
     /**
-     * Define el valor de la propiedad cantValoraciones.
+     * Define el valor de la propiedad id.
      * 
+     * @param value
+     *     allowed object is
+     *     {@link Long }
+     *     
      */
-    public void setCantValoraciones(int value) {
-        this.cantValoraciones = value;
+    public void setId(Long value) {
+        this.id = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad estudiante.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getEstudiante() {
+        return estudiante;
+    }
+
+    /**
+     * Define el valor de la propiedad estudiante.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setEstudiante(String value) {
+        this.estudiante = value;
     }
 
     /**
      * Obtiene el valor de la propiedad valoracion.
      * 
+     * @return
+     *     possible object is
+     *     {@link Double }
+     *     
      */
-    public double getValoracion() {
+    public Double getValoracion() {
         return valoracion;
     }
 
     /**
      * Define el valor de la propiedad valoracion.
      * 
+     * @param value
+     *     allowed object is
+     *     {@link Double }
+     *     
      */
-    public void setValoracion(double value) {
+    public void setValoracion(Double value) {
         this.valoracion = value;
     }
 
     /**
-     * Obtiene el valor de la propiedad cant5.
+     * Obtiene el valor de la propiedad curso.
      * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
      */
-    public int getCant5() {
-        return cant5;
+    public String getCurso() {
+        return curso;
     }
 
     /**
-     * Define el valor de la propiedad cant5.
+     * Define el valor de la propiedad curso.
      * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
      */
-    public void setCant5(int value) {
-        this.cant5 = value;
-    }
-
-    /**
-     * Obtiene el valor de la propiedad cant4.
-     * 
-     */
-    public int getCant4() {
-        return cant4;
-    }
-
-    /**
-     * Define el valor de la propiedad cant4.
-     * 
-     */
-    public void setCant4(int value) {
-        this.cant4 = value;
-    }
-
-    /**
-     * Obtiene el valor de la propiedad cant3.
-     * 
-     */
-    public int getCant3() {
-        return cant3;
-    }
-
-    /**
-     * Define el valor de la propiedad cant3.
-     * 
-     */
-    public void setCant3(int value) {
-        this.cant3 = value;
-    }
-
-    /**
-     * Obtiene el valor de la propiedad cant2.
-     * 
-     */
-    public int getCant2() {
-        return cant2;
-    }
-
-    /**
-     * Define el valor de la propiedad cant2.
-     * 
-     */
-    public void setCant2(int value) {
-        this.cant2 = value;
-    }
-
-    /**
-     * Obtiene el valor de la propiedad cant1.
-     * 
-     */
-    public int getCant1() {
-        return cant1;
-    }
-
-    /**
-     * Define el valor de la propiedad cant1.
-     * 
-     */
-    public void setCant1(int value) {
-        this.cant1 = value;
+    public void setCurso(String value) {
+        this.curso = value;
     }
 
 }

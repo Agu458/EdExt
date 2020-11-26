@@ -7,6 +7,7 @@ import DataTypes.DataInscripcionEdicion;
 import DataTypes.DataProfesor;
 import DataTypes.DataProgramaFormacion;
 import DataTypes.DataUsuario;
+import DataTypes.DataValoracion;
 import Entidades.Categoria;
 import Entidades.Curso;
 import Entidades.Edicion;
@@ -797,14 +798,35 @@ public class Sistema implements ISistema {
     }
     
     @Override
-    public void valorarCurso(String curso, Double valoracion){
+    public List<String> cursosEstudiante(String estudiante){
+        EntityManager em = emf.createEntityManager();
+        List<String> result = new ArrayList();
+        try {
+            em.getTransaction().begin();
+            if(estudiante != null){
+                Estudiante est = em.find(Estudiante.class, estudiante);
+                if(est != null){
+                    result = est.darInscripcionesActivasCurso();
+                }
+            }
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            em.getTransaction().rollback();
+        }
+        return result;
+    }
+    
+    @Override
+    public void valorarCurso(String curso, Double valoracion, String estudiante){
         EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
-            if(curso != null){
+            if(estudiante != null && curso != null && valoracion != null){
+                Estudiante est = em.find(Estudiante.class, estudiante);
                 Curso cur = em.find(Curso.class, curso);
-                if(cur != null){
-                    cur.valorar(valoracion);
+                if(est != null){
+                    est.valorarCurso(cur, valoracion, em);
                 }
             }
             em.getTransaction().commit();
@@ -813,5 +835,24 @@ public class Sistema implements ISistema {
             em.getTransaction().rollback();
         }
         em.close();
+    }
+    
+    @Override
+    public DataValoracion darValoracionEst(String curso, String estudiante){
+        EntityManager em = emf.createEntityManager();
+        DataValoracion result = null;
+        try {
+            em.getTransaction().begin();
+            if(estudiante != null && curso != null){
+                Estudiante est = em.find(Estudiante.class, estudiante);
+                result = est.darDatosValoracion(curso);
+            }
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            em.getTransaction().rollback();
+        }
+        em.close();
+        return result;
     }
 }

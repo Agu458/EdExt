@@ -12,6 +12,7 @@ import DataTypes.DataInscripcionEdicion;
 import DataTypes.DataProfesor;
 import DataTypes.DataProgramaFormacion;
 import DataTypes.DataUsuario;
+import DataTypes.DataValoracion;
 import DataTypes.Lista;
 import Logica.Fabrica;
 import Logica.ISistema;
@@ -291,8 +292,21 @@ public class PublicadorServidorCentral {
     }
     
     @WebMethod
-    public void valorarCurso(String curso, Double valoracion){
-        sistema.valorarCurso(curso, valoracion);
+    public void valorarCurso(String curso, Double valoracion, String estudiante){
+        sistema.valorarCurso(curso, valoracion,estudiante);
     }
     
+    @WebMethod
+    public List<String> cursosEstudiante(String estudiante){
+        return sistema.cursosEstudiante(estudiante);
+    }
+    
+    @WebMethod
+    public DataValoracion darValoracionEst(String curso, String estudiante){
+        DataValoracion dv = sistema.darValoracionEst(curso, estudiante);
+        if (dv == null) {
+            dv = new DataValoracion(new Long(0), "", 0.0, "");
+        }
+        return dv;
+    }
 }

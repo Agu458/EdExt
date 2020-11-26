@@ -18,6 +18,7 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;sequence>
  *         &lt;element name="arg0" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="arg1" type="{http://www.w3.org/2001/XMLSchema}double" minOccurs="0"/>
+ *         &lt;element name="arg2" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -29,12 +30,14 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "valorarCurso", propOrder = {
     "arg0",
-    "arg1"
+    "arg1",
+    "arg2"
 })
 public class ValorarCurso {
 
     protected String arg0;
     protected Double arg1;
+    protected String arg2;
 
     /**
      * Obtiene el valor de la propiedad arg0.
@@ -82,6 +85,30 @@ public class ValorarCurso {
      */
     public void setArg1(Double value) {
         this.arg1 = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad arg2.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getArg2() {
+        return arg2;
+    }
+
+    /**
+     * Define el valor de la propiedad arg2.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setArg2(String value) {
+        this.arg2 = value;
     }
 
 }

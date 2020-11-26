@@ -50,6 +50,15 @@
                         </div>
                     </div>
                     
+                    <div class="col-lg-4 col-md-6 col-12">
+                        <div class="our-team">
+                            <div class="team-content">
+                                <a class="title" href="Valoracion?cursosEstudiante">Valorar Curso</a>
+                                <span class="post">Valora un curso de entre 0 a 5 estrellas</span>
+                            </div>
+                        </div>
+                    </div>
+                    
                 </div><!-- end row -->
             </div><!-- end container -->
         </div><!-- end section -->

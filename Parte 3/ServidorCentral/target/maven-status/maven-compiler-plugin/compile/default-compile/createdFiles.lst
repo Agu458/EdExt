@@ -10,12 +10,12 @@ DataTypes\DataInscripcionEdicion.class
 Entidades\Categoria.class
 Entidades\Profesor.class
 Entidades\Categoria_.class
-Servidor\Main.class
 Entidades\InscripcionEdicion_.class
 DataTypes\DataEdicion.class
 Servidor\PublicadorServidorCentral.class
 DataTypes\Lista.class
 Entidades\InscripcionPrograma.class
+Entidades\Valoracion.class
 DataTypes\EstadoInscripcion.class
 Logica\ISistema.class
 DataTypes\DataUsuario.class
@@ -24,6 +24,8 @@ Entidades\Instituto.class
 Logica\MainPruebas.class
 DataTypes\DataProfesor.class
 Entidades\InscripcionPrograma_.class
+Servidor\MainServidor.class
+Entidades\Valoracion_.class
 Entidades\Profesor_.class
 Entidades\Usuario_.class
 Entidades\Instituto_.class

@@ -30,6 +30,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="profesores" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="curso" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="comentarios" type="{http://Servidor/}dataComentario" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="activa" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -48,7 +49,8 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "fechaPublicacion",
     "profesores",
     "curso",
-    "comentarios"
+    "comentarios",
+    "activa"
 })
 public class DataEdicion {
 
@@ -66,6 +68,7 @@ public class DataEdicion {
     protected String curso;
     @XmlElement(nillable = true)
     protected List<DataComentario> comentarios;
+    protected boolean activa;
 
     /**
      * Obtiene el valor de la propiedad nombre.
@@ -275,6 +278,22 @@ public class DataEdicion {
             comentarios = new ArrayList<DataComentario>();
         }
         return this.comentarios;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad activa.
+     * 
+     */
+    public boolean isActiva() {
+        return activa;
+    }
+
+    /**
+     * Define el valor de la propiedad activa.
+     * 
+     */
+    public void setActiva(boolean value) {
+        this.activa = value;
     }
 
 }

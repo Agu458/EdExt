@@ -10,6 +10,7 @@
         <url-pattern>/Curso</url-pattern>
         <url-pattern>/Edicion</url-pattern>
         <url-pattern>/Logout</url-pattern>
+        <url-pattern>/Perfil</url-pattern>
     </filter-mapping>
     <servlet>
         <servlet-name>Home</servlet-name>
@@ -31,6 +32,10 @@
         <servlet-name>Edicion</servlet-name>
         <servlet-class>Logic.Edicion</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Perfil</servlet-name>
+        <servlet-class>Logic.Perfil</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Home</servlet-name>
         <url-pattern>/Home</url-pattern>
@@ -50,6 +55,10 @@
     <servlet-mapping>
         <servlet-name>Edicion</servlet-name>
         <url-pattern>/Edicion</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Perfil</servlet-name>
+        <url-pattern>/Perfil</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
