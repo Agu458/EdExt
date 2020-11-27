@@ -133,10 +133,10 @@ public class PublicadorServidorCentral {
     }
 
     @WebMethod
-    public Lista listarCursosConEdicionInstituto(String instituto){
+    public Lista listarCursosConEdicionInstituto(String instituto) {
         return new Lista(sistema.listarCursosConEdicionInstituto(instituto));
     }
-    
+
     @WebMethod
     public Lista listarCursos() {
         return new Lista(sistema.listarCursos());
@@ -262,47 +262,47 @@ public class PublicadorServidorCentral {
     }
 
     @WebMethod
-    public Lista listarAceptadosAEdicion(String curso, String edicion) {
-        return new Lista(sistema.listarAceptadosAEdicion(curso, edicion));
+    public List<DataEstudiante> listarAceptadosAEdicion(String curso, String edicion) {
+        return sistema.listarAceptadosAEdicion(curso, edicion);
     }
 
     @WebMethod
     public void inscripcionAPrograma(String programa, String estudiante, Date fecha) {
         sistema.inscripcionAPrograma(programa, estudiante, fecha);
     }
-    
+
     @WebMethod
-    public void desistirDeInscripcion(String estudiante, String edicion){
-        sistema.desistirDeInscripcion(estudiante, edicion);
+    public void desistirDeInscripcion(String estudiante, String edicion, String curso) {
+        sistema.desistirDeInscripcion(estudiante, edicion, curso);
     }
-    
+
     @WebMethod
-    public DataInscripcionEdicion darDatosInscripcionEdicion(String estudiante, String edicion){
-        return sistema.darDatosInscripcionEdicion(estudiante, edicion);
+    public DataInscripcionEdicion darDatosInscripcionEdicion(String estudiante, String edicion, String curso) {
+        return sistema.darDatosInscripcionEdicion(estudiante, edicion, curso);
     }
-    
+
     @WebMethod
-    public void agregarComentarioEdicionCurso(String curso, String edicion, String estudiante, String cuerpo, Date fechaPublicacion){
+    public void agregarComentarioEdicionCurso(String curso, String edicion, String estudiante, String cuerpo, Date fechaPublicacion) {
         sistema.agregarComentarioEdicionCurso(curso, edicion, estudiante, cuerpo, fechaPublicacion);
     }
-    
+
     @WebMethod
-    public List<DataEdicion> edicionesEstudiante(String estudiante){
+    public List<DataEdicion> edicionesEstudiante(String estudiante) {
         return sistema.edicionesEstudiante(estudiante);
     }
-    
+
     @WebMethod
-    public void valorarCurso(String curso, Double valoracion, String estudiante){
-        sistema.valorarCurso(curso, valoracion,estudiante);
+    public void valorarCurso(String curso, Double valoracion, String estudiante) {
+        sistema.valorarCurso(curso, valoracion, estudiante);
     }
-    
+
     @WebMethod
-    public List<String> cursosEstudiante(String estudiante){
+    public List<String> cursosEstudiante(String estudiante) {
         return sistema.cursosEstudiante(estudiante);
     }
-    
+
     @WebMethod
-    public DataValoracion darValoracionEst(String curso, String estudiante){
+    public DataValoracion darValoracionEst(String curso, String estudiante) {
         DataValoracion dv = sistema.darValoracionEst(curso, estudiante);
         if (dv == null) {
             dv = new DataValoracion(new Long(0), "", 0.0, "");

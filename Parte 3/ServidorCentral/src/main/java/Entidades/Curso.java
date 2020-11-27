@@ -2,6 +2,7 @@ package Entidades;
 
 import DataTypes.DataCurso;
 import DataTypes.DataEdicion;
+import DataTypes.DataEstudiante;
 import DataTypes.DataValoracion;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -179,7 +180,7 @@ public class Curso implements Serializable {
         return e.darInscriptos();
     }
     
-    public List<String> darAceptadosAEdicion(String nombreEdicion){
+    public List<DataEstudiante> darAceptadosAEdicion(String nombreEdicion){
         Edicion e = ediciones.get(nombreEdicion);
         return e.darAceptados();
     }

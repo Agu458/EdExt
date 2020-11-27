@@ -2,6 +2,7 @@ package Logica;
 
 import DataTypes.DataCurso;
 import DataTypes.DataEdicion;
+import DataTypes.DataEstudiante;
 import DataTypes.DataInscripcionEdicion;
 import DataTypes.DataProgramaFormacion;
 import DataTypes.DataUsuario;
@@ -85,15 +86,15 @@ public interface ISistema {
     
     public void aceptarInscripciones(String curso, String edicion, List<String> estudiantes);
     
-    public List<String> listarAceptadosAEdicion(String curso, String edicion);
+    public List<DataEstudiante> listarAceptadosAEdicion(String curso, String edicion);
     
     public void inscripcionAPrograma(String programa, String estudiante, Date fecha);
     
     public List<String> listarCursosConEdicionInstituto(String instituto);
     
-    public void desistirDeInscripcion(String estudiante, String edicion);
+    public void desistirDeInscripcion(String estudiante, String edicion, String curso);
     
-    public DataInscripcionEdicion darDatosInscripcionEdicion(String estudiante, String edicion);
+    public DataInscripcionEdicion darDatosInscripcionEdicion(String estudiante, String edicion, String curso);
     
     public void agregarComentarioEdicionCurso(String curso, String edicion, String estudiante, String cuerpo, Date fechaPublicacion);
     

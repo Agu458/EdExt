@@ -58,18 +58,18 @@ public class Estudiante extends Usuario {
         return false;
     }
 
-    public DataInscripcionEdicion darDatosInscripcionEdicion(String edicion) {
+    public DataInscripcionEdicion darDatosInscripcionEdicion(String curso, String edicion) {
         for (InscripcionEdicion ie : this.inscripcionEdiciones) {
-            if (ie.getEdicion().getNombreEdicion().equals(edicion)) {
+            if (ie.getEdicion().getNombreEdicion().equals(edicion) && ie.getEdicion().getCurso().getNombre().equals(curso)) {
                 return ie.darDatos();
             }
         }
         return null;
     }
 
-    public InscripcionEdicion darInscripcionEdicion(String edicion) {
+    public InscripcionEdicion darInscripcionEdicion(String edicion, String curso) {
         for (InscripcionEdicion ie : this.inscripcionEdiciones) {
-            if (ie.getEdicion().getNombreEdicion().equals(edicion)) {
+            if (ie.getEdicion().getNombreEdicion().equals(edicion) && ie.getEdicion().getCurso().getNombre().equals(curso)) {
                 return ie;
             }
         }
@@ -86,13 +86,14 @@ public class Estudiante extends Usuario {
     }
 
     public InscripcionEdicion inscribirseAUnaEdicion(Edicion edicion, Date fecha, String urlVideo) {
-        InscripcionEdicion inscripcion = this.darInscripcionEdicion(edicion.getNombreEdicion());
+        InscripcionEdicion inscripcion = this.darInscripcionEdicion(edicion.getNombreEdicion(), edicion.getCurso().getNombre());
         if (inscripcion != null) {
             if (inscripcion.getEstado() == EstadoInscripcion.RECHASADO) {
                 inscripcion.setEstado(EstadoInscripcion.INSCRIPTO);
                 inscripcion.setInscripcionesPrevias(inscripcion.getInscripcionesPrevias() + 1);
             }
-
+            inscripcion.setUrlVideo(urlVideo);
+            inscripcion.setFecha(fecha);
         } else {
             inscripcion = new InscripcionEdicion(fecha, edicion, this, urlVideo);
             inscripcionEdiciones.add(inscripcion);
@@ -129,8 +130,8 @@ public class Estudiante extends Usuario {
                 super.getContrasenia(), super.getimagen());
     }
 
-    public void cancelarInscripcionEdicion(String edicion, EntityManager em) {
-        InscripcionEdicion inscripcion = this.darInscripcionEdicion(edicion);
+    public void cancelarInscripcionEdicion(String edicion, String curso, EntityManager em) {
+        InscripcionEdicion inscripcion = this.darInscripcionEdicion(edicion, curso);
         if (inscripcion != null) {
             if (inscripcion.getEstado() == EstadoInscripcion.INSCRIPTO) {
                 inscripcion.getEdicion().cancelarInscripcionEstudiante(inscripcion);

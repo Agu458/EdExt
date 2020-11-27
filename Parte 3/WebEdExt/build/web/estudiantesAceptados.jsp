@@ -16,11 +16,11 @@
 
         <div class="all-title-box">
             <div class="container text-center">
-                <h1>Seleccionar estudiantes para una Edicion de Curso</h1>
+                <h1>Estudiantes aceptados a una Edicion de Curso</h1>
             </div>
         </div>
         <%
-            List<String> aceptados = (List<String>) request.getAttribute("aceptados");
+            List<DataEstudiante> aceptados = (List<DataEstudiante>) request.getAttribute("aceptados");
             DataEdicion de = (DataEdicion) request.getAttribute("edicion");
             if (aceptados == null) {
         %>
@@ -53,17 +53,30 @@
                     </div>
                     <div class="form-group">
                         <label class="">Estudiantes Aceptados</label>
-                        <%
-                            for (String s : aceptados) {
-                        %>
-                        <div class="list-group-item">
-                            <div class="">
-                                <label class=""><%= s%></label>
-                            </div>
-                        </div>    
-                        <%
-                            }
-                        %> 
+                        <div class="card">
+                            <table class="table table-hover">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th scope="col">Correo</th>
+                                        <th scope="col">Nombre</th>
+                                        <th scope="col">Apellido</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <%
+                                        for (DataEstudiante est : aceptados) {
+                                    %>
+                                    <tr>
+                                        <th scope="row"><%= est.getEmail()%></th>
+                                        <td><%= est.getNombre()%></td>
+                                        <td><%= est.getApellido()%></td>
+                                    </tr>
+                                    <%
+                                        }
+                                    %>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>

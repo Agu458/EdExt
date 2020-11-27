@@ -6,6 +6,7 @@
 package Logic;
 
 import Server.DataEdicion;
+import Server.DataEstudiante;
 import Server.DataInscripcionEdicion;
 import Server.Lista;
 import Server.PublicadorServidorCentralService;
@@ -91,12 +92,31 @@ public class Edicion extends HttpServlet {
             } catch (Exception e) {
             }
             if (edicion != null && curso != null) {
-                Lista data = port.listarAceptadosAEdicion(curso, edicion);
-                List inscriptos = data.getLista();
+                List<DataEstudiante> inscriptos = port.listarAceptadosAEdicion(curso, edicion);
                 DataEdicion de = port.darDatosEdicion(curso, edicion);
                 request.setAttribute("aceptados", inscriptos);
                 request.setAttribute("edicion", de);
                 request.getRequestDispatcher("estudiantesAceptados.jsp").forward(request, response);
+            }
+        }
+        
+        String ingresarResultados = request.getParameter("ingresarResultados");
+        if (ingresarResultados != null) {
+            String edicion = null;
+            String curso = null;
+            String[] datos = null;
+            try {
+                datos = ingresarResultados.split(",");
+                curso = datos[0];
+                edicion = datos[1];
+            } catch (Exception e) {
+            }
+            if (edicion != null && curso != null) {
+                List<DataEstudiante> inscriptos = port.listarAceptadosAEdicion(curso, edicion);
+                DataEdicion de = port.darDatosEdicion(curso, edicion);
+                request.setAttribute("aceptados", inscriptos);
+                request.setAttribute("edicion", de);
+                request.getRequestDispatcher("ingresarResultadosEdicion.jsp").forward(request, response);
             }
         }
 
@@ -129,15 +149,17 @@ public class Edicion extends HttpServlet {
         if(consultarInscripcionEdicion != null){
             String estudiante = null;
             String edicion = null;
+            String curso = null;
             String[] datos = null;
             try {
                 datos = consultarInscripcionEdicion.split(",");
                 estudiante = datos[0];
                 edicion = datos[1];
+                curso = datos[2];
             } catch (Exception e) {
             }
-            if (estudiante != null && edicion != null) {
-                DataInscripcionEdicion die = port.darDatosInscripcionEdicion(estudiante, edicion);
+            if (estudiante != null && edicion != null && curso != null) {
+                DataInscripcionEdicion die = port.darDatosInscripcionEdicion(estudiante, edicion, curso);
                 request.setAttribute("datosInscripcion", die);
                 request.getRequestDispatcher("mostrarInfoInscripcionEdicion.jsp").forward(request, response);
             }
@@ -245,15 +267,17 @@ public class Edicion extends HttpServlet {
         if(desistirDeInscripcion != null){
             String estudiante = null;
             String edicion = null;
+            String curso = null;
             String[] datos = null;
             try {
                 datos = desistirDeInscripcion.split(",");
                 estudiante = datos[0];
                 edicion = datos[1];
+                curso = datos[2];
             } catch (Exception e) {
             }
-            if (estudiante != null && edicion != null) {
-                port.desistirDeInscripcion(estudiante, edicion);
+            if (estudiante != null && edicion != null && curso != null) {
+                port.desistirDeInscripcion(estudiante, edicion, curso);
                 response.sendRedirect("index.jsp");
             }
         }

@@ -23,7 +23,7 @@
         <div id="Profesor" class="section wb">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-4 col-md-6 col-12">
+                    <div class="col-lg-6 col-md-6 col-12">
                         <div class="our-team">
                             <div class="team-content">
                                 <a class="title" href="inscripcion_edicion.jsp">Inscripcion a Edicion</a>
@@ -32,7 +32,7 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-4 col-md-6 col-12">
+                    <div class="col-lg-6 col-md-6 col-12">
                         <div class="our-team">
                             <div class="team-content">
                                 <a class="title" href="inscripcionAPrograma.jsp">Inscripcion a Programa</a>
@@ -41,7 +41,7 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-4 col-md-6 col-12">
+                    <div class="col-lg-6 col-md-6 col-12">
                         <div class="our-team">
                             <div class="team-content">
                                 <a class="title" href="Comentario">Agregar Comentario</a>
@@ -50,7 +50,7 @@
                         </div>
                     </div>
                     
-                    <div class="col-lg-4 col-md-6 col-12">
+                    <div class="col-lg-6 col-md-6 col-12">
                         <div class="our-team">
                             <div class="team-content">
                                 <a class="title" href="Valoracion?cursosEstudiante">Valorar Curso</a>

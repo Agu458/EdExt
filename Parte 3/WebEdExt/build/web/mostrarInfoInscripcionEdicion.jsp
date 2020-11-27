@@ -49,14 +49,22 @@
                     <input type="text" class="form-control" id="calificacion" name="calificacion" readonly="" value="<%= die.getCalificacion() %>">
                 </div>
                 <div class="form-group">
-                    <label for="video">Video</label>
-                    <input type="text" class="form-control" id="video" name="video" readonly="" value="<%= die.getUrlVideo() %>">
+                    <label for="#urlvideo">URL Video</label>
+                    <input type="text" class="form-control" name="urlvideo" id="urlvideo" value="<%= die.getUrlVideo() %>" disabled="">
                 </div>
                 <%
+                    if(!die.getUrlVideo().equals("")){
+                %>
+                <div class="embed-responsive embed-responsive-16by9 rounded mb-4">
+                    <iframe width="560" height="315" src="<%= die.getUrlVideo() %>" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <%
+                    }
+
                     if( die.getEstado() == EstadoInscripcion.INSCRIPTO ){
                 %>
                     <form action="Edicion" method="POST">
-                        <button type="submit" class="btn btn-danger" name="desistirDeInscripcion" value="<%= die.getEstudiante()%>,<%= die.getEdicion().getNombre()%>" >Desistir de inscripcion</button>
+                        <button type="submit" class="btn btn-danger" name="desistirDeInscripcion" value="<%= die.getEstudiante()%>,<%= die.getEdicion().getNombre()%>,<%= die.getEdicion().getCurso() %>" >Desistir de inscripcion</button>
                     </form>
                 <%
                     }

@@ -2,6 +2,7 @@ package Entidades;
 
 import DataTypes.DataComentario;
 import DataTypes.DataEdicion;
+import DataTypes.DataEstudiante;
 import DataTypes.EstadoInscripcion;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -11,6 +12,8 @@ import java.util.List;
 import java.util.Map;
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.MapKey;
@@ -23,6 +26,8 @@ public class Edicion implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     private String nombreEdicion;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date fechaIni;
@@ -60,6 +65,10 @@ public class Edicion implements Serializable {
         this.curso = curso;
         this.aceptados = 0;
         this.activa = true;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getNombreEdicion() {
@@ -180,11 +189,11 @@ public class Edicion implements Serializable {
 
     
 
-    public List<String> darAceptados() {
-        List<String> insc = new ArrayList();
+    public List<DataEstudiante> darAceptados() {
+        List<DataEstudiante> insc = new ArrayList();
         for (InscripcionEdicion inscripcion : this.inscriptos) {
             if(inscripcion.getEstado() == EstadoInscripcion.ACEPTADO){
-                insc.add(inscripcion.getEstudiante().getEmail());
+                insc.add((DataEstudiante) inscripcion.getEstudiante().darDatos());
             }
         }
         return insc;

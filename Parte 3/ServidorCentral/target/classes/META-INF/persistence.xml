@@ -14,6 +14,7 @@
     <class>Entidades.Edicion</class>
     <class>Entidades.ProgramaFormacion</class>
     <class>Entidades.Valoracion</class>
+    <class>Entidades.NewEntity</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/EdExt"/>
       <property name="javax.persistence.jdbc.user" value="root"/>

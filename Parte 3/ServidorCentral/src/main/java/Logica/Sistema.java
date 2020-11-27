@@ -703,9 +703,9 @@ public class Sistema implements ISistema {
     }
 
     @Override
-    public List<String> listarAceptadosAEdicion(String curso, String edicion) {
+    public List<DataEstudiante> listarAceptadosAEdicion(String curso, String edicion) {
         EntityManager em = emf.createEntityManager();
-        List<String> aceptados = null;
+        List<DataEstudiante> aceptados = null;
         try {
             em.getTransaction().begin();
             Curso cur = em.find(Curso.class, curso);
@@ -722,14 +722,14 @@ public class Sistema implements ISistema {
 
     //Permite a un estudiante desistir de una inscripcion
     @Override
-    public void desistirDeInscripcion(String estudiante, String edicion) {
+    public void desistirDeInscripcion(String estudiante, String edicion, String curso) {
         EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
-            if (estudiante != null && edicion != null) {
+            if (estudiante != null && edicion != null && curso != null) {
                 Estudiante est = em.find(Estudiante.class, estudiante);
                 if (est != null) {
-                    est.cancelarInscripcionEdicion(edicion, em);
+                    est.cancelarInscripcionEdicion(edicion, curso, em);
                 }
             }
             em.getTransaction().commit();
@@ -741,14 +741,16 @@ public class Sistema implements ISistema {
     }
 
     @Override
-    public DataInscripcionEdicion darDatosInscripcionEdicion(String estudiante, String edicion) {
+    public DataInscripcionEdicion darDatosInscripcionEdicion(String estudiante, String edicion, String curso) {
         EntityManager em = emf.createEntityManager();
         DataInscripcionEdicion die = null;
         try {
             em.getTransaction().begin();
-            Estudiante est = em.find(Estudiante.class, estudiante);
-            if (est != null) {
-                die = est.darDatosInscripcionEdicion(edicion);
+            if (estudiante != null && edicion != null && curso != null) {
+                Estudiante est = em.find(Estudiante.class, estudiante);
+                if (est != null) {
+                    die = est.darDatosInscripcionEdicion(curso, edicion);
+                }
             }
             em.getTransaction().commit();
         } catch (Exception e) {
@@ -777,15 +779,15 @@ public class Sistema implements ISistema {
         }
         em.close();
     }
-    
-    public List<DataEdicion> edicionesEstudiante(String estudiante){
+
+    public List<DataEdicion> edicionesEstudiante(String estudiante) {
         EntityManager em = emf.createEntityManager();
         List<DataEdicion> result = new ArrayList();
         try {
             em.getTransaction().begin();
-            if(estudiante != null){
+            if (estudiante != null) {
                 Estudiante est = em.find(Estudiante.class, estudiante);
-                if(est != null){
+                if (est != null) {
                     result = est.darInscripcionesActivasEdicion();
                 }
             }
@@ -796,16 +798,16 @@ public class Sistema implements ISistema {
         }
         return result;
     }
-    
+
     @Override
-    public List<String> cursosEstudiante(String estudiante){
+    public List<String> cursosEstudiante(String estudiante) {
         EntityManager em = emf.createEntityManager();
         List<String> result = new ArrayList();
         try {
             em.getTransaction().begin();
-            if(estudiante != null){
+            if (estudiante != null) {
                 Estudiante est = em.find(Estudiante.class, estudiante);
-                if(est != null){
+                if (est != null) {
                     result = est.darInscripcionesActivasCurso();
                 }
             }
@@ -816,16 +818,16 @@ public class Sistema implements ISistema {
         }
         return result;
     }
-    
+
     @Override
-    public void valorarCurso(String curso, Double valoracion, String estudiante){
+    public void valorarCurso(String curso, Double valoracion, String estudiante) {
         EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
-            if(estudiante != null && curso != null && valoracion != null){
+            if (estudiante != null && curso != null && valoracion != null) {
                 Estudiante est = em.find(Estudiante.class, estudiante);
                 Curso cur = em.find(Curso.class, curso);
-                if(est != null){
+                if (est != null) {
                     est.valorarCurso(cur, valoracion, em);
                 }
             }
@@ -836,14 +838,14 @@ public class Sistema implements ISistema {
         }
         em.close();
     }
-    
+
     @Override
-    public DataValoracion darValoracionEst(String curso, String estudiante){
+    public DataValoracion darValoracionEst(String curso, String estudiante) {
         EntityManager em = emf.createEntityManager();
         DataValoracion result = null;
         try {
             em.getTransaction().begin();
-            if(estudiante != null && curso != null){
+            if (estudiante != null && curso != null) {
                 Estudiante est = em.find(Estudiante.class, estudiante);
                 result = est.darDatosValoracion(curso);
             }

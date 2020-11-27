@@ -5,6 +5,7 @@
  */
 package Logic;
 
+import Server.DataInscripcionEdicion;
 import Server.DataUsuario;
 import Server.Lista;
 import Server.PublicadorServidorCentralService;
@@ -76,6 +77,28 @@ public class Usuario extends HttpServlet {
             DataUsuario du = port.darDatosUsuario(verDatosUsuario);
             request.setAttribute("verDatosUsuario", du);
             request.getRequestDispatcher("mostrarInfoUsuario.jsp").forward(request, response);
+        }
+        
+        String verInscripcionUsuario = request.getParameter("verInscripcionUsuario");
+        if (verInscripcionUsuario != null) {
+            String estudiante = null;
+            String edicion = null;
+            String curso = null;
+            String[] datos = null;
+            try {
+                datos = verInscripcionUsuario.split(",");
+                estudiante = datos[0];
+                edicion = datos[1];
+                curso = datos[2];
+            } catch (Exception e) {
+            }
+            if (estudiante != null && edicion != null && curso != null) {
+                DataInscripcionEdicion die = port.darDatosInscripcionEdicion(estudiante, edicion, curso);
+                request.setAttribute("datosInscripcion", die);
+                DataUsuario du = port.darDatosUsuario(estudiante);
+                request.setAttribute("datosUsuario", du);
+                request.getRequestDispatcher("ingresarResultado.jsp").forward(request, response);
+            }
         }
     }
 

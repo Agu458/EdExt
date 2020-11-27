@@ -4,13 +4,11 @@
     Author     : Otro
 --%>
 
+<%@page import="Server.Lista"%>
+<%@page import="Server.PublicadorServidorCentralService"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="Entidades.ProgramaFormacion"%>
-<%@page import="Logica.Curso"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
-<%@page import="Logica.Fabrica"%>
-<%@page import="Logica.ISistema"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -19,26 +17,29 @@
     </head>
     <body>
         <%
-            ISistema s = null;
-            Fabrica f = Fabrica.getInstance();
-            s = f.getISistema();
-
+            Server.PublicadorServidorCentralService service = new PublicadorServidorCentralService();
+            Server.PublicadorServidorCentral port = service.getPublicadorServidorCentralPort();
+            
             List<String> lis = new ArrayList();
-            List<String> lcur = s.listarCursos();
-            List<String> lpf = s.listarProgramas();
+            Lista data = port.listarCursos();
+            List lcur = data.getLista();
+            data = port.listarProgramas();
+            List lpf = data.getLista();
 
             String txt = request.getParameter("Busqueda");
 
             // Sin Filtro
             String filtro = (String) request.getAttribute("Filtrado");
             if (filtro == null) {
-                for (String strc : lcur) {
+                for (Object o : lcur) {
+                    String strc = (String) o;
                     if (strc.contains(txt)) {
                         lis.add(strc);
                     }
                 }
 
-                for (String strp : lpf) {
+                for (Object o : lpf) {
+                    String strp = (String) o;
                     if (strp.contains(txt)) {
                         lis.add(strp);
                     }
@@ -48,7 +49,8 @@
 
                 //Filtrado por Curso
                 if (filtro.equals("Cursos")) {
-                    for (String strc : lcur) {
+                    for (Object o : lcur) {
+                        String strc = (String) o;
                         if (strc.contains(txt)) {
                             lis.add(strc);
                         }
@@ -58,7 +60,8 @@
                 
                 //Filtrado por Programa
                 if (filtro.equals("Programa")) {
-                    for (String strp : lpf) {
+                    for (Object o : lpf) {
+                        String strp = (String) o;
                         if (strp.contains(txt)) {
                             lis.add(strp);
                         }

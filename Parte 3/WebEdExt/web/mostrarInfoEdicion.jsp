@@ -59,7 +59,7 @@
                             <input class="form-control" type="date" name="fechafin" readonly="" value="<%= fechaReg%>">
                         </div>
                     </div>
-                    <div class="col-sm">
+                        <div class="col-sm">
                         <div class="form-group">
                             <label for="cupos">Cupos</label>
                             <input type="number" class="form-control" id="cupos" name="cupos" readonly="" value="<%= de.getCupos()%>">

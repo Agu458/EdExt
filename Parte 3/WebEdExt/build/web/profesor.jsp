@@ -23,7 +23,7 @@
         <div id="Profesor" class="section wb">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-3 col-md-6 col-12">
+                    <div class="col-lg-4 col-md-6 col-12">
                         <div class="our-team">
                             <div class="team-content">
                                 <a class="title" href="altacurso.jsp">Alta Curso</a>
@@ -32,7 +32,7 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-3 col-md-6 col-12">
+                    <div class="col-lg-4 col-md-6 col-12">
                         <div class="our-team">
                             <div class="team-content">
                                 <a class="title" href="altaEdicion.jsp">Alta Edición</a>
@@ -41,7 +41,7 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-3 col-md-6 col-12">
+                    <div class="col-lg-4 col-md-6 col-12">
                         <div class="our-team">
                             <div class="team-content">
                                 <a class="title" href="altaPrograma.jsp">Alta Programa</a>
@@ -50,7 +50,7 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-3 col-md-6 col-12">
+                    <div class="col-lg-6 col-md-6 col-12">
                         <div class="our-team">
                             <div class="team-content">
                                 <a class="title" href="agregarCursoPrograma.jsp">Curso-Programa</a>
@@ -59,7 +59,7 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-4 col-md-6 col-12">
+                    <div class="col-lg-6 col-md-6 col-12">
                         <div class="our-team">
                             <div class="team-content">
                                 <a class="title" href="seleccionarEstudiantesEdicion.jsp">Estudiantes-Edicion</a>
@@ -68,7 +68,7 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-4 col-md-6 col-12">
+                    <div class="col-lg-6 col-md-6 col-12">
                         <div class="our-team">
                             <div class="team-content">
                                 <a class="title" href="estudiantesAceptados.jsp">Estudiantes Aceptados</a>
@@ -76,7 +76,16 @@
                             </div>
                         </div>
                     </div>
-
+                    
+                    <div class="col-lg-6 col-md-6 col-12">
+                        <div class="our-team">
+                            <div class="team-content">
+                                <a class="title" href="ingresarResultadosEdicion.jsp">Ingresar Resultados</a>
+                                <span class="post">Ingresar resultados de evaluaciones de estudiantes</span>
+                            </div>
+                        </div>
+                    </div>
+                    
                 </div><!-- end row -->
             </div><!-- end container -->
         </div><!-- end section -->	
