@@ -4,6 +4,7 @@
     Author     : Agustin
 --%>
 
+<%@page import="Server.DataInscripcionEdicion"%>
 <%@page import="Server.DataEdicion"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -20,7 +21,7 @@
             </div>
         </div>
         <%
-            List<DataEstudiante> aceptados = (List<DataEstudiante>) request.getAttribute("aceptados");
+            List<DataInscripcionEdicion> aceptados = (List<DataInscripcionEdicion>) request.getAttribute("aceptados");
             DataEdicion de = (DataEdicion) request.getAttribute("edicion");
             if (aceptados == null) {
         %>
@@ -58,18 +59,28 @@
                                 <thead class="thead-dark">
                                     <tr>
                                         <th scope="col">Correo</th>
-                                        <th scope="col">Nombre</th>
-                                        <th scope="col">Apellido</th>
+                                            <%
+                                                if (!de.isActiva()) {
+                                            %>
+                                        <th scope="col">Calificacion</th>
+                                            <%
+                                                }
+                                            %>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <%
-                                        for (DataEstudiante est : aceptados) {
+                                        for (DataInscripcionEdicion die : aceptados) {
                                     %>
                                     <tr>
-                                        <th scope="row"><%= est.getEmail()%></th>
-                                        <td><%= est.getNombre()%></td>
-                                        <td><%= est.getApellido()%></td>
+                                        <td><%= die.getEstudiante()%></td>
+                                        <%
+                                            if (!de.isActiva()) {
+                                        %>
+                                        <td><%= die.getCalificacion()%></td>
+                                        <%
+                                            }
+                                        %>
                                     </tr>
                                     <%
                                         }

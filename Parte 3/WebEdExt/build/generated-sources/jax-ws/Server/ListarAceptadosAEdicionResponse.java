@@ -19,7 +19,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="return" type="{http://Servidor/}dataEstudiante" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="return" type="{http://Servidor/}dataInscripcionEdicion" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -35,7 +35,7 @@ import javax.xml.bind.annotation.XmlType;
 public class ListarAceptadosAEdicionResponse {
 
     @XmlElement(name = "return")
-    protected List<DataEstudiante> _return;
+    protected List<DataInscripcionEdicion> _return;
 
     /**
      * Gets the value of the return property.
@@ -55,13 +55,13 @@ public class ListarAceptadosAEdicionResponse {
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link DataEstudiante }
+     * {@link DataInscripcionEdicion }
      * 
      * 
      */
-    public List<DataEstudiante> getReturn() {
+    public List<DataInscripcionEdicion> getReturn() {
         if (_return == null) {
-            _return = new ArrayList<DataEstudiante>();
+            _return = new ArrayList<DataInscripcionEdicion>();
         }
         return this._return;
     }

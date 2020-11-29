@@ -93,7 +93,7 @@ public class Registrarse extends HttpServlet {
             }
         } else {
             String instituto = request.getParameter("instituto");
-            if (!instituto.equals("vacio")) {
+            if (!instituto.equals("")) {
                 if (port.validarEmail(email) && port.validarNick(nick)) {
                     port.altaUsuario(instituto, nick, nombre, apellido, email, Login.GetXmlGregorianCalendar(fechaNacimiento), contrasenia, null);
                 }

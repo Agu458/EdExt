@@ -262,7 +262,7 @@ public class PublicadorServidorCentral {
     }
 
     @WebMethod
-    public List<DataEstudiante> listarAceptadosAEdicion(String curso, String edicion) {
+    public List<DataInscripcionEdicion> listarAceptadosAEdicion(String curso, String edicion) {
         return sistema.listarAceptadosAEdicion(curso, edicion);
     }
 
@@ -308,5 +308,15 @@ public class PublicadorServidorCentral {
             dv = new DataValoracion(new Long(0), "", 0.0, "");
         }
         return dv;
+    }
+    
+    @WebMethod
+    public void finalizarEdicion(String curso, String edicion){
+        sistema.finalizarEdicion(curso, edicion);
+    }
+    
+    @WebMethod
+    public void calificarEstudiante(String estudiante, String curso, String edicion, Float calificacion){
+        sistema.calificarEstudiante(estudiante, curso, edicion, calificacion);
     }
 }

@@ -104,7 +104,14 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-12">
-                                    <select class="form-control" id="selinsti" name="instituto"></select>
+                                    <div class="list-group" id="institutosList">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <input class="form-control" type="text" placeholder="Instituto" id="selinsti" name="instituto">
                                 </div>
                             </div>
                             <div class="row">							
@@ -150,7 +157,7 @@
                         </div>
                     </li>
                     <%  if (du != null) {
-                                if (du instanceof DataEstudiante) { %>
+                            if (du instanceof DataEstudiante) { %>
                     <li class="nav-item"><a class="nav-link" href="estudiante.jsp">Estudiante</a></li>
                         <% } else { %>
                     <li class="nav-item"><a class="nav-link" href="profesor.jsp">Profesor</a></li>

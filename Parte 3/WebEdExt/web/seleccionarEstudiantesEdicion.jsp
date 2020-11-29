@@ -4,6 +4,7 @@
     Author     : Agustin
 --%>
 
+<%@page import="Server.DataInscripcionEdicion"%>
 <%@page import="Server.DataEdicion"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -20,7 +21,7 @@
             </div>
         </div>
         <%
-            List<String> inscriptos = (List<String>) request.getAttribute("inscriptos");
+            List<DataInscripcionEdicion> inscriptos = (List<DataInscripcionEdicion>) request.getAttribute("inscriptos");
             DataEdicion de = (DataEdicion) request.getAttribute("edicion");
             if (inscriptos == null) {
         %>
@@ -39,36 +40,84 @@
         <%
         } else {
         %>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Video motivacional</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="embed-responsive embed-responsive-16by9 rounded mb-4">
+                            <iframe id="video" width="560" height="315" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="container p-4">
             <div class="card p-4">
                 <div class="list-group">
                     <form action="Edicion" method="POST">
                         <div class="form-group">
                             <label for="curso">Curso</label>
-                            <input type="text" class="form-control" id="curso" name="curso" readonly="" value="<%= de.getCurso() %>">
+                            <input type="text" class="form-control" id="curso" name="curso" readonly="" value="<%= de.getCurso()%>">
                         </div>
                         <div class="form-group">
                             <label for="edicion">Edicion</label>
-                            <input type="text" class="form-control" id="edicion" name="edicion" readonly="" value="<%= de.getNombre() %>">
+                            <input type="text" class="form-control" id="edicion" name="edicion" readonly="" value="<%= de.getNombre()%>">
                         </div>
                         <div class="form-group">
                             <label class="">Inscriptos</label>
-                            <%
-                                for (String s : inscriptos) {
-                            %>
-                            <div class="list-group-item">
-                                <div class="">
-                                    <input type="checkbox" class="" name="aceptados" value="<%= s%>">
-                                    <label class=""><%= s%></label>
-                                </div>
-                            </div>    
-                            <%
-                                }
-                            %> 
+                            <div class="list-group">
+                                <%
+                                    if (inscriptos.isEmpty()) {
+                                %>
+                                <label class="list-group-item">No hay inscriptos...</label>
+                                <%
+                                } else {
+                                    for (DataInscripcionEdicion die : inscriptos) {
+                                %>
+                                <div class="list-group-item">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h5 class="mb-1 font-weight-bold"><%= die.getEstudiante()%></h5>
+                                    </div>
+                                    <%
+                                        if (!die.getUrlVideo().equals("")) {
+                                    %>
+                                    <div class="form-group">
+                                        <!-- Button trigger modal -->
+                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" onclick="cargarVideo('<%= die.getUrlVideo()%>');">
+                                            Ver video motivacional
+                                        </button>
+                                    </div>
+                                    <%
+                                        }
+                                    %>
+                                    <div class="form-group text-center">
+                                        <label for="#aceptar">Aceptar?</label>
+                                        <input type="checkbox" class="form-control" id="aceptar" name="aceptados" value="<%= die.getEstudiante()%>">
+                                    </div>
+                                    <p class="mb-1"></p>
+                                </div> 
+                                <%
+                                        }
+                                    }
+                                %> 
+                            </div>
                         </div>
+                        <%
+                            if (!inscriptos.isEmpty()) {
+                        %>
                         <div class="form-group text-center">
                             <button type="submit" name="accion" class="btn btn-primary" value="aceptarEstudiantes">Aceptar Estudiantes</button>
-                        </div>   
+                        </div>
+                        <%
+                            }
+                        %>
                     </form>
                 </div>
             </div>
@@ -120,6 +169,10 @@
                     }
                 });
             });
+
+            function cargarVideo(video) {
+                $("#video").attr("src", video);
+            }
 
             $(document).ready(function () {
                 let accion = "listarInstitutos";

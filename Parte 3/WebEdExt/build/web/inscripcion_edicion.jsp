@@ -107,32 +107,32 @@
                                     <input type="number" class="form-control" id="cupos" name="cupos" disabled="" value="<%= de.getCupos()%>">
                                 </div>
                             </div>
-                                <div class="col-sm">
+                            <div class="col-sm">
                                 <div class="form-group">
                                     <%
-                                    int cuposRestantes = (de.getCupos() - de.getAceptados());
+                                        int cuposRestantes = (de.getCupos() - de.getAceptados());
                                     %>
                                     <label for="cuposRestantes">Cupos Restantes</label>
-                                    <input type="number" class="form-control" id="cuposRestantes" name="cuposRestantes" disabled="" value="<%= cuposRestantes %>">
+                                    <input type="number" class="form-control" id="cuposRestantes" name="cuposRestantes" disabled="" value="<%= cuposRestantes%>">
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="profesores">Profesores</label>
-                            <div class="list-group" id="profesores">
+                            <ul class="list-group" id="profesores">
                                 <%
                                     if (de.getProfesores().isEmpty()) {
                                 %>
-                                <label class="list-group-item"> No tiene ...</label>
-                                <%
-                                    }
-                                    for (String s : de.getProfesores()) {
-                                %>
-                                <label class="list-group-item"> <%= s%></label>
-                                <%
-                                    }
-                                %>
-                            </div>
+                                <li class="list-group-item">No tiene ...</li>
+                                    <%
+                                        }
+                                        for (String s : de.getProfesores()) {
+                                    %>
+                                <li class="list-group-item"><%= s%></li>
+                                    <%
+                                        }
+                                    %>
+                            </ul>
                         </div>
                         <div class="form-group">
                             <label for="estudiante">Estudiante</label>
@@ -142,24 +142,24 @@
                             <label for="video">URL video</label>
                             <input type="url" class="form-control" id="video" name="video" value="">
                         </div>
-                            <%
-                                if(cuposRestantes != 0){
-                            %>
-                            <div class="form-group text-center">
-                                <button type="submit" name="accion" class="btn btn-primary" value="altaInscripcionEdicion">Inscribirse</button>
-                            </div>
-                            <%
-                                } else {
-                            %>
-                                <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                                    <strong>No quedan cupos</strong> Prueba otro curso.
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                      <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                            <%
-                                }
-                            %>
+                        <%
+                            if (cuposRestantes != 0) {
+                        %>
+                        <div class="form-group text-center">
+                            <button type="submit" name="accion" class="btn btn-primary" value="altaInscripcionEdicion">Inscribirse</button>
+                        </div>
+                        <%
+                        } else {
+                        %>
+                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                            <strong>No quedan cupos</strong> Prueba otro curso.
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <%
+                            }
+                        %>
                     </form>
                 </div>
             </div>

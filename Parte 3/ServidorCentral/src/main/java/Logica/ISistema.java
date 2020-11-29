@@ -82,11 +82,11 @@ public interface ISistema {
     
     public List<String> listarProfesoresInstituto(String instituto);
     
-    public List<String> listarInscriptosAEdicion(String curso, String edicion);
+    public List<DataInscripcionEdicion> listarInscriptosAEdicion(String curso, String edicion);
     
     public void aceptarInscripciones(String curso, String edicion, List<String> estudiantes);
     
-    public List<DataEstudiante> listarAceptadosAEdicion(String curso, String edicion);
+    public List<DataInscripcionEdicion> listarAceptadosAEdicion(String curso, String edicion);
     
     public void inscripcionAPrograma(String programa, String estudiante, Date fecha);
     
@@ -105,4 +105,8 @@ public interface ISistema {
     public List<String> cursosEstudiante(String estudiante);
     
     public DataValoracion darValoracionEst(String curso, String estudiante);
+    
+    public void finalizarEdicion(String curso, String edicion);
+    
+    public void calificarEstudiante(String estudiante, String curso, String edicion, Float calificacion);
 }

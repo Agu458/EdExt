@@ -48,6 +48,10 @@
         <servlet-name>Valoracion</servlet-name>
         <servlet-class>Logic.Valoracion</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Calificacion</servlet-name>
+        <servlet-class>Logic.Calificacion</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -87,6 +91,10 @@
     <servlet-mapping>
         <servlet-name>Valoracion</servlet-name>
         <url-pattern>/Valoracion</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Calificacion</servlet-name>
+        <url-pattern>/Calificacion</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

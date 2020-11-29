@@ -27,11 +27,11 @@
                 <form action="Calificacion" method="POST">
                     <div class="form-group">
                         <label for="#curso">Curso</label>
-                        <input type="text" class="form-control" name="curso" id="curso" value="<%= die.getEdicion().getCurso() %>" readonly="">
+                        <input type="text" class="form-control" name="curso" id="curso" value="<%= die.getEdicion().getCurso()%>" readonly="">
                     </div>
                     <div class="form-group">
                         <label for="#edicion">Edicion</label>
-                        <input type="text" class="form-control" name="edicion" id="edicion" value="<%= die.getEdicion().getNombre() %>" readonly="">
+                        <input type="text" class="form-control" name="edicion" id="edicion" value="<%= die.getEdicion().getNombre()%>" readonly="">
                     </div>
                     <div class="form-group">
                         <label for="#nombre">Nombre</label>
@@ -60,11 +60,34 @@
                     %>
                     <div class="form-group">
                         <label for="#calificacion">Calificacion</label>
-                        <input type="number" class="form-control" name="calificacion" id="calificacion" value="<%= die.getCalificacion()%>" min="1" max="12">
+                        <input type="number" class="form-control" name="calificacion" id="calificacion" value="<%= die.getCalificacion()%>" min="1" max="12" step=".1"
+                               <%
+                                   if (!die.getEdicion().isActiva()) {
+                               %>
+                               readonly=""
+                               <%
+                                   }
+                               %>
+                               >
                     </div>
+                    <%
+                        if (die.getEdicion().isActiva()) {
+                    %>
                     <div class="form-group">
                         <button type="submit" class="btn btn-block btn-primary" name="ingresarNota" >Enviar</button>
                     </div>
+                    <%
+                    } else {
+                    %>
+                    <div class="form-group">
+                        <div class="alert alert-warning" role="alert">
+                            <strong>Edicion de curso finalizada </strong>No es posible modificar las calificaciones
+                        </div>
+                    </div>
+                    <%
+                        }
+                    %>
+
                 </form>
             </div>
         </div>

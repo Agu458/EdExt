@@ -195,4 +195,11 @@ public class Estudiante extends Usuario {
         }
         return null;
     }
+    
+    public void calificar(String curso, String edicion, float calificacion){
+        InscripcionEdicion inscripcion = this.darInscripcionEdicion(edicion, curso);
+        if(inscripcion != null){
+            inscripcion.setCalificacion(calificacion);
+        }
+    }
 }

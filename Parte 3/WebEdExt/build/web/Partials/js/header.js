@@ -66,6 +66,10 @@ function validarContrasenia() {
     }
 }
 
+function seleccionarInstituto(valor){
+    $('#selinsti').val(valor);
+}
+
 $(document).ready(function () {
     $('#contraseniaValida').hide();
     $('#nickValido').hide();
@@ -85,12 +89,20 @@ $(document).ready(function () {
     });
 
     var selinsti = $('#selinsti');
+    var institutosList = $('#institutosList');
+    
     selinsti.hide();
+    institutosList.hide();
+    
     $('#docente').click(function () {
+        
         selinsti.empty();
-        selinsti.append(`<option value="vacio" selected> Seleccione Instituto... </option>`);
         selinsti.toggle();
+        institutosList.empty();
+        institutosList.toggle();
+        
         let accion = "listarInstitutos";
+        
         $.ajax({
             type: 'GET',
             url: 'Instituto',
@@ -98,8 +110,8 @@ $(document).ready(function () {
             success: function (response) {
                 let institutos = JSON.parse(response);
                 institutos.forEach(instituto => {
-                    let template = '<option value="' + instituto + '">' + instituto + '</option>';
-                    $('#selinsti').append(template);
+                    let template = '<button type="button" class="list-group-item list-group-item-action" onClick="seleccionarInstituto(this.innerHTML);" value="' + instituto + '">' + instituto + '</button>';
+                    institutosList.append(template);
                 });
             }
         });

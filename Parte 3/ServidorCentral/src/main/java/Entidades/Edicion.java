@@ -3,6 +3,7 @@ package Entidades;
 import DataTypes.DataComentario;
 import DataTypes.DataEdicion;
 import DataTypes.DataEstudiante;
+import DataTypes.DataInscripcionEdicion;
 import DataTypes.EstadoInscripcion;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -161,11 +162,11 @@ public class Edicion implements Serializable {
         }
     }
 
-    public List<String> darInscriptos() {
-        List<String> insc = new ArrayList();
+    public List<DataInscripcionEdicion> darInscriptos() {
+        List<DataInscripcionEdicion> insc = new ArrayList();
         for (InscripcionEdicion inscripcion : this.inscriptos) {
             if (inscripcion.getEstado() == EstadoInscripcion.INSCRIPTO) {
-                insc.add(inscripcion.getEstudiante().getEmail());
+                insc.add(inscripcion.darDatos());
             }
         }
         return insc;
@@ -189,11 +190,11 @@ public class Edicion implements Serializable {
 
     
 
-    public List<DataEstudiante> darAceptados() {
-        List<DataEstudiante> insc = new ArrayList();
+    public List<DataInscripcionEdicion> darAceptados() {
+        List<DataInscripcionEdicion> insc = new ArrayList();
         for (InscripcionEdicion inscripcion : this.inscriptos) {
             if(inscripcion.getEstado() == EstadoInscripcion.ACEPTADO){
-                insc.add((DataEstudiante) inscripcion.getEstudiante().darDatos());
+                insc.add(inscripcion.darDatos());
             }
         }
         return insc;

@@ -25,9 +25,20 @@
                 <div class="form-group">
                     <label for="edicion">Edicion</label>
                     <form action="Edicion" method="GET">
-                        <button type="submit" class="list-group-item list-group-item-action" name="consultarEdicion" value="<%= die.getEdicion().getCurso() %>,<%= die.getEdicion().getNombre()%>" > <%= die.getEdicion().getNombre()%> </button>
+                        <button type="submit" class="list-group-item list-group-item-action" name="consultarEdicion" value="<%= die.getEdicion().getCurso()%>,<%= die.getEdicion().getNombre()%>" > <%= die.getEdicion().getNombre()%> </button>
                     </form>
                 </div>
+                <%
+                    if (!die.getEdicion().isActiva()) {
+                %>
+                <div class="form-group">
+                    <div class="alert alert-warning" role="alert">
+                        <strong>Edicion de curso finalizada </strong>
+                    </div>
+                </div>
+                <%
+                    }
+                %>
                 <div class="form-group">
                     <label for="nombre">Estudiante</label>
                     <input type="text" class="form-control" id="estudiante" name="estudiante" readonly="" value="<%= die.getEstudiante()%>">
@@ -46,30 +57,30 @@
                 </div>
                 <div class="form-group">
                     <label for="calificacion">Calificacion</label>
-                    <input type="text" class="form-control" id="calificacion" name="calificacion" readonly="" value="<%= die.getCalificacion() %>">
+                    <input type="text" class="form-control" id="calificacion" name="calificacion" readonly="" value="<%= die.getCalificacion()%>">
                 </div>
                 <div class="form-group">
                     <label for="#urlvideo">URL Video</label>
-                    <input type="text" class="form-control" name="urlvideo" id="urlvideo" value="<%= die.getUrlVideo() %>" disabled="">
+                    <input type="text" class="form-control" name="urlvideo" id="urlvideo" value="<%= die.getUrlVideo()%>" disabled="">
                 </div>
                 <%
-                    if(!die.getUrlVideo().equals("")){
+                    if (!die.getUrlVideo().equals("")) {
                 %>
                 <div class="embed-responsive embed-responsive-16by9 rounded mb-4">
-                    <iframe width="560" height="315" src="<%= die.getUrlVideo() %>" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe width="560" height="315" src="<%= die.getUrlVideo()%>" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
                 <%
                     }
 
-                    if( die.getEstado() == EstadoInscripcion.INSCRIPTO ){
+                    if (die.getEstado() == EstadoInscripcion.INSCRIPTO) {
                 %>
-                    <form action="Edicion" method="POST">
-                        <button type="submit" class="btn btn-danger" name="desistirDeInscripcion" value="<%= die.getEstudiante()%>,<%= die.getEdicion().getNombre()%>,<%= die.getEdicion().getCurso() %>" >Desistir de inscripcion</button>
-                    </form>
+                <form action="Edicion" method="POST">
+                    <button type="submit" class="btn btn-danger" name="desistirDeInscripcion" value="<%= die.getEstudiante()%>,<%= die.getEdicion().getNombre()%>,<%= die.getEdicion().getCurso()%>" >Desistir de inscripcion</button>
+                </form>
                 <%
                     }
                 %>
-                
+
             </div>
         </div>
 

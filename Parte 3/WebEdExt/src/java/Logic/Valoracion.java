@@ -83,7 +83,9 @@ public class Valoracion extends HttpServlet {
         String estrellas = request.getParameter("estrellas");
         String estudiante = request.getParameter("estudiante");
         String curso = request.getParameter("curso");
-        port.valorarCurso(curso, new Double(estrellas), estudiante);
+        if(estrellas != null && estudiante != null && curso != null){
+            port.valorarCurso(curso, new Double(estrellas), estudiante);
+        }
         response.sendRedirect("Valoracion?cursosEstudiante");
     }
 

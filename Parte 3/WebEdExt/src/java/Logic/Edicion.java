@@ -92,7 +92,7 @@ public class Edicion extends HttpServlet {
             } catch (Exception e) {
             }
             if (edicion != null && curso != null) {
-                List<DataEstudiante> inscriptos = port.listarAceptadosAEdicion(curso, edicion);
+                List<DataInscripcionEdicion> inscriptos = port.listarAceptadosAEdicion(curso, edicion);
                 DataEdicion de = port.darDatosEdicion(curso, edicion);
                 request.setAttribute("aceptados", inscriptos);
                 request.setAttribute("edicion", de);
@@ -112,7 +112,7 @@ public class Edicion extends HttpServlet {
             } catch (Exception e) {
             }
             if (edicion != null && curso != null) {
-                List<DataEstudiante> inscriptos = port.listarAceptadosAEdicion(curso, edicion);
+                List<DataInscripcionEdicion> inscriptos = port.listarAceptadosAEdicion(curso, edicion);
                 DataEdicion de = port.darDatosEdicion(curso, edicion);
                 request.setAttribute("aceptados", inscriptos);
                 request.setAttribute("edicion", de);
@@ -280,6 +280,23 @@ public class Edicion extends HttpServlet {
                 port.desistirDeInscripcion(estudiante, edicion, curso);
                 response.sendRedirect("index.jsp");
             }
+        }
+        
+        String finalizarEdicion = request.getParameter("finalizarEdicion");
+        if(finalizarEdicion != null){
+            String edicion = null;
+            String curso = null;
+            String[] datos = null;
+            try {
+                datos = finalizarEdicion.split(",");
+                edicion = datos[1];
+                curso = datos[0];
+            } catch (Exception e) {
+            }
+            if (edicion != null && curso != null) {
+                port.finalizarEdicion(curso, edicion);
+            }
+            response.sendRedirect("index.jsp");
         }
     }
 

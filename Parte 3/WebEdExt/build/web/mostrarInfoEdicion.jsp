@@ -59,7 +59,7 @@
                             <input class="form-control" type="date" name="fechafin" readonly="" value="<%= fechaReg%>">
                         </div>
                     </div>
-                        <div class="col-sm">
+                    <div class="col-sm">
                         <div class="form-group">
                             <label for="cupos">Cupos</label>
                             <input type="number" class="form-control" id="cupos" name="cupos" readonly="" value="<%= de.getCupos()%>">
@@ -68,20 +68,20 @@
                 </div>
                 <div class="form-group">
                     <label for="profesores">Profesores</label>
-                    <div class="list-group" id="profesores">
+                    <ul class="list-group" id="profesores">
                         <%
                             if (de.getProfesores().isEmpty()) {
                         %>
-                        <label class="list-group-item"> No tiene ...</label>
-                        <%
-                            }
-                            for (String s : de.getProfesores()) {
-                        %>
-                        <label class="list-group-item"> <%= s%></label>
-                        <%
-                            }
-                        %>
-                    </div>
+                        <li class="list-group-item">No tiene ...</li>
+                            <%
+                                }
+                                for (String s : de.getProfesores()) {
+                            %>
+                        <li class="list-group-item"><%= s%></li>
+                            <%
+                                }
+                            %>
+                    </ul>
                 </div>
             </div>
         </div>

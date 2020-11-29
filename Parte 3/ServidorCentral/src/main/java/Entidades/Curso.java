@@ -3,6 +3,7 @@ package Entidades;
 import DataTypes.DataCurso;
 import DataTypes.DataEdicion;
 import DataTypes.DataEstudiante;
+import DataTypes.DataInscripcionEdicion;
 import DataTypes.DataValoracion;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -175,12 +176,12 @@ public class Curso implements Serializable {
         return e.darDatos();
     }
 
-    public List<String> darInscriptosEdicion(String nombreEdicion) {
+    public List<DataInscripcionEdicion> darInscriptosEdicion(String nombreEdicion) {
         Edicion e = ediciones.get(nombreEdicion);
         return e.darInscriptos();
     }
     
-    public List<DataEstudiante> darAceptadosAEdicion(String nombreEdicion){
+    public List<DataInscripcionEdicion> darAceptadosAEdicion(String nombreEdicion){
         Edicion e = ediciones.get(nombreEdicion);
         return e.darAceptados();
     }

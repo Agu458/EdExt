@@ -71,7 +71,7 @@
                     <div class="col-lg-6 col-md-6 col-12">
                         <div class="our-team">
                             <div class="team-content">
-                                <a class="title" href="estudiantesAceptados.jsp">Estudiantes Aceptados</a>
+                                <a class="title" href="estudiantesAceptados.jsp">Estudiantes Aceptados Y Calificaciones</a>
                                 <span class="post">Inscripciones aceptadas en edicion</span>
                             </div>
                         </div>

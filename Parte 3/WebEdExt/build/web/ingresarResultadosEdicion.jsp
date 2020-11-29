@@ -4,6 +4,7 @@
     Author     : Agustín
 --%>
 
+<%@page import="Server.DataInscripcionEdicion"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="Server.DataEdicion"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -44,7 +45,7 @@
                     </div>
                 </div>
                 <%
-                    } else {
+                } else {
                 %>
                 <h2 class="text-center"> Datos de la Edicion </h2>
                 <div class="form-group">
@@ -93,42 +94,59 @@
                 </div>
                 <div class="form-group">
                     <label for="profesores">Profesores</label>
-                    <div class="list-group" id="profesores">
+                    <ul class="list-group" id="profesores">
                         <%
                             if (de.getProfesores().isEmpty()) {
                         %>
-                        <label class="list-group-item"> No tiene ...</label>
-                        <%
-                            }
-                            for (String s : de.getProfesores()) {
-                        %>
-                        <label class="list-group-item"> <%= s%></label>
-                        <%
-                            }
-                        %>
-                    </div>
+                        <li class="list-group-item">No tiene ...</li>
+                            <%
+                                }
+                                for (String s : de.getProfesores()) {
+                            %>
+                        <li class="list-group-item"><%= s%></li>
+                            <%
+                                }
+                            %>
+                    </ul>
                 </div>
-                    <div class="form-group">
+                <div class="form-group">
                     <label for="estudiantes">Estudiantes</label>
                     <div class="list-group" id="estudiantes">
                         <form action="Usuario" method="GET">
-                        <%
-                            if (aceptados.isEmpty()) {
-                        %>
-                        <label class="list-group-item"> No tiene ...</label>
-                        <%
-                            }
-                            for (Object o : aceptados) {
-                            DataEstudiante est = (DataEstudiante) o;
-                        %>
-                        <button type="submit" class="list-group-item list-group-item-action" name="verInscripcionUsuario" value="<%= est.getEmail() %>,<%= de.getNombre() %>,<%= de.getCurso() %>"> <%= est.getEmail() %></button>
-                        <%
-                            }
-                        %>
+                            <%
+                                if (aceptados.isEmpty()) {
+                            %>
+                            <label class="list-group-item"> No tiene ...</label>
+                            <%
+                                }
+                                for (Object o : aceptados) {
+                                    DataInscripcionEdicion die = (DataInscripcionEdicion) o;
+                            %>
+                            <button type="submit" class="list-group-item list-group-item-action" name="verInscripcionUsuario" value="<%= die.getEstudiante() %>,<%= de.getNombre()%>,<%= de.getCurso()%>"><%= die.getEstudiante() %></button>
+                            <%
+                                }
+                            %>
                         </form>
                     </div>
                 </div>
                 <%
+                    if (de.isActiva()) {
+                %>
+                <div class="form-group text-right">
+                    <form action="Edicion" method="POST">
+                        <button type="submit" class="btn btn-danger" name="finalizarEdicion" value="<%= de.getCurso()%>,<%= de.getNombre()%>" >Finalizar Edicion de Curso</button>
+                    </form>
+                </div>
+                <%
+                } else {
+                %>
+                <div class="form-group">
+                    <div class="alert alert-warning" role="alert">
+                        <strong>Edicion de curso finalizada </strong>
+                    </div>
+                </div>
+                <%
+                        }
                     }
                 %>
             </div>
