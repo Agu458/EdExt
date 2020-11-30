@@ -444,7 +444,7 @@ public class Sistema implements ISistema {
                     Curso cur = em.find(Curso.class, curso);
                     if (est != null && cur != null) {
                         Edicion ed = cur.getEdicionActual();
-                        if (ed.isActiva()) {
+                        if (ed != null && ed.isActiva()) {
                             InscripcionEdicion inscripcion = est.inscribirseAUnaEdicion(ed, fecha, urlVideo);
                             cur.getEdicionActual().agregarInscripcion(inscripcion);
                             em.persist(inscripcion);
@@ -470,6 +470,9 @@ public class Sistema implements ISistema {
                     if (prog != null && est != null) {
                         InscripcionPrograma inscripcion = est.inscribirseAUnPrograma(prog, fecha);
                         prog.agregarInscripcion(inscripcion);
+                        for (Curso c : prog.getCursos()) {
+                            this.inscripcionEdicion(c.getNombre(), estudiante, fecha, "");
+                        }
                         em.persist(inscripcion);
                     }
                 }
@@ -478,6 +481,7 @@ public class Sistema implements ISistema {
         } catch (Exception e) {
             em.getTransaction().rollback();
         }
+        em.close();
     }
 
     @Override
@@ -579,8 +583,13 @@ public class Sistema implements ISistema {
             ProgramaFormacion pf = em.find(ProgramaFormacion.class, nombre);
             Curso c = em.find(Curso.class, nombreCurso);
             if (pf != null && c != null) {
-                pf.agregarCurso(c);
-                c.agregarPrograma(pf);
+                if (c.getEdicionActual() != null) {
+                    pf.agregarCurso(c);
+                    for (String s : pf.darInscriptos()) {
+                        this.inscripcionEdicion(c.getNombre(), s, new Date(), "");
+                    }
+                    c.agregarPrograma(pf);
+                }
             }
             em.getTransaction().commit();
         } catch (Exception e) {

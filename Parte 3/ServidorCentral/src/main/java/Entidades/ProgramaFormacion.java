@@ -99,6 +99,14 @@ public class ProgramaFormacion implements Serializable {
         }
         return false;
     }
+    
+    public List<String> darInscriptos(){
+        List<String> result = new ArrayList();
+        for(InscripcionPrograma ip : inscriptos){
+            result.add(ip.getEstudiante().getEmail());
+        }
+        return result;
+    }
 
     public void agregarInscripcion(InscripcionPrograma inscripcion) {
         if (!this.estaInscripto(inscripcion.getEstudiante().getEmail())) {

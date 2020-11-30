@@ -78,7 +78,7 @@ public class Estudiante extends Usuario {
 
     public InscripcionPrograma darInscripcionPrograma(String programa) {
         for (InscripcionPrograma aux : inscripcionProgramas) {
-            if (aux.getPrograma().getNombre() == programa) {
+            if (aux.getPrograma().getNombre().equals(programa)) {
                 return aux;
             }
         }
@@ -91,9 +91,9 @@ public class Estudiante extends Usuario {
             if (inscripcion.getEstado() == EstadoInscripcion.RECHASADO) {
                 inscripcion.setEstado(EstadoInscripcion.INSCRIPTO);
                 inscripcion.setInscripcionesPrevias(inscripcion.getInscripcionesPrevias() + 1);
+                inscripcion.setFecha(fecha);
             }
             inscripcion.setUrlVideo(urlVideo);
-            inscripcion.setFecha(fecha);
         } else {
             inscripcion = new InscripcionEdicion(fecha, edicion, this, urlVideo);
             inscripcionEdiciones.add(inscripcion);
@@ -195,10 +195,10 @@ public class Estudiante extends Usuario {
         }
         return null;
     }
-    
-    public void calificar(String curso, String edicion, float calificacion){
+
+    public void calificar(String curso, String edicion, float calificacion) {
         InscripcionEdicion inscripcion = this.darInscripcionEdicion(edicion, curso);
-        if(inscripcion != null){
+        if (inscripcion != null) {
             inscripcion.setCalificacion(calificacion);
         }
     }
