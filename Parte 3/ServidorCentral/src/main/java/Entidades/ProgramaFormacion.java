@@ -1,5 +1,6 @@
 package Entidades;
 
+import DataTypes.DataInscripcionEdicion;
 import DataTypes.DataProgramaFormacion;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -56,12 +57,12 @@ public class ProgramaFormacion implements Serializable {
     public void setCursos(List<Curso> cursos) {
         this.cursos = cursos;
     }
-    
-    public void agregarCurso(Curso c){
+
+    public void agregarCurso(Curso c) {
         cursos.add(c);
-        for(Categoria cat : c.getCategorias()){
+        for (Categoria cat : c.getCategorias()) {
             String nombre = cat.getNombre();
-            if(!caonteieneCategoria(nombre)){
+            if (!caonteieneCategoria(nombre)) {
                 categorias.add(cat);
             }
         }
@@ -90,19 +91,19 @@ public class ProgramaFormacion implements Serializable {
     public void setFechaFin(Date fechaFin) {
         this.fechaFin = fechaFin;
     }
-    
+
     public boolean estaInscripto(String email) {
         for (InscripcionPrograma aux : inscriptos) {
-            if (aux.getEstudiante().getEmail() == email) {
+            if (aux.getEstudiante().getEmail().equals(email)) {
                 return true;
             }
         }
         return false;
     }
-    
-    public List<String> darInscriptos(){
+
+    public List<String> darInscriptos() {
         List<String> result = new ArrayList();
-        for(InscripcionPrograma ip : inscriptos){
+        for (InscripcionPrograma ip : inscriptos) {
             result.add(ip.getEstudiante().getEmail());
         }
         return result;
@@ -113,48 +114,77 @@ public class ProgramaFormacion implements Serializable {
             inscriptos.add(inscripcion);
         }
     }
-    
-    public DataProgramaFormacion darDatos(){
+
+    public DataProgramaFormacion darDatos() {
         List<String> c = new ArrayList();
-        for(Curso cur : cursos){
+        for (Curso cur : cursos) {
             String dp = cur.getNombre();
             c.add(dp);
         }
-        
+
         List<String> cats = new ArrayList();
-        for(Categoria cat : categorias){
+        for (Categoria cat : categorias) {
             cats.add(cat.getNombre());
         }
-        
+
         List<String> insc = new ArrayList();
-        for(InscripcionPrograma ip : inscriptos){
+        for (InscripcionPrograma ip : inscriptos) {
             insc.add(ip.getEstudiante().getEmail());
         }
-        
+
         return new DataProgramaFormacion(nombre, c, descripcion, fechaIni, fechaFin, cats, insc);
     }
-    
-    public boolean conteneCurso(String curso){
+
+    public boolean conteneCurso(String curso) {
         boolean encontre = false;
         Iterator it = cursos.iterator();
-        while(it.hasNext() && !encontre){
+        while (it.hasNext() && !encontre) {
             Curso c = (Curso) it.next();
-            if(c.getNombre() == curso){
+            if (c.getNombre() == curso) {
                 encontre = true;
             }
         }
         return encontre;
     }
-    
-    public boolean caonteieneCategoria(String cat){
+
+    public boolean caonteieneCategoria(String cat) {
         boolean encontre = false;
         Iterator it = categorias.iterator();
-        while(it.hasNext() && !encontre){
+        while (it.hasNext() && !encontre) {
             Categoria c = (Categoria) it.next();
-            if(c.getNombre() == cat){
+            if (c.getNombre() == cat) {
                 encontre = true;
             }
         }
         return encontre;
+    }
+
+    public InscripcionPrograma darInscripcion(String estudiante) {
+        for (InscripcionPrograma inscripcion : this.inscriptos) {
+            if (inscripcion.getEstudiante().getEmail().equals(estudiante)) {
+                return inscripcion;
+            }
+        }
+        return null;
+    }
+
+    public List<DataInscripcionEdicion> darDatosCertificado(String estudiante) {
+        InscripcionPrograma inscripcion = this.darInscripcion(estudiante);
+        List<DataInscripcionEdicion> inscripcionesEdiciones = new ArrayList();
+        if (inscripcion != null) {
+            for (Curso curso : this.cursos) {
+                DataInscripcionEdicion ins = curso.aproboEdicion(estudiante);
+                if (ins != null) {
+                    inscripcionesEdiciones.add(ins);
+                }
+            }
+            if (inscripcionesEdiciones.size() == this.cursos.size()) {
+                return inscripcionesEdiciones;
+            } else {
+                return null;
+            }
+        } else {
+            return null;
+        }
     }
 }

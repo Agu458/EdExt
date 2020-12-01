@@ -48,6 +48,8 @@ public class Edicion implements Serializable {
     @OneToMany
     private List<Comentario> comentarios;
     private boolean activa;
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date fechaCierre;
 
     public Edicion() {
     }
@@ -66,6 +68,7 @@ public class Edicion implements Serializable {
         this.curso = curso;
         this.aceptados = 0;
         this.activa = true;
+        this.fechaCierre = null;
     }
 
     public Long getId() {
@@ -136,7 +139,7 @@ public class Edicion implements Serializable {
             coms.add(comentario.darDatos());
         }
         
-        return new DataEdicion(nombreEdicion, fechaIni, fechaFin, cupos, aceptados, fechaPublicacion, dps, c, coms, activa);
+        return new DataEdicion(nombreEdicion, fechaIni, fechaFin, cupos, aceptados, fechaPublicacion, dps, c, coms, activa, fechaCierre);
     }
 
     public Curso getCurso() {
@@ -188,7 +191,13 @@ public class Edicion implements Serializable {
         this.aceptados = aceptados;
     }
 
-    
+    public Date getFechaCierre() {
+        return fechaCierre;
+    }
+
+    public void setFechaCierre(Date fechaCierre) {
+        this.fechaCierre = fechaCierre;
+    }
 
     public List<DataInscripcionEdicion> darAceptados() {
         List<DataInscripcionEdicion> insc = new ArrayList();
@@ -201,19 +210,12 @@ public class Edicion implements Serializable {
     }
 
     public InscripcionEdicion darInscripcion(String email) {
-        InscripcionEdicion ie = null;
-        boolean encontre = false;
-        for (InscripcionEdicion aux : inscriptos) {
-            if (!encontre) {
-                if (aux.getEstudiante().getEmail() == email) {
-                    ie = aux;
-                    encontre = true;
-                }
-            } else {
-                break;
+        for(InscripcionEdicion inscripcion : this.inscriptos){
+            if(inscripcion.getEstudiante().getEmail().equals(email)){
+                return inscripcion;
             }
         }
-        return ie;
+        return null;
     }
 
     public void aceptarInscripciones(List<String> estudiantes) {
@@ -275,5 +277,20 @@ public class Edicion implements Serializable {
         Comentario comentario = new Comentario(estudiante, cuerpo, fechaPublicacion);
         this.comentarios.add(comentario);
         em.persist(comentario);
+    }
+    
+    public void finalizar(){
+        for(InscripcionEdicion inscripcion : this.inscriptos){
+            if(inscripcion.getEstado() == EstadoInscripcion.ACEPTADO){
+                if(inscripcion.getCalificacion() > 6){
+                    inscripcion.setAprobado(true);
+                    inscripcion.setFechaAprobado(new Date());
+                } else {
+                    inscripcion.setAprobado(false);
+                }
+            }
+        }
+        this.fechaCierre = new Date();
+        this.activa = false;
     }
 }

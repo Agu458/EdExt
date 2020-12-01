@@ -41,6 +41,7 @@ public class Curso implements Serializable {
     private List<Categoria> categorias;
     @OneToMany
     private List<Valoracion> valoraciones;
+    private int visitas;
 
     public Curso() {
     }
@@ -58,6 +59,7 @@ public class Curso implements Serializable {
         this.instituto = instituto;
         this.categorias = categorias;
         this.valoraciones = new ArrayList();
+        this.visitas = 0;
     }
 
     public String getNombre() {
@@ -298,4 +300,24 @@ public class Curso implements Serializable {
     public void agregarValoracion(Valoracion valoracion){
         this.valoraciones.add(valoracion);
     }
+    
+    public DataInscripcionEdicion aproboEdicion(String estudiante){
+        InscripcionEdicion inscripcion;
+        for(Edicion edicion : this.ediciones.values()){
+            inscripcion = edicion.darInscripcion(estudiante);
+            if(inscripcion != null && inscripcion.getAprobado()){
+                return inscripcion.darDatos();
+            }
+        }
+        return null;
+    }
+
+    public int getVisitas() {
+        return visitas;
+    }
+
+    public void setVisitas(int visitas) {
+        this.visitas = visitas;
+    }
+    
 }

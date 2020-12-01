@@ -29,7 +29,7 @@ public class Valoracion implements Serializable {
     private Double valoracion;
     @OneToOne
     private Curso curso;
-    
+
     public Valoracion() {
     }
 

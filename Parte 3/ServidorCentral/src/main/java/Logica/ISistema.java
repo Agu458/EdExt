@@ -109,4 +109,10 @@ public interface ISistema {
     public void finalizarEdicion(String curso, String edicion);
     
     public void calificarEstudiante(String estudiante, String curso, String edicion, Float calificacion);
+    
+    public List<DataInscripcionEdicion> darDatosCertificado(String estudiante, String programa);
+    
+    public void agregarVisita(String curso);
+    
+    public List<DataCurso> listarCursosTendencia();
 }

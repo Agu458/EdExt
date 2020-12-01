@@ -13,7 +13,7 @@ import javax.persistence.metamodel.MapAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2020-11-29T14:02:01")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2020-12-01T10:18:03")
 @StaticMetamodel(Curso.class)
 public class Curso_ { 
 
@@ -24,6 +24,7 @@ public class Curso_ {
     public static volatile SingularAttribute<Curso, String> nombre;
     public static volatile SingularAttribute<Curso, String> URL;
     public static volatile ListAttribute<Curso, Valoracion> valoraciones;
+    public static volatile SingularAttribute<Curso, Integer> visitas;
     public static volatile SingularAttribute<Curso, Integer> horas;
     public static volatile SingularAttribute<Curso, Instituto> instituto;
     public static volatile MapAttribute<Curso, String, Edicion> ediciones;

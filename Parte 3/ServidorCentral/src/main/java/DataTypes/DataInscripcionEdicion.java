@@ -17,11 +17,13 @@ public class DataInscripcionEdicion {
     private String estudiante;
     private Integer inscripcionesPrevias;
     private String urlVideo;
+    private Boolean aprobado;
+    private Date fechaAprobado;
 
     public DataInscripcionEdicion() {
     }
 
-    public DataInscripcionEdicion(Long id, Date fecha, DataEdicion edicion, EstadoInscripcion estado, float calificacion, String estudiante, Integer inscripcionesPrevias, String urlVideo) {
+    public DataInscripcionEdicion(Long id, Date fecha, DataEdicion edicion, EstadoInscripcion estado, float calificacion, String estudiante, Integer inscripcionesPrevias, String urlVideo, Boolean aprobado, Date fechaAprobado) {
         this.id = id;
         this.fecha = fecha;
         this.edicion = edicion;
@@ -30,6 +32,8 @@ public class DataInscripcionEdicion {
         this.estudiante = estudiante;
         this.inscripcionesPrevias = inscripcionesPrevias;
         this.urlVideo = urlVideo;
+        this.aprobado = aprobado;
+        this.fechaAprobado = fechaAprobado;
     }
 
     public Long getId() {
@@ -62,6 +66,14 @@ public class DataInscripcionEdicion {
 
     public String getUrlVideo() {
         return urlVideo;
+    }
+
+    public Boolean getAprobado() {
+        return aprobado;
+    }
+
+    public Date getFechaAprobado() {
+        return fechaAprobado;
     }
     
 }

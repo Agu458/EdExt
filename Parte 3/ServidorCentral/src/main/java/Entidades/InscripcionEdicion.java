@@ -32,6 +32,9 @@ public class InscripcionEdicion implements Serializable{
     private float calificacion;
     private Integer inscripcionesPrevias;
     private String urlVideo;
+    private Boolean aprobado;
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date fechaAprobado;
 
     public InscripcionEdicion() {
     }
@@ -44,6 +47,8 @@ public class InscripcionEdicion implements Serializable{
         this.estudiante = estudiante;
         this.inscripcionesPrevias = 0;
         this.urlVideo = urlVideo;
+        this.aprobado = false;
+        this.fechaAprobado = null;
     }
 
     public Long getId() {
@@ -109,8 +114,24 @@ public class InscripcionEdicion implements Serializable{
     public void setUrlVideo(String urlVideo) {
         this.urlVideo = urlVideo;
     }
+
+    public Boolean getAprobado() {
+        return aprobado;
+    }
+
+    public void setAprobado(Boolean aprobado) {
+        this.aprobado = aprobado;
+    }
+
+    public Date getFechaAprobado() {
+        return fechaAprobado;
+    }
+
+    public void setFechaAprobado(Date fechaAprobado) {
+        this.fechaAprobado = fechaAprobado;
+    }
     
     public DataInscripcionEdicion darDatos(){
-        return new DataInscripcionEdicion(id, fecha, edicion.darDatos(), estado, calificacion, estudiante.getEmail(), inscripcionesPrevias, urlVideo);
+        return new DataInscripcionEdicion(id, fecha, edicion.darDatos(), estado, calificacion, estudiante.getEmail(), inscripcionesPrevias, urlVideo, aprobado, fechaAprobado);
     }
 }

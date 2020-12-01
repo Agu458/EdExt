@@ -89,6 +89,11 @@ public class Curso extends HttpServlet {
                 String json = new Gson().toJson(cursos);
                 out.println(json);
             }
+            if (accion.equals("listarCursosTendencia")) {
+                List<DataCurso> cursos = port.listarCursosTendencia();
+                String json = new Gson().toJson(cursos);
+                out.println(json);
+            }
             if (accion.equals("listarEdicionesCurso")) {
                 String curso = request.getParameter("curso");
                 if (curso != null) {
@@ -116,6 +121,7 @@ public class Curso extends HttpServlet {
         if (consultarCurso != null) {
             DataCurso dc = port.darDatosCurso(consultarCurso);
             request.setAttribute("curso", dc);
+            port.agregarVisita(dc.getNombre());
             request.getRequestDispatcher("mostrarInfoCurso.jsp").forward(request, response);
         }
     }

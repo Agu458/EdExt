@@ -26,6 +26,8 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="estudiante" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="inscripcionesPrevias" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
  *         &lt;element name="urlVideo" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="aprobado" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
+ *         &lt;element name="fechaAprobado" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -43,7 +45,9 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "calificacion",
     "estudiante",
     "inscripcionesPrevias",
-    "urlVideo"
+    "urlVideo",
+    "aprobado",
+    "fechaAprobado"
 })
 public class DataInscripcionEdicion {
 
@@ -56,6 +60,9 @@ public class DataInscripcionEdicion {
     protected String estudiante;
     protected Integer inscripcionesPrevias;
     protected String urlVideo;
+    protected Boolean aprobado;
+    @XmlSchemaType(name = "dateTime")
+    protected XMLGregorianCalendar fechaAprobado;
 
     /**
      * Obtiene el valor de la propiedad id.
@@ -239,6 +246,54 @@ public class DataInscripcionEdicion {
      */
     public void setUrlVideo(String value) {
         this.urlVideo = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad aprobado.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Boolean }
+     *     
+     */
+    public Boolean isAprobado() {
+        return aprobado;
+    }
+
+    /**
+     * Define el valor de la propiedad aprobado.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Boolean }
+     *     
+     */
+    public void setAprobado(Boolean value) {
+        this.aprobado = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad fechaAprobado.
+     * 
+     * @return
+     *     possible object is
+     *     {@link XMLGregorianCalendar }
+     *     
+     */
+    public XMLGregorianCalendar getFechaAprobado() {
+        return fechaAprobado;
+    }
+
+    /**
+     * Define el valor de la propiedad fechaAprobado.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link XMLGregorianCalendar }
+     *     
+     */
+    public void setFechaAprobado(XMLGregorianCalendar value) {
+        this.fechaAprobado = value;
     }
 
 }

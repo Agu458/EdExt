@@ -52,6 +52,10 @@
         <servlet-name>Calificacion</servlet-name>
         <servlet-class>Logic.Calificacion</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Certificado</servlet-name>
+        <servlet-class>Logic.Certificado</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -95,6 +99,10 @@
     <servlet-mapping>
         <servlet-name>Calificacion</servlet-name>
         <url-pattern>/Calificacion</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Certificado</servlet-name>
+        <url-pattern>/Certificado</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

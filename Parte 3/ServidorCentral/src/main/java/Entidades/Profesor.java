@@ -9,7 +9,6 @@ import javax.persistence.*;
 @Entity
 public class Profesor extends Usuario {
 
-
     @ManyToOne
     private Instituto instituto;
     @ManyToMany(mappedBy = "profesores")

@@ -12,16 +12,18 @@ public class DataInscripcionPrograma {
     private Long id;
     private Date fecha;
     private String programa;
-    private DataUsuario estudiante;
-
+    private String estudiante;
+    private Boolean aprobado;
+    
     public DataInscripcionPrograma() {
     }
 
-    public DataInscripcionPrograma(Long id, Date fecha, String programa, DataUsuario estudiante) {
+    public DataInscripcionPrograma(Long id, Date fecha, String programa, String estudiante, Boolean aprobado) {
         this.id = id;
         this.fecha = fecha;
         this.programa = programa;
         this.estudiante = estudiante;
+        this.aprobado = aprobado;
     }
 
     public Long getId() {
@@ -36,8 +38,12 @@ public class DataInscripcionPrograma {
         return programa;
     }
 
-    public DataUsuario getEstudiante() {
+    public String getEstudiante() {
         return estudiante;
+    }
+
+    public Boolean getAprobado() {
+        return aprobado;
     }
     
 }

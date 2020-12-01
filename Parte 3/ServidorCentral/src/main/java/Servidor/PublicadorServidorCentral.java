@@ -309,14 +309,34 @@ public class PublicadorServidorCentral {
         }
         return dv;
     }
-    
+
     @WebMethod
-    public void finalizarEdicion(String curso, String edicion){
+    public void finalizarEdicion(String curso, String edicion) {
         sistema.finalizarEdicion(curso, edicion);
+    }
+
+    @WebMethod
+    public void calificarEstudiante(String estudiante, String curso, String edicion, Float calificacion) {
+        sistema.calificarEstudiante(estudiante, curso, edicion, calificacion);
+    }
+
+    @WebMethod
+    public List<DataInscripcionEdicion> darDatosCertificado(String estudiante, String programa) {
+        List<DataInscripcionEdicion> res = sistema.darDatosCertificado(estudiante, programa);
+        if (res == null) {
+            return new ArrayList();
+        } else {
+            return res;
+        }
     }
     
     @WebMethod
-    public void calificarEstudiante(String estudiante, String curso, String edicion, Float calificacion){
-        sistema.calificarEstudiante(estudiante, curso, edicion, calificacion);
+    public void agregarVisita(String curso){
+        sistema.agregarVisita(curso);
+    }
+    
+    @WebMethod
+    public List<DataCurso> listarCursosTendencia(){
+        return sistema.listarCursosTendencia();
     }
 }

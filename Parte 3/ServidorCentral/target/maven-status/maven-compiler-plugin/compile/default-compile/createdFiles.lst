@@ -10,7 +10,6 @@ DataTypes\DataInscripcionEdicion.class
 Entidades\Categoria.class
 Entidades\Profesor.class
 Entidades\Categoria_.class
-Servidor\Main.class
 Entidades\InscripcionEdicion_.class
 DataTypes\DataEdicion.class
 Servidor\PublicadorServidorCentral.class

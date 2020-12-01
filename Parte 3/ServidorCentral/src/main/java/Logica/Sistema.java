@@ -19,6 +19,8 @@ import Entidades.Profesor;
 import Entidades.ProgramaFormacion;
 import Entidades.Usuario;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.*;
@@ -391,7 +393,6 @@ public class Sistema implements ISistema {
     public void altaEdicionCurso(DataEdicion de, String curso) {
         EntityManager em = emf.createEntityManager();
         try {
-            System.out.println("Hola");
             em.getTransaction().begin();
             Curso c = em.find(Curso.class, curso);
             if (c != null) {
@@ -880,7 +881,7 @@ public class Sistema implements ISistema {
                 if (cur != null) {
                     Edicion ed = cur.darEdicion(edicion);
                     if (ed != null) {
-                        ed.setActiva(false);
+                        ed.finalizar();
                     }
                 }
             }
@@ -909,5 +910,70 @@ public class Sistema implements ISistema {
             em.getTransaction().rollback();
         }
         em.close();
+    }
+
+    @Override
+    public List<DataInscripcionEdicion> darDatosCertificado(String estudiante, String programa) {
+        EntityManager em = emf.createEntityManager();
+        List<DataInscripcionEdicion> result = null;
+        try {
+            em.getTransaction().begin();
+            ProgramaFormacion prog = em.find(ProgramaFormacion.class, programa);
+            if (prog != null) {
+                result = prog.darDatosCertificado(estudiante);
+            }
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            em.getTransaction().rollback();
+        }
+        em.close();
+        return result;
+    }
+
+    public void agregarVisita(String curso) {
+        EntityManager em = emf.createEntityManager();
+        try {
+            em.getTransaction().begin();
+
+            if (curso != null) {
+                Curso cur = em.find(Curso.class, curso);
+                if (cur != null) {
+                    cur.setVisitas(cur.getVisitas() + 1);
+                }
+            }
+
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+            e.printStackTrace();
+        }
+    }
+
+    public List<DataCurso> listarCursosTendencia() {
+        EntityManager em = emf.createEntityManager();
+        List<DataCurso> cursos = new ArrayList();
+        try {
+            em.getTransaction().begin();
+
+            //Traer cursos de la db
+            String q = "SELECT c FROM Curso c";
+            List cur = em.createQuery(q).getResultList();
+
+            //Ordenar cursos por visitas
+            cur.sort(Comparator.comparing(Curso::getVisitas));
+
+            //Dar datos de los cursos
+            for (Object o : cur) {
+                Curso c = (Curso) o;
+                cursos.add(c.darDatos());
+            }
+
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+        }
+        em.close();
+        return cursos;
     }
 }

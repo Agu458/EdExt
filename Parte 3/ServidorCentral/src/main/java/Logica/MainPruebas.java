@@ -23,10 +23,9 @@ public class MainPruebas {
         // TODO code application logic here
         Fabrica fab = Fabrica.getInstance();
         ISistema is = fab.getISistema();
-        List profesores = new ArrayList();
-        profesores.add("aguperaza458@gmail.com");
-        DataEdicion de = new DataEdicion("BASE DE DATOS 2020", new Date(), new Date(), 2, new Date(), profesores);
-        is.altaEdicionCurso(de, "BASE DE DATOS");
+        List inscripciones = is.darDatosCertificado("aguperaza458@gmail.com", "TECNOLOGO");
+        System.out.println(inscripciones.size());
+        
     }
     
 }

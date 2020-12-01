@@ -22,7 +22,9 @@ public class InscripcionPrograma implements Serializable{
     private Date fecha;
     @OneToOne
     private ProgramaFormacion programa;
+    @OneToOne
     private Usuario estudiante;
+    private Boolean aprobado;
 
     public InscripcionPrograma() {
     }
@@ -31,6 +33,7 @@ public class InscripcionPrograma implements Serializable{
         this.fecha = fecha;
         this.programa = programa;
         this.estudiante = estudiante;
+        this.aprobado = null;
     }
 
     public Long getId() {
@@ -64,8 +67,16 @@ public class InscripcionPrograma implements Serializable{
     public void setEstudiante(Usuario estudiante) {
         this.estudiante = estudiante;
     }
+
+    public Boolean getAprobado() {
+        return aprobado;
+    }
+
+    public void setAprobado(Boolean aprobado) {
+        this.aprobado = aprobado;
+    }
     
     public DataInscripcionPrograma darDatos(){
-        return new DataInscripcionPrograma(id, fecha, programa.getNombre(), estudiante.darDatos());
+        return new DataInscripcionPrograma(id, fecha, programa.getNombre(), estudiante.getEmail(), aprobado);
     }
 }
