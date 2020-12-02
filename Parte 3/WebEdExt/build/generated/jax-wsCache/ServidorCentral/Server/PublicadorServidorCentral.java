@@ -58,21 +58,18 @@ public interface PublicadorServidorCentral {
 
     /**
      * 
-     * @param arg2
-     * @param arg1
      * @param arg0
+     * @return
+     *     returns Server.Lista
      */
     @WebMethod
-    @RequestWrapper(localName = "desistirDeInscripcion", targetNamespace = "http://Servidor/", className = "Server.DesistirDeInscripcion")
-    @ResponseWrapper(localName = "desistirDeInscripcionResponse", targetNamespace = "http://Servidor/", className = "Server.DesistirDeInscripcionResponse")
-    @Action(input = "http://Servidor/PublicadorServidorCentral/desistirDeInscripcionRequest", output = "http://Servidor/PublicadorServidorCentral/desistirDeInscripcionResponse")
-    public void desistirDeInscripcion(
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "listarCursosConEdicionInstituto", targetNamespace = "http://Servidor/", className = "Server.ListarCursosConEdicionInstituto")
+    @ResponseWrapper(localName = "listarCursosConEdicionInstitutoResponse", targetNamespace = "http://Servidor/", className = "Server.ListarCursosConEdicionInstitutoResponse")
+    @Action(input = "http://Servidor/PublicadorServidorCentral/listarCursosConEdicionInstitutoRequest", output = "http://Servidor/PublicadorServidorCentral/listarCursosConEdicionInstitutoResponse")
+    public Lista listarCursosConEdicionInstituto(
         @WebParam(name = "arg0", targetNamespace = "")
-        String arg0,
-        @WebParam(name = "arg1", targetNamespace = "")
-        String arg1,
-        @WebParam(name = "arg2", targetNamespace = "")
-        String arg2);
+        String arg0);
 
     /**
      * 
@@ -88,6 +85,153 @@ public interface PublicadorServidorCentral {
     public boolean validarNombrePrograma(
         @WebParam(name = "arg0", targetNamespace = "")
         String arg0);
+
+    /**
+     * 
+     * @param arg1
+     * @param arg0
+     * @return
+     *     returns boolean
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "validarNombreEdicion", targetNamespace = "http://Servidor/", className = "Server.ValidarNombreEdicion")
+    @ResponseWrapper(localName = "validarNombreEdicionResponse", targetNamespace = "http://Servidor/", className = "Server.ValidarNombreEdicionResponse")
+    @Action(input = "http://Servidor/PublicadorServidorCentral/validarNombreEdicionRequest", output = "http://Servidor/PublicadorServidorCentral/validarNombreEdicionResponse")
+    public boolean validarNombreEdicion(
+        @WebParam(name = "arg0", targetNamespace = "")
+        String arg0,
+        @WebParam(name = "arg1", targetNamespace = "")
+        String arg1);
+
+    /**
+     * 
+     * @param arg1
+     * @param arg0
+     * @return
+     *     returns Server.Lista
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "listarInscriptosAEdicion", targetNamespace = "http://Servidor/", className = "Server.ListarInscriptosAEdicion")
+    @ResponseWrapper(localName = "listarInscriptosAEdicionResponse", targetNamespace = "http://Servidor/", className = "Server.ListarInscriptosAEdicionResponse")
+    @Action(input = "http://Servidor/PublicadorServidorCentral/listarInscriptosAEdicionRequest", output = "http://Servidor/PublicadorServidorCentral/listarInscriptosAEdicionResponse")
+    public Lista listarInscriptosAEdicion(
+        @WebParam(name = "arg0", targetNamespace = "")
+        String arg0,
+        @WebParam(name = "arg1", targetNamespace = "")
+        String arg1);
+
+    /**
+     * 
+     * @param arg2
+     * @param arg1
+     * @param arg0
+     */
+    @WebMethod
+    @RequestWrapper(localName = "inscripcionAPrograma", targetNamespace = "http://Servidor/", className = "Server.InscripcionAPrograma")
+    @ResponseWrapper(localName = "inscripcionAProgramaResponse", targetNamespace = "http://Servidor/", className = "Server.InscripcionAProgramaResponse")
+    @Action(input = "http://Servidor/PublicadorServidorCentral/inscripcionAProgramaRequest", output = "http://Servidor/PublicadorServidorCentral/inscripcionAProgramaResponse")
+    public void inscripcionAPrograma(
+        @WebParam(name = "arg0", targetNamespace = "")
+        String arg0,
+        @WebParam(name = "arg1", targetNamespace = "")
+        String arg1,
+        @WebParam(name = "arg2", targetNamespace = "")
+        XMLGregorianCalendar arg2);
+
+    /**
+     * 
+     * @param arg2
+     * @param arg1
+     * @param arg0
+     */
+    @WebMethod
+    @RequestWrapper(localName = "aceptarInscripciones", targetNamespace = "http://Servidor/", className = "Server.AceptarInscripciones")
+    @ResponseWrapper(localName = "aceptarInscripcionesResponse", targetNamespace = "http://Servidor/", className = "Server.AceptarInscripcionesResponse")
+    @Action(input = "http://Servidor/PublicadorServidorCentral/aceptarInscripcionesRequest", output = "http://Servidor/PublicadorServidorCentral/aceptarInscripcionesResponse")
+    public void aceptarInscripciones(
+        @WebParam(name = "arg0", targetNamespace = "")
+        String arg0,
+        @WebParam(name = "arg1", targetNamespace = "")
+        String arg1,
+        @WebParam(name = "arg2", targetNamespace = "")
+        List<Object> arg2);
+
+    /**
+     * 
+     * @param arg3
+     * @param arg2
+     * @param arg5
+     * @param arg4
+     * @param arg1
+     * @param arg0
+     */
+    @WebMethod
+    @RequestWrapper(localName = "agregarComentarioEdicionCurso", targetNamespace = "http://Servidor/", className = "Server.AgregarComentarioEdicionCurso")
+    @ResponseWrapper(localName = "agregarComentarioEdicionCursoResponse", targetNamespace = "http://Servidor/", className = "Server.AgregarComentarioEdicionCursoResponse")
+    @Action(input = "http://Servidor/PublicadorServidorCentral/agregarComentarioEdicionCursoRequest", output = "http://Servidor/PublicadorServidorCentral/agregarComentarioEdicionCursoResponse")
+    public void agregarComentarioEdicionCurso(
+        @WebParam(name = "arg0", targetNamespace = "")
+        String arg0,
+        @WebParam(name = "arg1", targetNamespace = "")
+        String arg1,
+        @WebParam(name = "arg2", targetNamespace = "")
+        String arg2,
+        @WebParam(name = "arg3", targetNamespace = "")
+        String arg3,
+        @WebParam(name = "arg4", targetNamespace = "")
+        XMLGregorianCalendar arg4,
+        @WebParam(name = "arg5", targetNamespace = "")
+        Long arg5);
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns java.lang.Boolean
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "validarNombreCategoria", targetNamespace = "http://Servidor/", className = "Server.ValidarNombreCategoria")
+    @ResponseWrapper(localName = "validarNombreCategoriaResponse", targetNamespace = "http://Servidor/", className = "Server.ValidarNombreCategoriaResponse")
+    @Action(input = "http://Servidor/PublicadorServidorCentral/validarNombreCategoriaRequest", output = "http://Servidor/PublicadorServidorCentral/validarNombreCategoriaResponse")
+    public Boolean validarNombreCategoria(
+        @WebParam(name = "arg0", targetNamespace = "")
+        String arg0);
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns java.util.List<Server.DataEdicion>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "edicionesEstudiante", targetNamespace = "http://Servidor/", className = "Server.EdicionesEstudiante")
+    @ResponseWrapper(localName = "edicionesEstudianteResponse", targetNamespace = "http://Servidor/", className = "Server.EdicionesEstudianteResponse")
+    @Action(input = "http://Servidor/PublicadorServidorCentral/edicionesEstudianteRequest", output = "http://Servidor/PublicadorServidorCentral/edicionesEstudianteResponse")
+    public List<DataEdicion> edicionesEstudiante(
+        @WebParam(name = "arg0", targetNamespace = "")
+        String arg0);
+
+    /**
+     * 
+     * @param arg1
+     * @param arg0
+     * @return
+     *     returns java.util.List<Server.DataInscripcionEdicion>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "darDatosCertificado", targetNamespace = "http://Servidor/", className = "Server.DarDatosCertificado")
+    @ResponseWrapper(localName = "darDatosCertificadoResponse", targetNamespace = "http://Servidor/", className = "Server.DarDatosCertificadoResponse")
+    @Action(input = "http://Servidor/PublicadorServidorCentral/darDatosCertificadoRequest", output = "http://Servidor/PublicadorServidorCentral/darDatosCertificadoResponse")
+    public List<DataInscripcionEdicion> darDatosCertificado(
+        @WebParam(name = "arg0", targetNamespace = "")
+        String arg0,
+        @WebParam(name = "arg1", targetNamespace = "")
+        String arg1);
 
     /**
      * 
@@ -132,40 +276,16 @@ public interface PublicadorServidorCentral {
      * 
      * @param arg1
      * @param arg0
-     * @return
-     *     returns Server.Lista
      */
     @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "listarInscriptosAEdicion", targetNamespace = "http://Servidor/", className = "Server.ListarInscriptosAEdicion")
-    @ResponseWrapper(localName = "listarInscriptosAEdicionResponse", targetNamespace = "http://Servidor/", className = "Server.ListarInscriptosAEdicionResponse")
-    @Action(input = "http://Servidor/PublicadorServidorCentral/listarInscriptosAEdicionRequest", output = "http://Servidor/PublicadorServidorCentral/listarInscriptosAEdicionResponse")
-    public Lista listarInscriptosAEdicion(
+    @RequestWrapper(localName = "agregarCursoAPrograma", targetNamespace = "http://Servidor/", className = "Server.AgregarCursoAPrograma")
+    @ResponseWrapper(localName = "agregarCursoAProgramaResponse", targetNamespace = "http://Servidor/", className = "Server.AgregarCursoAProgramaResponse")
+    @Action(input = "http://Servidor/PublicadorServidorCentral/agregarCursoAProgramaRequest", output = "http://Servidor/PublicadorServidorCentral/agregarCursoAProgramaResponse")
+    public void agregarCursoAPrograma(
         @WebParam(name = "arg0", targetNamespace = "")
         String arg0,
         @WebParam(name = "arg1", targetNamespace = "")
         String arg1);
-
-    /**
-     * 
-     * @param arg3
-     * @param arg2
-     * @param arg1
-     * @param arg0
-     */
-    @WebMethod
-    @RequestWrapper(localName = "altaProgramaFormacion", targetNamespace = "http://Servidor/", className = "Server.AltaProgramaFormacion")
-    @ResponseWrapper(localName = "altaProgramaFormacionResponse", targetNamespace = "http://Servidor/", className = "Server.AltaProgramaFormacionResponse")
-    @Action(input = "http://Servidor/PublicadorServidorCentral/altaProgramaFormacionRequest", output = "http://Servidor/PublicadorServidorCentral/altaProgramaFormacionResponse")
-    public void altaProgramaFormacion(
-        @WebParam(name = "arg0", targetNamespace = "")
-        String arg0,
-        @WebParam(name = "arg1", targetNamespace = "")
-        String arg1,
-        @WebParam(name = "arg2", targetNamespace = "")
-        XMLGregorianCalendar arg2,
-        @WebParam(name = "arg3", targetNamespace = "")
-        XMLGregorianCalendar arg3);
 
     /**
      * 
@@ -190,69 +310,48 @@ public interface PublicadorServidorCentral {
 
     /**
      * 
+     * @param arg0
+     * @return
+     *     returns Server.DataProgramaFormacion
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "darProgramaFormacion", targetNamespace = "http://Servidor/", className = "Server.DarProgramaFormacion")
+    @ResponseWrapper(localName = "darProgramaFormacionResponse", targetNamespace = "http://Servidor/", className = "Server.DarProgramaFormacionResponse")
+    @Action(input = "http://Servidor/PublicadorServidorCentral/darProgramaFormacionRequest", output = "http://Servidor/PublicadorServidorCentral/darProgramaFormacionResponse")
+    public DataProgramaFormacion darProgramaFormacion(
+        @WebParam(name = "arg0", targetNamespace = "")
+        String arg0);
+
+    /**
+     * 
+     * @return
+     *     returns java.util.List<java.lang.String>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "listarCursosTendencia", targetNamespace = "http://Servidor/", className = "Server.ListarCursosTendencia")
+    @ResponseWrapper(localName = "listarCursosTendenciaResponse", targetNamespace = "http://Servidor/", className = "Server.ListarCursosTendenciaResponse")
+    @Action(input = "http://Servidor/PublicadorServidorCentral/listarCursosTendenciaRequest", output = "http://Servidor/PublicadorServidorCentral/listarCursosTendenciaResponse")
+    public List<String> listarCursosTendencia();
+
+    /**
+     * 
      * @param arg2
      * @param arg1
      * @param arg0
      */
     @WebMethod
-    @RequestWrapper(localName = "inscripcionAPrograma", targetNamespace = "http://Servidor/", className = "Server.InscripcionAPrograma")
-    @ResponseWrapper(localName = "inscripcionAProgramaResponse", targetNamespace = "http://Servidor/", className = "Server.InscripcionAProgramaResponse")
-    @Action(input = "http://Servidor/PublicadorServidorCentral/inscripcionAProgramaRequest", output = "http://Servidor/PublicadorServidorCentral/inscripcionAProgramaResponse")
-    public void inscripcionAPrograma(
+    @RequestWrapper(localName = "desistirDeInscripcion", targetNamespace = "http://Servidor/", className = "Server.DesistirDeInscripcion")
+    @ResponseWrapper(localName = "desistirDeInscripcionResponse", targetNamespace = "http://Servidor/", className = "Server.DesistirDeInscripcionResponse")
+    @Action(input = "http://Servidor/PublicadorServidorCentral/desistirDeInscripcionRequest", output = "http://Servidor/PublicadorServidorCentral/desistirDeInscripcionResponse")
+    public void desistirDeInscripcion(
         @WebParam(name = "arg0", targetNamespace = "")
         String arg0,
         @WebParam(name = "arg1", targetNamespace = "")
         String arg1,
         @WebParam(name = "arg2", targetNamespace = "")
-        XMLGregorianCalendar arg2);
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns Server.Lista
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "listarCursosConEdicionInstituto", targetNamespace = "http://Servidor/", className = "Server.ListarCursosConEdicionInstituto")
-    @ResponseWrapper(localName = "listarCursosConEdicionInstitutoResponse", targetNamespace = "http://Servidor/", className = "Server.ListarCursosConEdicionInstitutoResponse")
-    @Action(input = "http://Servidor/PublicadorServidorCentral/listarCursosConEdicionInstitutoRequest", output = "http://Servidor/PublicadorServidorCentral/listarCursosConEdicionInstitutoResponse")
-    public Lista listarCursosConEdicionInstituto(
-        @WebParam(name = "arg0", targetNamespace = "")
-        String arg0);
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns java.lang.Boolean
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "validarNombreCategoria", targetNamespace = "http://Servidor/", className = "Server.ValidarNombreCategoria")
-    @ResponseWrapper(localName = "validarNombreCategoriaResponse", targetNamespace = "http://Servidor/", className = "Server.ValidarNombreCategoriaResponse")
-    @Action(input = "http://Servidor/PublicadorServidorCentral/validarNombreCategoriaRequest", output = "http://Servidor/PublicadorServidorCentral/validarNombreCategoriaResponse")
-    public Boolean validarNombreCategoria(
-        @WebParam(name = "arg0", targetNamespace = "")
-        String arg0);
-
-    /**
-     * 
-     * @param arg1
-     * @param arg0
-     * @return
-     *     returns boolean
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "validarNombreEdicion", targetNamespace = "http://Servidor/", className = "Server.ValidarNombreEdicion")
-    @ResponseWrapper(localName = "validarNombreEdicionResponse", targetNamespace = "http://Servidor/", className = "Server.ValidarNombreEdicionResponse")
-    @Action(input = "http://Servidor/PublicadorServidorCentral/validarNombreEdicionRequest", output = "http://Servidor/PublicadorServidorCentral/validarNombreEdicionResponse")
-    public boolean validarNombreEdicion(
-        @WebParam(name = "arg0", targetNamespace = "")
-        String arg0,
-        @WebParam(name = "arg1", targetNamespace = "")
-        String arg1);
+        String arg2);
 
     /**
      * 
@@ -271,108 +370,24 @@ public interface PublicadorServidorCentral {
 
     /**
      * 
-     * @param arg1
-     * @param arg0
-     */
-    @WebMethod
-    @RequestWrapper(localName = "agregarCursoAPrograma", targetNamespace = "http://Servidor/", className = "Server.AgregarCursoAPrograma")
-    @ResponseWrapper(localName = "agregarCursoAProgramaResponse", targetNamespace = "http://Servidor/", className = "Server.AgregarCursoAProgramaResponse")
-    @Action(input = "http://Servidor/PublicadorServidorCentral/agregarCursoAProgramaRequest", output = "http://Servidor/PublicadorServidorCentral/agregarCursoAProgramaResponse")
-    public void agregarCursoAPrograma(
-        @WebParam(name = "arg0", targetNamespace = "")
-        String arg0,
-        @WebParam(name = "arg1", targetNamespace = "")
-        String arg1);
-
-    /**
-     * 
-     * @param arg2
-     * @param arg1
-     * @param arg0
-     */
-    @WebMethod
-    @RequestWrapper(localName = "aceptarInscripciones", targetNamespace = "http://Servidor/", className = "Server.AceptarInscripciones")
-    @ResponseWrapper(localName = "aceptarInscripcionesResponse", targetNamespace = "http://Servidor/", className = "Server.AceptarInscripcionesResponse")
-    @Action(input = "http://Servidor/PublicadorServidorCentral/aceptarInscripcionesRequest", output = "http://Servidor/PublicadorServidorCentral/aceptarInscripcionesResponse")
-    public void aceptarInscripciones(
-        @WebParam(name = "arg0", targetNamespace = "")
-        String arg0,
-        @WebParam(name = "arg1", targetNamespace = "")
-        String arg1,
-        @WebParam(name = "arg2", targetNamespace = "")
-        List<Object> arg2);
-
-    /**
-     * 
-     * @return
-     *     returns java.util.List<Server.DataCurso>
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "listarCursosTendencia", targetNamespace = "http://Servidor/", className = "Server.ListarCursosTendencia")
-    @ResponseWrapper(localName = "listarCursosTendenciaResponse", targetNamespace = "http://Servidor/", className = "Server.ListarCursosTendenciaResponse")
-    @Action(input = "http://Servidor/PublicadorServidorCentral/listarCursosTendenciaRequest", output = "http://Servidor/PublicadorServidorCentral/listarCursosTendenciaResponse")
-    public List<DataCurso> listarCursosTendencia();
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns java.util.List<Server.DataEdicion>
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "edicionesEstudiante", targetNamespace = "http://Servidor/", className = "Server.EdicionesEstudiante")
-    @ResponseWrapper(localName = "edicionesEstudianteResponse", targetNamespace = "http://Servidor/", className = "Server.EdicionesEstudianteResponse")
-    @Action(input = "http://Servidor/PublicadorServidorCentral/edicionesEstudianteRequest", output = "http://Servidor/PublicadorServidorCentral/edicionesEstudianteResponse")
-    public List<DataEdicion> edicionesEstudiante(
-        @WebParam(name = "arg0", targetNamespace = "")
-        String arg0);
-
-    /**
-     * 
-     * @param arg1
-     * @param arg0
-     * @return
-     *     returns java.util.List<Server.DataInscripcionEdicion>
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "darDatosCertificado", targetNamespace = "http://Servidor/", className = "Server.DarDatosCertificado")
-    @ResponseWrapper(localName = "darDatosCertificadoResponse", targetNamespace = "http://Servidor/", className = "Server.DarDatosCertificadoResponse")
-    @Action(input = "http://Servidor/PublicadorServidorCentral/darDatosCertificadoRequest", output = "http://Servidor/PublicadorServidorCentral/darDatosCertificadoResponse")
-    public List<DataInscripcionEdicion> darDatosCertificado(
-        @WebParam(name = "arg0", targetNamespace = "")
-        String arg0,
-        @WebParam(name = "arg1", targetNamespace = "")
-        String arg1);
-
-    /**
-     * 
      * @param arg3
      * @param arg2
-     * @param arg5
-     * @param arg4
      * @param arg1
      * @param arg0
      */
     @WebMethod
-    @RequestWrapper(localName = "agregarComentarioEdicionCurso", targetNamespace = "http://Servidor/", className = "Server.AgregarComentarioEdicionCurso")
-    @ResponseWrapper(localName = "agregarComentarioEdicionCursoResponse", targetNamespace = "http://Servidor/", className = "Server.AgregarComentarioEdicionCursoResponse")
-    @Action(input = "http://Servidor/PublicadorServidorCentral/agregarComentarioEdicionCursoRequest", output = "http://Servidor/PublicadorServidorCentral/agregarComentarioEdicionCursoResponse")
-    public void agregarComentarioEdicionCurso(
+    @RequestWrapper(localName = "altaProgramaFormacion", targetNamespace = "http://Servidor/", className = "Server.AltaProgramaFormacion")
+    @ResponseWrapper(localName = "altaProgramaFormacionResponse", targetNamespace = "http://Servidor/", className = "Server.AltaProgramaFormacionResponse")
+    @Action(input = "http://Servidor/PublicadorServidorCentral/altaProgramaFormacionRequest", output = "http://Servidor/PublicadorServidorCentral/altaProgramaFormacionResponse")
+    public void altaProgramaFormacion(
         @WebParam(name = "arg0", targetNamespace = "")
         String arg0,
         @WebParam(name = "arg1", targetNamespace = "")
         String arg1,
         @WebParam(name = "arg2", targetNamespace = "")
-        String arg2,
+        XMLGregorianCalendar arg2,
         @WebParam(name = "arg3", targetNamespace = "")
-        String arg3,
-        @WebParam(name = "arg4", targetNamespace = "")
-        XMLGregorianCalendar arg4,
-        @WebParam(name = "arg5", targetNamespace = "")
-        Long arg5);
+        XMLGregorianCalendar arg3);
 
     /**
      * 
@@ -392,114 +407,12 @@ public interface PublicadorServidorCentral {
     /**
      * 
      * @param arg0
-     * @return
-     *     returns Server.DataProgramaFormacion
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "darProgramaFormacion", targetNamespace = "http://Servidor/", className = "Server.DarProgramaFormacion")
-    @ResponseWrapper(localName = "darProgramaFormacionResponse", targetNamespace = "http://Servidor/", className = "Server.DarProgramaFormacionResponse")
-    @Action(input = "http://Servidor/PublicadorServidorCentral/darProgramaFormacionRequest", output = "http://Servidor/PublicadorServidorCentral/darProgramaFormacionResponse")
-    public DataProgramaFormacion darProgramaFormacion(
-        @WebParam(name = "arg0", targetNamespace = "")
-        String arg0);
-
-    /**
-     * 
-     * @return
-     *     returns Server.Lista
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "listarInstitutos", targetNamespace = "http://Servidor/", className = "Server.ListarInstitutos")
-    @ResponseWrapper(localName = "listarInstitutosResponse", targetNamespace = "http://Servidor/", className = "Server.ListarInstitutosResponse")
-    @Action(input = "http://Servidor/PublicadorServidorCentral/listarInstitutosRequest", output = "http://Servidor/PublicadorServidorCentral/listarInstitutosResponse")
-    public Lista listarInstitutos();
-
-    /**
-     * 
-     * @param arg3
-     * @param arg2
-     * @param arg5
-     * @param arg4
-     * @param arg1
-     * @param arg0
-     * @param arg7
-     * @param arg6
-     */
-    @WebMethod
-    @RequestWrapper(localName = "altaUsuario", targetNamespace = "http://Servidor/", className = "Server.AltaUsuario")
-    @ResponseWrapper(localName = "altaUsuarioResponse", targetNamespace = "http://Servidor/", className = "Server.AltaUsuarioResponse")
-    @Action(input = "http://Servidor/PublicadorServidorCentral/altaUsuarioRequest", output = "http://Servidor/PublicadorServidorCentral/altaUsuarioResponse")
-    public void altaUsuario(
-        @WebParam(name = "arg0", targetNamespace = "")
-        String arg0,
-        @WebParam(name = "arg1", targetNamespace = "")
-        String arg1,
-        @WebParam(name = "arg2", targetNamespace = "")
-        String arg2,
-        @WebParam(name = "arg3", targetNamespace = "")
-        String arg3,
-        @WebParam(name = "arg4", targetNamespace = "")
-        String arg4,
-        @WebParam(name = "arg5", targetNamespace = "")
-        XMLGregorianCalendar arg5,
-        @WebParam(name = "arg6", targetNamespace = "")
-        String arg6,
-        @WebParam(name = "arg7", targetNamespace = "")
-        byte[] arg7);
-
-    /**
-     * 
-     * @param arg0
      */
     @WebMethod
     @RequestWrapper(localName = "altaInstituto", targetNamespace = "http://Servidor/", className = "Server.AltaInstituto")
     @ResponseWrapper(localName = "altaInstitutoResponse", targetNamespace = "http://Servidor/", className = "Server.AltaInstitutoResponse")
     @Action(input = "http://Servidor/PublicadorServidorCentral/altaInstitutoRequest", output = "http://Servidor/PublicadorServidorCentral/altaInstitutoResponse")
     public void altaInstituto(
-        @WebParam(name = "arg0", targetNamespace = "")
-        String arg0);
-
-    /**
-     * 
-     * @return
-     *     returns Server.Lista
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "listarUsuarios", targetNamespace = "http://Servidor/", className = "Server.ListarUsuarios")
-    @ResponseWrapper(localName = "listarUsuariosResponse", targetNamespace = "http://Servidor/", className = "Server.ListarUsuariosResponse")
-    @Action(input = "http://Servidor/PublicadorServidorCentral/listarUsuariosRequest", output = "http://Servidor/PublicadorServidorCentral/listarUsuariosResponse")
-    public Lista listarUsuarios();
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns Server.DataUsuario
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "darDatosUsuario", targetNamespace = "http://Servidor/", className = "Server.DarDatosUsuario")
-    @ResponseWrapper(localName = "darDatosUsuarioResponse", targetNamespace = "http://Servidor/", className = "Server.DarDatosUsuarioResponse")
-    @Action(input = "http://Servidor/PublicadorServidorCentral/darDatosUsuarioRequest", output = "http://Servidor/PublicadorServidorCentral/darDatosUsuarioResponse")
-    public DataUsuario darDatosUsuario(
-        @WebParam(name = "arg0", targetNamespace = "")
-        String arg0);
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns boolean
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "validarEmail", targetNamespace = "http://Servidor/", className = "Server.ValidarEmail")
-    @ResponseWrapper(localName = "validarEmailResponse", targetNamespace = "http://Servidor/", className = "Server.ValidarEmailResponse")
-    @Action(input = "http://Servidor/PublicadorServidorCentral/validarEmailRequest", output = "http://Servidor/PublicadorServidorCentral/validarEmailResponse")
-    public boolean validarEmail(
         @WebParam(name = "arg0", targetNamespace = "")
         String arg0);
 
@@ -520,114 +433,18 @@ public interface PublicadorServidorCentral {
 
     /**
      * 
-     * @return
-     *     returns Server.Lista
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "listarCursos", targetNamespace = "http://Servidor/", className = "Server.ListarCursos")
-    @ResponseWrapper(localName = "listarCursosResponse", targetNamespace = "http://Servidor/", className = "Server.ListarCursosResponse")
-    @Action(input = "http://Servidor/PublicadorServidorCentral/listarCursosRequest", output = "http://Servidor/PublicadorServidorCentral/listarCursosResponse")
-    public Lista listarCursos();
-
-    /**
-     * 
-     * @return
-     *     returns Server.Lista
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "listarEstudiantes", targetNamespace = "http://Servidor/", className = "Server.ListarEstudiantes")
-    @ResponseWrapper(localName = "listarEstudiantesResponse", targetNamespace = "http://Servidor/", className = "Server.ListarEstudiantesResponse")
-    @Action(input = "http://Servidor/PublicadorServidorCentral/listarEstudiantesRequest", output = "http://Servidor/PublicadorServidorCentral/listarEstudiantesResponse")
-    public Lista listarEstudiantes();
-
-    /**
-     * 
      * @param arg0
      * @return
-     *     returns Server.DataCurso
+     *     returns boolean
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "darDatosCurso", targetNamespace = "http://Servidor/", className = "Server.DarDatosCurso")
-    @ResponseWrapper(localName = "darDatosCursoResponse", targetNamespace = "http://Servidor/", className = "Server.DarDatosCursoResponse")
-    @Action(input = "http://Servidor/PublicadorServidorCentral/darDatosCursoRequest", output = "http://Servidor/PublicadorServidorCentral/darDatosCursoResponse")
-    public DataCurso darDatosCurso(
+    @RequestWrapper(localName = "validarEmail", targetNamespace = "http://Servidor/", className = "Server.ValidarEmail")
+    @ResponseWrapper(localName = "validarEmailResponse", targetNamespace = "http://Servidor/", className = "Server.ValidarEmailResponse")
+    @Action(input = "http://Servidor/PublicadorServidorCentral/validarEmailRequest", output = "http://Servidor/PublicadorServidorCentral/validarEmailResponse")
+    public boolean validarEmail(
         @WebParam(name = "arg0", targetNamespace = "")
         String arg0);
-
-    /**
-     * 
-     * @return
-     *     returns Server.Lista
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "listarProgramas", targetNamespace = "http://Servidor/", className = "Server.ListarProgramas")
-    @ResponseWrapper(localName = "listarProgramasResponse", targetNamespace = "http://Servidor/", className = "Server.ListarProgramasResponse")
-    @Action(input = "http://Servidor/PublicadorServidorCentral/listarProgramasRequest", output = "http://Servidor/PublicadorServidorCentral/listarProgramasResponse")
-    public Lista listarProgramas();
-
-    /**
-     * 
-     * @param arg3
-     * @param arg2
-     * @param arg5
-     * @param arg4
-     * @param arg1
-     * @param arg0
-     * @param arg6
-     */
-    @WebMethod
-    @RequestWrapper(localName = "altaEdicionCurso", targetNamespace = "http://Servidor/", className = "Server.AltaEdicionCurso")
-    @ResponseWrapper(localName = "altaEdicionCursoResponse", targetNamespace = "http://Servidor/", className = "Server.AltaEdicionCursoResponse")
-    @Action(input = "http://Servidor/PublicadorServidorCentral/altaEdicionCursoRequest", output = "http://Servidor/PublicadorServidorCentral/altaEdicionCursoResponse")
-    public void altaEdicionCurso(
-        @WebParam(name = "arg0", targetNamespace = "")
-        String arg0,
-        @WebParam(name = "arg1", targetNamespace = "")
-        XMLGregorianCalendar arg1,
-        @WebParam(name = "arg2", targetNamespace = "")
-        XMLGregorianCalendar arg2,
-        @WebParam(name = "arg3", targetNamespace = "")
-        int arg3,
-        @WebParam(name = "arg4", targetNamespace = "")
-        XMLGregorianCalendar arg4,
-        @WebParam(name = "arg5", targetNamespace = "")
-        List<Object> arg5,
-        @WebParam(name = "arg6", targetNamespace = "")
-        String arg6);
-
-    /**
-     * 
-     * @param arg3
-     * @param arg2
-     * @param arg5
-     * @param arg4
-     * @param arg1
-     * @param arg0
-     * @param arg6
-     */
-    @WebMethod
-    @RequestWrapper(localName = "modificarUsuario", targetNamespace = "http://Servidor/", className = "Server.ModificarUsuario")
-    @ResponseWrapper(localName = "modificarUsuarioResponse", targetNamespace = "http://Servidor/", className = "Server.ModificarUsuarioResponse")
-    @Action(input = "http://Servidor/PublicadorServidorCentral/modificarUsuarioRequest", output = "http://Servidor/PublicadorServidorCentral/modificarUsuarioResponse")
-    public void modificarUsuario(
-        @WebParam(name = "arg0", targetNamespace = "")
-        String arg0,
-        @WebParam(name = "arg1", targetNamespace = "")
-        String arg1,
-        @WebParam(name = "arg2", targetNamespace = "")
-        String arg2,
-        @WebParam(name = "arg3", targetNamespace = "")
-        String arg3,
-        @WebParam(name = "arg4", targetNamespace = "")
-        XMLGregorianCalendar arg4,
-        @WebParam(name = "arg5", targetNamespace = "")
-        String arg5,
-        @WebParam(name = "arg6", targetNamespace = "")
-        byte[] arg6);
 
     /**
      * 
@@ -670,18 +487,33 @@ public interface PublicadorServidorCentral {
 
     /**
      * 
+     * @param arg3
+     * @param arg2
+     * @param arg5
+     * @param arg4
+     * @param arg1
      * @param arg0
-     * @return
-     *     returns Server.Lista
+     * @param arg6
      */
     @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "listarEdiciones", targetNamespace = "http://Servidor/", className = "Server.ListarEdiciones")
-    @ResponseWrapper(localName = "listarEdicionesResponse", targetNamespace = "http://Servidor/", className = "Server.ListarEdicionesResponse")
-    @Action(input = "http://Servidor/PublicadorServidorCentral/listarEdicionesRequest", output = "http://Servidor/PublicadorServidorCentral/listarEdicionesResponse")
-    public Lista listarEdiciones(
+    @RequestWrapper(localName = "modificarUsuario", targetNamespace = "http://Servidor/", className = "Server.ModificarUsuario")
+    @ResponseWrapper(localName = "modificarUsuarioResponse", targetNamespace = "http://Servidor/", className = "Server.ModificarUsuarioResponse")
+    @Action(input = "http://Servidor/PublicadorServidorCentral/modificarUsuarioRequest", output = "http://Servidor/PublicadorServidorCentral/modificarUsuarioResponse")
+    public void modificarUsuario(
         @WebParam(name = "arg0", targetNamespace = "")
-        String arg0);
+        String arg0,
+        @WebParam(name = "arg1", targetNamespace = "")
+        String arg1,
+        @WebParam(name = "arg2", targetNamespace = "")
+        String arg2,
+        @WebParam(name = "arg3", targetNamespace = "")
+        String arg3,
+        @WebParam(name = "arg4", targetNamespace = "")
+        XMLGregorianCalendar arg4,
+        @WebParam(name = "arg5", targetNamespace = "")
+        String arg5,
+        @WebParam(name = "arg6", targetNamespace = "")
+        byte[] arg6);
 
     /**
      * 
@@ -697,6 +529,90 @@ public interface PublicadorServidorCentral {
     public boolean validarNombreCurso(
         @WebParam(name = "arg0", targetNamespace = "")
         String arg0);
+
+    /**
+     * 
+     * @return
+     *     returns Server.Lista
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "listarUsuarios", targetNamespace = "http://Servidor/", className = "Server.ListarUsuarios")
+    @ResponseWrapper(localName = "listarUsuariosResponse", targetNamespace = "http://Servidor/", className = "Server.ListarUsuariosResponse")
+    @Action(input = "http://Servidor/PublicadorServidorCentral/listarUsuariosRequest", output = "http://Servidor/PublicadorServidorCentral/listarUsuariosResponse")
+    public Lista listarUsuarios();
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns Server.DataUsuario
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "darDatosUsuario", targetNamespace = "http://Servidor/", className = "Server.DarDatosUsuario")
+    @ResponseWrapper(localName = "darDatosUsuarioResponse", targetNamespace = "http://Servidor/", className = "Server.DarDatosUsuarioResponse")
+    @Action(input = "http://Servidor/PublicadorServidorCentral/darDatosUsuarioRequest", output = "http://Servidor/PublicadorServidorCentral/darDatosUsuarioResponse")
+    public DataUsuario darDatosUsuario(
+        @WebParam(name = "arg0", targetNamespace = "")
+        String arg0);
+
+    /**
+     * 
+     * @return
+     *     returns Server.Lista
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "listarInstitutos", targetNamespace = "http://Servidor/", className = "Server.ListarInstitutos")
+    @ResponseWrapper(localName = "listarInstitutosResponse", targetNamespace = "http://Servidor/", className = "Server.ListarInstitutosResponse")
+    @Action(input = "http://Servidor/PublicadorServidorCentral/listarInstitutosRequest", output = "http://Servidor/PublicadorServidorCentral/listarInstitutosResponse")
+    public Lista listarInstitutos();
+
+    /**
+     * 
+     * @return
+     *     returns Server.Lista
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "listarEstudiantes", targetNamespace = "http://Servidor/", className = "Server.ListarEstudiantes")
+    @ResponseWrapper(localName = "listarEstudiantesResponse", targetNamespace = "http://Servidor/", className = "Server.ListarEstudiantesResponse")
+    @Action(input = "http://Servidor/PublicadorServidorCentral/listarEstudiantesRequest", output = "http://Servidor/PublicadorServidorCentral/listarEstudiantesResponse")
+    public Lista listarEstudiantes();
+
+    /**
+     * 
+     * @param arg3
+     * @param arg2
+     * @param arg5
+     * @param arg4
+     * @param arg1
+     * @param arg0
+     * @param arg7
+     * @param arg6
+     */
+    @WebMethod
+    @RequestWrapper(localName = "altaUsuario", targetNamespace = "http://Servidor/", className = "Server.AltaUsuario")
+    @ResponseWrapper(localName = "altaUsuarioResponse", targetNamespace = "http://Servidor/", className = "Server.AltaUsuarioResponse")
+    @Action(input = "http://Servidor/PublicadorServidorCentral/altaUsuarioRequest", output = "http://Servidor/PublicadorServidorCentral/altaUsuarioResponse")
+    public void altaUsuario(
+        @WebParam(name = "arg0", targetNamespace = "")
+        String arg0,
+        @WebParam(name = "arg1", targetNamespace = "")
+        String arg1,
+        @WebParam(name = "arg2", targetNamespace = "")
+        String arg2,
+        @WebParam(name = "arg3", targetNamespace = "")
+        String arg3,
+        @WebParam(name = "arg4", targetNamespace = "")
+        String arg4,
+        @WebParam(name = "arg5", targetNamespace = "")
+        XMLGregorianCalendar arg5,
+        @WebParam(name = "arg6", targetNamespace = "")
+        String arg6,
+        @WebParam(name = "arg7", targetNamespace = "")
+        byte[] arg7);
 
     /**
      * 
@@ -721,30 +637,33 @@ public interface PublicadorServidorCentral {
 
     /**
      * 
+     * @param arg3
+     * @param arg2
+     * @param arg5
+     * @param arg4
+     * @param arg1
      * @param arg0
-     * @return
-     *     returns Server.DataEdicion
+     * @param arg6
      */
     @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "darEdicionActual", targetNamespace = "http://Servidor/", className = "Server.DarEdicionActual")
-    @ResponseWrapper(localName = "darEdicionActualResponse", targetNamespace = "http://Servidor/", className = "Server.DarEdicionActualResponse")
-    @Action(input = "http://Servidor/PublicadorServidorCentral/darEdicionActualRequest", output = "http://Servidor/PublicadorServidorCentral/darEdicionActualResponse")
-    public DataEdicion darEdicionActual(
+    @RequestWrapper(localName = "altaEdicionCurso", targetNamespace = "http://Servidor/", className = "Server.AltaEdicionCurso")
+    @ResponseWrapper(localName = "altaEdicionCursoResponse", targetNamespace = "http://Servidor/", className = "Server.AltaEdicionCursoResponse")
+    @Action(input = "http://Servidor/PublicadorServidorCentral/altaEdicionCursoRequest", output = "http://Servidor/PublicadorServidorCentral/altaEdicionCursoResponse")
+    public void altaEdicionCurso(
         @WebParam(name = "arg0", targetNamespace = "")
-        String arg0);
-
-    /**
-     * 
-     * @param arg0
-     */
-    @WebMethod
-    @RequestWrapper(localName = "altaCategoria", targetNamespace = "http://Servidor/", className = "Server.AltaCategoria")
-    @ResponseWrapper(localName = "altaCategoriaResponse", targetNamespace = "http://Servidor/", className = "Server.AltaCategoriaResponse")
-    @Action(input = "http://Servidor/PublicadorServidorCentral/altaCategoriaRequest", output = "http://Servidor/PublicadorServidorCentral/altaCategoriaResponse")
-    public void altaCategoria(
-        @WebParam(name = "arg0", targetNamespace = "")
-        String arg0);
+        String arg0,
+        @WebParam(name = "arg1", targetNamespace = "")
+        XMLGregorianCalendar arg1,
+        @WebParam(name = "arg2", targetNamespace = "")
+        XMLGregorianCalendar arg2,
+        @WebParam(name = "arg3", targetNamespace = "")
+        int arg3,
+        @WebParam(name = "arg4", targetNamespace = "")
+        XMLGregorianCalendar arg4,
+        @WebParam(name = "arg5", targetNamespace = "")
+        List<Object> arg5,
+        @WebParam(name = "arg6", targetNamespace = "")
+        String arg6);
 
     /**
      * 
@@ -766,15 +685,60 @@ public interface PublicadorServidorCentral {
 
     /**
      * 
+     * @param arg0
+     * @return
+     *     returns Server.DataEdicion
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "darEdicionActual", targetNamespace = "http://Servidor/", className = "Server.DarEdicionActual")
+    @ResponseWrapper(localName = "darEdicionActualResponse", targetNamespace = "http://Servidor/", className = "Server.DarEdicionActualResponse")
+    @Action(input = "http://Servidor/PublicadorServidorCentral/darEdicionActualRequest", output = "http://Servidor/PublicadorServidorCentral/darEdicionActualResponse")
+    public DataEdicion darEdicionActual(
+        @WebParam(name = "arg0", targetNamespace = "")
+        String arg0);
+
+    /**
+     * 
      * @return
      *     returns Server.Lista
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "listarCategorias", targetNamespace = "http://Servidor/", className = "Server.ListarCategorias")
-    @ResponseWrapper(localName = "listarCategoriasResponse", targetNamespace = "http://Servidor/", className = "Server.ListarCategoriasResponse")
-    @Action(input = "http://Servidor/PublicadorServidorCentral/listarCategoriasRequest", output = "http://Servidor/PublicadorServidorCentral/listarCategoriasResponse")
-    public Lista listarCategorias();
+    @RequestWrapper(localName = "listarCursos", targetNamespace = "http://Servidor/", className = "Server.ListarCursos")
+    @ResponseWrapper(localName = "listarCursosResponse", targetNamespace = "http://Servidor/", className = "Server.ListarCursosResponse")
+    @Action(input = "http://Servidor/PublicadorServidorCentral/listarCursosRequest", output = "http://Servidor/PublicadorServidorCentral/listarCursosResponse")
+    public Lista listarCursos();
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns Server.DataCurso
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "darDatosCurso", targetNamespace = "http://Servidor/", className = "Server.DarDatosCurso")
+    @ResponseWrapper(localName = "darDatosCursoResponse", targetNamespace = "http://Servidor/", className = "Server.DarDatosCursoResponse")
+    @Action(input = "http://Servidor/PublicadorServidorCentral/darDatosCursoRequest", output = "http://Servidor/PublicadorServidorCentral/darDatosCursoResponse")
+    public DataCurso darDatosCurso(
+        @WebParam(name = "arg0", targetNamespace = "")
+        String arg0);
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns Server.Lista
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "listarEdiciones", targetNamespace = "http://Servidor/", className = "Server.ListarEdiciones")
+    @ResponseWrapper(localName = "listarEdicionesResponse", targetNamespace = "http://Servidor/", className = "Server.ListarEdicionesResponse")
+    @Action(input = "http://Servidor/PublicadorServidorCentral/listarEdicionesRequest", output = "http://Servidor/PublicadorServidorCentral/listarEdicionesResponse")
+    public Lista listarEdiciones(
+        @WebParam(name = "arg0", targetNamespace = "")
+        String arg0);
 
     /**
      * 
@@ -789,6 +753,75 @@ public interface PublicadorServidorCentral {
     @ResponseWrapper(localName = "conteneCursoResponse", targetNamespace = "http://Servidor/", className = "Server.ConteneCursoResponse")
     @Action(input = "http://Servidor/PublicadorServidorCentral/conteneCursoRequest", output = "http://Servidor/PublicadorServidorCentral/conteneCursoResponse")
     public boolean conteneCurso(
+        @WebParam(name = "arg0", targetNamespace = "")
+        String arg0,
+        @WebParam(name = "arg1", targetNamespace = "")
+        String arg1);
+
+    /**
+     * 
+     * @param arg0
+     */
+    @WebMethod
+    @RequestWrapper(localName = "altaCategoria", targetNamespace = "http://Servidor/", className = "Server.AltaCategoria")
+    @ResponseWrapper(localName = "altaCategoriaResponse", targetNamespace = "http://Servidor/", className = "Server.AltaCategoriaResponse")
+    @Action(input = "http://Servidor/PublicadorServidorCentral/altaCategoriaRequest", output = "http://Servidor/PublicadorServidorCentral/altaCategoriaResponse")
+    public void altaCategoria(
+        @WebParam(name = "arg0", targetNamespace = "")
+        String arg0);
+
+    /**
+     * 
+     * @return
+     *     returns Server.Lista
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "listarProgramas", targetNamespace = "http://Servidor/", className = "Server.ListarProgramas")
+    @ResponseWrapper(localName = "listarProgramasResponse", targetNamespace = "http://Servidor/", className = "Server.ListarProgramasResponse")
+    @Action(input = "http://Servidor/PublicadorServidorCentral/listarProgramasRequest", output = "http://Servidor/PublicadorServidorCentral/listarProgramasResponse")
+    public Lista listarProgramas();
+
+    /**
+     * 
+     * @return
+     *     returns Server.Lista
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "listarCategorias", targetNamespace = "http://Servidor/", className = "Server.ListarCategorias")
+    @ResponseWrapper(localName = "listarCategoriasResponse", targetNamespace = "http://Servidor/", className = "Server.ListarCategoriasResponse")
+    @Action(input = "http://Servidor/PublicadorServidorCentral/listarCategoriasRequest", output = "http://Servidor/PublicadorServidorCentral/listarCategoriasResponse")
+    public Lista listarCategorias();
+
+    /**
+     * 
+     * @param arg2
+     * @param arg1
+     * @param arg0
+     */
+    @WebMethod
+    @RequestWrapper(localName = "valorarCurso", targetNamespace = "http://Servidor/", className = "Server.ValorarCurso")
+    @ResponseWrapper(localName = "valorarCursoResponse", targetNamespace = "http://Servidor/", className = "Server.ValorarCursoResponse")
+    @Action(input = "http://Servidor/PublicadorServidorCentral/valorarCursoRequest", output = "http://Servidor/PublicadorServidorCentral/valorarCursoResponse")
+    public void valorarCurso(
+        @WebParam(name = "arg0", targetNamespace = "")
+        String arg0,
+        @WebParam(name = "arg1", targetNamespace = "")
+        Double arg1,
+        @WebParam(name = "arg2", targetNamespace = "")
+        String arg2);
+
+    /**
+     * 
+     * @param arg1
+     * @param arg0
+     */
+    @WebMethod
+    @RequestWrapper(localName = "finalizarEdicion", targetNamespace = "http://Servidor/", className = "Server.FinalizarEdicion")
+    @ResponseWrapper(localName = "finalizarEdicionResponse", targetNamespace = "http://Servidor/", className = "Server.FinalizarEdicionResponse")
+    @Action(input = "http://Servidor/PublicadorServidorCentral/finalizarEdicionRequest", output = "http://Servidor/PublicadorServidorCentral/finalizarEdicionResponse")
+    public void finalizarEdicion(
         @WebParam(name = "arg0", targetNamespace = "")
         String arg0,
         @WebParam(name = "arg1", targetNamespace = "")
@@ -811,48 +844,6 @@ public interface PublicadorServidorCentral {
         String arg0,
         @WebParam(name = "arg1", targetNamespace = "")
         String arg1);
-
-    /**
-     * 
-     * @return
-     *     returns Server.Lista
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "listarProfesores", targetNamespace = "http://Servidor/", className = "Server.ListarProfesores")
-    @ResponseWrapper(localName = "listarProfesoresResponse", targetNamespace = "http://Servidor/", className = "Server.ListarProfesoresResponse")
-    @Action(input = "http://Servidor/PublicadorServidorCentral/listarProfesoresRequest", output = "http://Servidor/PublicadorServidorCentral/listarProfesoresResponse")
-    public Lista listarProfesores();
-
-    /**
-     * 
-     * @param arg1
-     * @param arg0
-     */
-    @WebMethod
-    @RequestWrapper(localName = "finalizarEdicion", targetNamespace = "http://Servidor/", className = "Server.FinalizarEdicion")
-    @ResponseWrapper(localName = "finalizarEdicionResponse", targetNamespace = "http://Servidor/", className = "Server.FinalizarEdicionResponse")
-    @Action(input = "http://Servidor/PublicadorServidorCentral/finalizarEdicionRequest", output = "http://Servidor/PublicadorServidorCentral/finalizarEdicionResponse")
-    public void finalizarEdicion(
-        @WebParam(name = "arg0", targetNamespace = "")
-        String arg0,
-        @WebParam(name = "arg1", targetNamespace = "")
-        String arg1);
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns java.util.List<java.lang.String>
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "cursosEstudiante", targetNamespace = "http://Servidor/", className = "Server.CursosEstudiante")
-    @ResponseWrapper(localName = "cursosEstudianteResponse", targetNamespace = "http://Servidor/", className = "Server.CursosEstudianteResponse")
-    @Action(input = "http://Servidor/PublicadorServidorCentral/cursosEstudianteRequest", output = "http://Servidor/PublicadorServidorCentral/cursosEstudianteResponse")
-    public List<String> cursosEstudiante(
-        @WebParam(name = "arg0", targetNamespace = "")
-        String arg0);
 
     /**
      * 
@@ -886,20 +877,29 @@ public interface PublicadorServidorCentral {
 
     /**
      * 
-     * @param arg2
-     * @param arg1
      * @param arg0
+     * @return
+     *     returns java.util.List<java.lang.String>
      */
     @WebMethod
-    @RequestWrapper(localName = "valorarCurso", targetNamespace = "http://Servidor/", className = "Server.ValorarCurso")
-    @ResponseWrapper(localName = "valorarCursoResponse", targetNamespace = "http://Servidor/", className = "Server.ValorarCursoResponse")
-    @Action(input = "http://Servidor/PublicadorServidorCentral/valorarCursoRequest", output = "http://Servidor/PublicadorServidorCentral/valorarCursoResponse")
-    public void valorarCurso(
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "cursosEstudiante", targetNamespace = "http://Servidor/", className = "Server.CursosEstudiante")
+    @ResponseWrapper(localName = "cursosEstudianteResponse", targetNamespace = "http://Servidor/", className = "Server.CursosEstudianteResponse")
+    @Action(input = "http://Servidor/PublicadorServidorCentral/cursosEstudianteRequest", output = "http://Servidor/PublicadorServidorCentral/cursosEstudianteResponse")
+    public List<String> cursosEstudiante(
         @WebParam(name = "arg0", targetNamespace = "")
-        String arg0,
-        @WebParam(name = "arg1", targetNamespace = "")
-        Double arg1,
-        @WebParam(name = "arg2", targetNamespace = "")
-        String arg2);
+        String arg0);
+
+    /**
+     * 
+     * @return
+     *     returns Server.Lista
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "listarProfesores", targetNamespace = "http://Servidor/", className = "Server.ListarProfesores")
+    @ResponseWrapper(localName = "listarProfesoresResponse", targetNamespace = "http://Servidor/", className = "Server.ListarProfesoresResponse")
+    @Action(input = "http://Servidor/PublicadorServidorCentral/listarProfesoresRequest", output = "http://Servidor/PublicadorServidorCentral/listarProfesoresResponse")
+    public Lista listarProfesores();
 
 }

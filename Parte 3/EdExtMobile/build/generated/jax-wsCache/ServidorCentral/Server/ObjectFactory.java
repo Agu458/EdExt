@@ -32,14 +32,17 @@ public class ObjectFactory {
     private final static QName _ValidarNombreCategoriaResponse_QNAME = new QName("http://Servidor/", "validarNombreCategoriaResponse");
     private final static QName _DarDatosUsuario_QNAME = new QName("http://Servidor/", "darDatosUsuario");
     private final static QName _ListarInscriptosAEdicion_QNAME = new QName("http://Servidor/", "listarInscriptosAEdicion");
+    private final static QName _AgregarVisitaResponse_QNAME = new QName("http://Servidor/", "agregarVisitaResponse");
     private final static QName _DataComentario_QNAME = new QName("http://Servidor/", "dataComentario");
     private final static QName _ModificarUsuarioResponse_QNAME = new QName("http://Servidor/", "modificarUsuarioResponse");
     private final static QName _ListarProgramasResponse_QNAME = new QName("http://Servidor/", "listarProgramasResponse");
     private final static QName _ValidarNick_QNAME = new QName("http://Servidor/", "validarNick");
+    private final static QName _CalificarEstudiante_QNAME = new QName("http://Servidor/", "calificarEstudiante");
     private final static QName _AltaEdicionCursoResponse_QNAME = new QName("http://Servidor/", "altaEdicionCursoResponse");
     private final static QName _ListarCategoriasResponse_QNAME = new QName("http://Servidor/", "listarCategoriasResponse");
     private final static QName _DarDatosUsuarioResponse_QNAME = new QName("http://Servidor/", "darDatosUsuarioResponse");
     private final static QName _AltaProgramaFormacionResponse_QNAME = new QName("http://Servidor/", "altaProgramaFormacionResponse");
+    private final static QName _SePuedeFinalizar_QNAME = new QName("http://Servidor/", "sePuedeFinalizar");
     private final static QName _DataEdicion_QNAME = new QName("http://Servidor/", "dataEdicion");
     private final static QName _DataValoracion_QNAME = new QName("http://Servidor/", "dataValoracion");
     private final static QName _DarEdicionActual_QNAME = new QName("http://Servidor/", "darEdicionActual");
@@ -50,12 +53,14 @@ public class ObjectFactory {
     private final static QName _AceptarInscripcionesResponse_QNAME = new QName("http://Servidor/", "aceptarInscripcionesResponse");
     private final static QName _ListarInstitutosResponse_QNAME = new QName("http://Servidor/", "listarInstitutosResponse");
     private final static QName _ListarCursosCategoriaResponse_QNAME = new QName("http://Servidor/", "listarCursosCategoriaResponse");
+    private final static QName _FinalizarEdicionResponse_QNAME = new QName("http://Servidor/", "finalizarEdicionResponse");
     private final static QName _ValidarNombreEdicionResponse_QNAME = new QName("http://Servidor/", "validarNombreEdicionResponse");
     private final static QName _ListarInscriptosAEdicionResponse_QNAME = new QName("http://Servidor/", "listarInscriptosAEdicionResponse");
     private final static QName _ListarCursos_QNAME = new QName("http://Servidor/", "listarCursos");
     private final static QName _DarDatosEdicionResponse_QNAME = new QName("http://Servidor/", "darDatosEdicionResponse");
     private final static QName _DarProgramaFormacion_QNAME = new QName("http://Servidor/", "darProgramaFormacion");
     private final static QName _ListarUsuarios_QNAME = new QName("http://Servidor/", "listarUsuarios");
+    private final static QName _FinalizarEdicion_QNAME = new QName("http://Servidor/", "finalizarEdicion");
     private final static QName _ListarEdicionesResponse_QNAME = new QName("http://Servidor/", "listarEdicionesResponse");
     private final static QName _AgregarCursoAPrograma_QNAME = new QName("http://Servidor/", "agregarCursoAPrograma");
     private final static QName _DataInscripcionEdicion_QNAME = new QName("http://Servidor/", "dataInscripcionEdicion");
@@ -64,6 +69,7 @@ public class ObjectFactory {
     private final static QName _ValidarNombreCategoria_QNAME = new QName("http://Servidor/", "validarNombreCategoria");
     private final static QName _DarDatosCursoResponse_QNAME = new QName("http://Servidor/", "darDatosCursoResponse");
     private final static QName _AltaCategoriaResponse_QNAME = new QName("http://Servidor/", "altaCategoriaResponse");
+    private final static QName _CalificarEstudianteResponse_QNAME = new QName("http://Servidor/", "calificarEstudianteResponse");
     private final static QName _ListarCursosCategoria_QNAME = new QName("http://Servidor/", "listarCursosCategoria");
     private final static QName _ListarCursosConEdicionInstituto_QNAME = new QName("http://Servidor/", "listarCursosConEdicionInstituto");
     private final static QName _DarDatosInscripcionEdicion_QNAME = new QName("http://Servidor/", "darDatosInscripcionEdicion");
@@ -82,10 +88,12 @@ public class ObjectFactory {
     private final static QName _CursosEstudianteResponse_QNAME = new QName("http://Servidor/", "cursosEstudianteResponse");
     private final static QName _AltaCategoria_QNAME = new QName("http://Servidor/", "altaCategoria");
     private final static QName _DataProfesor_QNAME = new QName("http://Servidor/", "dataProfesor");
+    private final static QName _DarDatosCertificado_QNAME = new QName("http://Servidor/", "darDatosCertificado");
     private final static QName _AltaProgramaFormacion_QNAME = new QName("http://Servidor/", "altaProgramaFormacion");
     private final static QName _AltaCursoResponse_QNAME = new QName("http://Servidor/", "altaCursoResponse");
     private final static QName _DataUsuario_QNAME = new QName("http://Servidor/", "dataUsuario");
     private final static QName _InscripcionAProgramaResponse_QNAME = new QName("http://Servidor/", "inscripcionAProgramaResponse");
+    private final static QName _SePuedeFinalizarResponse_QNAME = new QName("http://Servidor/", "sePuedeFinalizarResponse");
     private final static QName _DarDatosCurso_QNAME = new QName("http://Servidor/", "darDatosCurso");
     private final static QName _ListarProgramas_QNAME = new QName("http://Servidor/", "listarProgramas");
     private final static QName _ListarProfesoresResponse_QNAME = new QName("http://Servidor/", "listarProfesoresResponse");
@@ -104,6 +112,7 @@ public class ObjectFactory {
     private final static QName _ListarEdiciones_QNAME = new QName("http://Servidor/", "listarEdiciones");
     private final static QName _ConteneCursoResponse_QNAME = new QName("http://Servidor/", "conteneCursoResponse");
     private final static QName _InscripcionEdicion_QNAME = new QName("http://Servidor/", "inscripcionEdicion");
+    private final static QName _AgregarVisita_QNAME = new QName("http://Servidor/", "agregarVisita");
     private final static QName _ValidarEmailResponse_QNAME = new QName("http://Servidor/", "validarEmailResponse");
     private final static QName _ListarCursosInstituto_QNAME = new QName("http://Servidor/", "listarCursosInstituto");
     private final static QName _AltaInstitutoResponse_QNAME = new QName("http://Servidor/", "altaInstitutoResponse");
@@ -112,7 +121,10 @@ public class ObjectFactory {
     private final static QName _AgregarCursoAProgramaResponse_QNAME = new QName("http://Servidor/", "agregarCursoAProgramaResponse");
     private final static QName _ListarEstudiantes_QNAME = new QName("http://Servidor/", "listarEstudiantes");
     private final static QName _ValidarNombreCursoResponse_QNAME = new QName("http://Servidor/", "validarNombreCursoResponse");
+    private final static QName _ListarCursosTendencia_QNAME = new QName("http://Servidor/", "listarCursosTendencia");
     private final static QName _ValidarNombreEdicion_QNAME = new QName("http://Servidor/", "validarNombreEdicion");
+    private final static QName _DarDatosCertificadoResponse_QNAME = new QName("http://Servidor/", "darDatosCertificadoResponse");
+    private final static QName _ListarCursosTendenciaResponse_QNAME = new QName("http://Servidor/", "listarCursosTendenciaResponse");
     private final static QName _ListarProfesoresInstitutoResponse_QNAME = new QName("http://Servidor/", "listarProfesoresInstitutoResponse");
     private final static QName _ListarProfesores_QNAME = new QName("http://Servidor/", "listarProfesores");
     private final static QName _DarProgramaFormacionResponse_QNAME = new QName("http://Servidor/", "darProgramaFormacionResponse");
@@ -206,6 +218,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link FinalizarEdicion }
+     * 
+     */
+    public FinalizarEdicion createFinalizarEdicion() {
+        return new FinalizarEdicion();
+    }
+
+    /**
      * Create an instance of {@link AgregarCursoAPrograma }
      * 
      */
@@ -267,6 +287,14 @@ public class ObjectFactory {
      */
     public ListarInscriptosAEdicionResponse createListarInscriptosAEdicionResponse() {
         return new ListarInscriptosAEdicionResponse();
+    }
+
+    /**
+     * Create an instance of {@link FinalizarEdicionResponse }
+     * 
+     */
+    public FinalizarEdicionResponse createFinalizarEdicionResponse() {
+        return new FinalizarEdicionResponse();
     }
 
     /**
@@ -358,6 +386,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link SePuedeFinalizar }
+     * 
+     */
+    public SePuedeFinalizar createSePuedeFinalizar() {
+        return new SePuedeFinalizar();
+    }
+
+    /**
      * Create an instance of {@link ListarInscriptosAEdicion }
      * 
      */
@@ -371,6 +407,14 @@ public class ObjectFactory {
      */
     public ListarProgramasResponse createListarProgramasResponse() {
         return new ListarProgramasResponse();
+    }
+
+    /**
+     * Create an instance of {@link AgregarVisitaResponse }
+     * 
+     */
+    public AgregarVisitaResponse createAgregarVisitaResponse() {
+        return new AgregarVisitaResponse();
     }
 
     /**
@@ -395,6 +439,14 @@ public class ObjectFactory {
      */
     public ValidarNick createValidarNick() {
         return new ValidarNick();
+    }
+
+    /**
+     * Create an instance of {@link CalificarEstudiante }
+     * 
+     */
+    public CalificarEstudiante createCalificarEstudiante() {
+        return new CalificarEstudiante();
     }
 
     /**
@@ -526,11 +578,35 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link DarDatosCertificadoResponse }
+     * 
+     */
+    public DarDatosCertificadoResponse createDarDatosCertificadoResponse() {
+        return new DarDatosCertificadoResponse();
+    }
+
+    /**
+     * Create an instance of {@link ListarCursosTendencia }
+     * 
+     */
+    public ListarCursosTendencia createListarCursosTendencia() {
+        return new ListarCursosTendencia();
+    }
+
+    /**
      * Create an instance of {@link ValidarNombreEdicion }
      * 
      */
     public ValidarNombreEdicion createValidarNombreEdicion() {
         return new ValidarNombreEdicion();
+    }
+
+    /**
+     * Create an instance of {@link ListarCursosTendenciaResponse }
+     * 
+     */
+    public ListarCursosTendenciaResponse createListarCursosTendenciaResponse() {
+        return new ListarCursosTendenciaResponse();
     }
 
     /**
@@ -611,6 +687,14 @@ public class ObjectFactory {
      */
     public InscripcionEdicion createInscripcionEdicion() {
         return new InscripcionEdicion();
+    }
+
+    /**
+     * Create an instance of {@link AgregarVisita }
+     * 
+     */
+    public AgregarVisita createAgregarVisita() {
+        return new AgregarVisita();
     }
 
     /**
@@ -798,6 +882,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link DarDatosCertificado }
+     * 
+     */
+    public DarDatosCertificado createDarDatosCertificado() {
+        return new DarDatosCertificado();
+    }
+
+    /**
      * Create an instance of {@link AltaProgramaFormacion }
      * 
      */
@@ -814,6 +906,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link SePuedeFinalizarResponse }
+     * 
+     */
+    public SePuedeFinalizarResponse createSePuedeFinalizarResponse() {
+        return new SePuedeFinalizarResponse();
+    }
+
+    /**
      * Create an instance of {@link AltaCursoResponse }
      * 
      */
@@ -827,6 +927,14 @@ public class ObjectFactory {
      */
     public DataUsuario createDataUsuario() {
         return new DataUsuario();
+    }
+
+    /**
+     * Create an instance of {@link CalificarEstudianteResponse }
+     * 
+     */
+    public CalificarEstudianteResponse createCalificarEstudianteResponse() {
+        return new CalificarEstudianteResponse();
     }
 
     /**
@@ -1006,6 +1114,15 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link AgregarVisitaResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://Servidor/", name = "agregarVisitaResponse")
+    public JAXBElement<AgregarVisitaResponse> createAgregarVisitaResponse(AgregarVisitaResponse value) {
+        return new JAXBElement<AgregarVisitaResponse>(_AgregarVisitaResponse_QNAME, AgregarVisitaResponse.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link DataComentario }{@code >}}
      * 
      */
@@ -1042,6 +1159,15 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link CalificarEstudiante }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://Servidor/", name = "calificarEstudiante")
+    public JAXBElement<CalificarEstudiante> createCalificarEstudiante(CalificarEstudiante value) {
+        return new JAXBElement<CalificarEstudiante>(_CalificarEstudiante_QNAME, CalificarEstudiante.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link AltaEdicionCursoResponse }{@code >}}
      * 
      */
@@ -1075,6 +1201,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://Servidor/", name = "altaProgramaFormacionResponse")
     public JAXBElement<AltaProgramaFormacionResponse> createAltaProgramaFormacionResponse(AltaProgramaFormacionResponse value) {
         return new JAXBElement<AltaProgramaFormacionResponse>(_AltaProgramaFormacionResponse_QNAME, AltaProgramaFormacionResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link SePuedeFinalizar }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://Servidor/", name = "sePuedeFinalizar")
+    public JAXBElement<SePuedeFinalizar> createSePuedeFinalizar(SePuedeFinalizar value) {
+        return new JAXBElement<SePuedeFinalizar>(_SePuedeFinalizar_QNAME, SePuedeFinalizar.class, null, value);
     }
 
     /**
@@ -1168,6 +1303,15 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link FinalizarEdicionResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://Servidor/", name = "finalizarEdicionResponse")
+    public JAXBElement<FinalizarEdicionResponse> createFinalizarEdicionResponse(FinalizarEdicionResponse value) {
+        return new JAXBElement<FinalizarEdicionResponse>(_FinalizarEdicionResponse_QNAME, FinalizarEdicionResponse.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link ValidarNombreEdicionResponse }{@code >}}
      * 
      */
@@ -1219,6 +1363,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://Servidor/", name = "listarUsuarios")
     public JAXBElement<ListarUsuarios> createListarUsuarios(ListarUsuarios value) {
         return new JAXBElement<ListarUsuarios>(_ListarUsuarios_QNAME, ListarUsuarios.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link FinalizarEdicion }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://Servidor/", name = "finalizarEdicion")
+    public JAXBElement<FinalizarEdicion> createFinalizarEdicion(FinalizarEdicion value) {
+        return new JAXBElement<FinalizarEdicion>(_FinalizarEdicion_QNAME, FinalizarEdicion.class, null, value);
     }
 
     /**
@@ -1291,6 +1444,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://Servidor/", name = "altaCategoriaResponse")
     public JAXBElement<AltaCategoriaResponse> createAltaCategoriaResponse(AltaCategoriaResponse value) {
         return new JAXBElement<AltaCategoriaResponse>(_AltaCategoriaResponse_QNAME, AltaCategoriaResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link CalificarEstudianteResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://Servidor/", name = "calificarEstudianteResponse")
+    public JAXBElement<CalificarEstudianteResponse> createCalificarEstudianteResponse(CalificarEstudianteResponse value) {
+        return new JAXBElement<CalificarEstudianteResponse>(_CalificarEstudianteResponse_QNAME, CalificarEstudianteResponse.class, null, value);
     }
 
     /**
@@ -1456,6 +1618,15 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link DarDatosCertificado }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://Servidor/", name = "darDatosCertificado")
+    public JAXBElement<DarDatosCertificado> createDarDatosCertificado(DarDatosCertificado value) {
+        return new JAXBElement<DarDatosCertificado>(_DarDatosCertificado_QNAME, DarDatosCertificado.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link AltaProgramaFormacion }{@code >}}
      * 
      */
@@ -1489,6 +1660,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://Servidor/", name = "inscripcionAProgramaResponse")
     public JAXBElement<InscripcionAProgramaResponse> createInscripcionAProgramaResponse(InscripcionAProgramaResponse value) {
         return new JAXBElement<InscripcionAProgramaResponse>(_InscripcionAProgramaResponse_QNAME, InscripcionAProgramaResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link SePuedeFinalizarResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://Servidor/", name = "sePuedeFinalizarResponse")
+    public JAXBElement<SePuedeFinalizarResponse> createSePuedeFinalizarResponse(SePuedeFinalizarResponse value) {
+        return new JAXBElement<SePuedeFinalizarResponse>(_SePuedeFinalizarResponse_QNAME, SePuedeFinalizarResponse.class, null, value);
     }
 
     /**
@@ -1654,6 +1834,15 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link AgregarVisita }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://Servidor/", name = "agregarVisita")
+    public JAXBElement<AgregarVisita> createAgregarVisita(AgregarVisita value) {
+        return new JAXBElement<AgregarVisita>(_AgregarVisita_QNAME, AgregarVisita.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link ValidarEmailResponse }{@code >}}
      * 
      */
@@ -1726,12 +1915,39 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ListarCursosTendencia }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://Servidor/", name = "listarCursosTendencia")
+    public JAXBElement<ListarCursosTendencia> createListarCursosTendencia(ListarCursosTendencia value) {
+        return new JAXBElement<ListarCursosTendencia>(_ListarCursosTendencia_QNAME, ListarCursosTendencia.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link ValidarNombreEdicion }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "http://Servidor/", name = "validarNombreEdicion")
     public JAXBElement<ValidarNombreEdicion> createValidarNombreEdicion(ValidarNombreEdicion value) {
         return new JAXBElement<ValidarNombreEdicion>(_ValidarNombreEdicion_QNAME, ValidarNombreEdicion.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link DarDatosCertificadoResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://Servidor/", name = "darDatosCertificadoResponse")
+    public JAXBElement<DarDatosCertificadoResponse> createDarDatosCertificadoResponse(DarDatosCertificadoResponse value) {
+        return new JAXBElement<DarDatosCertificadoResponse>(_DarDatosCertificadoResponse_QNAME, DarDatosCertificadoResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link ListarCursosTendenciaResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://Servidor/", name = "listarCursosTendenciaResponse")
+    public JAXBElement<ListarCursosTendenciaResponse> createListarCursosTendenciaResponse(ListarCursosTendenciaResponse value) {
+        return new JAXBElement<ListarCursosTendenciaResponse>(_ListarCursosTendenciaResponse_QNAME, ListarCursosTendenciaResponse.class, null, value);
     }
 
     /**

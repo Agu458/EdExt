@@ -116,5 +116,5 @@ public interface ISistema {
     
     public void agregarVisita(String curso);
     
-    public List<DataCurso> listarCursosTendencia();
+    public List<String> listarCursosTendencia();
 }

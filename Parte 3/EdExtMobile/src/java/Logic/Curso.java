@@ -78,6 +78,9 @@ public class Curso extends HttpServlet {
         String consultarCurso = request.getParameter("consultarCurso");
         if(consultarCurso != null){
             DataCurso dc = port.darDatosCurso(consultarCurso);
+            if(dc != null){
+                port.agregarVisita(dc.getNombre());
+            }
             request.setAttribute("curso", dc);
             request.getRequestDispatcher("/Pages/mostrarInfoCurso.jsp").forward(request, response);
         }

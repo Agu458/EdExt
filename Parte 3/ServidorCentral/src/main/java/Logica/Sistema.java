@@ -984,9 +984,10 @@ public class Sistema implements ISistema {
         }
     }
 
-    public List<DataCurso> listarCursosTendencia() {
+    @Override
+    public List<String> listarCursosTendencia() {
         EntityManager em = emf.createEntityManager();
-        List<DataCurso> cursos = new ArrayList();
+        List<String> cursos = new ArrayList();
         try {
             em.getTransaction().begin();
 
@@ -995,12 +996,12 @@ public class Sistema implements ISistema {
             List cur = em.createQuery(q).getResultList();
 
             //Ordenar cursos por visitas
-            cur.sort(Comparator.comparing(Curso::getVisitas));
+            cur.sort(Comparator.comparing(Curso::getVisitas).reversed());
 
             //Dar datos de los cursos
             for (Object o : cur) {
                 Curso c = (Curso) o;
-                cursos.add(c.darDatos());
+                cursos.add(c.getNombre());
             }
 
             em.getTransaction().commit();

@@ -341,7 +341,7 @@ public class PublicadorServidorCentral {
     }
     
     @WebMethod
-    public List<DataCurso> listarCursosTendencia(){
+    public List<String> listarCursosTendencia(){
         return sistema.listarCursosTendencia();
     }
 }

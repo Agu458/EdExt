@@ -16,11 +16,11 @@
 <message name="listarCursosInstitutoResponse">
 <part name="parameters" element="tns:listarCursosInstitutoResponse"/>
 </message>
-<message name="desistirDeInscripcion">
-<part name="parameters" element="tns:desistirDeInscripcion"/>
+<message name="listarCursosConEdicionInstituto">
+<part name="parameters" element="tns:listarCursosConEdicionInstituto"/>
 </message>
-<message name="desistirDeInscripcionResponse">
-<part name="parameters" element="tns:desistirDeInscripcionResponse"/>
+<message name="listarCursosConEdicionInstitutoResponse">
+<part name="parameters" element="tns:listarCursosConEdicionInstitutoResponse"/>
 </message>
 <message name="validarNombrePrograma">
 <part name="parameters" element="tns:validarNombrePrograma"/>
@@ -28,17 +28,11 @@
 <message name="validarNombreProgramaResponse">
 <part name="parameters" element="tns:validarNombreProgramaResponse"/>
 </message>
-<message name="listarAceptadosAEdicion">
-<part name="parameters" element="tns:listarAceptadosAEdicion"/>
+<message name="validarNombreEdicion">
+<part name="parameters" element="tns:validarNombreEdicion"/>
 </message>
-<message name="listarAceptadosAEdicionResponse">
-<part name="parameters" element="tns:listarAceptadosAEdicionResponse"/>
-</message>
-<message name="calificarEstudiante">
-<part name="parameters" element="tns:calificarEstudiante"/>
-</message>
-<message name="calificarEstudianteResponse">
-<part name="parameters" element="tns:calificarEstudianteResponse"/>
+<message name="validarNombreEdicionResponse">
+<part name="parameters" element="tns:validarNombreEdicionResponse"/>
 </message>
 <message name="listarInscriptosAEdicion">
 <part name="parameters" element="tns:listarInscriptosAEdicion"/>
@@ -46,53 +40,11 @@
 <message name="listarInscriptosAEdicionResponse">
 <part name="parameters" element="tns:listarInscriptosAEdicionResponse"/>
 </message>
-<message name="altaProgramaFormacion">
-<part name="parameters" element="tns:altaProgramaFormacion"/>
-</message>
-<message name="altaProgramaFormacionResponse">
-<part name="parameters" element="tns:altaProgramaFormacionResponse"/>
-</message>
-<message name="darDatosInscripcionEdicion">
-<part name="parameters" element="tns:darDatosInscripcionEdicion"/>
-</message>
-<message name="darDatosInscripcionEdicionResponse">
-<part name="parameters" element="tns:darDatosInscripcionEdicionResponse"/>
-</message>
 <message name="inscripcionAPrograma">
 <part name="parameters" element="tns:inscripcionAPrograma"/>
 </message>
 <message name="inscripcionAProgramaResponse">
 <part name="parameters" element="tns:inscripcionAProgramaResponse"/>
-</message>
-<message name="listarCursosConEdicionInstituto">
-<part name="parameters" element="tns:listarCursosConEdicionInstituto"/>
-</message>
-<message name="listarCursosConEdicionInstitutoResponse">
-<part name="parameters" element="tns:listarCursosConEdicionInstitutoResponse"/>
-</message>
-<message name="validarNombreCategoria">
-<part name="parameters" element="tns:validarNombreCategoria"/>
-</message>
-<message name="validarNombreCategoriaResponse">
-<part name="parameters" element="tns:validarNombreCategoriaResponse"/>
-</message>
-<message name="validarNombreEdicion">
-<part name="parameters" element="tns:validarNombreEdicion"/>
-</message>
-<message name="validarNombreEdicionResponse">
-<part name="parameters" element="tns:validarNombreEdicionResponse"/>
-</message>
-<message name="listarCursosCategoria">
-<part name="parameters" element="tns:listarCursosCategoria"/>
-</message>
-<message name="listarCursosCategoriaResponse">
-<part name="parameters" element="tns:listarCursosCategoriaResponse"/>
-</message>
-<message name="agregarCursoAPrograma">
-<part name="parameters" element="tns:agregarCursoAPrograma"/>
-</message>
-<message name="agregarCursoAProgramaResponse">
-<part name="parameters" element="tns:agregarCursoAProgramaResponse"/>
 </message>
 <message name="aceptarInscripciones">
 <part name="parameters" element="tns:aceptarInscripciones"/>
@@ -100,11 +52,17 @@
 <message name="aceptarInscripcionesResponse">
 <part name="parameters" element="tns:aceptarInscripcionesResponse"/>
 </message>
-<message name="listarCursosTendencia">
-<part name="parameters" element="tns:listarCursosTendencia"/>
+<message name="agregarComentarioEdicionCurso">
+<part name="parameters" element="tns:agregarComentarioEdicionCurso"/>
 </message>
-<message name="listarCursosTendenciaResponse">
-<part name="parameters" element="tns:listarCursosTendenciaResponse"/>
+<message name="agregarComentarioEdicionCursoResponse">
+<part name="parameters" element="tns:agregarComentarioEdicionCursoResponse"/>
+</message>
+<message name="validarNombreCategoria">
+<part name="parameters" element="tns:validarNombreCategoria"/>
+</message>
+<message name="validarNombreCategoriaResponse">
+<part name="parameters" element="tns:validarNombreCategoriaResponse"/>
 </message>
 <message name="edicionesEstudiante">
 <part name="parameters" element="tns:edicionesEstudiante"/>
@@ -118,17 +76,29 @@
 <message name="darDatosCertificadoResponse">
 <part name="parameters" element="tns:darDatosCertificadoResponse"/>
 </message>
-<message name="agregarComentarioEdicionCurso">
-<part name="parameters" element="tns:agregarComentarioEdicionCurso"/>
+<message name="listarAceptadosAEdicion">
+<part name="parameters" element="tns:listarAceptadosAEdicion"/>
 </message>
-<message name="agregarComentarioEdicionCursoResponse">
-<part name="parameters" element="tns:agregarComentarioEdicionCursoResponse"/>
+<message name="listarAceptadosAEdicionResponse">
+<part name="parameters" element="tns:listarAceptadosAEdicionResponse"/>
 </message>
-<message name="listarProfesoresInstituto">
-<part name="parameters" element="tns:listarProfesoresInstituto"/>
+<message name="calificarEstudiante">
+<part name="parameters" element="tns:calificarEstudiante"/>
 </message>
-<message name="listarProfesoresInstitutoResponse">
-<part name="parameters" element="tns:listarProfesoresInstitutoResponse"/>
+<message name="calificarEstudianteResponse">
+<part name="parameters" element="tns:calificarEstudianteResponse"/>
+</message>
+<message name="agregarCursoAPrograma">
+<part name="parameters" element="tns:agregarCursoAPrograma"/>
+</message>
+<message name="agregarCursoAProgramaResponse">
+<part name="parameters" element="tns:agregarCursoAProgramaResponse"/>
+</message>
+<message name="darDatosInscripcionEdicion">
+<part name="parameters" element="tns:darDatosInscripcionEdicion"/>
+</message>
+<message name="darDatosInscripcionEdicionResponse">
+<part name="parameters" element="tns:darDatosInscripcionEdicionResponse"/>
 </message>
 <message name="darProgramaFormacion">
 <part name="parameters" element="tns:darProgramaFormacion"/>
@@ -136,23 +106,71 @@
 <message name="darProgramaFormacionResponse">
 <part name="parameters" element="tns:darProgramaFormacionResponse"/>
 </message>
-<message name="listarInstitutos">
-<part name="parameters" element="tns:listarInstitutos"/>
+<message name="listarCursosTendencia">
+<part name="parameters" element="tns:listarCursosTendencia"/>
 </message>
-<message name="listarInstitutosResponse">
-<part name="parameters" element="tns:listarInstitutosResponse"/>
+<message name="listarCursosTendenciaResponse">
+<part name="parameters" element="tns:listarCursosTendenciaResponse"/>
 </message>
-<message name="altaUsuario">
-<part name="parameters" element="tns:altaUsuario"/>
+<message name="desistirDeInscripcion">
+<part name="parameters" element="tns:desistirDeInscripcion"/>
 </message>
-<message name="altaUsuarioResponse">
-<part name="parameters" element="tns:altaUsuarioResponse"/>
+<message name="desistirDeInscripcionResponse">
+<part name="parameters" element="tns:desistirDeInscripcionResponse"/>
+</message>
+<message name="listarCursosCategoria">
+<part name="parameters" element="tns:listarCursosCategoria"/>
+</message>
+<message name="listarCursosCategoriaResponse">
+<part name="parameters" element="tns:listarCursosCategoriaResponse"/>
+</message>
+<message name="altaProgramaFormacion">
+<part name="parameters" element="tns:altaProgramaFormacion"/>
+</message>
+<message name="altaProgramaFormacionResponse">
+<part name="parameters" element="tns:altaProgramaFormacionResponse"/>
+</message>
+<message name="listarProfesoresInstituto">
+<part name="parameters" element="tns:listarProfesoresInstituto"/>
+</message>
+<message name="listarProfesoresInstitutoResponse">
+<part name="parameters" element="tns:listarProfesoresInstitutoResponse"/>
 </message>
 <message name="altaInstituto">
 <part name="parameters" element="tns:altaInstituto"/>
 </message>
 <message name="altaInstitutoResponse">
 <part name="parameters" element="tns:altaInstitutoResponse"/>
+</message>
+<message name="validarNick">
+<part name="parameters" element="tns:validarNick"/>
+</message>
+<message name="validarNickResponse">
+<part name="parameters" element="tns:validarNickResponse"/>
+</message>
+<message name="validarEmail">
+<part name="parameters" element="tns:validarEmail"/>
+</message>
+<message name="validarEmailResponse">
+<part name="parameters" element="tns:validarEmailResponse"/>
+</message>
+<message name="altaCurso">
+<part name="parameters" element="tns:altaCurso"/>
+</message>
+<message name="altaCursoResponse">
+<part name="parameters" element="tns:altaCursoResponse"/>
+</message>
+<message name="modificarUsuario">
+<part name="parameters" element="tns:modificarUsuario"/>
+</message>
+<message name="modificarUsuarioResponse">
+<part name="parameters" element="tns:modificarUsuarioResponse"/>
+</message>
+<message name="validarNombreCurso">
+<part name="parameters" element="tns:validarNombreCurso"/>
+</message>
+<message name="validarNombreCursoResponse">
+<part name="parameters" element="tns:validarNombreCursoResponse"/>
 </message>
 <message name="listarUsuarios">
 <part name="parameters" element="tns:listarUsuarios"/>
@@ -166,23 +184,11 @@
 <message name="darDatosUsuarioResponse">
 <part name="parameters" element="tns:darDatosUsuarioResponse"/>
 </message>
-<message name="validarEmail">
-<part name="parameters" element="tns:validarEmail"/>
+<message name="listarInstitutos">
+<part name="parameters" element="tns:listarInstitutos"/>
 </message>
-<message name="validarEmailResponse">
-<part name="parameters" element="tns:validarEmailResponse"/>
-</message>
-<message name="validarNick">
-<part name="parameters" element="tns:validarNick"/>
-</message>
-<message name="validarNickResponse">
-<part name="parameters" element="tns:validarNickResponse"/>
-</message>
-<message name="listarCursos">
-<part name="parameters" element="tns:listarCursos"/>
-</message>
-<message name="listarCursosResponse">
-<part name="parameters" element="tns:listarCursosResponse"/>
+<message name="listarInstitutosResponse">
+<part name="parameters" element="tns:listarInstitutosResponse"/>
 </message>
 <message name="listarEstudiantes">
 <part name="parameters" element="tns:listarEstudiantes"/>
@@ -190,47 +196,11 @@
 <message name="listarEstudiantesResponse">
 <part name="parameters" element="tns:listarEstudiantesResponse"/>
 </message>
-<message name="darDatosCurso">
-<part name="parameters" element="tns:darDatosCurso"/>
+<message name="altaUsuario">
+<part name="parameters" element="tns:altaUsuario"/>
 </message>
-<message name="darDatosCursoResponse">
-<part name="parameters" element="tns:darDatosCursoResponse"/>
-</message>
-<message name="listarProgramas">
-<part name="parameters" element="tns:listarProgramas"/>
-</message>
-<message name="listarProgramasResponse">
-<part name="parameters" element="tns:listarProgramasResponse"/>
-</message>
-<message name="altaEdicionCurso">
-<part name="parameters" element="tns:altaEdicionCurso"/>
-</message>
-<message name="altaEdicionCursoResponse">
-<part name="parameters" element="tns:altaEdicionCursoResponse"/>
-</message>
-<message name="modificarUsuario">
-<part name="parameters" element="tns:modificarUsuario"/>
-</message>
-<message name="modificarUsuarioResponse">
-<part name="parameters" element="tns:modificarUsuarioResponse"/>
-</message>
-<message name="altaCurso">
-<part name="parameters" element="tns:altaCurso"/>
-</message>
-<message name="altaCursoResponse">
-<part name="parameters" element="tns:altaCursoResponse"/>
-</message>
-<message name="listarEdiciones">
-<part name="parameters" element="tns:listarEdiciones"/>
-</message>
-<message name="listarEdicionesResponse">
-<part name="parameters" element="tns:listarEdicionesResponse"/>
-</message>
-<message name="validarNombreCurso">
-<part name="parameters" element="tns:validarNombreCurso"/>
-</message>
-<message name="validarNombreCursoResponse">
-<part name="parameters" element="tns:validarNombreCursoResponse"/>
+<message name="altaUsuarioResponse">
+<part name="parameters" element="tns:altaUsuarioResponse"/>
 </message>
 <message name="inscripcionEdicion">
 <part name="parameters" element="tns:inscripcionEdicion"/>
@@ -238,17 +208,11 @@
 <message name="inscripcionEdicionResponse">
 <part name="parameters" element="tns:inscripcionEdicionResponse"/>
 </message>
-<message name="darEdicionActual">
-<part name="parameters" element="tns:darEdicionActual"/>
+<message name="altaEdicionCurso">
+<part name="parameters" element="tns:altaEdicionCurso"/>
 </message>
-<message name="darEdicionActualResponse">
-<part name="parameters" element="tns:darEdicionActualResponse"/>
-</message>
-<message name="altaCategoria">
-<part name="parameters" element="tns:altaCategoria"/>
-</message>
-<message name="altaCategoriaResponse">
-<part name="parameters" element="tns:altaCategoriaResponse"/>
+<message name="altaEdicionCursoResponse">
+<part name="parameters" element="tns:altaEdicionCursoResponse"/>
 </message>
 <message name="darDatosEdicion">
 <part name="parameters" element="tns:darDatosEdicion"/>
@@ -256,11 +220,29 @@
 <message name="darDatosEdicionResponse">
 <part name="parameters" element="tns:darDatosEdicionResponse"/>
 </message>
-<message name="listarCategorias">
-<part name="parameters" element="tns:listarCategorias"/>
+<message name="darEdicionActual">
+<part name="parameters" element="tns:darEdicionActual"/>
 </message>
-<message name="listarCategoriasResponse">
-<part name="parameters" element="tns:listarCategoriasResponse"/>
+<message name="darEdicionActualResponse">
+<part name="parameters" element="tns:darEdicionActualResponse"/>
+</message>
+<message name="listarCursos">
+<part name="parameters" element="tns:listarCursos"/>
+</message>
+<message name="listarCursosResponse">
+<part name="parameters" element="tns:listarCursosResponse"/>
+</message>
+<message name="darDatosCurso">
+<part name="parameters" element="tns:darDatosCurso"/>
+</message>
+<message name="darDatosCursoResponse">
+<part name="parameters" element="tns:darDatosCursoResponse"/>
+</message>
+<message name="listarEdiciones">
+<part name="parameters" element="tns:listarEdiciones"/>
+</message>
+<message name="listarEdicionesResponse">
+<part name="parameters" element="tns:listarEdicionesResponse"/>
 </message>
 <message name="conteneCurso">
 <part name="parameters" element="tns:conteneCurso"/>
@@ -268,17 +250,29 @@
 <message name="conteneCursoResponse">
 <part name="parameters" element="tns:conteneCursoResponse"/>
 </message>
-<message name="darValoracionEst">
-<part name="parameters" element="tns:darValoracionEst"/>
+<message name="altaCategoria">
+<part name="parameters" element="tns:altaCategoria"/>
 </message>
-<message name="darValoracionEstResponse">
-<part name="parameters" element="tns:darValoracionEstResponse"/>
+<message name="altaCategoriaResponse">
+<part name="parameters" element="tns:altaCategoriaResponse"/>
 </message>
-<message name="listarProfesores">
-<part name="parameters" element="tns:listarProfesores"/>
+<message name="listarProgramas">
+<part name="parameters" element="tns:listarProgramas"/>
 </message>
-<message name="listarProfesoresResponse">
-<part name="parameters" element="tns:listarProfesoresResponse"/>
+<message name="listarProgramasResponse">
+<part name="parameters" element="tns:listarProgramasResponse"/>
+</message>
+<message name="listarCategorias">
+<part name="parameters" element="tns:listarCategorias"/>
+</message>
+<message name="listarCategoriasResponse">
+<part name="parameters" element="tns:listarCategoriasResponse"/>
+</message>
+<message name="valorarCurso">
+<part name="parameters" element="tns:valorarCurso"/>
+</message>
+<message name="valorarCursoResponse">
+<part name="parameters" element="tns:valorarCursoResponse"/>
 </message>
 <message name="finalizarEdicion">
 <part name="parameters" element="tns:finalizarEdicion"/>
@@ -286,11 +280,11 @@
 <message name="finalizarEdicionResponse">
 <part name="parameters" element="tns:finalizarEdicionResponse"/>
 </message>
-<message name="cursosEstudiante">
-<part name="parameters" element="tns:cursosEstudiante"/>
+<message name="darValoracionEst">
+<part name="parameters" element="tns:darValoracionEst"/>
 </message>
-<message name="cursosEstudianteResponse">
-<part name="parameters" element="tns:cursosEstudianteResponse"/>
+<message name="darValoracionEstResponse">
+<part name="parameters" element="tns:darValoracionEstResponse"/>
 </message>
 <message name="sePuedeFinalizar">
 <part name="parameters" element="tns:sePuedeFinalizar"/>
@@ -304,11 +298,17 @@
 <message name="agregarVisitaResponse">
 <part name="parameters" element="tns:agregarVisitaResponse"/>
 </message>
-<message name="valorarCurso">
-<part name="parameters" element="tns:valorarCurso"/>
+<message name="cursosEstudiante">
+<part name="parameters" element="tns:cursosEstudiante"/>
 </message>
-<message name="valorarCursoResponse">
-<part name="parameters" element="tns:valorarCursoResponse"/>
+<message name="cursosEstudianteResponse">
+<part name="parameters" element="tns:cursosEstudianteResponse"/>
+</message>
+<message name="listarProfesores">
+<part name="parameters" element="tns:listarProfesores"/>
+</message>
+<message name="listarProfesoresResponse">
+<part name="parameters" element="tns:listarProfesoresResponse"/>
 </message>
 <portType name="PublicadorServidorCentral">
 <operation name="validarNombreInstituto">
@@ -319,65 +319,37 @@
 <input wsam:Action="http://Servidor/PublicadorServidorCentral/listarCursosInstitutoRequest" message="tns:listarCursosInstituto"/>
 <output wsam:Action="http://Servidor/PublicadorServidorCentral/listarCursosInstitutoResponse" message="tns:listarCursosInstitutoResponse"/>
 </operation>
-<operation name="desistirDeInscripcion">
-<input wsam:Action="http://Servidor/PublicadorServidorCentral/desistirDeInscripcionRequest" message="tns:desistirDeInscripcion"/>
-<output wsam:Action="http://Servidor/PublicadorServidorCentral/desistirDeInscripcionResponse" message="tns:desistirDeInscripcionResponse"/>
+<operation name="listarCursosConEdicionInstituto">
+<input wsam:Action="http://Servidor/PublicadorServidorCentral/listarCursosConEdicionInstitutoRequest" message="tns:listarCursosConEdicionInstituto"/>
+<output wsam:Action="http://Servidor/PublicadorServidorCentral/listarCursosConEdicionInstitutoResponse" message="tns:listarCursosConEdicionInstitutoResponse"/>
 </operation>
 <operation name="validarNombrePrograma">
 <input wsam:Action="http://Servidor/PublicadorServidorCentral/validarNombreProgramaRequest" message="tns:validarNombrePrograma"/>
 <output wsam:Action="http://Servidor/PublicadorServidorCentral/validarNombreProgramaResponse" message="tns:validarNombreProgramaResponse"/>
 </operation>
-<operation name="listarAceptadosAEdicion">
-<input wsam:Action="http://Servidor/PublicadorServidorCentral/listarAceptadosAEdicionRequest" message="tns:listarAceptadosAEdicion"/>
-<output wsam:Action="http://Servidor/PublicadorServidorCentral/listarAceptadosAEdicionResponse" message="tns:listarAceptadosAEdicionResponse"/>
-</operation>
-<operation name="calificarEstudiante">
-<input wsam:Action="http://Servidor/PublicadorServidorCentral/calificarEstudianteRequest" message="tns:calificarEstudiante"/>
-<output wsam:Action="http://Servidor/PublicadorServidorCentral/calificarEstudianteResponse" message="tns:calificarEstudianteResponse"/>
+<operation name="validarNombreEdicion">
+<input wsam:Action="http://Servidor/PublicadorServidorCentral/validarNombreEdicionRequest" message="tns:validarNombreEdicion"/>
+<output wsam:Action="http://Servidor/PublicadorServidorCentral/validarNombreEdicionResponse" message="tns:validarNombreEdicionResponse"/>
 </operation>
 <operation name="listarInscriptosAEdicion">
 <input wsam:Action="http://Servidor/PublicadorServidorCentral/listarInscriptosAEdicionRequest" message="tns:listarInscriptosAEdicion"/>
 <output wsam:Action="http://Servidor/PublicadorServidorCentral/listarInscriptosAEdicionResponse" message="tns:listarInscriptosAEdicionResponse"/>
 </operation>
-<operation name="altaProgramaFormacion">
-<input wsam:Action="http://Servidor/PublicadorServidorCentral/altaProgramaFormacionRequest" message="tns:altaProgramaFormacion"/>
-<output wsam:Action="http://Servidor/PublicadorServidorCentral/altaProgramaFormacionResponse" message="tns:altaProgramaFormacionResponse"/>
-</operation>
-<operation name="darDatosInscripcionEdicion">
-<input wsam:Action="http://Servidor/PublicadorServidorCentral/darDatosInscripcionEdicionRequest" message="tns:darDatosInscripcionEdicion"/>
-<output wsam:Action="http://Servidor/PublicadorServidorCentral/darDatosInscripcionEdicionResponse" message="tns:darDatosInscripcionEdicionResponse"/>
-</operation>
 <operation name="inscripcionAPrograma">
 <input wsam:Action="http://Servidor/PublicadorServidorCentral/inscripcionAProgramaRequest" message="tns:inscripcionAPrograma"/>
 <output wsam:Action="http://Servidor/PublicadorServidorCentral/inscripcionAProgramaResponse" message="tns:inscripcionAProgramaResponse"/>
-</operation>
-<operation name="listarCursosConEdicionInstituto">
-<input wsam:Action="http://Servidor/PublicadorServidorCentral/listarCursosConEdicionInstitutoRequest" message="tns:listarCursosConEdicionInstituto"/>
-<output wsam:Action="http://Servidor/PublicadorServidorCentral/listarCursosConEdicionInstitutoResponse" message="tns:listarCursosConEdicionInstitutoResponse"/>
-</operation>
-<operation name="validarNombreCategoria">
-<input wsam:Action="http://Servidor/PublicadorServidorCentral/validarNombreCategoriaRequest" message="tns:validarNombreCategoria"/>
-<output wsam:Action="http://Servidor/PublicadorServidorCentral/validarNombreCategoriaResponse" message="tns:validarNombreCategoriaResponse"/>
-</operation>
-<operation name="validarNombreEdicion">
-<input wsam:Action="http://Servidor/PublicadorServidorCentral/validarNombreEdicionRequest" message="tns:validarNombreEdicion"/>
-<output wsam:Action="http://Servidor/PublicadorServidorCentral/validarNombreEdicionResponse" message="tns:validarNombreEdicionResponse"/>
-</operation>
-<operation name="listarCursosCategoria">
-<input wsam:Action="http://Servidor/PublicadorServidorCentral/listarCursosCategoriaRequest" message="tns:listarCursosCategoria"/>
-<output wsam:Action="http://Servidor/PublicadorServidorCentral/listarCursosCategoriaResponse" message="tns:listarCursosCategoriaResponse"/>
-</operation>
-<operation name="agregarCursoAPrograma">
-<input wsam:Action="http://Servidor/PublicadorServidorCentral/agregarCursoAProgramaRequest" message="tns:agregarCursoAPrograma"/>
-<output wsam:Action="http://Servidor/PublicadorServidorCentral/agregarCursoAProgramaResponse" message="tns:agregarCursoAProgramaResponse"/>
 </operation>
 <operation name="aceptarInscripciones">
 <input wsam:Action="http://Servidor/PublicadorServidorCentral/aceptarInscripcionesRequest" message="tns:aceptarInscripciones"/>
 <output wsam:Action="http://Servidor/PublicadorServidorCentral/aceptarInscripcionesResponse" message="tns:aceptarInscripcionesResponse"/>
 </operation>
-<operation name="listarCursosTendencia">
-<input wsam:Action="http://Servidor/PublicadorServidorCentral/listarCursosTendenciaRequest" message="tns:listarCursosTendencia"/>
-<output wsam:Action="http://Servidor/PublicadorServidorCentral/listarCursosTendenciaResponse" message="tns:listarCursosTendenciaResponse"/>
+<operation name="agregarComentarioEdicionCurso">
+<input wsam:Action="http://Servidor/PublicadorServidorCentral/agregarComentarioEdicionCursoRequest" message="tns:agregarComentarioEdicionCurso"/>
+<output wsam:Action="http://Servidor/PublicadorServidorCentral/agregarComentarioEdicionCursoResponse" message="tns:agregarComentarioEdicionCursoResponse"/>
+</operation>
+<operation name="validarNombreCategoria">
+<input wsam:Action="http://Servidor/PublicadorServidorCentral/validarNombreCategoriaRequest" message="tns:validarNombreCategoria"/>
+<output wsam:Action="http://Servidor/PublicadorServidorCentral/validarNombreCategoriaResponse" message="tns:validarNombreCategoriaResponse"/>
 </operation>
 <operation name="edicionesEstudiante">
 <input wsam:Action="http://Servidor/PublicadorServidorCentral/edicionesEstudianteRequest" message="tns:edicionesEstudiante"/>
@@ -387,29 +359,69 @@
 <input wsam:Action="http://Servidor/PublicadorServidorCentral/darDatosCertificadoRequest" message="tns:darDatosCertificado"/>
 <output wsam:Action="http://Servidor/PublicadorServidorCentral/darDatosCertificadoResponse" message="tns:darDatosCertificadoResponse"/>
 </operation>
-<operation name="agregarComentarioEdicionCurso">
-<input wsam:Action="http://Servidor/PublicadorServidorCentral/agregarComentarioEdicionCursoRequest" message="tns:agregarComentarioEdicionCurso"/>
-<output wsam:Action="http://Servidor/PublicadorServidorCentral/agregarComentarioEdicionCursoResponse" message="tns:agregarComentarioEdicionCursoResponse"/>
+<operation name="listarAceptadosAEdicion">
+<input wsam:Action="http://Servidor/PublicadorServidorCentral/listarAceptadosAEdicionRequest" message="tns:listarAceptadosAEdicion"/>
+<output wsam:Action="http://Servidor/PublicadorServidorCentral/listarAceptadosAEdicionResponse" message="tns:listarAceptadosAEdicionResponse"/>
 </operation>
-<operation name="listarProfesoresInstituto">
-<input wsam:Action="http://Servidor/PublicadorServidorCentral/listarProfesoresInstitutoRequest" message="tns:listarProfesoresInstituto"/>
-<output wsam:Action="http://Servidor/PublicadorServidorCentral/listarProfesoresInstitutoResponse" message="tns:listarProfesoresInstitutoResponse"/>
+<operation name="calificarEstudiante">
+<input wsam:Action="http://Servidor/PublicadorServidorCentral/calificarEstudianteRequest" message="tns:calificarEstudiante"/>
+<output wsam:Action="http://Servidor/PublicadorServidorCentral/calificarEstudianteResponse" message="tns:calificarEstudianteResponse"/>
+</operation>
+<operation name="agregarCursoAPrograma">
+<input wsam:Action="http://Servidor/PublicadorServidorCentral/agregarCursoAProgramaRequest" message="tns:agregarCursoAPrograma"/>
+<output wsam:Action="http://Servidor/PublicadorServidorCentral/agregarCursoAProgramaResponse" message="tns:agregarCursoAProgramaResponse"/>
+</operation>
+<operation name="darDatosInscripcionEdicion">
+<input wsam:Action="http://Servidor/PublicadorServidorCentral/darDatosInscripcionEdicionRequest" message="tns:darDatosInscripcionEdicion"/>
+<output wsam:Action="http://Servidor/PublicadorServidorCentral/darDatosInscripcionEdicionResponse" message="tns:darDatosInscripcionEdicionResponse"/>
 </operation>
 <operation name="darProgramaFormacion">
 <input wsam:Action="http://Servidor/PublicadorServidorCentral/darProgramaFormacionRequest" message="tns:darProgramaFormacion"/>
 <output wsam:Action="http://Servidor/PublicadorServidorCentral/darProgramaFormacionResponse" message="tns:darProgramaFormacionResponse"/>
 </operation>
-<operation name="listarInstitutos">
-<input wsam:Action="http://Servidor/PublicadorServidorCentral/listarInstitutosRequest" message="tns:listarInstitutos"/>
-<output wsam:Action="http://Servidor/PublicadorServidorCentral/listarInstitutosResponse" message="tns:listarInstitutosResponse"/>
+<operation name="listarCursosTendencia">
+<input wsam:Action="http://Servidor/PublicadorServidorCentral/listarCursosTendenciaRequest" message="tns:listarCursosTendencia"/>
+<output wsam:Action="http://Servidor/PublicadorServidorCentral/listarCursosTendenciaResponse" message="tns:listarCursosTendenciaResponse"/>
 </operation>
-<operation name="altaUsuario">
-<input wsam:Action="http://Servidor/PublicadorServidorCentral/altaUsuarioRequest" message="tns:altaUsuario"/>
-<output wsam:Action="http://Servidor/PublicadorServidorCentral/altaUsuarioResponse" message="tns:altaUsuarioResponse"/>
+<operation name="desistirDeInscripcion">
+<input wsam:Action="http://Servidor/PublicadorServidorCentral/desistirDeInscripcionRequest" message="tns:desistirDeInscripcion"/>
+<output wsam:Action="http://Servidor/PublicadorServidorCentral/desistirDeInscripcionResponse" message="tns:desistirDeInscripcionResponse"/>
+</operation>
+<operation name="listarCursosCategoria">
+<input wsam:Action="http://Servidor/PublicadorServidorCentral/listarCursosCategoriaRequest" message="tns:listarCursosCategoria"/>
+<output wsam:Action="http://Servidor/PublicadorServidorCentral/listarCursosCategoriaResponse" message="tns:listarCursosCategoriaResponse"/>
+</operation>
+<operation name="altaProgramaFormacion">
+<input wsam:Action="http://Servidor/PublicadorServidorCentral/altaProgramaFormacionRequest" message="tns:altaProgramaFormacion"/>
+<output wsam:Action="http://Servidor/PublicadorServidorCentral/altaProgramaFormacionResponse" message="tns:altaProgramaFormacionResponse"/>
+</operation>
+<operation name="listarProfesoresInstituto">
+<input wsam:Action="http://Servidor/PublicadorServidorCentral/listarProfesoresInstitutoRequest" message="tns:listarProfesoresInstituto"/>
+<output wsam:Action="http://Servidor/PublicadorServidorCentral/listarProfesoresInstitutoResponse" message="tns:listarProfesoresInstitutoResponse"/>
 </operation>
 <operation name="altaInstituto">
 <input wsam:Action="http://Servidor/PublicadorServidorCentral/altaInstitutoRequest" message="tns:altaInstituto"/>
 <output wsam:Action="http://Servidor/PublicadorServidorCentral/altaInstitutoResponse" message="tns:altaInstitutoResponse"/>
+</operation>
+<operation name="validarNick">
+<input wsam:Action="http://Servidor/PublicadorServidorCentral/validarNickRequest" message="tns:validarNick"/>
+<output wsam:Action="http://Servidor/PublicadorServidorCentral/validarNickResponse" message="tns:validarNickResponse"/>
+</operation>
+<operation name="validarEmail">
+<input wsam:Action="http://Servidor/PublicadorServidorCentral/validarEmailRequest" message="tns:validarEmail"/>
+<output wsam:Action="http://Servidor/PublicadorServidorCentral/validarEmailResponse" message="tns:validarEmailResponse"/>
+</operation>
+<operation name="altaCurso">
+<input wsam:Action="http://Servidor/PublicadorServidorCentral/altaCursoRequest" message="tns:altaCurso"/>
+<output wsam:Action="http://Servidor/PublicadorServidorCentral/altaCursoResponse" message="tns:altaCursoResponse"/>
+</operation>
+<operation name="modificarUsuario">
+<input wsam:Action="http://Servidor/PublicadorServidorCentral/modificarUsuarioRequest" message="tns:modificarUsuario"/>
+<output wsam:Action="http://Servidor/PublicadorServidorCentral/modificarUsuarioResponse" message="tns:modificarUsuarioResponse"/>
+</operation>
+<operation name="validarNombreCurso">
+<input wsam:Action="http://Servidor/PublicadorServidorCentral/validarNombreCursoRequest" message="tns:validarNombreCurso"/>
+<output wsam:Action="http://Servidor/PublicadorServidorCentral/validarNombreCursoResponse" message="tns:validarNombreCursoResponse"/>
 </operation>
 <operation name="listarUsuarios">
 <input wsam:Action="http://Servidor/PublicadorServidorCentral/listarUsuariosRequest" message="tns:listarUsuarios"/>
@@ -419,89 +431,73 @@
 <input wsam:Action="http://Servidor/PublicadorServidorCentral/darDatosUsuarioRequest" message="tns:darDatosUsuario"/>
 <output wsam:Action="http://Servidor/PublicadorServidorCentral/darDatosUsuarioResponse" message="tns:darDatosUsuarioResponse"/>
 </operation>
-<operation name="validarEmail">
-<input wsam:Action="http://Servidor/PublicadorServidorCentral/validarEmailRequest" message="tns:validarEmail"/>
-<output wsam:Action="http://Servidor/PublicadorServidorCentral/validarEmailResponse" message="tns:validarEmailResponse"/>
-</operation>
-<operation name="validarNick">
-<input wsam:Action="http://Servidor/PublicadorServidorCentral/validarNickRequest" message="tns:validarNick"/>
-<output wsam:Action="http://Servidor/PublicadorServidorCentral/validarNickResponse" message="tns:validarNickResponse"/>
-</operation>
-<operation name="listarCursos">
-<input wsam:Action="http://Servidor/PublicadorServidorCentral/listarCursosRequest" message="tns:listarCursos"/>
-<output wsam:Action="http://Servidor/PublicadorServidorCentral/listarCursosResponse" message="tns:listarCursosResponse"/>
+<operation name="listarInstitutos">
+<input wsam:Action="http://Servidor/PublicadorServidorCentral/listarInstitutosRequest" message="tns:listarInstitutos"/>
+<output wsam:Action="http://Servidor/PublicadorServidorCentral/listarInstitutosResponse" message="tns:listarInstitutosResponse"/>
 </operation>
 <operation name="listarEstudiantes">
 <input wsam:Action="http://Servidor/PublicadorServidorCentral/listarEstudiantesRequest" message="tns:listarEstudiantes"/>
 <output wsam:Action="http://Servidor/PublicadorServidorCentral/listarEstudiantesResponse" message="tns:listarEstudiantesResponse"/>
 </operation>
-<operation name="darDatosCurso">
-<input wsam:Action="http://Servidor/PublicadorServidorCentral/darDatosCursoRequest" message="tns:darDatosCurso"/>
-<output wsam:Action="http://Servidor/PublicadorServidorCentral/darDatosCursoResponse" message="tns:darDatosCursoResponse"/>
-</operation>
-<operation name="listarProgramas">
-<input wsam:Action="http://Servidor/PublicadorServidorCentral/listarProgramasRequest" message="tns:listarProgramas"/>
-<output wsam:Action="http://Servidor/PublicadorServidorCentral/listarProgramasResponse" message="tns:listarProgramasResponse"/>
-</operation>
-<operation name="altaEdicionCurso">
-<input wsam:Action="http://Servidor/PublicadorServidorCentral/altaEdicionCursoRequest" message="tns:altaEdicionCurso"/>
-<output wsam:Action="http://Servidor/PublicadorServidorCentral/altaEdicionCursoResponse" message="tns:altaEdicionCursoResponse"/>
-</operation>
-<operation name="modificarUsuario">
-<input wsam:Action="http://Servidor/PublicadorServidorCentral/modificarUsuarioRequest" message="tns:modificarUsuario"/>
-<output wsam:Action="http://Servidor/PublicadorServidorCentral/modificarUsuarioResponse" message="tns:modificarUsuarioResponse"/>
-</operation>
-<operation name="altaCurso">
-<input wsam:Action="http://Servidor/PublicadorServidorCentral/altaCursoRequest" message="tns:altaCurso"/>
-<output wsam:Action="http://Servidor/PublicadorServidorCentral/altaCursoResponse" message="tns:altaCursoResponse"/>
-</operation>
-<operation name="listarEdiciones">
-<input wsam:Action="http://Servidor/PublicadorServidorCentral/listarEdicionesRequest" message="tns:listarEdiciones"/>
-<output wsam:Action="http://Servidor/PublicadorServidorCentral/listarEdicionesResponse" message="tns:listarEdicionesResponse"/>
-</operation>
-<operation name="validarNombreCurso">
-<input wsam:Action="http://Servidor/PublicadorServidorCentral/validarNombreCursoRequest" message="tns:validarNombreCurso"/>
-<output wsam:Action="http://Servidor/PublicadorServidorCentral/validarNombreCursoResponse" message="tns:validarNombreCursoResponse"/>
+<operation name="altaUsuario">
+<input wsam:Action="http://Servidor/PublicadorServidorCentral/altaUsuarioRequest" message="tns:altaUsuario"/>
+<output wsam:Action="http://Servidor/PublicadorServidorCentral/altaUsuarioResponse" message="tns:altaUsuarioResponse"/>
 </operation>
 <operation name="inscripcionEdicion">
 <input wsam:Action="http://Servidor/PublicadorServidorCentral/inscripcionEdicionRequest" message="tns:inscripcionEdicion"/>
 <output wsam:Action="http://Servidor/PublicadorServidorCentral/inscripcionEdicionResponse" message="tns:inscripcionEdicionResponse"/>
 </operation>
-<operation name="darEdicionActual">
-<input wsam:Action="http://Servidor/PublicadorServidorCentral/darEdicionActualRequest" message="tns:darEdicionActual"/>
-<output wsam:Action="http://Servidor/PublicadorServidorCentral/darEdicionActualResponse" message="tns:darEdicionActualResponse"/>
-</operation>
-<operation name="altaCategoria">
-<input wsam:Action="http://Servidor/PublicadorServidorCentral/altaCategoriaRequest" message="tns:altaCategoria"/>
-<output wsam:Action="http://Servidor/PublicadorServidorCentral/altaCategoriaResponse" message="tns:altaCategoriaResponse"/>
+<operation name="altaEdicionCurso">
+<input wsam:Action="http://Servidor/PublicadorServidorCentral/altaEdicionCursoRequest" message="tns:altaEdicionCurso"/>
+<output wsam:Action="http://Servidor/PublicadorServidorCentral/altaEdicionCursoResponse" message="tns:altaEdicionCursoResponse"/>
 </operation>
 <operation name="darDatosEdicion">
 <input wsam:Action="http://Servidor/PublicadorServidorCentral/darDatosEdicionRequest" message="tns:darDatosEdicion"/>
 <output wsam:Action="http://Servidor/PublicadorServidorCentral/darDatosEdicionResponse" message="tns:darDatosEdicionResponse"/>
 </operation>
-<operation name="listarCategorias">
-<input wsam:Action="http://Servidor/PublicadorServidorCentral/listarCategoriasRequest" message="tns:listarCategorias"/>
-<output wsam:Action="http://Servidor/PublicadorServidorCentral/listarCategoriasResponse" message="tns:listarCategoriasResponse"/>
+<operation name="darEdicionActual">
+<input wsam:Action="http://Servidor/PublicadorServidorCentral/darEdicionActualRequest" message="tns:darEdicionActual"/>
+<output wsam:Action="http://Servidor/PublicadorServidorCentral/darEdicionActualResponse" message="tns:darEdicionActualResponse"/>
+</operation>
+<operation name="listarCursos">
+<input wsam:Action="http://Servidor/PublicadorServidorCentral/listarCursosRequest" message="tns:listarCursos"/>
+<output wsam:Action="http://Servidor/PublicadorServidorCentral/listarCursosResponse" message="tns:listarCursosResponse"/>
+</operation>
+<operation name="darDatosCurso">
+<input wsam:Action="http://Servidor/PublicadorServidorCentral/darDatosCursoRequest" message="tns:darDatosCurso"/>
+<output wsam:Action="http://Servidor/PublicadorServidorCentral/darDatosCursoResponse" message="tns:darDatosCursoResponse"/>
+</operation>
+<operation name="listarEdiciones">
+<input wsam:Action="http://Servidor/PublicadorServidorCentral/listarEdicionesRequest" message="tns:listarEdiciones"/>
+<output wsam:Action="http://Servidor/PublicadorServidorCentral/listarEdicionesResponse" message="tns:listarEdicionesResponse"/>
 </operation>
 <operation name="conteneCurso">
 <input wsam:Action="http://Servidor/PublicadorServidorCentral/conteneCursoRequest" message="tns:conteneCurso"/>
 <output wsam:Action="http://Servidor/PublicadorServidorCentral/conteneCursoResponse" message="tns:conteneCursoResponse"/>
 </operation>
-<operation name="darValoracionEst">
-<input wsam:Action="http://Servidor/PublicadorServidorCentral/darValoracionEstRequest" message="tns:darValoracionEst"/>
-<output wsam:Action="http://Servidor/PublicadorServidorCentral/darValoracionEstResponse" message="tns:darValoracionEstResponse"/>
+<operation name="altaCategoria">
+<input wsam:Action="http://Servidor/PublicadorServidorCentral/altaCategoriaRequest" message="tns:altaCategoria"/>
+<output wsam:Action="http://Servidor/PublicadorServidorCentral/altaCategoriaResponse" message="tns:altaCategoriaResponse"/>
 </operation>
-<operation name="listarProfesores">
-<input wsam:Action="http://Servidor/PublicadorServidorCentral/listarProfesoresRequest" message="tns:listarProfesores"/>
-<output wsam:Action="http://Servidor/PublicadorServidorCentral/listarProfesoresResponse" message="tns:listarProfesoresResponse"/>
+<operation name="listarProgramas">
+<input wsam:Action="http://Servidor/PublicadorServidorCentral/listarProgramasRequest" message="tns:listarProgramas"/>
+<output wsam:Action="http://Servidor/PublicadorServidorCentral/listarProgramasResponse" message="tns:listarProgramasResponse"/>
+</operation>
+<operation name="listarCategorias">
+<input wsam:Action="http://Servidor/PublicadorServidorCentral/listarCategoriasRequest" message="tns:listarCategorias"/>
+<output wsam:Action="http://Servidor/PublicadorServidorCentral/listarCategoriasResponse" message="tns:listarCategoriasResponse"/>
+</operation>
+<operation name="valorarCurso">
+<input wsam:Action="http://Servidor/PublicadorServidorCentral/valorarCursoRequest" message="tns:valorarCurso"/>
+<output wsam:Action="http://Servidor/PublicadorServidorCentral/valorarCursoResponse" message="tns:valorarCursoResponse"/>
 </operation>
 <operation name="finalizarEdicion">
 <input wsam:Action="http://Servidor/PublicadorServidorCentral/finalizarEdicionRequest" message="tns:finalizarEdicion"/>
 <output wsam:Action="http://Servidor/PublicadorServidorCentral/finalizarEdicionResponse" message="tns:finalizarEdicionResponse"/>
 </operation>
-<operation name="cursosEstudiante">
-<input wsam:Action="http://Servidor/PublicadorServidorCentral/cursosEstudianteRequest" message="tns:cursosEstudiante"/>
-<output wsam:Action="http://Servidor/PublicadorServidorCentral/cursosEstudianteResponse" message="tns:cursosEstudianteResponse"/>
+<operation name="darValoracionEst">
+<input wsam:Action="http://Servidor/PublicadorServidorCentral/darValoracionEstRequest" message="tns:darValoracionEst"/>
+<output wsam:Action="http://Servidor/PublicadorServidorCentral/darValoracionEstResponse" message="tns:darValoracionEstResponse"/>
 </operation>
 <operation name="sePuedeFinalizar">
 <input wsam:Action="http://Servidor/PublicadorServidorCentral/sePuedeFinalizarRequest" message="tns:sePuedeFinalizar"/>
@@ -511,9 +507,13 @@
 <input wsam:Action="http://Servidor/PublicadorServidorCentral/agregarVisitaRequest" message="tns:agregarVisita"/>
 <output wsam:Action="http://Servidor/PublicadorServidorCentral/agregarVisitaResponse" message="tns:agregarVisitaResponse"/>
 </operation>
-<operation name="valorarCurso">
-<input wsam:Action="http://Servidor/PublicadorServidorCentral/valorarCursoRequest" message="tns:valorarCurso"/>
-<output wsam:Action="http://Servidor/PublicadorServidorCentral/valorarCursoResponse" message="tns:valorarCursoResponse"/>
+<operation name="cursosEstudiante">
+<input wsam:Action="http://Servidor/PublicadorServidorCentral/cursosEstudianteRequest" message="tns:cursosEstudiante"/>
+<output wsam:Action="http://Servidor/PublicadorServidorCentral/cursosEstudianteResponse" message="tns:cursosEstudianteResponse"/>
+</operation>
+<operation name="listarProfesores">
+<input wsam:Action="http://Servidor/PublicadorServidorCentral/listarProfesoresRequest" message="tns:listarProfesores"/>
+<output wsam:Action="http://Servidor/PublicadorServidorCentral/listarProfesoresResponse" message="tns:listarProfesoresResponse"/>
 </operation>
 </portType>
 <binding name="PublicadorServidorCentralPortBinding" type="tns:PublicadorServidorCentral">
@@ -536,7 +536,7 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="desistirDeInscripcion">
+<operation name="listarCursosConEdicionInstituto">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -554,16 +554,7 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="listarAceptadosAEdicion">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="calificarEstudiante">
+<operation name="validarNombreEdicion">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -581,70 +572,7 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="altaProgramaFormacion">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="darDatosInscripcionEdicion">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
 <operation name="inscripcionAPrograma">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="listarCursosConEdicionInstituto">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="validarNombreCategoria">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="validarNombreEdicion">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="listarCursosCategoria">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="agregarCursoAPrograma">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -662,7 +590,16 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="listarCursosTendencia">
+<operation name="agregarComentarioEdicionCurso">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="validarNombreCategoria">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -689,7 +626,7 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="agregarComentarioEdicionCurso">
+<operation name="listarAceptadosAEdicion">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -698,7 +635,25 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="listarProfesoresInstituto">
+<operation name="calificarEstudiante">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="agregarCursoAPrograma">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="darDatosInscripcionEdicion">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -716,7 +671,7 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="listarInstitutos">
+<operation name="listarCursosTendencia">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -725,7 +680,34 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="altaUsuario">
+<operation name="desistirDeInscripcion">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="listarCursosCategoria">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="altaProgramaFormacion">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="listarProfesoresInstituto">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -735,6 +717,51 @@
 </output>
 </operation>
 <operation name="altaInstituto">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="validarNick">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="validarEmail">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="altaCurso">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="modificarUsuario">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="validarNombreCurso">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -761,25 +788,7 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="validarEmail">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="validarNick">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="listarCursos">
+<operation name="listarInstitutos">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -797,61 +806,7 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="darDatosCurso">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="listarProgramas">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="altaEdicionCurso">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="modificarUsuario">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="altaCurso">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="listarEdiciones">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="validarNombreCurso">
+<operation name="altaUsuario">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -869,16 +824,7 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="darEdicionActual">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="altaCategoria">
+<operation name="altaEdicionCurso">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -896,7 +842,34 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="listarCategorias">
+<operation name="darEdicionActual">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="listarCursos">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="darDatosCurso">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="listarEdiciones">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -914,7 +887,7 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="darValoracionEst">
+<operation name="altaCategoria">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -923,7 +896,25 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="listarProfesores">
+<operation name="listarProgramas">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="listarCategorias">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="valorarCurso">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -941,7 +932,7 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="cursosEstudiante">
+<operation name="darValoracionEst">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -968,7 +959,16 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="valorarCurso">
+<operation name="cursosEstudiante">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="listarProfesores">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>

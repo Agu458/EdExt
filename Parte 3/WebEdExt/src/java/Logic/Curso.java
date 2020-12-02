@@ -90,7 +90,7 @@ public class Curso extends HttpServlet {
                 out.println(json);
             }
             if (accion.equals("listarCursosTendencia")) {
-                List<DataCurso> cursos = port.listarCursosTendencia();
+                List<String> cursos = port.listarCursosTendencia();
                 String json = new Gson().toJson(cursos);
                 out.println(json);
             }

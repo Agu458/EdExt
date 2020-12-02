@@ -116,13 +116,37 @@
                                             <div class="comment-head">
                                                 <h6 class="comment-name"><a href="#"><%= dc.getEstudiante()%></a></h6>
                                                 <span><%= dc.getFechaPublicacion().toGregorianCalendar().getTime()%></span>
-                                                <i class="fa fa-reply"></i>
                                             </div>
                                             <div class="comment-content">
                                                 <%= dc.getCuerpo()%>
                                             </div>
                                         </div>
                                     </div>
+                                    <!-- Respuestas de los comentarios -->
+                                    <ul class="comments-list reply-list">
+                                        <%
+                                            for (DataComentario reply : dc.getRespuestas()) {
+                                        %>
+
+                                        <li>
+                                            <!-- Avatar -->
+                                            <div class="comment-avatar"><img src="https://i.pinimg.com/736x/49/c8/e4/49c8e403cd1929e9e7b02126824ff831.jpg" alt=""></div>
+                                            <!-- Contenedor del Comentario -->
+                                            <div class="comment-box">
+                                                <div class="comment-head">
+                                                    <h6 class="comment-name"><a href="#=<%= reply.getEstudiante()%>"><%= reply.getEstudiante()%></a></h6>
+                                                    <span><%= reply.getFechaPublicacion().toGregorianCalendar().getTime()%></span>
+                                                </div>
+                                                <div class="comment-content">
+                                                    <%= reply.getCuerpo()%>
+                                                </div>
+                                            </div>
+                                        </li>
+
+                                        <%
+                                            }
+                                        %>
+                                    </ul>
                                 </li>
                                 <%
                                     }

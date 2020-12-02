@@ -28,6 +28,9 @@
                     <li class="nav-item" role="presentation">
                         <a class="nav-link" id="profile-tab" data-toggle="tab" href="#categoria" role="tab" aria-controls="categoria" aria-selected="false">Categoria</a>
                     </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#tendencia" role="tab" aria-controls="tendencia" aria-selected="false">Tendencia</a>
+                    </li>
                 </ul>
                 <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade show active p-4" id="instituto" role="tabpanel">
@@ -45,6 +48,13 @@
                         <div class="card p-4 mt-4" id="listByCategoria">
                             <form action="Curso" method="GET">
                                 <div class="list-group" id="listCursosCategoria"></div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade p-4" id="tendencia" role="tabpanel">
+                        <div class="card p-4 mt-4" id="listByTendencia">
+                            <form action="Curso" method="GET">
+                                <div class="list-group" id="listCursosTendencia"></div>
                             </form>
                         </div>
                     </div>
@@ -133,6 +143,24 @@
                             cats.forEach(categoria => {
                                 let template = '<option value="' + categoria + '">' + categoria + '</option>';
                                 categorias.append(template);
+                            });
+                        }
+                    }
+                });
+                
+                var listCursosTendencia = $('#listCursosTendencia');
+                listCursosTendencia.empty();
+                accion = "listarCursosTendencia";
+                $.ajax({
+                    type: 'GET',
+                    url: 'Curso',
+                    data: {accion: accion},
+                    success: function (response) {
+                        let cursos = JSON.parse(response);
+                        if (cursos !== null) {
+                            cursos.forEach(curso => {
+                                let template = '<button type="submit" class="list-group-item list-group-item-action" name="consultarCurso" value="' + curso + '" >' + curso + '</button>';
+                                listCursosTendencia.append(template);
                             });
                         }
                     }

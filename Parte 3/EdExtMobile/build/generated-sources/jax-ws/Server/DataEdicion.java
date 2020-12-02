@@ -31,6 +31,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="curso" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="comentarios" type="{http://Servidor/}dataComentario" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="activa" type="{http://www.w3.org/2001/XMLSchema}boolean"/>
+ *         &lt;element name="fechaCierre" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -50,7 +51,8 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "profesores",
     "curso",
     "comentarios",
-    "activa"
+    "activa",
+    "fechaCierre"
 })
 public class DataEdicion {
 
@@ -69,6 +71,8 @@ public class DataEdicion {
     @XmlElement(nillable = true)
     protected List<DataComentario> comentarios;
     protected boolean activa;
+    @XmlSchemaType(name = "dateTime")
+    protected XMLGregorianCalendar fechaCierre;
 
     /**
      * Obtiene el valor de la propiedad nombre.
@@ -294,6 +298,30 @@ public class DataEdicion {
      */
     public void setActiva(boolean value) {
         this.activa = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad fechaCierre.
+     * 
+     * @return
+     *     possible object is
+     *     {@link XMLGregorianCalendar }
+     *     
+     */
+    public XMLGregorianCalendar getFechaCierre() {
+        return fechaCierre;
+    }
+
+    /**
+     * Define el valor de la propiedad fechaCierre.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link XMLGregorianCalendar }
+     *     
+     */
+    public void setFechaCierre(XMLGregorianCalendar value) {
+        this.fechaCierre = value;
     }
 
 }

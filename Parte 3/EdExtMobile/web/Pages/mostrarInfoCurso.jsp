@@ -18,7 +18,9 @@
     int cant3 = 0;
     int cant4 = 0;
     int cant5 = 0;
-
+    int porcentaje = 0;
+    Double promedio = 0.0;
+    
     for (DataValoracion val : dc.getValoraciones()) {
         suma = suma + val.getValoracion();
         if (val.getValoracion() == 1) {
@@ -38,6 +40,10 @@
                 }
             }
         }
+    }
+
+    if (!dc.getValoraciones().isEmpty()) {
+        promedio = (suma / dc.getValoraciones().size());
     }
 %>
 <!DOCTYPE html>
@@ -183,8 +189,7 @@
                                 <div class="well well-sm">
                                     <div class="row">
                                         <div class="col-xs-12 col-md-6 text-center">
-                                            <h1 class="rating-num">
-                                                <%= (suma / dc.getValoraciones().size())%></h1>
+                                            <h1 class="rating-num"><%= promedio %></h1>
                                             <div>
                                                 <span class="fas fa-user"></span> <%= dc.getValoraciones().size()%>
                                             </div>
@@ -196,10 +201,16 @@
                                                 </div>
                                                 <div class="col-xs-8 col-md-9">
                                                     <div class="progress progress-striped">
+                                                        <%
+                                                            if(dc.getValoraciones().size() != 0){
+                                                                porcentaje = (cant5 * 100) / dc.getValoraciones().size();
+                                                            }
+                                                        %>
                                                         <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="20"
-                                                             aria-valuemin="0" aria-valuemax="100" style="width: <%= (cant5 * 100) / dc.getValoraciones().size()%>%">
-                                                            <span class="sr-only"><%= (cant5 * 100) / dc.getValoraciones().size()%>%</span>
+                                                            aria-valuemin="0" aria-valuemax="100" style="width: <%= porcentaje %>%">
+                                                            <span class="sr-only"><%= porcentaje %>%</span>
                                                         </div>
+                                                        <% porcentaje = 0; %>
                                                     </div>
                                                 </div>
                                                 <!-- end 5 -->
@@ -208,10 +219,16 @@
                                                 </div>
                                                 <div class="col-xs-8 col-md-9">
                                                     <div class="progress">
+                                                        <%
+                                                            if(dc.getValoraciones().size() != 0){
+                                                                porcentaje = (cant4 * 100) / dc.getValoraciones().size();
+                                                            }
+                                                        %>
                                                         <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="20"
-                                                             aria-valuemin="0" aria-valuemax="100" style="width: <%= (cant4 * 100) / dc.getValoraciones().size()%>%">
-                                                            <span class="sr-only"><%= (cant4 * 100) / dc.getValoraciones().size()%>%</span>
+                                                             aria-valuemin="0" aria-valuemax="100" style="width: <%= porcentaje %>%">
+                                                            <span class="sr-only"><%= porcentaje %>%</span>
                                                         </div>
+                                                        <% porcentaje = 0; %>
                                                     </div>
                                                 </div>
                                                 <!-- end 4 -->
@@ -220,10 +237,16 @@
                                                 </div>
                                                 <div class="col-xs-8 col-md-9">
                                                     <div class="progress">
+                                                        <%
+                                                            if(dc.getValoraciones().size() != 0){
+                                                                porcentaje = (cant3 * 100) / dc.getValoraciones().size();
+                                                            }
+                                                        %>
                                                         <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20"
-                                                             aria-valuemin="0" aria-valuemax="100" style="width: <%= (cant3 * 100) / dc.getValoraciones().size()%>%">
-                                                            <span class="sr-only"><%= (cant3 * 100) / dc.getValoraciones().size()%>%</span>
+                                                             aria-valuemin="0" aria-valuemax="100" style="width: <%= porcentaje %>%">
+                                                            <span class="sr-only"><%= porcentaje %>%</span>
                                                         </div>
+                                                        <% porcentaje = 0; %>
                                                     </div>
                                                 </div>
                                                 <!-- end 3 -->
@@ -232,10 +255,16 @@
                                                 </div>
                                                 <div class="col-xs-8 col-md-9">
                                                     <div class="progress">
+                                                        <%
+                                                            if(dc.getValoraciones().size() != 0){
+                                                                porcentaje = (cant2 * 100) / dc.getValoraciones().size();
+                                                            }
+                                                        %>
                                                         <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="20"
-                                                             aria-valuemin="0" aria-valuemax="100" style="width: <%= (cant2 * 100) / dc.getValoraciones().size()%>%">
-                                                            <span class="sr-only"><%= (cant2 * 100) / dc.getValoraciones().size()%>%</span>
+                                                             aria-valuemin="0" aria-valuemax="100" style="width: <%= porcentaje %>%">
+                                                            <span class="sr-only"><%= porcentaje %>%</span>
                                                         </div>
+                                                        <% porcentaje = 0; %>
                                                     </div>
                                                 </div>
                                                 <!-- end 2 -->
@@ -244,10 +273,16 @@
                                                 </div>
                                                 <div class="col-xs-8 col-md-9">
                                                     <div class="progress">
+                                                        <%
+                                                            if(dc.getValoraciones().size() != 0){
+                                                                porcentaje = (cant1 * 100) / dc.getValoraciones().size();
+                                                            }
+                                                        %>
                                                         <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80"
-                                                             aria-valuemin="0" aria-valuemax="100" style="width: <%= (cant1 * 100) / dc.getValoraciones().size()%>%">
-                                                            <span class="sr-only"><%= (cant1 * 100) / dc.getValoraciones().size()%>%</span>
+                                                             aria-valuemin="0" aria-valuemax="100" style="width: <%= porcentaje %>%">
+                                                            <span class="sr-only"><%= porcentaje %>%</span>
                                                         </div>
+                                                        <% porcentaje = 0; %>
                                                     </div>
                                                 </div>
                                                 <!-- end 1 -->

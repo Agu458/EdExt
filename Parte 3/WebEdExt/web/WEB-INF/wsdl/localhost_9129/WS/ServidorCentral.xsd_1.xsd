@@ -783,7 +783,7 @@
 
 <xs:complexType name="listarCursosTendenciaResponse">
 <xs:sequence>
-<xs:element name="return" type="tns:dataCurso" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="return" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
 </xs:sequence>
 </xs:complexType>
 
