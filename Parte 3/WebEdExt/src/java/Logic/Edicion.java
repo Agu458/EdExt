@@ -261,7 +261,7 @@ public class Edicion extends HttpServlet {
 
                 if (curso != null && edicion != null && !aceptados.isEmpty()) {
                     DataEdicion de = port.darDatosEdicion(curso, edicion);
-                    if ((de.getAceptados() + aceptados.size()) > de.getCupos()) {
+                    if (de.getCupos() != 0 && (de.getAceptados() + aceptados.size()) > de.getCupos()) {
                         request.setAttribute("msg", "No hay cupos suficientes para los estudiantes seleccionados");
                         request.getRequestDispatcher("seleccionarEstudiantesEdicion.jsp").forward(request, response);
                     } else {

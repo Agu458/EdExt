@@ -136,15 +136,12 @@ public class ProgramaFormacion implements Serializable {
     }
 
     public boolean conteneCurso(String curso) {
-        boolean encontre = false;
-        Iterator it = cursos.iterator();
-        while (it.hasNext() && !encontre) {
-            Curso c = (Curso) it.next();
-            if (c.getNombre() == curso) {
-                encontre = true;
+        for(Curso cur : this.cursos){
+            if(cur.getNombre().equals(curso)){
+                return true;
             }
         }
-        return encontre;
+        return false;
     }
 
     public boolean caonteieneCategoria(String cat) {

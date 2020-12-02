@@ -110,7 +110,10 @@
                             <div class="col-sm">
                                 <div class="form-group">
                                     <%
-                                        int cuposRestantes = (de.getCupos() - de.getAceptados());
+                                        int cuposRestantes = 0;
+                                        if(de.getCupos() != 0){
+                                            cuposRestantes = (de.getCupos() - de.getAceptados());
+                                        }
                                     %>
                                     <label for="cuposRestantes">Cupos Restantes</label>
                                     <input type="number" class="form-control" id="cuposRestantes" name="cuposRestantes" disabled="" value="<%= cuposRestantes%>">
@@ -143,13 +146,7 @@
                             <input type="url" class="form-control" id="video" name="video" value="">
                         </div>
                         <%
-                            if (cuposRestantes != 0) {
-                        %>
-                        <div class="form-group text-center">
-                            <button type="submit" name="accion" class="btn btn-primary" value="altaInscripcionEdicion">Inscribirse</button>
-                        </div>
-                        <%
-                        } else {
+                            if (de.getCupos() != 0 && cuposRestantes == 0) {
                         %>
                         <div class="alert alert-warning alert-dismissible fade show" role="alert">
                             <strong>No quedan cupos</strong> Prueba otro curso.
@@ -158,6 +155,22 @@
                             </button>
                         </div>
                         <%
+                        } else {
+                            if (de.isActiva()) {
+                        %>
+                        <div class="form-group text-center">
+                            <button type="submit" name="accion" class="btn btn-primary" value="altaInscripcionEdicion">Inscribirse</button>
+                        </div>
+                        <%
+                        } else {
+                        %>
+                        <div class="form-group">
+                            <div class="alert alert-warning" role="alert">
+                                <strong>Edicion de curso finalizada </strong>
+                            </div>
+                        </div>
+                        <%
+                                }
                             }
                         %>
                     </form>

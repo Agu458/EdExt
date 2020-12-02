@@ -561,20 +561,19 @@ public class Sistema implements ISistema {
     @Override
     public boolean conteneCurso(String nombre, String curso) {
         EntityManager em = emf.createEntityManager();
+        boolean ok = false;
         try {
             em.getTransaction().begin();
             ProgramaFormacion pf = em.find(ProgramaFormacion.class, nombre);
-            if (pf != null && pf.conteneCurso(curso)) {
-                em.getTransaction().commit();
-                em.close();
-                return true;
+            if (pf != null ) {
+                ok = pf.conteneCurso(curso);
             }
             em.getTransaction().commit();
         } catch (Exception e) {
             em.getTransaction().rollback();
         }
         em.close();
-        return false;
+        return ok;
     }
 
     @Override
