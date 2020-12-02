@@ -186,6 +186,10 @@
 
 <xs:element name="modificarUsuarioResponse" type="tns:modificarUsuarioResponse"/>
 
+<xs:element name="sePuedeFinalizar" type="tns:sePuedeFinalizar"/>
+
+<xs:element name="sePuedeFinalizarResponse" type="tns:sePuedeFinalizarResponse"/>
+
 <xs:element name="validarEmail" type="tns:validarEmail"/>
 
 <xs:element name="validarEmailResponse" type="tns:validarEmailResponse"/>
@@ -254,6 +258,19 @@
 <xs:element name="fechaPublicacion" type="xs:dateTime" minOccurs="0"/>
 <xs:element name="cuerpo" type="xs:string" minOccurs="0"/>
 <xs:element name="respuestas" type="tns:dataComentario" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="sePuedeFinalizar">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"/>
+<xs:element name="arg1" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="sePuedeFinalizarResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 
@@ -675,6 +692,7 @@
 <xs:element name="arg2" type="xs:string" minOccurs="0"/>
 <xs:element name="arg3" type="xs:string" minOccurs="0"/>
 <xs:element name="arg4" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="arg5" type="xs:long" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 
@@ -694,21 +712,21 @@
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="listarProfesores">
-<xs:sequence/>
-</xs:complexType>
-
-<xs:complexType name="listarProfesoresResponse">
-<xs:sequence>
-<xs:element name="return" type="tns:lista" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
 <xs:complexType name="listarUsuarios">
 <xs:sequence/>
 </xs:complexType>
 
 <xs:complexType name="listarUsuariosResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:lista" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="listarProfesores">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="listarProfesoresResponse">
 <xs:sequence>
 <xs:element name="return" type="tns:lista" minOccurs="0"/>
 </xs:sequence>

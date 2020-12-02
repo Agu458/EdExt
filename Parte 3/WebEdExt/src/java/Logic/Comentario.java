@@ -24,7 +24,7 @@ public class Comentario extends HttpServlet {
 
     private Server.PublicadorServidorCentralService service = new PublicadorServidorCentralService();
     private Server.PublicadorServidorCentral port = service.getPublicadorServidorCentralPort();
-    
+
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -38,7 +38,7 @@ public class Comentario extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         String email = (String) session.getAttribute("email");
-        if(email != null){
+        if (email != null) {
             List ediciones = port.edicionesEstudiante(email);
             request.setAttribute("edicionesEst", ediciones);
             request.getRequestDispatcher("comentarEdicion.jsp").forward(request, response);
@@ -60,11 +60,20 @@ public class Comentario extends HttpServlet {
         String curso = request.getParameter("curso");
         String edicion = request.getParameter("edicion");
         String estudiante = request.getParameter("estudiante");
-        if(estudiante != null && curso != null && edicion != null){
+        String id = request.getParameter("id");
+
+        if (estudiante != null && curso != null && edicion != null) {
             String cuerpo = request.getParameter("cuerpo");
-            if(cuerpo != null){
-                port.agregarComentarioEdicionCurso(curso, edicion, estudiante, cuerpo, Login.GetXmlGregorianCalendar(new Date()));
-                response.sendRedirect("index.jsp");
+            if (id != null) {
+                if (cuerpo != null) {
+                    port.agregarComentarioEdicionCurso(curso, edicion, estudiante, cuerpo, Login.GetXmlGregorianCalendar(new Date()), Long.parseLong(id));
+                    response.sendRedirect("index.jsp");
+                }
+            } else {
+                if (cuerpo != null) {
+                    port.agregarComentarioEdicionCurso(curso, edicion, estudiante, cuerpo, Login.GetXmlGregorianCalendar(new Date()), null);
+                    response.sendRedirect("index.jsp");
+                }
             }
         }
     }

@@ -14,8 +14,8 @@
         <%@include file="/Partials/header.jsp" %>
 
         <%
-            String estado = (String) request.getAttribute("estado");
-            if (estado == null) {
+            String msg = (String) request.getAttribute("msg");
+            if (msg == null) {
         %>
         <div class="container p-4">
             <div class="card p-4">
@@ -35,9 +35,23 @@
         %>
         <div class="container p-4">
             <div class="card p-4">
+                <%
+                    if (msg != null && !msg.equals("generado")) {
+                %>
+                <div class="form-group">
+                    <div class="alert alert-danger" role="alert">
+                        <%= msg%>
+                    </div>
+                </div>
+                <%
+                } else {
+                %>
                 <div class="form-group text-center">
                     <a class="btn-block btn-lg btn-primary" href="Certificado.pdf">Descargar</a>
                 </div>
+                <%
+                    }
+                %>
             </div>
         </div>
         <%

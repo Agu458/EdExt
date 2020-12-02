@@ -99,7 +99,7 @@ public class Edicion extends HttpServlet {
                 request.getRequestDispatcher("estudiantesAceptados.jsp").forward(request, response);
             }
         }
-        
+
         String ingresarResultados = request.getParameter("ingresarResultados");
         if (ingresarResultados != null) {
             String edicion = null;
@@ -144,9 +144,9 @@ public class Edicion extends HttpServlet {
             request.setAttribute("edicion", de);
             request.getRequestDispatcher("inscripcion_edicion.jsp").forward(request, response);
         }
-        
+
         String consultarInscripcionEdicion = request.getParameter("consultarInscripcionEdicion");
-        if(consultarInscripcionEdicion != null){
+        if (consultarInscripcionEdicion != null) {
             String estudiante = null;
             String edicion = null;
             String curso = null;
@@ -164,9 +164,9 @@ public class Edicion extends HttpServlet {
                 request.getRequestDispatcher("mostrarInfoInscripcionEdicion.jsp").forward(request, response);
             }
         }
-        
+
         String comentariosEdicion = request.getParameter("comentariosEdicion");
-        if(comentariosEdicion != null){
+        if (comentariosEdicion != null) {
             String curso = null;
             String edicion = null;
             String[] datos = null;
@@ -251,20 +251,29 @@ public class Edicion extends HttpServlet {
                 List aceptados = new ArrayList();
                 if (acep != null) {
                     aceptados = Arrays.asList(acep);
+                } else {
+                    request.setAttribute("msg", "No seleccionaron estudiantes");
+                    request.getRequestDispatcher("seleccionarEstudiantesEdicion.jsp").forward(request, response);
                 }
 
                 String curso = request.getParameter("curso");
                 String edicion = request.getParameter("edicion");
 
                 if (curso != null && edicion != null && !aceptados.isEmpty()) {
-                    port.aceptarInscripciones(curso, edicion, aceptados);
-                    response.sendRedirect("seleccionarEstudiantesEdicion.jsp");
+                    DataEdicion de = port.darDatosEdicion(curso, edicion);
+                    if ((de.getAceptados() + aceptados.size()) > de.getCupos()) {
+                        request.setAttribute("msg", "No hay cupos suficientes para los estudiantes seleccionados");
+                        request.getRequestDispatcher("seleccionarEstudiantesEdicion.jsp").forward(request, response);
+                    } else {
+                        port.aceptarInscripciones(curso, edicion, aceptados);
+                        response.sendRedirect("seleccionarEstudiantesEdicion.jsp");
+                    }
                 }
             }
         }
-        
+
         String desistirDeInscripcion = request.getParameter("desistirDeInscripcion");
-        if(desistirDeInscripcion != null){
+        if (desistirDeInscripcion != null) {
             String estudiante = null;
             String edicion = null;
             String curso = null;
@@ -281,9 +290,9 @@ public class Edicion extends HttpServlet {
                 response.sendRedirect("index.jsp");
             }
         }
-        
+
         String finalizarEdicion = request.getParameter("finalizarEdicion");
-        if(finalizarEdicion != null){
+        if (finalizarEdicion != null) {
             String edicion = null;
             String curso = null;
             String[] datos = null;
@@ -294,9 +303,18 @@ public class Edicion extends HttpServlet {
             } catch (Exception e) {
             }
             if (edicion != null && curso != null) {
-                port.finalizarEdicion(curso, edicion);
+                if (port.sePuedeFinalizar(curso, edicion)) {
+                    port.finalizarEdicion(curso, edicion);
+                    response.sendRedirect("ingresarResultadosEdicion.jsp");
+                } else {
+                    request.setAttribute("msg", "Quedan estudiantes sin notas");
+                    request.getRequestDispatcher("ingresarResultadosEdicion.jsp").forward(request, response);
+                }
+            } else {
+                request.setAttribute("msg", "Falta ingresar parametros");
+                request.getRequestDispatcher("ingresarResultadosEdicion.jsp").forward(request, response);
             }
-            response.sendRedirect("index.jsp");
+
         }
     }
 

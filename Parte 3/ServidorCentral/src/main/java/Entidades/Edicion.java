@@ -293,4 +293,15 @@ public class Edicion implements Serializable {
         this.fechaCierre = new Date();
         this.activa = false;
     }
+    
+    public Boolean sePuedeFinalizar(){
+        for(InscripcionEdicion inscripcion : this.inscriptos){
+            if(inscripcion.getEstado() == EstadoInscripcion.ACEPTADO){
+                if(inscripcion.getCalificacion() == 0){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 }

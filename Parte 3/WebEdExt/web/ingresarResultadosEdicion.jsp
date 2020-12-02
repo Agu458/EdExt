@@ -26,7 +26,18 @@
                 <%
                     DataEdicion de = (DataEdicion) request.getAttribute("edicion");
                     List aceptados = (List) request.getAttribute("aceptados");
+                    String msg = (String) request.getAttribute("msg");
+
                     if (de == null && aceptados == null) {
+                        if (msg != null) {
+                %>
+                <div class="form-group">
+                    <div class="alert alert-danger" role="alert">
+                        <%= msg%>
+                    </div>
+                </div>
+                <%
+                    }
                 %>
                 <div class="form-group">
                     <label for="#selInstituto">Instituto</label>
@@ -122,7 +133,7 @@
                                 for (Object o : aceptados) {
                                     DataInscripcionEdicion die = (DataInscripcionEdicion) o;
                             %>
-                            <button type="submit" class="list-group-item list-group-item-action" name="verInscripcionUsuario" value="<%= die.getEstudiante() %>,<%= de.getNombre()%>,<%= de.getCurso()%>"><%= die.getEstudiante() %></button>
+                            <button type="submit" class="list-group-item list-group-item-action" name="verInscripcionUsuario" value="<%= die.getEstudiante()%>,<%= de.getNombre() %>,<%= de.getCurso()%>"><%= die.getEstudiante() %></button>
                             <%
                                 }
                             %>
@@ -134,7 +145,7 @@
                 %>
                 <div class="form-group text-right">
                     <form action="Edicion" method="POST">
-                        <button type="submit" class="btn btn-danger" name="finalizarEdicion" value="<%= de.getCurso()%>,<%= de.getNombre()%>" >Finalizar Edicion de Curso</button>
+                        <button type="submit" class="btn btn-danger" name="finalizarEdicion" value="<%= de.getCurso()%>,<%= de.getNombre() %>" >Finalizar Edicion de Curso</button>
                     </form>
                 </div>
                 <%

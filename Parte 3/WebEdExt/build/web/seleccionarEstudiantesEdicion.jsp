@@ -23,10 +23,22 @@
         <%
             List<DataInscripcionEdicion> inscriptos = (List<DataInscripcionEdicion>) request.getAttribute("inscriptos");
             DataEdicion de = (DataEdicion) request.getAttribute("edicion");
+            String msg = (String) request.getAttribute("msg");
             if (inscriptos == null) {
         %>
         <div class="container p-4">    
             <div class="card p-4">
+                <%
+                    if (msg != null) {
+                %>
+                <div class="form-group">
+                    <div class="alert alert-danger" role="alert">
+                        <%= msg%>
+                    </div>
+                </div>
+                <%
+                    }
+                %>
                 <label for="#selInstituto">Instituto</label>
                 <select class="form-control" id="selInstituto"></select>
                 <label for="#selCurso">Curso</label>

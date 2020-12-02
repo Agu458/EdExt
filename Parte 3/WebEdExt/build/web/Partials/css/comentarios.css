@@ -186,7 +186,7 @@ ul {
 	border-radius: 4px 4px 0 0;
 }
 
-.comment-box .comment-head i {
+.comment-box .comment-head .reply{
 	float: right;
 	margin-left: 14px;
 	position: relative;
@@ -198,7 +198,7 @@ ul {
 	transition: color 0.3s ease;
 }
 
-.comment-box .comment-head i:hover {
+.comment-box .comment-head .reply:hover {
 	color: #03658c;
 }
 

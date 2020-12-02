@@ -108,9 +108,17 @@ public class ProgramaFormacion extends HttpServlet {
             if (accion.equals("agregarCursoPrograma")) {
                 String programa = request.getParameter("programa");
                 String curso = request.getParameter("curso");
-                if (!programa.equals("vacio") && programa != null && !curso.equals("vacio") && curso != null) {
-                    port.agregarCursoAPrograma(programa, curso);
-                    response.sendRedirect("agregarCursoPrograma.jsp");
+                if (programa != null && !programa.equals("vacio") && curso != null && !curso.equals("vacio")) {
+                    if (port.darEdicionActual(curso).getNombre().equals("")) {
+                        request.setAttribute("msg", "El curso seleccionado no tiene ninguna edicion actual");
+                        request.getRequestDispatcher("agregarCursoPrograma.jsp").forward(request, response);
+                    } else {
+                        port.agregarCursoAPrograma(programa, curso);
+                        response.sendRedirect("agregarCursoPrograma.jsp");
+                    }
+                } else {
+                    request.setAttribute("msg", "Faltan Parametros");
+                    request.getRequestDispatcher("agregarCursoPrograma.jsp").forward(request, response);
                 }
             }
             if (accion.equals("altaInscripcionPrograma")) {

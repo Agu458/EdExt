@@ -87,4 +87,8 @@ public class Comentario implements Serializable {
         }
         return new DataComentario(id, estudiante, fechaPublicacion, cuerpo, coms);
     }
+    
+    public void agregarRespuesta(Comentario com){
+        this.respuestas.add(com);
+    }
 }

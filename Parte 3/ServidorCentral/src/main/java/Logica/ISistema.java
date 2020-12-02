@@ -96,7 +96,7 @@ public interface ISistema {
     
     public DataInscripcionEdicion darDatosInscripcionEdicion(String estudiante, String edicion, String curso);
     
-    public void agregarComentarioEdicionCurso(String curso, String edicion, String estudiante, String cuerpo, Date fechaPublicacion);
+    public void agregarComentarioEdicionCurso(String curso, String edicion, String estudiante, String cuerpo, Date fechaPublicacion, Long id);
     
     public List<DataEdicion> edicionesEstudiante(String estudiante);
     
@@ -105,6 +105,8 @@ public interface ISistema {
     public List<String> cursosEstudiante(String estudiante);
     
     public DataValoracion darValoracionEst(String curso, String estudiante);
+    
+    public Boolean sePuedeFinalizar(String curso, String edicion);
     
     public void finalizarEdicion(String curso, String edicion);
     

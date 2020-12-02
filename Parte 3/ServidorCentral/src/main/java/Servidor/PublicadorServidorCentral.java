@@ -282,8 +282,8 @@ public class PublicadorServidorCentral {
     }
 
     @WebMethod
-    public void agregarComentarioEdicionCurso(String curso, String edicion, String estudiante, String cuerpo, Date fechaPublicacion) {
-        sistema.agregarComentarioEdicionCurso(curso, edicion, estudiante, cuerpo, fechaPublicacion);
+    public void agregarComentarioEdicionCurso(String curso, String edicion, String estudiante, String cuerpo, Date fechaPublicacion, Long id) {
+        sistema.agregarComentarioEdicionCurso(curso, edicion, estudiante, cuerpo, fechaPublicacion, id);
     }
 
     @WebMethod
@@ -310,6 +310,11 @@ public class PublicadorServidorCentral {
         return dv;
     }
 
+    @WebMethod
+    public Boolean sePuedeFinalizar(String curso, String edicion){
+        return sistema.sePuedeFinalizar(curso, edicion);
+    }
+    
     @WebMethod
     public void finalizarEdicion(String curso, String edicion) {
         sistema.finalizarEdicion(curso, edicion);

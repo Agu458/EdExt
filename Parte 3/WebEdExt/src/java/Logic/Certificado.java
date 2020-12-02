@@ -45,7 +45,7 @@ public class Certificado extends HttpServlet {
         Document documento = new Document();
 
         //El outputstream para el fichero donde creamos el pdf
-        FileOutputStream ficheroPDF = new FileOutputStream(getServletContext().getRealPath("/")+"\\Certificado.pdf");
+        FileOutputStream ficheroPDF = new FileOutputStream(getServletContext().getRealPath("/") + "\\Certificado.pdf");
 
         //Se asocia el documento de output
         PdfWriter.getInstance(documento, ficheroPDF);
@@ -59,13 +59,16 @@ public class Certificado extends HttpServlet {
 
         Paragraph est = new Paragraph("Estudiante: " + du.getNombre() + " " + du.getApellido() + "\n");
         documento.add(est);
-        
+
         Paragraph correo = new Paragraph("Correo: " + du.getEmail() + "\n\n");
         documento.add(correo);
 
+        Paragraph aprobado = new Paragraph("\n\nAprobado \n\n", FontFactory.getFont("arial", 16, Font.BOLD, BaseColor.GREEN));
+        documento.add(aprobado);
+        
         Paragraph cursos = new Paragraph("Cursos: \n");
         documento.add(cursos);
-        
+
         //Creamos una tabla
         PdfPTable table = new PdfPTable(3);
         table.addCell("Curso");
@@ -135,22 +138,27 @@ public class Certificado extends HttpServlet {
         String estudiante = (String) session.getAttribute("email");
         String programa = request.getParameter("programa");
         if (estudiante != null) {
-            List<DataInscripcionEdicion> inscripciones = port.darDatosCertificado(estudiante, programa);
-            if (inscripciones.size() > 0) {
-                DataUsuario du = (DataUsuario) session.getAttribute("usuario");
-                if (du != null) {
-                    try {
-                        generaraPDF(du, inscripciones);
-                    } catch (DocumentException ex) {
-                        ex.printStackTrace();
+            if (programa != null && !programa.equals("vacio")) {
+                List<DataInscripcionEdicion> inscripciones = port.darDatosCertificado(estudiante, programa);
+                if (inscripciones.size() > 0) {
+                    DataUsuario du = (DataUsuario) session.getAttribute("usuario");
+                    if (du != null) {
+                        try {
+                            generaraPDF(du, inscripciones);
+                        } catch (DocumentException ex) {
+                            ex.printStackTrace();
+                        }
+                        request.setAttribute("msg", "generado");
+                        request.getRequestDispatcher("certificado.jsp").forward(request, response);
+                    } else {
+                        response.sendRedirect("index.jsp");
                     }
-                    request.setAttribute("estado", "generado");
-                    request.getRequestDispatcher("certificado.jsp").forward(request, response);
                 } else {
-                    response.sendRedirect("index.jsp");
+                    request.setAttribute("msg", "No se pudo generar el certificado faltan cursos por aprobar");
+                    request.getRequestDispatcher("certificado.jsp").forward(request, response);
                 }
             } else {
-                request.setAttribute("estado", "nogenerado");
+                request.setAttribute("msg", "No se selecciono programa");
                 request.getRequestDispatcher("certificado.jsp").forward(request, response);
             }
         } else {

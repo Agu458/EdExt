@@ -42,6 +42,7 @@ public class ObjectFactory {
     private final static QName _ListarCategoriasResponse_QNAME = new QName("http://Servidor/", "listarCategoriasResponse");
     private final static QName _DarDatosUsuarioResponse_QNAME = new QName("http://Servidor/", "darDatosUsuarioResponse");
     private final static QName _AltaProgramaFormacionResponse_QNAME = new QName("http://Servidor/", "altaProgramaFormacionResponse");
+    private final static QName _SePuedeFinalizar_QNAME = new QName("http://Servidor/", "sePuedeFinalizar");
     private final static QName _DataEdicion_QNAME = new QName("http://Servidor/", "dataEdicion");
     private final static QName _DataValoracion_QNAME = new QName("http://Servidor/", "dataValoracion");
     private final static QName _DarEdicionActual_QNAME = new QName("http://Servidor/", "darEdicionActual");
@@ -92,6 +93,7 @@ public class ObjectFactory {
     private final static QName _AltaCursoResponse_QNAME = new QName("http://Servidor/", "altaCursoResponse");
     private final static QName _DataUsuario_QNAME = new QName("http://Servidor/", "dataUsuario");
     private final static QName _InscripcionAProgramaResponse_QNAME = new QName("http://Servidor/", "inscripcionAProgramaResponse");
+    private final static QName _SePuedeFinalizarResponse_QNAME = new QName("http://Servidor/", "sePuedeFinalizarResponse");
     private final static QName _DarDatosCurso_QNAME = new QName("http://Servidor/", "darDatosCurso");
     private final static QName _ListarProgramas_QNAME = new QName("http://Servidor/", "listarProgramas");
     private final static QName _ListarProfesoresResponse_QNAME = new QName("http://Servidor/", "listarProfesoresResponse");
@@ -133,8 +135,8 @@ public class ObjectFactory {
     private final static QName _ListarCategorias_QNAME = new QName("http://Servidor/", "listarCategorias");
     private final static QName _ValidarNombrePrograma_QNAME = new QName("http://Servidor/", "validarNombrePrograma");
     private final static QName _AltaInstituto_QNAME = new QName("http://Servidor/", "altaInstituto");
-    private final static QName _ModificarUsuarioArg6_QNAME = new QName("", "arg6");
     private final static QName _AltaUsuarioArg7_QNAME = new QName("", "arg7");
+    private final static QName _ModificarUsuarioArg6_QNAME = new QName("", "arg6");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: Server
@@ -381,6 +383,14 @@ public class ObjectFactory {
      */
     public AltaProgramaFormacionResponse createAltaProgramaFormacionResponse() {
         return new AltaProgramaFormacionResponse();
+    }
+
+    /**
+     * Create an instance of {@link SePuedeFinalizar }
+     * 
+     */
+    public SePuedeFinalizar createSePuedeFinalizar() {
+        return new SePuedeFinalizar();
     }
 
     /**
@@ -896,6 +906,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link SePuedeFinalizarResponse }
+     * 
+     */
+    public SePuedeFinalizarResponse createSePuedeFinalizarResponse() {
+        return new SePuedeFinalizarResponse();
+    }
+
+    /**
      * Create an instance of {@link AltaCursoResponse }
      * 
      */
@@ -1183,6 +1201,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://Servidor/", name = "altaProgramaFormacionResponse")
     public JAXBElement<AltaProgramaFormacionResponse> createAltaProgramaFormacionResponse(AltaProgramaFormacionResponse value) {
         return new JAXBElement<AltaProgramaFormacionResponse>(_AltaProgramaFormacionResponse_QNAME, AltaProgramaFormacionResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link SePuedeFinalizar }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://Servidor/", name = "sePuedeFinalizar")
+    public JAXBElement<SePuedeFinalizar> createSePuedeFinalizar(SePuedeFinalizar value) {
+        return new JAXBElement<SePuedeFinalizar>(_SePuedeFinalizar_QNAME, SePuedeFinalizar.class, null, value);
     }
 
     /**
@@ -1636,6 +1663,15 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link SePuedeFinalizarResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://Servidor/", name = "sePuedeFinalizarResponse")
+    public JAXBElement<SePuedeFinalizarResponse> createSePuedeFinalizarResponse(SePuedeFinalizarResponse value) {
+        return new JAXBElement<SePuedeFinalizarResponse>(_SePuedeFinalizarResponse_QNAME, SePuedeFinalizarResponse.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link DarDatosCurso }{@code >}}
      * 
      */
@@ -2008,18 +2044,18 @@ public class ObjectFactory {
      * Create an instance of {@link JAXBElement }{@code <}{@link byte[]}{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "", name = "arg6", scope = ModificarUsuario.class)
-    public JAXBElement<byte[]> createModificarUsuarioArg6(byte[] value) {
-        return new JAXBElement<byte[]>(_ModificarUsuarioArg6_QNAME, byte[].class, ModificarUsuario.class, ((byte[]) value));
+    @XmlElementDecl(namespace = "", name = "arg7", scope = AltaUsuario.class)
+    public JAXBElement<byte[]> createAltaUsuarioArg7(byte[] value) {
+        return new JAXBElement<byte[]>(_AltaUsuarioArg7_QNAME, byte[].class, AltaUsuario.class, ((byte[]) value));
     }
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link byte[]}{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "", name = "arg7", scope = AltaUsuario.class)
-    public JAXBElement<byte[]> createAltaUsuarioArg7(byte[] value) {
-        return new JAXBElement<byte[]>(_AltaUsuarioArg7_QNAME, byte[].class, AltaUsuario.class, ((byte[]) value));
+    @XmlElementDecl(namespace = "", name = "arg6", scope = ModificarUsuario.class)
+    public JAXBElement<byte[]> createModificarUsuarioArg6(byte[] value) {
+        return new JAXBElement<byte[]>(_ModificarUsuarioArg6_QNAME, byte[].class, ModificarUsuario.class, ((byte[]) value));
     }
 
 }

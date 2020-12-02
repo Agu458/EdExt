@@ -9,6 +9,7 @@ import DataTypes.DataProgramaFormacion;
 import DataTypes.DataUsuario;
 import DataTypes.DataValoracion;
 import Entidades.Categoria;
+import Entidades.Comentario;
 import Entidades.Curso;
 import Entidades.Edicion;
 import Entidades.Estudiante;
@@ -775,14 +776,23 @@ public class Sistema implements ISistema {
     }
 
     @Override
-    public void agregarComentarioEdicionCurso(String curso, String edicion, String estudiante, String cuerpo, Date fechaPublicacion) {
+    public void agregarComentarioEdicionCurso(String curso, String edicion, String estudiante, String cuerpo, Date fechaPublicacion, Long id) {
         EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
-            if (curso != null && edicion != null && estudiante != null && cuerpo != null && fechaPublicacion != null) {
-                Curso c = em.find(Curso.class, curso);
-                if (c != null) {
-                    c.agregarComentarioEdicion(edicion, estudiante, cuerpo, fechaPublicacion, em);
+            if (id != null) {
+                Comentario com = em.find(Comentario.class, id);
+                if(com != null){
+                    Comentario coment = new Comentario(estudiante, cuerpo, fechaPublicacion);
+                    com.agregarRespuesta(coment);
+                    em.persist(coment);
+                }
+            } else {
+                if (curso != null && edicion != null && estudiante != null && cuerpo != null && fechaPublicacion != null) {
+                    Curso c = em.find(Curso.class, curso);
+                    if (c != null) {
+                        c.agregarComentarioEdicion(edicion, estudiante, cuerpo, fechaPublicacion, em);
+                    }
                 }
             }
             em.getTransaction().commit();
@@ -869,6 +879,30 @@ public class Sistema implements ISistema {
         }
         em.close();
         return result;
+    }
+
+    @Override
+    public Boolean sePuedeFinalizar(String curso, String edicion) {
+        EntityManager em = emf.createEntityManager();
+        Boolean ok = false;
+        try {
+            em.getTransaction().begin();
+            if (curso != null && edicion != null) {
+                Curso cur = em.find(Curso.class, curso);
+                if (cur != null) {
+                    Edicion ed = cur.darEdicion(edicion);
+                    if (ed != null) {
+                        ok = ed.sePuedeFinalizar();
+                    }
+                }
+            }
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            em.getTransaction().rollback();
+        }
+        em.close();
+        return ok;
     }
 
     @Override
