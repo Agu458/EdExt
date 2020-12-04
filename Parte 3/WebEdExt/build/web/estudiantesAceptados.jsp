@@ -27,14 +27,22 @@
         %>
         <div class="container p-4">    
             <div class="card p-4">
-                <label for="#selInstituto">Instituto</label>
-                <select class="form-control" id="selInstituto"></select>
-                <label for="#selCurso">Curso</label>
-                <select class="form-control" id="selCurso"></select>
-                <label for="#listEdicionesCurso">Edicion</label>
-                <form action="Edicion" method="GET">
-                    <div class="list-group" id="listEdicionesCurso"></div>
-                </form>
+                <div class="form-group">
+                    <label for="#selInstituto">Instituto</label>
+                    <select class="form-control" id="selInstituto"></select>
+                </div>
+                <div class="form-group">
+                    <label id="labelCurso" for="#selCurso">Curso</label>
+                    <select class="form-control" id="selCurso"></select>
+                </div>
+                <div class="form-group">
+                    <label id="labelList" for="#listByCurso">Ediciones</label>
+                    <div class="card p-4" id="listByCurso">
+                        <form action="Edicion" method="GET">
+                            <div class="list-group" id="listEdicionesCurso"></div>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
         <%
@@ -89,6 +97,17 @@
                             </table>
                         </div>
                     </div>
+                    <%
+                        if (!de.isActiva()) {
+                    %>
+                    <div class="form-group">
+                        <div class="alert alert-warning" role="alert">
+                            <strong>Edicion de curso finalizada </strong>
+                        </div>
+                    </div>
+                    <%
+                        }
+                    %>
                 </div>
             </div>
         </div> 
@@ -97,9 +116,16 @@
             }
         %>
         <script>
+            $('#listByCurso').hide();
+            $('#selCurso').hide();
+            $('#labelCurso').hide();
+            $('#labelList').hide();
+
             var selCurso = $('#selCurso');
             var selinstituto = $('#selInstituto');
             selinstituto.change(function () {
+                $('#labelCurso').show();
+                $('#selCurso').show();
                 selCurso.empty();
                 selCurso.append(`<option value="vacio" selected> Seleccione Curso... </option>`);
                 let insti = selinstituto.val();
@@ -121,6 +147,8 @@
             });
 
             selCurso.change(function () {
+                $('#labelList').show();
+                $('#listByCurso').show();
                 var listEdicionesCurso = $('#listEdicionesCurso');
                 listEdicionesCurso.empty();
                 let curso = selCurso.val();

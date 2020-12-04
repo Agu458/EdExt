@@ -58,7 +58,7 @@
                             <select multiple class="form-control" id="profesores" name="profesores" required=""></select>
                         </div>
                         <div class="form-group text-center">
-                            <button type="submit" name="accion" class="btn btn-primary" value="altaEdicion">Crear Edicion</button>
+                            <button type="submit" name="accion" class="btn btn-primary" id="btnAltaEdicion" value="altaEdicion">Crear Edicion</button>
                         </div>
                     </form>
                 </div>
@@ -68,7 +68,34 @@
         <script>
             $('#nombreValido').hide();
 
+            function validarNombre() {
+                var btnAltaEdicion = $('#btnAltaEdicion');
+                let nombre = $('#nombre').val();
+                let curso = $('#curso').val();
+                $.ajax({
+                    type: 'GET',
+                    url: 'Edicion',
+                    data: {validarNombreEdicion: nombre, curso: curso},
+                    success: function (response) {
+                        let nombreValido = JSON.parse(response);
+                        console.log(nombreValido);
+                        if (!nombreValido) {
+                            $('#nombreValido').show();
+                            btnAltaEdicion.attr("disabled", true);
+                        } else {
+                            $('#nombreValido').hide();
+                            btnAltaEdicion.attr("disabled", false);
+                        }
+                    }
+                });
+            }
+
+            $('#nombre').keyup(function () {
+                validarNombre();
+            });
+
             $(document).ready(function () {
+
                 let accion = "listarInstitutos";
                 var selinsti = $('#instituto');
                 selinsti.empty();
@@ -113,7 +140,7 @@
                     $.ajax({
                         type: 'GET',
                         url: 'Instituto',
-                        data: { accion:accion , instituto:insti},
+                        data: {accion: accion, instituto: insti},
                         success: function (response) {
                             let profesores = JSON.parse(response);
                             if (profesores !== null) {

@@ -67,7 +67,8 @@ public class Usuario extends HttpServlet {
                     session.setAttribute("usuario", du);
                     request.getRequestDispatcher("perfil.jsp").forward(request, response);
                 } else {
-                    response.sendRedirect("index.jsp");
+                    request.setAttribute("msg", "No hay ningun usuario logeado");
+                    request.getRequestDispatcher("index.jsp").forward(request, response);
                 }
             }
         }
@@ -78,7 +79,7 @@ public class Usuario extends HttpServlet {
             request.setAttribute("verDatosUsuario", du);
             request.getRequestDispatcher("mostrarInfoUsuario.jsp").forward(request, response);
         }
-        
+
         String verInscripcionUsuario = request.getParameter("verInscripcionUsuario");
         if (verInscripcionUsuario != null) {
             String estudiante = null;
@@ -98,6 +99,9 @@ public class Usuario extends HttpServlet {
                 DataUsuario du = port.darDatosUsuario(estudiante);
                 request.setAttribute("datosUsuario", du);
                 request.getRequestDispatcher("ingresarResultado.jsp").forward(request, response);
+            } else {
+                request.setAttribute("msg", "Faltan Parametros");
+                request.getRequestDispatcher("index.jsp").forward(request, response);
             }
         }
     }
@@ -136,12 +140,20 @@ public class Usuario extends HttpServlet {
             fechaNacimiento = formato.parse(fecha);
         } catch (Exception e) {
         }
-        port.modificarUsuario(nick, nombre, apellido, email, Login.GetXmlGregorianCalendar(fechaNacimiento), "", data);
+        if(nick != null && nombre != null && apellido != null && email != null && fechaNacimiento != null){
+            port.modificarUsuario(nick, nombre, apellido, email, Login.GetXmlGregorianCalendar(fechaNacimiento), "", data);
+        } else {
+            request.setAttribute("msg", "Faltan Parametros");
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+        }
 
         DataUsuario du = port.darDatosUsuario(email);
         if (du != null) {
             HttpSession session = request.getSession();
             session.setAttribute("usuario", du);
+        } else {
+            request.setAttribute("msg", "No existe el usuario");
+            request.getRequestDispatcher("index.jsp").forward(request, response);
         }
         response.sendRedirect("perfil.jsp");
     }

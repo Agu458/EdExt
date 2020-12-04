@@ -7,9 +7,15 @@ package Presentacion;
 
 import DataTypes.DataUsuario;
 import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 
@@ -19,6 +25,8 @@ import javax.swing.JFileChooser;
  */
 public class ModificarDatosUsuario extends javax.swing.JInternalFrame {
 
+    private byte [] B = null;
+    
     /**
      * Creates new form ModificarDatosUsuario
      */
@@ -210,7 +218,7 @@ public class ModificarDatosUsuario extends javax.swing.JInternalFrame {
             String nombre = (String) this.jTextField2.getText();
             String apellido = (String) this.jTextField3.getText();
             String contrasenia = (String) this.jTextField5.getText();
-            String imagen = (String) this.jTextField6.getText();
+            byte [] imagen = B;
             Date fecha = this.jDateChooser1.getDate();
             DataUsuario du = new DataUsuario("", nombre, apellido, email, fecha, contrasenia ,imagen);
             Principal.is.modificarUsuario(du);
@@ -229,11 +237,20 @@ public class ModificarDatosUsuario extends javax.swing.JInternalFrame {
             DataUsuario du = Principal.is.darDatosUsuario(usuario);
 
             if (du != null) {
-                this.jTextField2.setText(du.getNombre());
-                this.jTextField3.setText(du.getApellido());
-                this.jDateChooser1.setDate(du.getFechaNacimiento());
-                this.jLabel9.setIcon(new ImageIcon(du.getimagen()));
-                
+                try {
+                    this.jTextField2.setText(du.getNombre());
+                    this.jTextField3.setText(du.getApellido());
+                    this.jDateChooser1.setDate(du.getFechaNacimiento());
+                    byte [] aBlob = du.getimagen();
+                    ByteArrayInputStream bais = new ByteArrayInputStream(aBlob);
+                    BufferedImage img = ImageIO.read(bais);
+                    this.jLabel9.setIcon(new ImageIcon(img));
+                } catch (IOException ex) {
+                    Logger.getLogger(ModificarDatosUsuario.class.getName()).log(Level.SEVERE, null, ex);
+                } finally {
+   
+                }
+ 
             }
         }
     }//GEN-LAST:event_jComboBox1ActionPerformed

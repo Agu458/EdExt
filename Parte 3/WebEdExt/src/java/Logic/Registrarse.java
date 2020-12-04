@@ -43,14 +43,14 @@ public class Registrarse extends HttpServlet {
             if (validar.equals("validarNick")) {
                 String nick = request.getParameter("nick");
                 if (nick != null) {
-                    Boolean valido =  port.validarNick(nick);
+                    Boolean valido = port.validarNick(nick);
                     out.println(valido);
                 }
             }
             if (validar.equals("validarEmail")) {
                 String email = request.getParameter("email");
                 if (email != null) {
-                    Boolean valido =  port.validarEmail(email);
+                    Boolean valido = port.validarEmail(email);
                     out.println(valido);
                 }
             }
@@ -87,16 +87,28 @@ public class Registrarse extends HttpServlet {
         if (docente == null) {
             if (contrasenia.equals(contrasenia2)) {
                 if (port.validarEmail(email) && port.validarNick(nick)) {
-                    
+
                     port.altaUsuario(null, nick, nombre, apellido, email, Login.GetXmlGregorianCalendar(fechaNacimiento), contrasenia, null);
+                } else {
+                    request.setAttribute("msg", "Correo o nick en uso intenta otro...");
+                    request.getRequestDispatcher("index.jsp").forward(request, response);
                 }
+            } else {
+                request.setAttribute("msg", "Las contraseñas no coinciden...");
+                request.getRequestDispatcher("index.jsp").forward(request, response);
             }
         } else {
             String instituto = request.getParameter("instituto");
             if (!instituto.equals("")) {
                 if (port.validarEmail(email) && port.validarNick(nick)) {
                     port.altaUsuario(instituto, nick, nombre, apellido, email, Login.GetXmlGregorianCalendar(fechaNacimiento), contrasenia, null);
+                } else {
+                    request.setAttribute("msg", "Correo o nick en uso intenta otro...");
+                    request.getRequestDispatcher("index.jsp").forward(request, response);
                 }
+            } else {
+                request.setAttribute("msg", "No se ingreso Instituto...");
+                request.getRequestDispatcher("index.jsp").forward(request, response);
             }
         }
 

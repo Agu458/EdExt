@@ -6,6 +6,8 @@
 package Logic;
 
 import Server.DataCurso;
+import Server.DataEstudiante;
+import Server.DataUsuario;
 import Server.DataValoracion;
 import Server.PublicadorServidorCentralService;
 import java.io.IOException;
@@ -37,36 +39,52 @@ public class Valoracion extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         String cursosEstudiante = (String) request.getParameter("cursosEstudiante");
-        if(cursosEstudiante != null){
+        if (cursosEstudiante != null) {
             HttpSession session = request.getSession();
-            String email = (String) session.getAttribute("email");
-            List cursos = port.cursosEstudiante(email);
-            request.setAttribute("cursosEst", cursos);
-            request.getRequestDispatcher("valorarCurso.jsp").forward(request, response);
-        }
-        
-        String valoracionCurso = (String) request.getParameter("valoracionCurso");
-        if(valoracionCurso != null){
-            String estudiante = null;
-            String curso = null;
-            String[] datos = null;
-            try {
-                datos = valoracionCurso.split(",");
-                curso = datos[0];
-                estudiante = datos[1];
-            } catch (Exception e) {
+            DataUsuario du = (DataUsuario) session.getAttribute("usuario");
+            if (du != null) {
+                if (du instanceof DataEstudiante) {
+                    List cursos = port.cursosEstudiante(du.getEmail());
+                    request.setAttribute("cursosEst", cursos);
+                    request.getRequestDispatcher("valorarCurso.jsp").forward(request, response);
+                } else {
+                    request.setAttribute("msg", "El usuario logeado no es un estudiante");
+                    request.getRequestDispatcher("index.jsp").forward(request, response);
+                }
+            } else {
+                request.setAttribute("msg", "No hay ningun usuario logeado");
+                request.getRequestDispatcher("index.jsp").forward(request, response);
             }
-            
-            if(estudiante != null && curso != null){
-                DataCurso dc = port.darDatosCurso(curso);
-                DataValoracion dv = port.darValoracionEst(curso,estudiante);
-                request.setAttribute("datosCurso", dc);
-                request.setAttribute("datosValoracionEst", dv);
-                request.getRequestDispatcher("valorar.jsp").forward(request, response);
+        } else {
+            String valoracionCurso = (String) request.getParameter("valoracionCurso");
+            if (valoracionCurso != null) {
+                String estudiante = null;
+                String curso = null;
+                String[] datos = null;
+                try {
+                    datos = valoracionCurso.split(",");
+                    curso = datos[0];
+                    estudiante = datos[1];
+                } catch (Exception e) {
+                }
+
+                if (estudiante != null && curso != null) {
+                    DataCurso dc = port.darDatosCurso(curso);
+                    DataValoracion dv = port.darValoracionEst(curso, estudiante);
+                    request.setAttribute("datosCurso", dc);
+                    request.setAttribute("datosValoracionEst", dv);
+                    request.getRequestDispatcher("valorar.jsp").forward(request, response);
+                } else {
+                    request.setAttribute("msg", "Faltan Parametros");
+                    request.getRequestDispatcher("Valoracion?cursosEstudiante").forward(request, response);
+                }
+            } else {
+                response.sendRedirect("index.jsp");
             }
         }
+
     }
 
     /**
@@ -83,10 +101,14 @@ public class Valoracion extends HttpServlet {
         String estrellas = request.getParameter("estrellas");
         String estudiante = request.getParameter("estudiante");
         String curso = request.getParameter("curso");
-        if(estrellas != null && estudiante != null && curso != null){
+        if (estrellas != null && estudiante != null && curso != null) {
             port.valorarCurso(curso, new Double(estrellas), estudiante);
+            response.sendRedirect("Valoracion?cursosEstudiante");
+        } else {
+            request.setAttribute("msg", "Faltan Parametros");
+            request.getRequestDispatcher("index.jsp").forward(request, response);
         }
-        response.sendRedirect("Valoracion?cursosEstudiante");
+
     }
 
     /**

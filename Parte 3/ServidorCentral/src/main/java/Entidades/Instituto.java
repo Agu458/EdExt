@@ -54,7 +54,7 @@ public class Instituto implements Serializable {
     public List<String> darCursosConEdicion(){
         List<String> c = new ArrayList();
         for (Curso curso : cursos.values()) {
-            if(curso.getEdicionActual() != null){
+            if(curso.getEdicionActual() != null && curso.getEdicionActual().isActiva()){
                 c.add(curso.getNombre());
             }
         }

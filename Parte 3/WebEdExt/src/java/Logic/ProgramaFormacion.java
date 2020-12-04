@@ -5,7 +5,9 @@
  */
 package Logic;
 
+import Server.DataProfesor;
 import Server.DataProgramaFormacion;
+import Server.DataUsuario;
 import Server.Lista;
 import Server.PublicadorServidorCentralService;
 import com.google.gson.Gson;
@@ -19,6 +21,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
@@ -86,24 +89,43 @@ public class ProgramaFormacion extends HttpServlet {
         String accion = request.getParameter("accion");
         if (accion != null) {
             if (accion.equals("altaPrograma")) {
-                String nombre = request.getParameter("nombre");
-                if (nombre != null && port.validarNombrePrograma(nombre)) {
-                    String fecha1 = request.getParameter("fechaini");
-                    String fecha2 = request.getParameter("fechafin");
-                    SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
-                    Date fechaIni = null;
-                    Date fechaFin = null;
-                    try {
-                        fechaIni = formato.parse(fecha1);
-                        fechaFin = formato.parse(fecha2);
-                    } catch (Exception e) {
+                HttpSession session = request.getSession();
+                DataUsuario du = (DataUsuario) session.getAttribute("usuario");
+                if (du != null) {
+                    if (du instanceof DataProfesor) {
+                        String nombre = request.getParameter("nombre");
+                        if (nombre != null && port.validarNombrePrograma(nombre)) {
+                            String fecha1 = request.getParameter("fechaini");
+                            String fecha2 = request.getParameter("fechafin");
+                            SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+                            Date fechaIni = null;
+                            Date fechaFin = null;
+                            try {
+                                fechaIni = formato.parse(fecha1);
+                                fechaFin = formato.parse(fecha2);
+                            } catch (Exception e) {
+                            }
+                            String descripcion = request.getParameter("descripcion");
+                            if (descripcion != null && fechaIni != null && fechaFin != null) {
+                                port.altaProgramaFormacion(nombre, descripcion, Login.GetXmlGregorianCalendar(fechaIni), Login.GetXmlGregorianCalendar(fechaFin));
+                                response.sendRedirect("altaPrograma.jsp");
+                            } else {
+                                request.setAttribute("msg", "Faltan Parametros");
+                                request.getRequestDispatcher("altaPrograma.jsp").forward(request, response);
+                            }
+                        } else {
+                            request.setAttribute("msg", "Nombre de Programa Invalido");
+                            request.getRequestDispatcher("altaPrograma.jsp").forward(request, response);
+                        }
+                    } else {
+                        request.setAttribute("msg", "El usuario actual no es un profesor");
+                        request.getRequestDispatcher("index.jsp").forward(request, response);
                     }
-                    String descripcion = request.getParameter("descripcion");
-
-                    port.altaProgramaFormacion(nombre, descripcion, Login.GetXmlGregorianCalendar(fechaIni), Login.GetXmlGregorianCalendar(fechaFin));
-
-                    response.sendRedirect("altaPrograma.jsp");
+                } else {
+                    request.setAttribute("msg", "No hay ningun usuario logeado");
+                    request.getRequestDispatcher("index.jsp").forward(request, response);
                 }
+
             }
             if (accion.equals("agregarCursoPrograma")) {
                 String programa = request.getParameter("programa");
@@ -130,9 +152,12 @@ public class ProgramaFormacion extends HttpServlet {
                 String estudiante = request.getParameter("estudiante");
                 String programa = request.getParameter("programa");
 
-                if (estudiante != null && programa != null) {
+                if (estudiante != null && programa != null && !programa.equals("vacio")) {
                     port.inscripcionAPrograma(programa, estudiante, Login.GetXmlGregorianCalendar(new Date()));
                     response.sendRedirect("inscripcionAPrograma.jsp");
+                } else {
+                    request.setAttribute("msg", "Faltan Parametros");
+                    request.getRequestDispatcher("inscripcionAPrograma.jsp").forward(request, response);
                 }
             }
         }

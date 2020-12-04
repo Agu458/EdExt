@@ -130,6 +130,9 @@ public class Curso implements Serializable {
         Edicion e = new Edicion(nombre, fechaIni, fechaFin, cupos, fechaPublicacion, p, this);
         em.persist(e);
         this.ediciones.put(e.getNombreEdicion(), e);
+        if (edicionActual != null) {
+            edicionActual.finalizar();
+        }
         this.edicionActual = e;
         return e;
     }
@@ -152,7 +155,12 @@ public class Curso implements Serializable {
 
     public DataEdicion darActual() {
         if (edicionActual != null) {
-            return edicionActual.darDatos();
+            if (edicionActual.getFechaFin().after(new Date()) && edicionActual.isActiva()) {
+                return edicionActual.darDatos();
+            } else {
+                edicionActual.finalizar();
+                edicionActual = null;
+            }
         }
         return null;
     }
@@ -182,19 +190,19 @@ public class Curso implements Serializable {
         Edicion e = ediciones.get(nombreEdicion);
         return e.darInscriptos();
     }
-    
-    public List<DataInscripcionEdicion> darAceptadosAEdicion(String nombreEdicion){
+
+    public List<DataInscripcionEdicion> darAceptadosAEdicion(String nombreEdicion) {
         Edicion e = ediciones.get(nombreEdicion);
         return e.darAceptados();
     }
-    
-    public void aceptarInscripciones(String nombreEdicion, List<String> estudiantes){
+
+    public void aceptarInscripciones(String nombreEdicion, List<String> estudiantes) {
         Edicion e = ediciones.get(nombreEdicion);
-        if(e.quedanCupos(estudiantes.size())){
+        if (e.quedanCupos(estudiantes.size())) {
             e.aceptarInscripciones(estudiantes);
         }
     }
-    
+
     public Instituto getInstituto() {
         return instituto;
     }
@@ -223,7 +231,12 @@ public class Curso implements Serializable {
 
         DataEdicion actual = null;
         if (edicionActual != null) {
-            actual = edicionActual.darDatos();
+            if (edicionActual.getFechaFin().after(new Date()) && edicionActual.isActiva()) {
+                actual = edicionActual.darDatos();
+            } else {
+                edicionActual.finalizar();
+                edicionActual = null;
+            }
         }
 
         String insti = null;
@@ -237,16 +250,20 @@ public class Curso implements Serializable {
         }
 
         List<DataValoracion> vals = new ArrayList();
-        for(Valoracion val : valoraciones){
+        for (Valoracion val : valoraciones) {
             vals.add(val.darDatos());
         }
-        
+
         return new DataCurso(nombre, descripcion, duracion, horas, creditos, fechaRegistro, URL, prevs, edis, actual, progs, insti, cats, vals);
     }
 
     public boolean validarNombreEdicion(String nombre) {
-        Edicion e = ediciones.get(nombre);
-        return (e == null);
+        for(Edicion e : this.ediciones.values()){
+            if(e.getNombreEdicion().equals(nombre)){
+                return false;
+            }
+        }
+        return true;
     }
 
     public void agregarPrograma(ProgramaFormacion pf) {
@@ -274,21 +291,20 @@ public class Curso implements Serializable {
         }
         return encontre;
     }
-    
-    public Edicion darEdicion(String edicion){
+
+    public Edicion darEdicion(String edicion) {
         return ediciones.get(edicion);
     }
-    
+
     //Comentarios de la edicion
-    public void agregarComentarioEdicion(String edicion, String estudiante, String cuerpo, Date fechaPublicacion, EntityManager em){
+    public void agregarComentarioEdicion(String edicion, String estudiante, String cuerpo, Date fechaPublicacion, EntityManager em) {
         Edicion ed = this.darEdicion(edicion);
-        if(ed != null){
+        if (ed != null) {
             ed.agregarComentario(estudiante, cuerpo, fechaPublicacion, em);
         }
     }
-    
-    // Valoracion del curso
 
+    // Valoracion del curso
     public List<Valoracion> getValoraciones() {
         return valoraciones;
     }
@@ -296,16 +312,16 @@ public class Curso implements Serializable {
     public void setValoraciones(List<Valoracion> valoraciones) {
         this.valoraciones = valoraciones;
     }
-    
-    public void agregarValoracion(Valoracion valoracion){
+
+    public void agregarValoracion(Valoracion valoracion) {
         this.valoraciones.add(valoracion);
     }
-    
-    public DataInscripcionEdicion aproboEdicion(String estudiante){
+
+    public DataInscripcionEdicion aproboEdicion(String estudiante) {
         InscripcionEdicion inscripcion;
-        for(Edicion edicion : this.ediciones.values()){
+        for (Edicion edicion : this.ediciones.values()) {
             inscripcion = edicion.darInscripcion(estudiante);
-            if(inscripcion != null && inscripcion.getAprobado()){
+            if (inscripcion != null && inscripcion.getAprobado()) {
                 return inscripcion.darDatos();
             }
         }
@@ -319,5 +335,5 @@ public class Curso implements Serializable {
     public void setVisitas(int visitas) {
         this.visitas = visitas;
     }
-    
+
 }

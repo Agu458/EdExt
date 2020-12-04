@@ -5,9 +5,6 @@
  */
 package Logica;
 
-import DataTypes.DataEdicion;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -24,7 +21,12 @@ public class MainPruebas {
         Fabrica fab = Fabrica.getInstance();
         ISistema is = fab.getISistema();
         List inscripciones = is.darDatosCertificado("aguperaza458@gmail.com", "TECNOLOGO");
-        System.out.println(inscripciones.size());
+        if(inscripciones != null){
+            System.out.println(inscripciones.size());
+        }
+        else{
+            System.out.println("null");
+        }
         
     }
     

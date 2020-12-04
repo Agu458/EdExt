@@ -6,6 +6,8 @@
 package Logic;
 
 import Server.DataCurso;
+import Server.DataProfesor;
+import Server.DataUsuario;
 import Server.Lista;
 import Server.PublicadorServidorCentralService;
 import com.google.gson.Gson;
@@ -20,6 +22,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
@@ -104,25 +107,27 @@ public class Curso extends HttpServlet {
                 }
 
             }
-        }
-
-        String validar = request.getParameter("validar");
-        if (validar != null) {
-            if (validar.equals("validarNombreCurso")) {
-                String nombre = request.getParameter("nombre");
-                if (nombre != null) {
-                    Boolean valido = port.validarNombreCurso(nombre);
-                    out.println(valido);
+        } else {
+            String validar = request.getParameter("validar");
+            if (validar != null) {
+                if (validar.equals("validarNombreCurso")) {
+                    String nombre = request.getParameter("nombre");
+                    if (nombre != null) {
+                        Boolean valido = port.validarNombreCurso(nombre);
+                        out.println(valido);
+                    }
+                }
+            } else {
+                String consultarCurso = request.getParameter("consultarCurso");
+                if (consultarCurso != null) {
+                    DataCurso dc = port.darDatosCurso(consultarCurso);
+                    request.setAttribute("curso", dc);
+                    port.agregarVisita(dc.getNombre());
+                    request.getRequestDispatcher("mostrarInfoCurso.jsp").forward(request, response);
+                } else {
+                    response.sendRedirect("index.jsp");
                 }
             }
-        }
-
-        String consultarCurso = request.getParameter("consultarCurso");
-        if (consultarCurso != null) {
-            DataCurso dc = port.darDatosCurso(consultarCurso);
-            request.setAttribute("curso", dc);
-            port.agregarVisita(dc.getNombre());
-            request.getRequestDispatcher("mostrarInfoCurso.jsp").forward(request, response);
         }
     }
 
@@ -138,44 +143,60 @@ public class Curso extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/plain");
-        PrintWriter out = response.getWriter();
+        HttpSession session = request.getSession();
+        DataUsuario du = (DataUsuario) session.getAttribute("usuario");
+        if (du instanceof DataProfesor) {
 
-        String accion = request.getParameter("accion");
-        if (accion.equals("altaCurso")) {
-            String nombre = request.getParameter("nombre");
-            String descripcion = request.getParameter("descripcion");
-            String instituto = request.getParameter("instituto");
-            int duracion = Integer.parseInt(request.getParameter("duracion"));
-            int horas = Integer.parseInt(request.getParameter("horas"));
-            int creditos = Integer.parseInt(request.getParameter("creditos"));
-            String url = request.getParameter("url");
+            String accion = request.getParameter("accion");
+            if (accion.equals("altaCurso")) {
+                String nombre = request.getParameter("nombre");
+                String descripcion = request.getParameter("descripcion");
+                String instituto = request.getParameter("instituto");
+                int duracion = Integer.parseInt(request.getParameter("duracion"));
+                int horas = Integer.parseInt(request.getParameter("horas"));
+                int creditos = Integer.parseInt(request.getParameter("creditos"));
+                String url = request.getParameter("url");
 
-            String[] prevs = request.getParameterValues("previas");
-            List previas = new ArrayList();
-            if (prevs != null) {
-                previas = Arrays.asList(prevs);
+                String[] prevs = request.getParameterValues("previas");
+                List previas = new ArrayList();
+                if (prevs != null) {
+                    previas = Arrays.asList(prevs);
+                }
+
+                String[] cats = request.getParameterValues("categorias");
+                List categorias = new ArrayList();
+                if (cats != null) {
+                    categorias = Arrays.asList(cats);
+                }
+
+                GregorianCalendar calendario = new GregorianCalendar();
+                XMLGregorianCalendar xmlCalendario = null;
+
+                calendario.setTime(new Date());
+
+                try {
+                    xmlCalendario = DatatypeFactory.newInstance().newXMLGregorianCalendar(calendario);
+                } catch (DatatypeConfigurationException ex) {
+                    ex.printStackTrace();
+                }
+
+                if (instituto != null && !instituto.equals("vacio")) {
+                    port.altaCurso(nombre, descripcion, duracion, horas, creditos, Login.GetXmlGregorianCalendar(new Date()), url, previas, categorias, instituto);
+                    response.sendRedirect("altacurso.jsp");
+                } else {
+                    request.setAttribute("msg", "Faltan parametros...");
+                    request.getRequestDispatcher("altacurso.jsp").forward(request, response);
+                }
+
+            } else {
+                response.sendRedirect("index.jsp");
             }
 
-            String[] cats = request.getParameterValues("categorias");
-            List categorias = new ArrayList();
-            if (cats != null) {
-                categorias = Arrays.asList(cats);
-            }
-
-            GregorianCalendar calendario = new GregorianCalendar();
-            XMLGregorianCalendar xmlCalendario = null;
-
-            calendario.setTime(new Date());
-
-            try {
-                xmlCalendario = DatatypeFactory.newInstance().newXMLGregorianCalendar(calendario);
-            } catch (DatatypeConfigurationException ex) {
-                ex.printStackTrace();
-            }
-            
-            port.altaCurso(nombre, descripcion, duracion, horas, creditos, Login.GetXmlGregorianCalendar(new Date()), url, previas, categorias, instituto);
-            response.sendRedirect("altacurso.jsp");
+        } else {
+            request.setAttribute("msg", "Session invalida...");
+            request.getRequestDispatcher("index.jsp").forward(request, response);
         }
+
     }
 
     /**

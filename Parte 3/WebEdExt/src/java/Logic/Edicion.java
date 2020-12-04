@@ -45,17 +45,12 @@ public class Edicion extends HttpServlet {
         response.setContentType("text/plain");
         PrintWriter out = response.getWriter();
 
-        String accion = request.getParameter("action");
-        if (accion != null) {
-            if (accion.equals("validarNombreEdicion")) {
-                String nombre = request.getParameter("nombre");
-                if (nombre != null) {
-                    String curso = request.getParameter("curso");
-                    if (curso != null) {
-                        Boolean valido = port.validarNombreEdicion(curso, nombre);
-                        out.println(valido);
-                    }
-                }
+        String validarNombreEdicion = request.getParameter("validarNombreEdicion");
+        if (validarNombreEdicion != null) {
+            String curso = request.getParameter("curso");
+            if (curso != null) {
+                Boolean valido = port.validarNombreEdicion(curso, validarNombreEdicion);
+                out.println(valido);
             }
         }
 
@@ -227,7 +222,12 @@ public class Edicion extends HttpServlet {
                                 profesores = Arrays.asList(profs);
                             }
 
-                            port.altaEdicionCurso(nombre, Login.GetXmlGregorianCalendar(fechaIni), Login.GetXmlGregorianCalendar(fechaFin), cupos, Login.GetXmlGregorianCalendar(new Date()), profesores, curso);
+                            if (!profesores.isEmpty()) {
+                                port.altaEdicionCurso(nombre, Login.GetXmlGregorianCalendar(fechaIni), Login.GetXmlGregorianCalendar(fechaFin), cupos, Login.GetXmlGregorianCalendar(new Date()), profesores, curso);
+                            } else {
+                                request.setAttribute("msg", "No se selecciono ningun profesor...");
+                                request.getRequestDispatcher("index.jsp").forward(request, response);
+                            }
                         }
                     }
                 }

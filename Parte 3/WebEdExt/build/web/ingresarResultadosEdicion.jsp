@@ -26,18 +26,8 @@
                 <%
                     DataEdicion de = (DataEdicion) request.getAttribute("edicion");
                     List aceptados = (List) request.getAttribute("aceptados");
-                    String msg = (String) request.getAttribute("msg");
 
                     if (de == null && aceptados == null) {
-                        if (msg != null) {
-                %>
-                <div class="form-group">
-                    <div class="alert alert-danger" role="alert">
-                        <%= msg%>
-                    </div>
-                </div>
-                <%
-                    }
                 %>
                 <div class="form-group">
                     <label for="#selInstituto">Instituto</label>

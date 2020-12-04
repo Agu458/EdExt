@@ -15,6 +15,32 @@
     }
 %>
 
+<%
+    String msg = (String) request.getAttribute("msg");
+    if (msg != null && !msg.equals("generado")) {
+%>
+<div class="modal" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title text-black-50" id="errorModalLabel">Error</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-danger">
+                <%= msg %>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $("#errorModal").modal('show');
+</script>
+<%
+    }
+%>
+
 <!-- Modal -->
 <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">

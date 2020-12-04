@@ -17,18 +17,6 @@
             <div class="card">
                 <h2 class="card-header text-center text-white bg-warning">Agregar Curso a un Programa de Formacion</h2>
                 <div class="card-header" >
-                    <%
-                        String msg = (String) request.getAttribute("msg");
-                        if (msg != null) {
-                    %>
-                    <div class="form-group">
-                        <div class="alert alert-danger" role="alert">
-                            <%= msg%>
-                        </div>
-                    </div>
-                    <%
-                        }
-                    %>
                     <form action="ProgramaFormacion" method="POST">
                         <div class="form-group">
                             <label for="programa">Programa de Formacion</label>

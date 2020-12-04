@@ -7,18 +7,35 @@ package Presentacion;
 
 import DataTypes.DataEstudiante;
 import DataTypes.DataProfesor;
+import java.awt.Image;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.sql.Blob;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.util.Scanner;
+import java.io.ByteArrayOutputStream;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.sql.SQLException;
+import javax.imageio.ImageIO;
 
 /**
  *
  * @author Agustin
  */
 public class AltaUsuario extends javax.swing.JInternalFrame {
+
+    private byte [] B;
 
     /**
      * Creates new form AltaUsuario
@@ -69,12 +86,6 @@ public class AltaUsuario extends javax.swing.JInternalFrame {
         jLabel4.setText("Email");
 
         jLabel5.setText("Fecha de Nacimiento");
-
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
 
         jDateChooser1.setDateFormatString("dd/MM/yyyy");
 
@@ -189,10 +200,6 @@ public class AltaUsuario extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
-
     private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
         // TODO add your handling code here:
         if (this.jRadioButton1.isSelected()) {
@@ -221,14 +228,14 @@ public class AltaUsuario extends javax.swing.JInternalFrame {
                         JOptionPane.showMessageDialog(this, "Campos vacios", "Error", JOptionPane.ERROR_MESSAGE);
                     } else {
 
-                        String nick, nombre, apellido, email ,contrasenia ,imagen;
+                        String nick, nombre, apellido, email ,contrasenia ;
                         nick = jTextField1.getText();
                         nombre = jTextField2.getText();
                         apellido = jTextField3.getText();
                         email = jTextField4.getText();
                         Date fecha = jDateChooser1.getDate();
                         contrasenia = jTextField5.getText();
-                        imagen = jTextField6.getText();
+                        byte [] imagen = B;
 
                         if (!this.jRadioButton1.isSelected()) {
                             DataEstudiante de = new DataEstudiante(nick, nombre, apellido, email, fecha, contrasenia ,imagen);
@@ -262,14 +269,33 @@ public class AltaUsuario extends javax.swing.JInternalFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
-        int result = fileChooser.showOpenDialog(this);
-        if (result == JFileChooser.APPROVE_OPTION) {
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("*.Image", "jpg", "png");
+        fileChooser.addChoosableFileFilter(filter);
+        int result = fileChooser.showSaveDialog(null);
         File selectedFile = fileChooser.getSelectedFile();
-        jTextField6.setText(selectedFile.getAbsolutePath());
-        jLabel8.setIcon(new ImageIcon(selectedFile.getAbsolutePath()));
+        String filename = selectedFile.getName();
+        if(filename.endsWith(".jpg")||filename.endsWith(".JPG")||filename.endsWith(".png")||filename.endsWith(".PNG")){
+            if (result == JFileChooser.APPROVE_OPTION) {
+                try {
+                    String path = selectedFile.getAbsolutePath();
+                    ImageIcon myImage = new ImageIcon(path);
+                    Image Img = myImage.getImage();
+                    Image newImage = Img.getScaledInstance(jLabel8.getWidth(), jLabel8.getHeight(), Image.SCALE_SMOOTH);
+                    jTextField6.setText(selectedFile.getPath());
+                    ImageIcon image = new ImageIcon(newImage);
+                    jLabel8.setIcon(image);
+                    BufferedImage bImage = ImageIO.read(selectedFile);
+                    ByteArrayOutputStream bos = new ByteArrayOutputStream();
+                    ImageIO.write(bImage, "jpg", bos );
+                    byte [] data = bos.toByteArray();
+                    B = data;
+                } catch (IOException ex) {
+                    Logger.getLogger(AltaUsuario.class.getName()).log(Level.SEVERE, null, ex);
+                }
         }
+        }
+ 
     }//GEN-LAST:event_jButton1ActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

@@ -395,17 +395,21 @@ public class Sistema implements ISistema {
         EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
-            Curso c = em.find(Curso.class, curso);
-            if (c != null) {
-                List<Profesor> p = new ArrayList();
-                for (String s : de.getProfesores()) {
-                    Profesor pro = em.find(Profesor.class, s);
-                    p.add(pro);
-                }
-                Edicion e = c.altaEdicion(de.getNombre(), de.getFechaIni(), de.getFechaFin(), de.getCupos(), de.getFechaPublicacion(), p, em);
-                if (e != null) {
-                    for (Profesor pro : p) {
-                        pro.agregarEdicion(e);
+            if (de != null && curso != null) {
+                if (de.getFechaIni().after(new Date()) && de.getFechaFin().after(de.getFechaIni())) {
+                    Curso c = em.find(Curso.class, curso);
+                    if (c != null) {
+                        List<Profesor> p = new ArrayList();
+                        for (String s : de.getProfesores()) {
+                            Profesor pro = em.find(Profesor.class, s);
+                            p.add(pro);
+                        }
+                        Edicion e = c.altaEdicion(de.getNombre(), de.getFechaIni(), de.getFechaFin(), de.getCupos(), de.getFechaPublicacion(), p, em);
+                        if (e != null) {
+                            for (Profesor pro : p) {
+                                pro.agregarEdicion(e);
+                            }
+                        }
                     }
                 }
             }
@@ -565,7 +569,7 @@ public class Sistema implements ISistema {
         try {
             em.getTransaction().begin();
             ProgramaFormacion pf = em.find(ProgramaFormacion.class, nombre);
-            if (pf != null ) {
+            if (pf != null) {
                 ok = pf.conteneCurso(curso);
             }
             em.getTransaction().commit();
@@ -781,7 +785,7 @@ public class Sistema implements ISistema {
             em.getTransaction().begin();
             if (id != null) {
                 Comentario com = em.find(Comentario.class, id);
-                if(com != null){
+                if (com != null) {
                     Comentario coment = new Comentario(estudiante, cuerpo, fechaPublicacion);
                     com.agregarRespuesta(coment);
                     em.persist(coment);
